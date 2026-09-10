@@ -13,6 +13,12 @@ cards across the Steam store, so you don't have to hover every capsule.
   negative `#a34c25`. Each card also gets `data-sro-tone="positive|mixed|negative|none"`
   and `data-sro-score="0-9"` so future overlays (dimming, hiding, etc.) can hook
   in with plain CSS.
+- Toolbar popup (click the icon) with a filter: pick a review tier on the
+  slider and choose whether games below it are just **Labeled** (default),
+  **Dimmed** (black overlay, still clickable) or **Hidden** (fade out, then
+  collapsed with `display:none` so lists reflow). Optionally treat "No user
+  reviews" as below the bar. Settings sync via `storage.sync` and apply live
+  to open tabs.
 - Data comes from Steam's public `store.steampowered.com/appreviews/<id>?json=1`
   endpoint (all languages, all purchase types). Responses are cached in
   `storage.local` for 24 h, fetches are lazy (only cards near the viewport)
@@ -46,10 +52,13 @@ screenshot:
 npm run build:chrome
 node scripts/smoke.mjs ./shots https://store.steampowered.com/ "https://store.steampowered.com/search/?term=roguelike"
 node scripts/debug-cards.mjs ./shots https://store.steampowered.com/specials 6   # dump every claimed card
+node scripts/popup-test.mjs ./shots        # drives the popup, checks dim/hide apply live
+node scripts/make-icons.mjs                # re-rasterize public/icon.svg → PNGs
 ```
 
 ## Layout
 
 All styling lives in `src/content.css` (`.sro-badge`, `.sro-inline`,
-`.sro-corner`, tone classes). Card detection and placement heuristics are in
+`.sro-corner`, tone classes, and the `[data-sro-filtered="dim|hide"]` rules).
+The popup is `src/popup/`; shared settings live in `src/settings.ts`. Card detection and placement heuristics are in
 `src/content.ts` (`findCard`, `findPriceEl`, `placeBadge`).

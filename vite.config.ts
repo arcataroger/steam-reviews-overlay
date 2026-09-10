@@ -6,6 +6,7 @@ const browser = process.env.TARGET_BROWSER === 'firefox' ? 'firefox' : 'chrome'
 
 export default defineConfig({
   plugins: [crx({ manifest, browser })],
+  publicDir: false,
   build: {
     outDir: `dist/${browser}`,
     emptyOutDir: true,

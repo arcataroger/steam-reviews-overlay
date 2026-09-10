@@ -1,5 +1,8 @@
 import css from './content.css?inline'
-import { getReviewSummary, formatTooltip, type ReviewSummary } from './steam'
+import { getReviewSummary, formatTooltip, peekCached, type ReviewSummary } from './steam'
+import { loadSettings, onSettingsChange, isFiltered, DEFAULT_SETTINGS, type Settings } from './settings'
+
+let settings: Settings = DEFAULT_SETTINGS
 
 const APP_RE = /\/app\/(\d+)/
 const CARD_ATTR = 'data-sro-card'
@@ -147,6 +150,7 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   const badge = makeBadge(summary)
   card.dataset.sroTone = summary.tone
   card.dataset.sroScore = String(summary.score)
+  applyFilter(card, summary.score)
 
   const price = findPriceEl(card)
   if (price) {
@@ -176,6 +180,45 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement) {
   const cs = getComputedStyle(card)
   if (cs.position === 'static') card.style.position = 'relative'
   card.appendChild(badge)
+}
+
+/* ---------- filtering (dim / hide) ---------- */
+
+const hideTimers = new WeakMap<HTMLElement, number>()
+
+function applyFilter(card: HTMLElement, score: number) {
+  const want = isFiltered(score, settings) ? settings.mode : null
+  const cur = card.dataset.sroFiltered
+  const t = hideTimers.get(card)
+  if (t) {
+    clearTimeout(t)
+    hideTimers.delete(card)
+  }
+  if (!want) {
+    delete card.dataset.sroFiltered
+    return
+  }
+  if (want === 'dim') {
+    card.dataset.sroFiltered = 'dim'
+    return
+  }
+  // hide: fade out first, then display:none so the layout reflows
+  if (cur === 'hide' || cur === 'hiding') return
+  card.dataset.sroFiltered = 'hiding'
+  hideTimers.set(
+    card,
+    window.setTimeout(() => {
+      hideTimers.delete(card)
+      if (card.dataset.sroFiltered === 'hiding') card.dataset.sroFiltered = 'hide'
+    }, 320),
+  )
+}
+
+function reapplyFilters() {
+  for (const [card, appid] of cardsByAppId) {
+    const s = peekCached(appid)
+    if (s && card.isConnected) applyFilter(card, s.score)
+  }
 }
 
 /* ---------- scanning & scheduling ---------- */
@@ -212,6 +255,7 @@ function revalidateCards() {
     card.removeAttribute(CARD_ATTR)
     delete card.dataset.sroTone
     delete card.dataset.sroScore
+    delete card.dataset.sroFiltered
     card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}[data-sro-appid="${appid}"]`).forEach((n) => n.remove())
     cardsByAppId.delete(card)
   }
@@ -246,8 +290,13 @@ function scheduleScan() {
   }, 250)
 }
 
-function main() {
+async function main() {
   injectStyles()
+  settings = await loadSettings()
+  onSettingsChange((s) => {
+    settings = s
+    reapplyFilters()
+  })
   scan()
   const mo = new MutationObserver((muts) => {
     for (const m of muts) {
@@ -271,7 +320,7 @@ function main() {
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', main, { once: true })
+  document.addEventListener('DOMContentLoaded', () => void main(), { once: true })
 } else {
-  main()
+  void main()
 }

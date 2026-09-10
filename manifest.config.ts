@@ -11,10 +11,20 @@ export default defineManifest({
   version: pkg.version,
   icons: {
     16: 'public/icon16.png',
+    32: 'public/icon32.png',
     48: 'public/icon48.png',
     128: 'public/icon128.png',
   },
   permissions: ['storage'],
+  action: {
+    default_title: 'Steam Reviews Overlay',
+    default_popup: 'src/popup/index.html',
+    default_icon: {
+      16: 'public/icon16.png',
+      32: 'public/icon32.png',
+      48: 'public/icon48.png',
+    },
+  },
   host_permissions: ['https://store.steampowered.com/*'],
   content_scripts: [
     {

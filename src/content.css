@@ -41,3 +41,40 @@
 [data-sro-tone="negative"] { }
 [data-sro-tone="mixed"] { }
 [data-sro-tone="positive"] { }
+
+/* ---------- filter: dim ---------- */
+[data-sro-filtered="dim"] {
+  position: relative;
+}
+[data-sro-filtered="dim"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  pointer-events: none;
+  z-index: 4;
+  border-radius: inherit;
+  transition: background 0.25s ease;
+}
+[data-sro-filtered="dim"]:hover::after {
+  background: rgba(0, 0, 0, 0.45);
+}
+[data-sro-filtered="dim"] .sro-badge {
+  z-index: 6;
+  position: relative;
+}
+[data-sro-filtered="dim"] .sro-badge.sro-corner {
+  position: absolute;
+}
+
+/* ---------- filter: hide ---------- */
+/* Two-step: animate out, then collapse for real so lists reflow. */
+[data-sro-filtered="hiding"] {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0 !important;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+[data-sro-filtered="hide"] {
+  display: none !important;
+}

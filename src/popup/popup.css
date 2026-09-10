@@ -1,0 +1,54 @@
+:root {
+  --bg: #1b2838;
+  --bg2: #16202d;
+  --fg: #c6d4df;
+  --muted: #8f98a0;
+  --accent: #66c0f4;
+  --positive: #66c0f4;
+  --mixed: #b9a074;
+  --negative: #a34c25;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 300px;
+  font: 13px/1.4 "Motiva Sans", -apple-system, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+.hdr {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg2);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+.sec { padding: 12px 14px 4px; }
+.sec-title { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; }
+.label-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.tier { font-weight: 600; }
+.tier.positive { color: var(--positive); }
+.tier.mixed { color: var(--mixed); }
+.tier.negative { color: var(--negative); }
+
+input[type="range"] {
+  width: 100%; margin: 4px 0 0;
+  accent-color: var(--accent);
+}
+.ticks { display: flex; justify-content: space-between; font-size: 10px; margin-top: 2px; }
+.ticks .neg { color: var(--negative); } .ticks .mix { color: var(--mixed); } .ticks .pos { color: var(--positive); }
+
+.seg { display: flex; margin-top: 8px; border: 1px solid #2a475e; border-radius: 4px; overflow: hidden; }
+.seg button {
+  flex: 1; padding: 7px 0; border: 0; background: transparent; color: var(--muted);
+  font: inherit; cursor: pointer;
+}
+.seg button + button { border-left: 1px solid #2a475e; }
+.seg button[aria-checked="true"] { background: #2a475e; color: #fff; }
+.seg button:hover { color: #fff; }
+.help { margin: 8px 0 0; color: var(--muted); font-size: 12px; min-height: 2.6em; }
+
+.chk { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; padding-bottom: 10px; }
+.chk input { margin: 2px 0 0; accent-color: var(--accent); }
+body.inactive .sec:first-of-type, body.inactive .chk { opacity: 0.45; }

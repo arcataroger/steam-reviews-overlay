@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Steam Reviews Overlay</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <header class="hdr">
+      <img src="../../public/icon48.png" alt="" width="20" height="20" />
+      <span>Steam Reviews Overlay</span>
+    </header>
+
+    <section class="sec">
+      <div class="label-row">
+        <span class="sec-title">Games below</span>
+        <span id="tierName" class="tier"></span>
+      </div>
+      <input id="threshold" type="range" min="1" max="9" step="1" />
+      <div class="ticks" aria-hidden="true">
+        <span class="neg">Neg</span><span class="mix">Mixed</span><span class="pos">Pos</span>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-title">…should be</div>
+      <div class="seg" role="radiogroup" id="mode">
+        <button type="button" data-mode="label" role="radio">Labeled</button>
+        <button type="button" data-mode="dim" role="radio">Dimmed</button>
+        <button type="button" data-mode="hide" role="radio">Hidden</button>
+      </div>
+      <p id="modeHelp" class="help"></p>
+    </section>
+
+    <section class="sec">
+      <label class="chk">
+        <input id="includeUnreviewed" type="checkbox" />
+        <span>Treat "No user reviews" as below the bar</span>
+      </label>
+    </section>
+
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>

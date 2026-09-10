@@ -1,0 +1,43 @@
+/* Steam's own review-summary colors, kept verbatim so later overlays can reuse them */
+.sro-badge {
+  --sro-positive: #66c0f4;
+  --sro-mixed: #b9a074;
+  --sro-negative: #a34c25;
+  --sro-none: #929396;
+
+  display: inline-block;
+  font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 400;
+  white-space: nowrap;
+  vertical-align: middle;
+  pointer-events: auto;
+  cursor: default;
+  z-index: 5;
+}
+.sro-badge.sro-positive { color: var(--sro-positive); }
+.sro-badge.sro-mixed    { color: var(--sro-mixed); }
+.sro-badge.sro-negative { color: var(--sro-negative); }
+.sro-badge.sro-none     { color: var(--sro-none); }
+
+/* Placed inline next to a price element */
+.sro-badge.sro-inline {
+  margin-left: 8px;
+}
+
+/* Placed in the lower-right corner of the card when there's no price to sit next to */
+.sro-badge.sro-corner {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.72);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+/* Hook for future per-tone overlays on the card itself */
+[data-sro-tone="negative"] { }
+[data-sro-tone="mixed"] { }
+[data-sro-tone="positive"] { }

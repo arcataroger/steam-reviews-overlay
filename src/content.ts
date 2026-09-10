@@ -1,0 +1,277 @@
+import css from './content.css?inline'
+import { getReviewSummary, formatTooltip, type ReviewSummary } from './steam'
+
+const APP_RE = /\/app\/(\d+)/
+const CARD_ATTR = 'data-sro-card'
+const BADGE_CLASS = 'sro-badge'
+
+/** Containers that already show reviews or that we must never touch. */
+const EXCLUDE_SELECTOR = [
+  '#global_hover',
+  '.hover_body',
+  '#global_header',
+  '#footer',
+  '#search_suggestion_contents',
+  '.search_results_filtered_warning',
+  '.game_review_summary',
+  '.sro-badge',
+].join(',')
+
+/** Price-ish elements, roughly ordered from most to least specific. */
+const PRICE_SELECTORS = [
+  '.discount_final_price',
+  '.discount_block',
+  '.search_price_discount_combined',
+  '.search_price',
+  '.tab_item_discount',
+  '.game_purchase_price',
+  '.discount_prices',
+  '.price',
+  '[class*="_StoreSalePriceBox_"]',
+  '[class*="_StoreSalePriceWidgetContainer_"]',
+  '[class*="PriceBox"]',
+  '[class*="_Price_"]',
+  '[class*="price"]',
+  '[class*="Price"]',
+]
+
+const MAX_CARD_W = 1400
+const MAX_CARD_H = 700
+
+function injectStyles() {
+  if (document.getElementById('sro-styles')) return
+  const style = document.createElement('style')
+  style.id = 'sro-styles'
+  style.textContent = css
+  document.documentElement.appendChild(style)
+}
+
+/** The appid of the page itself (on /app/123/ pages) — already shows reviews; skip it. */
+const pageAppId = (() => {
+  const m = location.pathname.match(APP_RE)
+  return m ? Number(m[1]) : null
+})()
+
+function appIdOf(el: Element): number | null {
+  const ds = el.getAttribute('data-ds-appid')
+  if (ds && /^\d+$/.test(ds)) return Number(ds)
+  const href = (el as HTMLAnchorElement).getAttribute?.('href')
+  if (href) {
+    const m = href.match(APP_RE)
+    if (m) return Number(m[1])
+  }
+  return null
+}
+
+/** Set of distinct appids referenced anywhere inside an element. */
+function appIdsWithin(root: Element, limit = 3): Set<number> {
+  const ids = new Set<number>()
+  const self = appIdOf(root)
+  if (self) ids.add(self)
+  const nodes = root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')
+  for (const n of nodes) {
+    const id = appIdOf(n)
+    if (id) ids.add(id)
+    if (ids.size >= limit) break
+  }
+  return ids
+}
+
+/**
+ * Walk up from a game link to the largest ancestor that still references only this
+ * one game and isn't absurdly large. That ancestor is the "card".
+ */
+function findCard(start: HTMLElement, appid: number): HTMLElement | null {
+  let card: HTMLElement | null = null
+  let el: HTMLElement | null = start
+  let hops = 0
+  while (el && el !== document.body && hops < 12) {
+    if (el.matches(EXCLUDE_SELECTOR) || el.closest(EXCLUDE_SELECTOR)) return null
+    const ids = appIdsWithin(el, 2)
+    if (ids.size !== 1 || !ids.has(appid)) break
+    const rect = el.getBoundingClientRect()
+    if (rect.width > MAX_CARD_W || rect.height > MAX_CARD_H) break
+    card = el
+    el = el.parentElement
+    hops++
+  }
+  return card
+}
+
+const SUMMARY_RE = /^\s*(Overwhelmingly |Very |Mostly )?(Positive|Negative|Mixed)\b/i
+
+/** Does the card already show Steam's own textual review summary (e.g. expanded sale cards)? */
+function hasNativeSummary(card: HTMLElement): boolean {
+  for (const el of card.querySelectorAll<HTMLElement>('[class*="review" i]:not(.sro-badge)')) {
+    if (SUMMARY_RE.test(el.textContent ?? '') && el.getClientRects().length) return true
+  }
+  return false
+}
+
+function findPriceEl(card: HTMLElement): HTMLElement | null {
+  for (const sel of PRICE_SELECTORS) {
+    const candidates = card.querySelectorAll<HTMLElement>(sel)
+    for (const c of candidates) {
+      if (c.closest(`.${BADGE_CLASS}`)) continue
+      if (!c.textContent?.trim()) continue
+      const rect = c.getBoundingClientRect()
+      if (rect.width === 0 && rect.height === 0) continue
+      // Prefer the innermost priced element so we sit right next to the number
+      let leaf: HTMLElement = c
+      for (const s of PRICE_SELECTORS.slice(0, 6)) {
+        const inner = c.querySelector<HTMLElement>(s)
+        if (inner && inner !== c && inner.textContent?.trim()) {
+          leaf = inner
+          break
+        }
+      }
+      return leaf
+    }
+  }
+  return null
+}
+
+function makeBadge(summary: ReviewSummary): HTMLSpanElement {
+  const b = document.createElement('span')
+  b.className = `${BADGE_CLASS} sro-${summary.tone}`
+  b.textContent = summary.desc
+  b.title = formatTooltip(summary)
+  b.dataset.sroAppid = String(summary.appid)
+  b.dataset.sroScore = String(summary.score)
+  return b
+}
+
+function placeBadge(card: HTMLElement, summary: ReviewSummary) {
+  if (!card.isConnected) return
+  card.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
+  const badge = makeBadge(summary)
+  card.dataset.sroTone = summary.tone
+  card.dataset.sroScore = String(summary.score)
+
+  const price = findPriceEl(card)
+  if (price) {
+    badge.classList.add('sro-inline')
+    // If the price is the sole content of a flex/inline row, append inside it; else after it.
+    const parent = price.parentElement
+    if (parent && parent !== card && getComputedStyle(parent).display.includes('flex')) {
+      parent.appendChild(badge)
+    } else {
+      price.insertAdjacentElement('afterend', badge)
+    }
+    // Fallback to corner if the inline badge got clipped/hidden
+    const r = badge.getBoundingClientRect()
+    const cr = card.getBoundingClientRect()
+    if (r.width === 0 || r.right > cr.right + 2 || r.bottom > cr.bottom + 2 || r.top < cr.top - 2) {
+      badge.remove()
+      badge.classList.remove('sro-inline')
+      placeInCorner(card, badge)
+    }
+  } else {
+    placeInCorner(card, badge)
+  }
+}
+
+function placeInCorner(card: HTMLElement, badge: HTMLSpanElement) {
+  badge.classList.add('sro-corner')
+  const cs = getComputedStyle(card)
+  if (cs.position === 'static') card.style.position = 'relative'
+  card.appendChild(badge)
+}
+
+/* ---------- scanning & scheduling ---------- */
+
+const cardsByAppId = new Map<HTMLElement, number>()
+
+const io = new IntersectionObserver(
+  (entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue
+      const card = e.target as HTMLElement
+      io.unobserve(card)
+      const appid = cardsByAppId.get(card)
+      if (!appid) continue
+      if (hasNativeSummary(card)) continue
+      void getReviewSummary(appid).then((s) => {
+        if (s) placeBadge(card, s)
+        else card.removeAttribute(CARD_ATTR) // allow retry on next scan
+      })
+    }
+  },
+  { rootMargin: '600px 0px' },
+)
+
+function revalidateCards() {
+  for (const [card, appid] of cardsByAppId) {
+    if (!card.isConnected) {
+      cardsByAppId.delete(card)
+      continue
+    }
+    const ids = appIdsWithin(card, 2)
+    if (ids.size === 1 && ids.has(appid)) continue
+    io.unobserve(card)
+    card.removeAttribute(CARD_ATTR)
+    delete card.dataset.sroTone
+    delete card.dataset.sroScore
+    card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}[data-sro-appid="${appid}"]`).forEach((n) => n.remove())
+    cardsByAppId.delete(card)
+  }
+}
+
+function scan(root: ParentNode = document) {
+  revalidateCards()
+  const candidates = root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')
+  for (const el of candidates) {
+    const appid = appIdOf(el)
+    if (!appid || appid === pageAppId) continue
+    if (el.closest(`[${CARD_ATTR}]`)) continue
+    if (el.closest(EXCLUDE_SELECTOR)) continue
+    const card = findCard(el, appid)
+    if (!card || card.hasAttribute(CARD_ATTR)) continue
+    // Ignore invisible / zero-size things (hidden templates etc.) and plain prose links
+    const r = card.getBoundingClientRect()
+    if (r.width < 40 || r.height < 16) continue
+    if (r.height < 60 && !card.querySelector('img, picture, video')) continue
+    card.setAttribute(CARD_ATTR, String(appid))
+    cardsByAppId.set(card, appid)
+    io.observe(card)
+  }
+}
+
+let scanTimer: number | undefined
+function scheduleScan() {
+  if (scanTimer) return
+  scanTimer = window.setTimeout(() => {
+    scanTimer = undefined
+    scan()
+  }, 250)
+}
+
+function main() {
+  injectStyles()
+  scan()
+  const mo = new MutationObserver((muts) => {
+    for (const m of muts) {
+      if (m.type === 'childList' && m.addedNodes.length) {
+        // Ignore our own badge insertions
+        let relevant = false
+        for (const n of m.addedNodes) {
+          if (n.nodeType === 1 && !(n as Element).classList.contains(BADGE_CLASS)) {
+            relevant = true
+            break
+          }
+        }
+        if (relevant) {
+          scheduleScan()
+          return
+        }
+      }
+    }
+  })
+  mo.observe(document.body, { childList: true, subtree: true })
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', main, { once: true })
+} else {
+  main()
+}

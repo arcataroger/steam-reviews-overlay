@@ -13,8 +13,11 @@ cards across the Steam store, so you don't have to hover every capsule.
   negative `#a34c25`. Each card also gets `data-sro-tone="positive|mixed|negative|none"`
   and `data-sro-score="0-9"` so future overlays (dimming, hiding, etc.) can hook
   in with plain CSS.
-- Toolbar popup (click the icon) with a filter: pick a review tier on the
-  slider and choose whether games below it are just **Labeled** (default),
+- Toolbar popup (click the icon) with a filter: set a minimum
+  positive-review percentage on the slider (0–100, snaps to Steam's named
+  tiers: Mostly Negative 20%, Mixed 40%, Mostly Positive 70%, Very Positive
+  80%, Overwhelmingly Positive 95%, also clickable as chips) and choose whether
+  games below it are just **Labeled** (default),
   **Dimmed** (black overlay, still clickable) or **Hidden** (fade out, then
   collapsed with `display:none` so lists reflow). Optionally treat "No user
   reviews" as below the bar. Settings sync via `storage.sync` and apply live

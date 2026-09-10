@@ -12,7 +12,7 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  width: 300px;
+  width: 340px;
   font: 13px/1.4 "Motiva Sans", -apple-system, "Segoe UI", Arial, sans-serif;
   background: var(--bg);
   color: var(--fg);
@@ -36,8 +36,20 @@ input[type="range"] {
   width: 100%; margin: 4px 0 0;
   accent-color: var(--accent);
 }
-.ticks { display: flex; justify-content: space-between; font-size: 10px; margin-top: 2px; }
-.ticks .neg { color: var(--negative); } .ticks .mix { color: var(--mixed); } .ticks .pos { color: var(--positive); }
+.tier .pct { color: var(--muted); font-weight: 400; margin-left: 6px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.chips button {
+  border: 1px solid #2a475e; border-radius: 12px; background: transparent;
+  color: var(--muted); font: inherit; font-size: 11px; padding: 2px 8px; cursor: pointer;
+  white-space: nowrap;
+}
+.chips button:hover { color: #fff; }
+.chips button.active { background: #2a475e; color: #fff; }
+.chips button.positive.active { color: var(--positive); }
+.chips button.mixed.active { color: var(--mixed); }
+.chips button.negative.active { color: var(--negative); }
+.chips button .p { opacity: 0.6; margin-left: 4px; }
 
 .seg { display: flex; margin-top: 8px; border: 1px solid #2a475e; border-radius: 4px; overflow: hidden; }
 .seg button {

@@ -13,7 +13,7 @@ const ctx = await chromium.launchPersistentContext('', {
 const popup = await ctx.newPage()
 await popup.goto(`chrome-extension://${id}/src/popup/index.html`)
 await popup.waitForTimeout(500)
-await popup.setViewportSize({ width: 300, height: 380 })
+await popup.setViewportSize({ width: 340, height: 400 })
 await popup.screenshot({ path: `${out}/popup_default.png` })
 
 const store = await ctx.newPage()
@@ -28,7 +28,7 @@ async function setMode(mode, threshold) {
   await popup.screenshot({ path: `${out}/popup_${mode}.png` })
 }
 for (const mode of ['dim', 'hide']) {
-  await setMode(mode, 8)
+  await setMode(mode, 80)
   await store.bringToFront()
   await store.waitForTimeout(1200)
   const st = await store.evaluate(() => ({
@@ -40,7 +40,7 @@ for (const mode of ['dim', 'hide']) {
   console.log(mode, JSON.stringify(st))
   await store.screenshot({ path: `${out}/store_${mode}.png` })
 }
-await setMode('label', 5)
+await setMode('label', 40)
 await store.waitForTimeout(500)
 console.log('label', JSON.stringify(await store.evaluate(() => document.querySelectorAll('[data-sro-filtered]').length)))
 await ctx.close()

@@ -150,7 +150,7 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   const badge = makeBadge(summary)
   card.dataset.sroTone = summary.tone
   card.dataset.sroScore = String(summary.score)
-  applyFilter(card, summary.score)
+  applyFilter(card, summary)
 
   const price = findPriceEl(card)
   if (price) {
@@ -186,8 +186,8 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement) {
 
 const hideTimers = new WeakMap<HTMLElement, number>()
 
-function applyFilter(card: HTMLElement, score: number) {
-  const want = isFiltered(score, settings) ? settings.mode : null
+function applyFilter(card: HTMLElement, summary: ReviewSummary) {
+  const want = isFiltered(summary.positive, summary.total, settings) ? settings.mode : null
   const cur = card.dataset.sroFiltered
   const t = hideTimers.get(card)
   if (t) {
@@ -217,7 +217,7 @@ function applyFilter(card: HTMLElement, score: number) {
 function reapplyFilters() {
   for (const [card, appid] of cardsByAppId) {
     const s = peekCached(appid)
-    if (s && card.isConnected) applyFilter(card, s.score)
+    if (s && card.isConnected) applyFilter(card, s)
   }
 }
 

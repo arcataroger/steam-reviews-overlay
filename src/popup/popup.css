@@ -175,7 +175,7 @@ body {
 .lever.right .rail { right: 13px; }
 .fill {
   position: absolute; left: 0; right: 0;
-  --ext: calc(var(--gate) - 16px); /* run past the end tier, stopping short of the gate */
+  --ext: calc(var(--gate) - 10px); /* run past the end tier, into the gate edge (the gate draws over it) */
   background-image: var(--bands);
   background-repeat: no-repeat;
   transition: height 0.08s linear;

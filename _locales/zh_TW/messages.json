@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam 評論總覽"
+  },
+  "extDescription": {
+    "message": "無需將滑鼠移到遊戲上，即可在 Steam 商店的每款遊戲上顯示評論摘要（「極度好評」、「褒貶不一」……），並可依評論分數將遊戲變暗、隱藏或加上外框。"
+  },
+  "filter": {
+    "message": "篩選"
+  },
+  "highlight": {
+    "message": "標示"
+  },
+  "dim": {
+    "message": "變暗"
+  },
+  "hide": {
+    "message": "隱藏"
+  },
+  "off": {
+    "message": "關"
+  },
+  "judgedBy": {
+    "message": "評判依據"
+  },
+  "myLanguage": {
+    "message": "我的語言"
+  },
+  "allLanguages": {
+    "message": "所有語言"
+  },
+  "betweenTiers": {
+    "message": "介於兩級之間"
+  },
+  "percentPositive": {
+    "message": "$PCT$% 好評",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "篩選桿：低於此處的遊戲會被變暗或隱藏"
+  },
+  "leverHighlightAria": {
+    "message": "標示桿：達到或高於此處的遊戲會加上外框"
+  },
+  "modeAria": {
+    "message": "如何處理低於篩選桿的遊戲"
+  },
+  "sourceAria": {
+    "message": "以哪種評論分數為準"
+  },
+  "tier1": {
+    "message": "壓倒性負評"
+  },
+  "tier2": {
+    "message": "極度負評"
+  },
+  "tier3": {
+    "message": "負評"
+  },
+  "tier4": {
+    "message": "大多負評"
+  },
+  "tier5": {
+    "message": "褒貶不一"
+  },
+  "tier6": {
+    "message": "大多好評"
+  },
+  "tier7": {
+    "message": "好評"
+  },
+  "tier8": {
+    "message": "極度好評"
+  },
+  "tier9": {
+    "message": "壓倒性好評"
+  },
+  "rule1": {
+    "message": "0–19%，500+ 篇評論"
+  },
+  "rule2": {
+    "message": "0–19%，50+ 篇評論"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+，50+ 篇評論"
+  },
+  "rule9": {
+    "message": "95%+，500+ 篇評論"
+  },
+  "notEnoughReviews": {
+    "message": "評論數量不足"
+  },
+  "tooltip": {
+    "message": "$SCOPE$：$LABEL$ — 在 $COUNT$ 篇使用者評論中，$PCT$% 為好評",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$：$LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "無法連線至 Steam。正在顯示已快取的內容。"
+  },
+  "errRateLimited": {
+    "message": "Steam 正在限制請求頻率。稍後將重試。"
+  },
+  "errSteam": {
+    "message": "Steam 傳回了非預期的回應。部分分數可能缺失。"
+  },
+  "errNotStore": {
+    "message": "請開啟 Steam 商店頁面以查看評論分數。"
+  },
+  "lastUpdated": {
+    "message": "分數更新於$AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "剛剛"
+  },
+  "minutesAgo": {
+    "message": "$N$ 分鐘前",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

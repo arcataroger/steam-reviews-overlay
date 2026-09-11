@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Viser anmeldelsesoversigten (\"Meget positive\", \"Blandede\" ...) på alle spil i Steam-butikken uden at du skal holde musen over, og lader dig dæmpe, skjule eller indramme spil efter anmeldelsesscore."
+  },
+  "filter": {
+    "message": "FILTER"
+  },
+  "highlight": {
+    "message": "FREMHÆV"
+  },
+  "dim": {
+    "message": "Dæmp"
+  },
+  "hide": {
+    "message": "Skjul"
+  },
+  "off": {
+    "message": "FRA"
+  },
+  "judgedBy": {
+    "message": "Bedømt efter"
+  },
+  "myLanguage": {
+    "message": "Mit sprog"
+  },
+  "allLanguages": {
+    "message": "Alle sprog"
+  },
+  "betweenTiers": {
+    "message": "mellem to niveauer"
+  },
+  "percentPositive": {
+    "message": "$PCT$ % positive",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Filterbjælke: spil under denne dæmpes eller skjules"
+  },
+  "leverHighlightAria": {
+    "message": "Fremhævningsbjælke: spil på eller over dette niveau indrammes"
+  },
+  "modeAria": {
+    "message": "Hvad der skal ske med spil under filterbjælken"
+  },
+  "sourceAria": {
+    "message": "Hvilken anmeldelsesscore der skal bedømmes efter"
+  },
+  "tier1": {
+    "message": "Overvældende negative"
+  },
+  "tier2": {
+    "message": "Meget negative"
+  },
+  "tier3": {
+    "message": "Negative"
+  },
+  "tier4": {
+    "message": "Hovedsageligt negative"
+  },
+  "tier5": {
+    "message": "Blandede"
+  },
+  "tier6": {
+    "message": "Hovedsageligt positive"
+  },
+  "tier7": {
+    "message": "Positive"
+  },
+  "tier8": {
+    "message": "Meget positive"
+  },
+  "tier9": {
+    "message": "Overvældende positive"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ anmeldelser"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ anmeldelser"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ anmeldelser"
+  },
+  "rule9": {
+    "message": "95%+, 500+ anmeldelser"
+  },
+  "notEnoughReviews": {
+    "message": "Ikke nok anmeldelser"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$ % af de $COUNT$ brugeranmeldelser er positive",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Kunne ikke nå Steam. Viser det, der allerede er i cachen."
+  },
+  "errRateLimited": {
+    "message": "Steam begrænser antallet af forespørgsler. Prøver igen om lidt."
+  },
+  "errSteam": {
+    "message": "Steam returnerede et uventet svar. Nogle scorer kan mangle."
+  },
+  "errNotStore": {
+    "message": "Åbn en side i Steam-butikken for at se anmeldelsesscorer."
+  },
+  "lastUpdated": {
+    "message": "Scorer opdateret $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "lige nu"
+  },
+  "minutesAgo": {
+    "message": "for $N$ min. siden",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

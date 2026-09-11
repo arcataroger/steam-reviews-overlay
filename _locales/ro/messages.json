@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Afișează rezumatul recenziilor („Foarte pozitive”, „Mixte” …) la fiecare joc din magazinul Steam fără a trece cu mouse-ul deasupra și îți permite să estompezi, să ascunzi sau să încadrezi jocurile după scorul recenziilor."
+  },
+  "filter": {
+    "message": "FILTRU"
+  },
+  "highlight": {
+    "message": "EVIDENȚIERE"
+  },
+  "dim": {
+    "message": "Estompează"
+  },
+  "hide": {
+    "message": "Ascunde"
+  },
+  "off": {
+    "message": "OPRIT"
+  },
+  "judgedBy": {
+    "message": "Judecat după"
+  },
+  "myLanguage": {
+    "message": "Limba mea"
+  },
+  "allLanguages": {
+    "message": "Toate limbile"
+  },
+  "betweenTiers": {
+    "message": "între două niveluri"
+  },
+  "percentPositive": {
+    "message": "$PCT$% pozitive",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Bara de filtrare: jocurile de sub ea sunt estompate sau ascunse"
+  },
+  "leverHighlightAria": {
+    "message": "Bara de evidențiere: jocurile de la acest nivel în sus sunt încadrate"
+  },
+  "modeAria": {
+    "message": "Ce se întâmplă cu jocurile de sub bara de filtrare"
+  },
+  "sourceAria": {
+    "message": "După ce scor al recenziilor se judecă"
+  },
+  "tier1": {
+    "message": "Extrem de negative"
+  },
+  "tier2": {
+    "message": "Foarte negative"
+  },
+  "tier3": {
+    "message": "Negative"
+  },
+  "tier4": {
+    "message": "În mare parte negative"
+  },
+  "tier5": {
+    "message": "Echilibrate"
+  },
+  "tier6": {
+    "message": "În mare parte pozitive"
+  },
+  "tier7": {
+    "message": "Pozitive"
+  },
+  "tier8": {
+    "message": "Foarte pozitive"
+  },
+  "tier9": {
+    "message": "Extrem de pozitive"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ recenzii"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ recenzii"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ recenzii"
+  },
+  "rule9": {
+    "message": "95%+, 500+ recenzii"
+  },
+  "notEnoughReviews": {
+    "message": "Recenzii insuficiente"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% din cele $COUNT$ recenzii ale utilizatorilor sunt pozitive",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Nu s-a putut contacta Steam. Se afișează datele din cache."
+  },
+  "errRateLimited": {
+    "message": "Steam limitează numărul de cereri. Se reîncearcă în curând."
+  },
+  "errSteam": {
+    "message": "Steam a returnat un răspuns neașteptat. Unele scoruri pot lipsi."
+  },
+  "errNotStore": {
+    "message": "Deschide o pagină din magazinul Steam pentru a vedea scorurile recenziilor."
+  },
+  "lastUpdated": {
+    "message": "Scoruri actualizate $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "chiar acum"
+  },
+  "minutesAgo": {
+    "message": "acum $N$ min",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

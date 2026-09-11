@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Показує підсумок рецензій («Дуже схвальні», «Змішані» тощо) на кожній грі в крамниці Steam без наведення курсора, а також дає змогу затемнювати, приховувати або обводити ігри за оцінкою рецензій."
+  },
+  "filter": {
+    "message": "ФІЛЬТР"
+  },
+  "highlight": {
+    "message": "ВИДІЛЕННЯ"
+  },
+  "dim": {
+    "message": "Затемнити"
+  },
+  "hide": {
+    "message": "Приховати"
+  },
+  "off": {
+    "message": "ВИМК"
+  },
+  "judgedBy": {
+    "message": "Оцінювати за"
+  },
+  "myLanguage": {
+    "message": "Моя мова"
+  },
+  "allLanguages": {
+    "message": "Усі мови"
+  },
+  "betweenTiers": {
+    "message": "між рівнями"
+  },
+  "percentPositive": {
+    "message": "$PCT$% схвальних",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Планка фільтра: ігри нижче неї затемнюються або приховуються"
+  },
+  "leverHighlightAria": {
+    "message": "Планка виділення: ігри на цьому рівні й вище обводяться рамкою"
+  },
+  "modeAria": {
+    "message": "Що робити з іграми нижче планки фільтра"
+  },
+  "sourceAria": {
+    "message": "За якою оцінкою рецензій судити"
+  },
+  "tier1": {
+    "message": "виключно негативні"
+  },
+  "tier2": {
+    "message": "дуже негативні"
+  },
+  "tier3": {
+    "message": "негативні"
+  },
+  "tier4": {
+    "message": "переважно негативні"
+  },
+  "tier5": {
+    "message": "змішані"
+  },
+  "tier6": {
+    "message": "переважно схвальні"
+  },
+  "tier7": {
+    "message": "схвальні"
+  },
+  "tier8": {
+    "message": "дуже схвальні"
+  },
+  "tier9": {
+    "message": "виключно схвальні"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ рецензій"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ рецензій"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ рецензій"
+  },
+  "rule9": {
+    "message": "95%+, 500+ рецензій"
+  },
+  "notEnoughReviews": {
+    "message": "Недостатньо рецензій"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% із $COUNT$ рецензій користувачів схвальні",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Не вдалося зв'язатися зі Steam. Показано дані з кешу."
+  },
+  "errRateLimited": {
+    "message": "Steam обмежує частоту запитів. Незабаром спробуємо ще раз."
+  },
+  "errSteam": {
+    "message": "Steam повернув неочікувану відповідь. Деякі оцінки можуть бути відсутні."
+  },
+  "errNotStore": {
+    "message": "Відкрийте сторінку крамниці Steam, щоб побачити оцінки рецензій."
+  },
+  "lastUpdated": {
+    "message": "Оцінки оновлено $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "щойно"
+  },
+  "minutesAgo": {
+    "message": "$N$ хв тому",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

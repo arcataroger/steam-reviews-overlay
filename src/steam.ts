@@ -14,6 +14,29 @@
  */
 
 import { encodeGetItemsRequest, decodeGetItemsResponse, requestIncludesReviews, type RawSummary } from './proto'
+import { t } from './i18n'
+
+/* ---------------- status (surfaced in the popup) ---------------- */
+
+export type StatusKind = 'ok' | 'offline' | 'rate' | 'steam'
+export interface Status {
+  kind: StatusKind
+  ts: number
+  /** last time a fetch or replay succeeded */
+  lastOk: number
+}
+export const STATUS_KEY = 'sro:status:v1'
+let lastOk = 0
+let lastKind: StatusKind | null = null
+
+function reportStatus(kind: StatusKind) {
+  const now = Date.now()
+  if (kind === 'ok') lastOk = now
+  if (kind === lastKind && kind !== 'ok') return
+  lastKind = kind
+  const st: Status = { kind, ts: now, lastOk }
+  ext.storage.local.set({ [STATUS_KEY]: st }).catch(() => {})
+}
 
 export type ReviewTone = 'positive' | 'mixed' | 'negative' | 'none'
 
@@ -193,6 +216,16 @@ async function drain() {
 }
 
 let backoffUntil = 0
+let retries = 0
+
+/** Put a failed batch back on the queue with a growing delay (capped), so a Steam hiccup self-heals. */
+function retryLater(appids: number[], baseMs: number) {
+  retries = Math.min(retries + 1, 5)
+  const delay = baseMs * retries
+  backoffUntil = Date.now() + delay
+  for (const id of appids) pending.add(id)
+  if (!flushTimer) flushTimer = window.setTimeout(() => void drain(), delay)
+}
 
 function toScore(sf: RawSummary): Score {
   const score = sf.review_score ?? 0
@@ -221,16 +254,30 @@ async function fetchBatch(appids: number[]) {
   const url =
     'https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?sro=1&format=json&input_protobuf_encoded=' +
     encodeURIComponent(enc)
-  const res = await fetch(url, { credentials: 'omit' })
-  if (res.status === 429 || res.status >= 500) {
-    backoffUntil = Date.now() + 10_000
-    for (const id of appids) pending.add(id)
-    if (!flushTimer) flushTimer = window.setTimeout(() => void drain(), 10_000)
+  let res: Response
+  try {
+    res = await fetch(url, { credentials: 'omit' })
+  } catch {
+    reportStatus('offline')
+    retryLater(appids, 15_000)
     return
   }
-  if (!res.ok) return
+  if (res.status === 429) {
+    reportStatus('rate')
+    retryLater(appids, 20_000)
+    return
+  }
+  if (res.status >= 500) {
+    reportStatus('steam')
+    retryLater(appids, 10_000)
+    return
+  }
+  if (!res.ok) {
+    reportStatus('steam')
+    return
+  }
   const fresh = freshnessFrom(res)
-  const json = (await res.json()) as {
+  let json: {
     response?: {
       store_items?: {
         id?: number
@@ -239,6 +286,14 @@ async function fetchBatch(appids: number[]) {
       }[]
     }
   }
+  try {
+    json = await res.json()
+  } catch {
+    reportStatus('steam')
+    return
+  }
+  reportStatus('ok')
+  retries = 0
   const now = Date.now()
   const seen = new Set<number>()
   for (const item of json.response?.store_items ?? []) {
@@ -279,9 +334,10 @@ export async function ingestSteamRequest(url: string): Promise<number> {
   try {
     res = await fetch(url, { credentials: 'omit', cache: 'force-cache' })
   } catch {
-    return 0
+    return 0 // the page's own request already succeeded; our replay failing is not user-facing
   }
   if (!res.ok) return 0
+  reportStatus('ok')
   const fresh = freshnessFrom(res)
   const buf = new Uint8Array(await res.arrayBuffer())
   let items
@@ -310,6 +366,7 @@ export async function ingestSteamRequest(url: string): Promise<number> {
 }
 
 export function formatTooltip(s: Score, scope: string): string {
-  if (s.pct === null || !s.count) return `${scope}: ${s.label}`
-  return `${scope}: ${s.label} — ${s.pct}% of the ${s.count.toLocaleString()} user reviews are positive`
+  const label = s.label || t('notEnoughReviews')
+  if (s.pct === null || !s.count) return t('tooltipNoPct', scope, label)
+  return t('tooltip', scope, label, s.pct, s.count.toLocaleString())
 }

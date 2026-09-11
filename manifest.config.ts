@@ -1,13 +1,14 @@
 import { defineManifest } from '@crxjs/vite-plugin'
 import pkg from './package.json' with { type: 'json' }
 
-const browser = process.env.TARGET_BROWSER === 'firefox' ? 'firefox' : 'chrome'
+const target = process.env.TARGET_BROWSER ?? 'chrome'
+const browser = target === 'firefox' ? 'firefox' : 'chrome'
 
 export default defineManifest({
   manifest_version: 3,
-  name: 'Steam Reviews Overlay',
-  description:
-    'Shows the review summary ("Very Positive", "Mixed", ...) on every game card on the Steam store without hovering.',
+  name: '__MSG_extName__',
+  description: '__MSG_extDescription__',
+  default_locale: 'en',
   version: pkg.version,
   icons: {
     16: 'public/icon16.png',
@@ -17,7 +18,7 @@ export default defineManifest({
   },
   permissions: ['storage', 'webRequest'],
   action: {
-    default_title: 'Steam Reviews Overlay',
+    default_title: '__MSG_extName__',
     default_popup: 'src/popup/index.html',
     default_icon: {
       16: 'public/icon16.png',
@@ -45,7 +46,8 @@ export default defineManifest({
             strict_min_version: '140.0',
             data_collection_permissions: { required: ['none'] },
           },
-        },
+          gecko_android: { strict_min_version: '142.0' },
+        } as any,
       }
     : {}),
 })

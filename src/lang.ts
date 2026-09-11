@@ -19,14 +19,14 @@ const STEAM_TO_COUNTRY: Record<string, string> = {
   indonesian: 'ID', arabic: 'SA',
 }
 
+/** Language names in their own language, so no translation is needed. */
 export const STEAM_LANG_NAMES: Record<string, string> = {
-  english: 'English', schinese: 'Simplified Chinese', tchinese: 'Traditional Chinese', japanese: 'Japanese',
-  koreana: 'Korean', russian: 'Russian', german: 'German', french: 'French', spanish: 'Spanish',
-  latam: 'Spanish (Latin America)', brazilian: 'Portuguese (Brazil)', portuguese: 'Portuguese', italian: 'Italian',
-  polish: 'Polish', turkish: 'Turkish', thai: 'Thai', vietnamese: 'Vietnamese', ukrainian: 'Ukrainian',
-  dutch: 'Dutch', swedish: 'Swedish', danish: 'Danish', norwegian: 'Norwegian', finnish: 'Finnish', czech: 'Czech',
-  hungarian: 'Hungarian', romanian: 'Romanian', bulgarian: 'Bulgarian', greek: 'Greek', indonesian: 'Indonesian',
-  arabic: 'Arabic',
+  english: 'English', schinese: '简体中文', tchinese: '繁體中文', japanese: '日本語', koreana: '한국어',
+  russian: 'Русский', german: 'Deutsch', french: 'Français', spanish: 'Español', latam: 'Español (Latinoamérica)',
+  brazilian: 'Português (Brasil)', portuguese: 'Português', italian: 'Italiano', polish: 'Polski', turkish: 'Türkçe',
+  thai: 'ไทย', vietnamese: 'Tiếng Việt', ukrainian: 'Українська', dutch: 'Nederlands', swedish: 'Svenska',
+  danish: 'Dansk', norwegian: 'Norsk', finnish: 'Suomi', czech: 'Čeština', hungarian: 'Magyar', romanian: 'Română',
+  bulgarian: 'Български', greek: 'Ελληνικά', indonesian: 'Bahasa Indonesia', arabic: 'العربية',
 }
 
 export interface LangInfo {

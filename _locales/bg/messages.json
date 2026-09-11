@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Показва обобщението на рецензиите („Много положителни“, „Смесени“ …) при всяка игра в магазина на Steam, без да задържате курсора, и позволява да затъмнявате, скривате или ограждате игри според оценката от рецензиите."
+  },
+  "filter": {
+    "message": "ФИЛТЪР"
+  },
+  "highlight": {
+    "message": "ОТКРОЯВАНЕ"
+  },
+  "dim": {
+    "message": "Затъмни"
+  },
+  "hide": {
+    "message": "Скрий"
+  },
+  "off": {
+    "message": "ИЗКЛ"
+  },
+  "judgedBy": {
+    "message": "Преценка по"
+  },
+  "myLanguage": {
+    "message": "Моят език"
+  },
+  "allLanguages": {
+    "message": "Всички езици"
+  },
+  "betweenTiers": {
+    "message": "между две нива"
+  },
+  "percentPositive": {
+    "message": "$PCT$% положителни",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Лента на филтъра: игрите под нея се затъмняват или скриват"
+  },
+  "leverHighlightAria": {
+    "message": "Лента за открояване: игрите на това ниво или над него се ограждат"
+  },
+  "modeAria": {
+    "message": "Какво да се прави с игрите под лентата на филтъра"
+  },
+  "sourceAria": {
+    "message": "По коя оценка от рецензиите да се преценява"
+  },
+  "tier1": {
+    "message": "Изумително отрицателни"
+  },
+  "tier2": {
+    "message": "Много отрицателни"
+  },
+  "tier3": {
+    "message": "Отрицателни"
+  },
+  "tier4": {
+    "message": "Предимно отрицателни"
+  },
+  "tier5": {
+    "message": "Смесени"
+  },
+  "tier6": {
+    "message": "Предимно положителни"
+  },
+  "tier7": {
+    "message": "Положителни"
+  },
+  "tier8": {
+    "message": "Много положителни"
+  },
+  "tier9": {
+    "message": "Изумително положителни"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ рецензии"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ рецензии"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ рецензии"
+  },
+  "rule9": {
+    "message": "95%+, 500+ рецензии"
+  },
+  "notEnoughReviews": {
+    "message": "Недостатъчно рецензии"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% от $COUNT$ потребителски рецензии са положителни",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Няма връзка със Steam. Показват се кешираните данни."
+  },
+  "errRateLimited": {
+    "message": "Steam ограничава заявките. Скоро ще опитаме отново."
+  },
+  "errSteam": {
+    "message": "Steam върна неочакван отговор. Някои оценки може да липсват."
+  },
+  "errNotStore": {
+    "message": "Отворете страница от магазина на Steam, за да видите оценките от рецензиите."
+  },
+  "lastUpdated": {
+    "message": "Оценките са обновени $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "току-що"
+  },
+  "minutesAgo": {
+    "message": "преди $N$ мин",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

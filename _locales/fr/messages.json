@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Affiche le résumé des évaluations (« Très positives », « Moyennes »…) sur chaque jeu du magasin Steam sans avoir à survoler, et permet d'assombrir, de masquer ou d'encadrer les jeux selon leur note d'évaluation."
+  },
+  "filter": {
+    "message": "FILTRE"
+  },
+  "highlight": {
+    "message": "SURLIGNAGE"
+  },
+  "dim": {
+    "message": "Assombrir"
+  },
+  "hide": {
+    "message": "Masquer"
+  },
+  "off": {
+    "message": "OFF"
+  },
+  "judgedBy": {
+    "message": "Jugé selon"
+  },
+  "myLanguage": {
+    "message": "Ma langue"
+  },
+  "allLanguages": {
+    "message": "Toutes les langues"
+  },
+  "betweenTiers": {
+    "message": "entre deux niveaux"
+  },
+  "percentPositive": {
+    "message": "$PCT$ % positives",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Barre de filtre : les jeux en dessous sont assombris ou masqués"
+  },
+  "leverHighlightAria": {
+    "message": "Barre de surlignage : les jeux à ce niveau ou au-dessus sont encadrés"
+  },
+  "modeAria": {
+    "message": "Que faire des jeux sous la barre de filtre"
+  },
+  "sourceAria": {
+    "message": "Quelle note d'évaluation utiliser"
+  },
+  "tier1": {
+    "message": "extrêmement négatives"
+  },
+  "tier2": {
+    "message": "très négatives"
+  },
+  "tier3": {
+    "message": "négatives"
+  },
+  "tier4": {
+    "message": "plutôt négatives"
+  },
+  "tier5": {
+    "message": "moyennes"
+  },
+  "tier6": {
+    "message": "plutôt positives"
+  },
+  "tier7": {
+    "message": "positives"
+  },
+  "tier8": {
+    "message": "très positives"
+  },
+  "tier9": {
+    "message": "extrêmement positives"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ évaluations"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ évaluations"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ évaluations"
+  },
+  "rule9": {
+    "message": "95%+, 500+ évaluations"
+  },
+  "notEnoughReviews": {
+    "message": "Pas assez d'évaluations"
+  },
+  "tooltip": {
+    "message": "$SCOPE$ : $LABEL$ — $PCT$ % des $COUNT$ évaluations sont positives",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$ : $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Impossible de joindre Steam. Affichage des données en cache."
+  },
+  "errRateLimited": {
+    "message": "Steam limite le nombre de requêtes. Nouvelle tentative sous peu."
+  },
+  "errSteam": {
+    "message": "Steam a renvoyé une réponse inattendue. Certaines notes peuvent manquer."
+  },
+  "errNotStore": {
+    "message": "Ouvrez une page du magasin Steam pour voir les notes d'évaluation."
+  },
+  "lastUpdated": {
+    "message": "Notes mises à jour $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "à l'instant"
+  },
+  "minutesAgo": {
+    "message": "il y a $N$ min",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

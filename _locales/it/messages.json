@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Mostra il riepilogo delle recensioni (\"Molto positiva\", \"Nella media\"...) su ogni gioco dello store di Steam senza passarci sopra col mouse, e permette di oscurare, nascondere o evidenziare i giochi in base al punteggio delle recensioni."
+  },
+  "filter": {
+    "message": "FILTRO"
+  },
+  "highlight": {
+    "message": "EVIDENZIA"
+  },
+  "dim": {
+    "message": "Oscura"
+  },
+  "hide": {
+    "message": "Nascondi"
+  },
+  "off": {
+    "message": "OFF"
+  },
+  "judgedBy": {
+    "message": "Giudica in base a"
+  },
+  "myLanguage": {
+    "message": "La mia lingua"
+  },
+  "allLanguages": {
+    "message": "Tutte le lingue"
+  },
+  "betweenTiers": {
+    "message": "tra due livelli"
+  },
+  "percentPositive": {
+    "message": "$PCT$% positive",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Barra del filtro: i giochi al di sotto vengono oscurati o nascosti"
+  },
+  "leverHighlightAria": {
+    "message": "Barra di evidenziazione: i giochi a questo livello o superiore vengono contornati"
+  },
+  "modeAria": {
+    "message": "Cosa fare con i giochi sotto la barra del filtro"
+  },
+  "sourceAria": {
+    "message": "Quale punteggio delle recensioni usare"
+  },
+  "tier1": {
+    "message": "Estremamente negative"
+  },
+  "tier2": {
+    "message": "Molto negative"
+  },
+  "tier3": {
+    "message": "Negative"
+  },
+  "tier4": {
+    "message": "Perlopiù negative"
+  },
+  "tier5": {
+    "message": "Nella media"
+  },
+  "tier6": {
+    "message": "Perlopiù positive"
+  },
+  "tier7": {
+    "message": "Positive"
+  },
+  "tier8": {
+    "message": "Molto positive"
+  },
+  "tier9": {
+    "message": "Estremamente positive"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ recensioni"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ recensioni"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ recensioni"
+  },
+  "rule9": {
+    "message": "95%+, 500+ recensioni"
+  },
+  "notEnoughReviews": {
+    "message": "Recensioni insufficienti"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — Il $PCT$% delle $COUNT$ recensioni degli utenti è positivo",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Impossibile raggiungere Steam. Vengono mostrati i dati già in cache."
+  },
+  "errRateLimited": {
+    "message": "Steam sta limitando le richieste. Nuovo tentativo a breve."
+  },
+  "errSteam": {
+    "message": "Steam ha restituito una risposta imprevista. Alcuni punteggi potrebbero mancare."
+  },
+  "errNotStore": {
+    "message": "Apri una pagina dello store di Steam per vedere i punteggi delle recensioni."
+  },
+  "lastUpdated": {
+    "message": "Punteggi aggiornati $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "proprio ora"
+  },
+  "minutesAgo": {
+    "message": "$N$ min fa",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

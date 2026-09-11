@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Hiển thị tóm tắt đánh giá (\"Rất tích cực\", \"Trái chiều\"...) trên mọi trò chơi trong cửa hàng Steam mà không cần di chuột, đồng thời cho phép bạn làm mờ, ẩn hoặc viền các trò chơi theo điểm đánh giá."
+  },
+  "filter": {
+    "message": "LỌC"
+  },
+  "highlight": {
+    "message": "NỔI BẬT"
+  },
+  "dim": {
+    "message": "Làm mờ"
+  },
+  "hide": {
+    "message": "Ẩn"
+  },
+  "off": {
+    "message": "TẮT"
+  },
+  "judgedBy": {
+    "message": "Xét theo"
+  },
+  "myLanguage": {
+    "message": "Ngôn ngữ của tôi"
+  },
+  "allLanguages": {
+    "message": "Mọi ngôn ngữ"
+  },
+  "betweenTiers": {
+    "message": "giữa hai mức"
+  },
+  "percentPositive": {
+    "message": "$PCT$% tích cực",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Thanh lọc: trò chơi dưới mức này sẽ bị làm mờ hoặc ẩn"
+  },
+  "leverHighlightAria": {
+    "message": "Thanh nổi bật: trò chơi từ mức này trở lên sẽ được viền"
+  },
+  "modeAria": {
+    "message": "Xử lý thế nào với trò chơi dưới thanh lọc"
+  },
+  "sourceAria": {
+    "message": "Xét theo điểm đánh giá nào"
+  },
+  "tier1": {
+    "message": "Cực kỳ tiêu cực"
+  },
+  "tier2": {
+    "message": "Rất tiêu cực"
+  },
+  "tier3": {
+    "message": "Tiêu cực"
+  },
+  "tier4": {
+    "message": "Khá tiêu cực"
+  },
+  "tier5": {
+    "message": "Trái chiều"
+  },
+  "tier6": {
+    "message": "Khá tích cực"
+  },
+  "tier7": {
+    "message": "Tích cực"
+  },
+  "tier8": {
+    "message": "Rất tích cực"
+  },
+  "tier9": {
+    "message": "Cực kỳ tích cực"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ đánh giá"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ đánh giá"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ đánh giá"
+  },
+  "rule9": {
+    "message": "95%+, 500+ đánh giá"
+  },
+  "notEnoughReviews": {
+    "message": "Không đủ đánh giá"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% trong số $COUNT$ đánh giá của người dùng là tích cực",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Không thể kết nối tới Steam. Đang hiển thị dữ liệu đã lưu trong bộ nhớ đệm."
+  },
+  "errRateLimited": {
+    "message": "Steam đang giới hạn số yêu cầu. Sẽ thử lại sau giây lát."
+  },
+  "errSteam": {
+    "message": "Steam trả về phản hồi không mong đợi. Một số điểm có thể bị thiếu."
+  },
+  "errNotStore": {
+    "message": "Mở một trang cửa hàng Steam để xem điểm đánh giá."
+  },
+  "lastUpdated": {
+    "message": "Điểm được cập nhật $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "vừa xong"
+  },
+  "minutesAgo": {
+    "message": "$N$ phút trước",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

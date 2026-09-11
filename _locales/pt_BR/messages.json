@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Mostra o resumo das análises (\"Muito positivas\", \"Neutras\"...) em todos os jogos da loja Steam sem precisar passar o mouse, e permite escurecer, ocultar ou contornar jogos pela nota das análises."
+  },
+  "filter": {
+    "message": "FILTRO"
+  },
+  "highlight": {
+    "message": "DESTAQUE"
+  },
+  "dim": {
+    "message": "Escurecer"
+  },
+  "hide": {
+    "message": "Ocultar"
+  },
+  "off": {
+    "message": "OFF"
+  },
+  "judgedBy": {
+    "message": "Julgar por"
+  },
+  "myLanguage": {
+    "message": "Meu idioma"
+  },
+  "allLanguages": {
+    "message": "Todos os idiomas"
+  },
+  "betweenTiers": {
+    "message": "entre dois níveis"
+  },
+  "percentPositive": {
+    "message": "$PCT$% positivas",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Barra de filtro: jogos abaixo dela são escurecidos ou ocultados"
+  },
+  "leverHighlightAria": {
+    "message": "Barra de destaque: jogos neste nível ou acima recebem contorno"
+  },
+  "modeAria": {
+    "message": "O que fazer com jogos abaixo da barra de filtro"
+  },
+  "sourceAria": {
+    "message": "Qual nota de análises usar"
+  },
+  "tier1": {
+    "message": "Extremamente negativas"
+  },
+  "tier2": {
+    "message": "Muito negativas"
+  },
+  "tier3": {
+    "message": "Negativas"
+  },
+  "tier4": {
+    "message": "Bem negativas"
+  },
+  "tier5": {
+    "message": "Mistas"
+  },
+  "tier6": {
+    "message": "Bem positivas"
+  },
+  "tier7": {
+    "message": "Positivas"
+  },
+  "tier8": {
+    "message": "Muito positivas"
+  },
+  "tier9": {
+    "message": "Extremamente positivas"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ análises"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ análises"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ análises"
+  },
+  "rule9": {
+    "message": "95%+, 500+ análises"
+  },
+  "notEnoughReviews": {
+    "message": "Análises insuficientes"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% das $COUNT$ análises de usuários são positivas",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Não foi possível acessar a Steam. Exibindo o que já está em cache."
+  },
+  "errRateLimited": {
+    "message": "A Steam está limitando as solicitações. Tentando novamente em breve."
+  },
+  "errSteam": {
+    "message": "A Steam retornou uma resposta inesperada. Algumas notas podem estar faltando."
+  },
+  "errNotStore": {
+    "message": "Abra uma página da loja Steam para ver as notas das análises."
+  },
+  "lastUpdated": {
+    "message": "Notas atualizadas $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "agora mesmo"
+  },
+  "minutesAgo": {
+    "message": "há $N$ min",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "يعرض ملخص المراجعات («إيجابية للغاية»، «متباينة»...) على كل لعبة في متجر Steam دون الحاجة إلى تمرير المؤشر، ويتيح لك تعتيم الألعاب أو إخفاءها أو تأطيرها حسب تقييم المراجعات."
+  },
+  "filter": {
+    "message": "تصفية"
+  },
+  "highlight": {
+    "message": "إبراز"
+  },
+  "dim": {
+    "message": "تعتيم"
+  },
+  "hide": {
+    "message": "إخفاء"
+  },
+  "off": {
+    "message": "إيقاف"
+  },
+  "judgedBy": {
+    "message": "الحكم حسب"
+  },
+  "myLanguage": {
+    "message": "لغتي"
+  },
+  "allLanguages": {
+    "message": "كل اللغات"
+  },
+  "betweenTiers": {
+    "message": "بين مستويين"
+  },
+  "percentPositive": {
+    "message": "$PCT$% إيجابية",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "شريط التصفية: الألعاب الواقعة تحته تُعتَّم أو تُخفى"
+  },
+  "leverHighlightAria": {
+    "message": "شريط الإبراز: الألعاب عند هذا المستوى أو أعلى تُؤطَّر"
+  },
+  "modeAria": {
+    "message": "ما يُفعل بالألعاب الواقعة تحت شريط التصفية"
+  },
+  "sourceAria": {
+    "message": "أي تقييم مراجعات يُعتمد للحكم"
+  },
+  "tier1": {
+    "message": "سلبية بغزارة"
+  },
+  "tier2": {
+    "message": "سلبية جدًا"
+  },
+  "tier3": {
+    "message": "سلبية"
+  },
+  "tier4": {
+    "message": "أغلبها سلبية"
+  },
+  "tier5": {
+    "message": "مختلطة"
+  },
+  "tier6": {
+    "message": "أغلبها إيجابية"
+  },
+  "tier7": {
+    "message": "إيجابية"
+  },
+  "tier8": {
+    "message": "إيجابية جدًا"
+  },
+  "tier9": {
+    "message": "إيجابية بغزارة"
+  },
+  "rule1": {
+    "message": "0–19%، +500 مراجعة"
+  },
+  "rule2": {
+    "message": "0–19%، +50 مراجعة"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+، +50 مراجعة"
+  },
+  "rule9": {
+    "message": "95%+، +500 مراجعة"
+  },
+  "notEnoughReviews": {
+    "message": "لا توجد مراجعات كافية"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% من أصل $COUNT$ مراجعة مستخدم إيجابية",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "تعذر الوصول إلى Steam. يتم عرض البيانات المخزنة مؤقتًا."
+  },
+  "errRateLimited": {
+    "message": "يقوم Steam بتقييد الطلبات. ستتم إعادة المحاولة قريبًا."
+  },
+  "errSteam": {
+    "message": "أعاد Steam استجابة غير متوقعة. قد تكون بعض التقييمات مفقودة."
+  },
+  "errNotStore": {
+    "message": "افتح صفحة من متجر Steam لعرض تقييمات المراجعات."
+  },
+  "lastUpdated": {
+    "message": "تم تحديث التقييمات $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "الآن"
+  },
+  "minutesAgo": {
+    "message": "قبل $N$ دقيقة",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

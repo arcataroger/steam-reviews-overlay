@@ -14,6 +14,13 @@ import {
 } from '../settings'
 import { LANG_KEY, detectLang, type LangInfo } from '../lang'
 import { GRADIENT_CSS, toneColorAt } from '../tonecolor'
+import { t, tierName, tierRule } from '../i18n'
+import { STATUS_KEY, type Status } from '../steam'
+
+// Static strings
+for (const el of document.querySelectorAll<HTMLElement>('[data-i18n]')) el.textContent = t(el.dataset.i18n!)
+for (const el of document.querySelectorAll<HTMLElement>('[data-i18n-aria]')) el.setAttribute('aria-label', t(el.dataset.i18nAria!))
+document.title = t('extName')
 
 document.documentElement.style.setProperty('--tone-gradient', GRADIENT_CSS)
 
@@ -74,9 +81,9 @@ for (const t of TIERS) {
   tl.className = 'tick l'
   tl.dataset.side = 'filter'
   const label = document.createElement('span')
-  label.textContent = t.name
+  label.textContent = tierName(t.score)
   const b = document.createElement('b')
-  b.textContent = t.rule
+  b.textContent = tierRule(t.score)
   label.appendChild(b)
   const tr = document.createElement('div')
   tr.className = 'tick r'
@@ -92,14 +99,14 @@ function renderSide(side: Side, value: number) {
   const tier = tierFor(pos)
   const onTier = Number.isInteger(pos)
   u.readout.classList.toggle('off', off)
-  u.pct.textContent = off ? 'OFF' : `${Math.round(posToPct(pos))}%`
+  u.pct.textContent = off ? t('off') : `${Math.round(posToPct(pos))}%`
   u.pct.className = `digits ${off ? 'none' : ''}`
-  u.tier.textContent = onTier ? tier.name : `${tier.name} +`
+  u.tier.textContent = onTier ? tierName(tier.score) : `${tierName(tier.score)} +`
   u.tier.className = `tier ${off ? '' : tier.tone}`
   if (!onTier && !off) {
     const sub = document.createElement('span')
     sub.className = 'sub'
-    sub.textContent = 'between tiers'
+    sub.textContent = t('betweenTiers')
     u.tier.appendChild(sub)
   }
   const c = toneColorAt(pos)
@@ -110,7 +117,7 @@ function renderSide(side: Side, value: number) {
   u.knob.style.setProperty('--pct', String(off ? (side === 'filter' ? GATE_L : GATE_R) : trackPct(pos)))
   u.knob.className = off ? 'knob parked' : 'knob'
   u.lever.setAttribute('aria-valuenow', String(off ? (side === 'filter' ? 0 : 10) : pos))
-  u.lever.setAttribute('aria-valuetext', off ? 'off' : onTier ? tier.name : `${Math.round(posToPct(pos))}% positive`)
+  u.lever.setAttribute('aria-valuetext', off ? t('off') : onTier ? tierName(tier.score) : t('percentPositive', Math.round(posToPct(pos))))
   const cls = side === 'filter' ? 'active-l' : 'active-r'
   for (const n of notches.querySelectorAll<HTMLElement>('.notch')) {
     n.classList.toggle(cls, !off && Number(n.dataset.pos) === pos)
@@ -232,4 +239,29 @@ sourceGroup.addEventListener('click', (e) => {
 loadSettings().then((s) => {
   settings = s
   render()
+})
+
+/* --- status banner: friendly errors from the content script, or a hint when not on the store --- */
+const statusEl = $<HTMLDivElement>('#status')
+function showStatus(text: string | null, kind: 'info' | 'warn' = 'warn') {
+  statusEl.hidden = !text
+  statusEl.textContent = text ?? ''
+  statusEl.className = `status ${kind}`
+}
+async function refreshStatus() {
+  try {
+    const [tab] = await ext.tabs.query({ active: true, currentWindow: true })
+    const onStore = !!tab?.url && /^https:\/\/store\.steampowered\.com\//.test(tab.url)
+    if (!onStore) return showStatus(t('errNotStore'), 'info')
+    const r = await ext.storage.local.get(STATUS_KEY)
+    const st = r?.[STATUS_KEY] as Status | undefined
+    if (!st || st.kind === 'ok' || Date.now() - st.ts > 5 * 60_000) return showStatus(null)
+    showStatus(st.kind === 'offline' ? t('errOffline') : st.kind === 'rate' ? t('errRateLimited') : t('errSteam'))
+  } catch {
+    showStatus(null)
+  }
+}
+void refreshStatus()
+ext.storage.onChanged.addListener((c) => {
+  if (c[STATUS_KEY]) void refreshStatus()
 })

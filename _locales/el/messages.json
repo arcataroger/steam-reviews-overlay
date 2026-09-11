@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Εμφανίζει τη σύνοψη των κριτικών («Πολύ θετικές», «Ανάμεικτες» …) σε κάθε παιχνίδι του καταστήματος Steam χωρίς να χρειάζεται να περάσετε το ποντίκι από πάνω, και σας επιτρέπει να σκουραίνετε, να κρύβετε ή να περιγράφετε παιχνίδια με βάση τη βαθμολογία κριτικών."
+  },
+  "filter": {
+    "message": "ΦΙΛΤΡΟ"
+  },
+  "highlight": {
+    "message": "ΕΠΙΣΗΜΑΝΣΗ"
+  },
+  "dim": {
+    "message": "Σκούρυνση"
+  },
+  "hide": {
+    "message": "Απόκρυψη"
+  },
+  "off": {
+    "message": "ΑΝΕΝΕΡΓΟ"
+  },
+  "judgedBy": {
+    "message": "Κρίνεται βάσει"
+  },
+  "myLanguage": {
+    "message": "Η γλώσσα μου"
+  },
+  "allLanguages": {
+    "message": "Όλες οι γλώσσες"
+  },
+  "betweenTiers": {
+    "message": "ανάμεσα σε δύο επίπεδα"
+  },
+  "percentPositive": {
+    "message": "$PCT$% θετικές",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Μπάρα φίλτρου: τα παιχνίδια κάτω από αυτήν σκουραίνουν ή κρύβονται"
+  },
+  "leverHighlightAria": {
+    "message": "Μπάρα επισήμανσης: τα παιχνίδια σε αυτό το επίπεδο ή πάνω από αυτό περιγράφονται"
+  },
+  "modeAria": {
+    "message": "Τι να γίνει με τα παιχνίδια κάτω από την μπάρα φίλτρου"
+  },
+  "sourceAria": {
+    "message": "Με βάση ποια βαθμολογία κριτικών να κρίνονται"
+  },
+  "tier1": {
+    "message": "Υπερβολικά αρνητικές"
+  },
+  "tier2": {
+    "message": "Πολύ αρνητικές"
+  },
+  "tier3": {
+    "message": "Αρνητικές"
+  },
+  "tier4": {
+    "message": "Κυρίως αρνητικές"
+  },
+  "tier5": {
+    "message": "Ανάμεικτες"
+  },
+  "tier6": {
+    "message": "Κυρίως θετικές"
+  },
+  "tier7": {
+    "message": "Θετικές"
+  },
+  "tier8": {
+    "message": "Πολύ θετικές"
+  },
+  "tier9": {
+    "message": "Εξαιρετικά θετικές"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ κριτικές"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ κριτικές"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ κριτικές"
+  },
+  "rule9": {
+    "message": "95%+, 500+ κριτικές"
+  },
+  "notEnoughReviews": {
+    "message": "Δεν υπάρχουν αρκετές κριτικές"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — Το $PCT$% από τις $COUNT$ κριτικές χρηστών είναι θετικές",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Δεν ήταν δυνατή η σύνδεση με το Steam. Εμφανίζονται τα δεδομένα της προσωρινής μνήμης."
+  },
+  "errRateLimited": {
+    "message": "Το Steam περιορίζει τα αιτήματα. Νέα προσπάθεια σύντομα."
+  },
+  "errSteam": {
+    "message": "Το Steam επέστρεψε μη αναμενόμενη απάντηση. Ορισμένες βαθμολογίες ενδέχεται να λείπουν."
+  },
+  "errNotStore": {
+    "message": "Ανοίξτε μια σελίδα του καταστήματος Steam για να δείτε βαθμολογίες κριτικών."
+  },
+  "lastUpdated": {
+    "message": "Οι βαθμολογίες ενημερώθηκαν $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "μόλις τώρα"
+  },
+  "minutesAgo": {
+    "message": "πριν από $N$ λεπτά",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

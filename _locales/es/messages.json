@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Muestra el resumen de reseñas («Muy positivas», «Variadas»…) en todos los juegos de la tienda de Steam sin pasar el ratón por encima, y permite atenuar, ocultar o resaltar juegos según su puntuación de reseñas."
+  },
+  "filter": {
+    "message": "FILTRO"
+  },
+  "highlight": {
+    "message": "RESALTAR"
+  },
+  "dim": {
+    "message": "Atenuar"
+  },
+  "hide": {
+    "message": "Ocultar"
+  },
+  "off": {
+    "message": "OFF"
+  },
+  "judgedBy": {
+    "message": "Juzgar según"
+  },
+  "myLanguage": {
+    "message": "Mi idioma"
+  },
+  "allLanguages": {
+    "message": "Todos los idiomas"
+  },
+  "betweenTiers": {
+    "message": "entre dos niveles"
+  },
+  "percentPositive": {
+    "message": "$PCT$ % positivas",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Barra de filtro: los juegos por debajo se atenúan u ocultan"
+  },
+  "leverHighlightAria": {
+    "message": "Barra de resaltado: los juegos en este nivel o superior se enmarcan"
+  },
+  "modeAria": {
+    "message": "Qué hacer con los juegos por debajo de la barra de filtro"
+  },
+  "sourceAria": {
+    "message": "Qué puntuación de reseñas usar"
+  },
+  "tier1": {
+    "message": "Extremadamente negativas"
+  },
+  "tier2": {
+    "message": "Muy negativas"
+  },
+  "tier3": {
+    "message": "Negativas"
+  },
+  "tier4": {
+    "message": "Mayormente negativas"
+  },
+  "tier5": {
+    "message": "Variadas"
+  },
+  "tier6": {
+    "message": "Mayormente positivas"
+  },
+  "tier7": {
+    "message": "Positivas"
+  },
+  "tier8": {
+    "message": "Muy positivas"
+  },
+  "tier9": {
+    "message": "Extremadamente positivas"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ reseñas"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ reseñas"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ reseñas"
+  },
+  "rule9": {
+    "message": "95%+, 500+ reseñas"
+  },
+  "notEnoughReviews": {
+    "message": "No hay suficientes reseñas"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — El $PCT$ % de las $COUNT$ reseñas de usuarios son positivas",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "No se pudo conectar con Steam. Se muestran los datos en caché."
+  },
+  "errRateLimited": {
+    "message": "Steam está limitando las solicitudes. Se reintentará en breve."
+  },
+  "errSteam": {
+    "message": "Steam devolvió una respuesta inesperada. Puede que falten algunas puntuaciones."
+  },
+  "errNotStore": {
+    "message": "Abre una página de la tienda de Steam para ver las puntuaciones de reseñas."
+  },
+  "lastUpdated": {
+    "message": "Puntuaciones actualizadas $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "ahora mismo"
+  },
+  "minutesAgo": {
+    "message": "hace $N$ min",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

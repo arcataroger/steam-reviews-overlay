@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam レビューオーバーレイ"
+  },
+  "extDescription": {
+    "message": "Steam ストアのすべてのゲームに、マウスを乗せなくてもレビュー概要（「非常に好評」「賛否両論」など）を表示し、レビュー評価に応じてゲームを暗くしたり、非表示にしたり、枠で囲んだりできます。"
+  },
+  "filter": {
+    "message": "フィルター"
+  },
+  "highlight": {
+    "message": "強調"
+  },
+  "dim": {
+    "message": "暗くする"
+  },
+  "hide": {
+    "message": "非表示"
+  },
+  "off": {
+    "message": "オフ"
+  },
+  "judgedBy": {
+    "message": "判定基準"
+  },
+  "myLanguage": {
+    "message": "自分の言語"
+  },
+  "allLanguages": {
+    "message": "すべての言語"
+  },
+  "betweenTiers": {
+    "message": "2 つの評価の間"
+  },
+  "percentPositive": {
+    "message": "$PCT$% が好評",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "フィルターバー：これより下のゲームは暗くなるか非表示になります"
+  },
+  "leverHighlightAria": {
+    "message": "強調バー：これ以上のゲームは枠で囲まれます"
+  },
+  "modeAria": {
+    "message": "フィルターバーより下のゲームの扱い"
+  },
+  "sourceAria": {
+    "message": "どのレビュー評価で判定するか"
+  },
+  "tier1": {
+    "message": "圧倒的に不評"
+  },
+  "tier2": {
+    "message": "非常に不評"
+  },
+  "tier3": {
+    "message": "不評"
+  },
+  "tier4": {
+    "message": "やや不評"
+  },
+  "tier5": {
+    "message": "賛否両論"
+  },
+  "tier6": {
+    "message": "やや好評"
+  },
+  "tier7": {
+    "message": "好評"
+  },
+  "tier8": {
+    "message": "非常に好評"
+  },
+  "tier9": {
+    "message": "圧倒的に好評"
+  },
+  "rule1": {
+    "message": "0–19%、レビュー 500 件以上"
+  },
+  "rule2": {
+    "message": "0–19%、レビュー 50 件以上"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+、レビュー 50 件以上"
+  },
+  "rule9": {
+    "message": "95%+、レビュー 500 件以上"
+  },
+  "notEnoughReviews": {
+    "message": "レビュー数が不十分"
+  },
+  "tooltip": {
+    "message": "$SCOPE$：$LABEL$ — $COUNT$ 件のユーザーレビューのうち $PCT$% が好評",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$：$LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Steam に接続できませんでした。キャッシュ済みの内容を表示しています。"
+  },
+  "errRateLimited": {
+    "message": "Steam がリクエストを制限しています。まもなく再試行します。"
+  },
+  "errSteam": {
+    "message": "Steam から予期しない応答が返されました。一部の評価が欠けている可能性があります。"
+  },
+  "errNotStore": {
+    "message": "レビュー評価を見るには Steam ストアのページを開いてください。"
+  },
+  "lastUpdated": {
+    "message": "評価の更新：$AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "たった今"
+  },
+  "minutesAgo": {
+    "message": "$N$ 分前",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

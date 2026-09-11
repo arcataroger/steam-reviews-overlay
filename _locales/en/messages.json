@@ -1,0 +1,194 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Shows the review summary (\"Very Positive\", \"Mixed\", ...) on every game on the Steam store without hovering, and lets you dim, hide or outline games by review score."
+  },
+  "filter": {
+    "message": "FILTER",
+    "description": "Engraved plate label over the left lever. Keep short, uppercase if the language uses case."
+  },
+  "highlight": {
+    "message": "HIGHLIGHT",
+    "description": "Engraved plate label over the right lever."
+  },
+  "dim": {
+    "message": "Dim",
+    "description": "Switch option: darken games under the bar."
+  },
+  "hide": {
+    "message": "Hide",
+    "description": "Switch option: hide games under the bar."
+  },
+  "off": {
+    "message": "OFF",
+    "description": "Shown in the readout and engraved in the parking gate when a lever is parked."
+  },
+  "judgedBy": {
+    "message": "Judged by",
+    "description": "Section title: which review score the levers look at."
+  },
+  "myLanguage": {
+    "message": "My language",
+    "description": "Button: use the score from reviews in the user's Steam language."
+  },
+  "allLanguages": {
+    "message": "All languages",
+    "description": "Button and tooltip prefix: use the score from reviews in every language."
+  },
+  "betweenTiers": {
+    "message": "between tiers",
+    "description": "Small note when a lever rests between two Steam labels."
+  },
+  "percentPositive": {
+    "message": "$PCT$% positive",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Filter bar: games under this are dimmed or hidden"
+  },
+  "leverHighlightAria": {
+    "message": "Highlight bar: games at or above this are outlined"
+  },
+  "modeAria": {
+    "message": "What to do with games under the filter bar"
+  },
+  "sourceAria": {
+    "message": "Which review score to judge by"
+  },
+  "tier1": {
+    "message": "Overwhelmingly Negative",
+    "description": "Steam's review label. Use Steam's own translation for this label in this language."
+  },
+  "tier2": {
+    "message": "Very Negative",
+    "description": "Steam's review label."
+  },
+  "tier3": {
+    "message": "Negative",
+    "description": "Steam's review label."
+  },
+  "tier4": {
+    "message": "Mostly Negative",
+    "description": "Steam's review label."
+  },
+  "tier5": {
+    "message": "Mixed",
+    "description": "Steam's review label."
+  },
+  "tier6": {
+    "message": "Mostly Positive",
+    "description": "Steam's review label."
+  },
+  "tier7": {
+    "message": "Positive",
+    "description": "Steam's review label."
+  },
+  "tier8": {
+    "message": "Very Positive",
+    "description": "Steam's review label."
+  },
+  "tier9": {
+    "message": "Overwhelmingly Positive",
+    "description": "Steam's review label."
+  },
+  "rule1": {
+    "message": "0–19%, 500+ reviews",
+    "description": "Steam's rule for the label, very short."
+  },
+  "rule2": {
+    "message": "0–19%, 50+ reviews"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ reviews"
+  },
+  "rule9": {
+    "message": "95%+, 500+ reviews"
+  },
+  "notEnoughReviews": {
+    "message": "Not enough reviews",
+    "description": "Badge text when Steam gives no label at all."
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% of the $COUNT$ user reviews are positive",
+    "description": "Badge tooltip. SCOPE is 'All languages' or a language name, LABEL is Steam's label.",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Couldn't reach Steam. Showing what's already cached.",
+    "description": "Friendly error shown in the popup."
+  },
+  "errRateLimited": {
+    "message": "Steam is rate-limiting requests. Retrying shortly."
+  },
+  "errSteam": {
+    "message": "Steam returned an unexpected response. Some scores may be missing."
+  },
+  "errNotStore": {
+    "message": "Open a Steam store page to see review scores.",
+    "description": "Shown in the popup when the current tab is not the Steam store."
+  },
+  "lastUpdated": {
+    "message": "Scores updated $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "just now"
+  },
+  "minutesAgo": {
+    "message": "$N$ min ago",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

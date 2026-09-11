@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Показывает сводку обзоров («Очень положительные», «Смешанные» и т. д.) для каждой игры в магазине Steam без наведения курсора, а также позволяет затемнять, скрывать или выделять рамкой игры по оценке обзоров."
+  },
+  "filter": {
+    "message": "ФИЛЬТР"
+  },
+  "highlight": {
+    "message": "ВЫДЕЛЕНИЕ"
+  },
+  "dim": {
+    "message": "Затемнить"
+  },
+  "hide": {
+    "message": "Скрыть"
+  },
+  "off": {
+    "message": "ВЫКЛ"
+  },
+  "judgedBy": {
+    "message": "Оценивать по"
+  },
+  "myLanguage": {
+    "message": "Мой язык"
+  },
+  "allLanguages": {
+    "message": "Все языки"
+  },
+  "betweenTiers": {
+    "message": "между уровнями"
+  },
+  "percentPositive": {
+    "message": "$PCT$% положительных",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Планка фильтра: игры ниже неё затемняются или скрываются"
+  },
+  "leverHighlightAria": {
+    "message": "Планка выделения: игры на этом уровне и выше выделяются рамкой"
+  },
+  "modeAria": {
+    "message": "Что делать с играми ниже планки фильтра"
+  },
+  "sourceAria": {
+    "message": "По какой оценке обзоров судить"
+  },
+  "tier1": {
+    "message": "Крайне отрицательные"
+  },
+  "tier2": {
+    "message": "Очень отрицательные"
+  },
+  "tier3": {
+    "message": "Отрицательные"
+  },
+  "tier4": {
+    "message": "В основном отрицательные"
+  },
+  "tier5": {
+    "message": "Смешанные"
+  },
+  "tier6": {
+    "message": "В основном положительные"
+  },
+  "tier7": {
+    "message": "Положительные"
+  },
+  "tier8": {
+    "message": "Очень положительные"
+  },
+  "tier9": {
+    "message": "Крайне положительные"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ обзоров"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ обзоров"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ обзоров"
+  },
+  "rule9": {
+    "message": "95%+, 500+ обзоров"
+  },
+  "notEnoughReviews": {
+    "message": "Недостаточно обзоров"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% из $COUNT$ обзоров пользователей положительные",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Не удалось связаться со Steam. Показаны данные из кэша."
+  },
+  "errRateLimited": {
+    "message": "Steam ограничивает частоту запросов. Скоро повторим попытку."
+  },
+  "errSteam": {
+    "message": "Steam вернул неожиданный ответ. Некоторые оценки могут отсутствовать."
+  },
+  "errNotStore": {
+    "message": "Откройте страницу магазина Steam, чтобы увидеть оценки обзоров."
+  },
+  "lastUpdated": {
+    "message": "Оценки обновлены $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "только что"
+  },
+  "minutesAgo": {
+    "message": "$N$ мин назад",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Steam mağazasındaki her oyunda, üzerine gelmeden inceleme özetini (\"Çok Olumlu\", \"Karma\" vb.) gösterir ve oyunları inceleme puanına göre karartmanıza, gizlemenize veya çerçevelemenize olanak tanır."
+  },
+  "filter": {
+    "message": "FİLTRE"
+  },
+  "highlight": {
+    "message": "VURGULA"
+  },
+  "dim": {
+    "message": "Karart"
+  },
+  "hide": {
+    "message": "Gizle"
+  },
+  "off": {
+    "message": "KAPALI"
+  },
+  "judgedBy": {
+    "message": "Ölçüt"
+  },
+  "myLanguage": {
+    "message": "Dilim"
+  },
+  "allLanguages": {
+    "message": "Tüm diller"
+  },
+  "betweenTiers": {
+    "message": "iki seviye arasında"
+  },
+  "percentPositive": {
+    "message": "%$PCT$ olumlu",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Filtre çubuğu: bunun altındaki oyunlar karartılır veya gizlenir"
+  },
+  "leverHighlightAria": {
+    "message": "Vurgu çubuğu: bu seviyede ve üzerindeki oyunlar çerçevelenir"
+  },
+  "modeAria": {
+    "message": "Filtre çubuğunun altındaki oyunlara ne yapılacağı"
+  },
+  "sourceAria": {
+    "message": "Hangi inceleme puanına göre değerlendirileceği"
+  },
+  "tier1": {
+    "message": "Son Derece Olumsuz"
+  },
+  "tier2": {
+    "message": "Çok Olumsuz"
+  },
+  "tier3": {
+    "message": "Olumsuz"
+  },
+  "tier4": {
+    "message": "Çoğunlukla Olumsuz"
+  },
+  "tier5": {
+    "message": "Karışık"
+  },
+  "tier6": {
+    "message": "Çoğunlukla Olumlu"
+  },
+  "tier7": {
+    "message": "Olumlu"
+  },
+  "tier8": {
+    "message": "Çok Olumlu"
+  },
+  "tier9": {
+    "message": "Son Derece Olumlu"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ inceleme"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ inceleme"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ inceleme"
+  },
+  "rule9": {
+    "message": "95%+, 500+ inceleme"
+  },
+  "notEnoughReviews": {
+    "message": "Yeterli inceleme yok"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $COUNT$ kullanıcı incelemesinin %$PCT$'i olumlu",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Steam'e ulaşılamadı. Önbellekteki veriler gösteriliyor."
+  },
+  "errRateLimited": {
+    "message": "Steam istekleri sınırlandırıyor. Kısa süre içinde yeniden denenecek."
+  },
+  "errSteam": {
+    "message": "Steam beklenmeyen bir yanıt döndürdü. Bazı puanlar eksik olabilir."
+  },
+  "errNotStore": {
+    "message": "İnceleme puanlarını görmek için bir Steam mağaza sayfası açın."
+  },
+  "lastUpdated": {
+    "message": "Puanlar güncellendi: $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "az önce"
+  },
+  "minutesAgo": {
+    "message": "$N$ dk önce",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

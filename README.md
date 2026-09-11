@@ -69,13 +69,25 @@ cards across the Steam store, so you don't have to hover every capsule.
   are labeled with Steam's text ("3 user reviews", "No user reviews") and are
   never filtered, so new and small releases aren't penalized.
 
+- Localized into every language Steam supports (30 locales under `_locales/`).
+  The nine review labels in the popup are pulled from Steam itself per
+  language (`node --experimental-strip-types scripts/steam-labels.mjs`), and
+  the badges on the store show Steam's own localized label strings from the
+  API, so wording always matches what Steam shows.
+- Friendly errors: if Steam can't be reached, rate-limits, or answers oddly,
+  the popup shows a one-line notice and the overlay keeps showing whatever is
+  cached while retrying with backoff. Nothing is ever blanked out, and a
+  failure inside the overlay can't break the store page.
+
 ## Build
 
 ```sh
 npm install
-npm run build            # builds dist/chrome and dist/firefox
+npm run build            # dist/chrome, dist/firefox and dist/safari
 npm run build:chrome
 npm run build:firefox
+npm run build:safari     # Chrome-shaped MV3 manifest with Safari-unsupported keys stripped
+npm run safari:xcode     # wraps dist/safari in an Xcode project under build/safari (needs Xcode)
 npm run dev              # CRXJS dev server with HMR (Chrome)
 ```
 
@@ -86,19 +98,35 @@ npm run dev              # CRXJS dev server with HMR (Chrome)
 - **Firefox**: `about:debugging#/runtime/this-firefox` → "Load Temporary
   Add-on…" → pick `dist/firefox/manifest.json`. Or `npx web-ext run
   --source-dir dist/firefox`.
+- **Firefox for Android**: the manifest declares `gecko_android` support.
+  Run `npx web-ext run -t firefox-android --adb-device <id>
+  --firefox-apk org.mozilla.fenix --source-dir dist/firefox` with a device or
+  emulator attached. The popup is laid out for touch (bigger hit zones,
+  full-width on narrow screens).
+- **Safari (macOS / iOS)**: `npm run build:safari && npm run safari:xcode`,
+  then open `build/safari/Steam Reviews Overlay.xcodeproj`, build and run;
+  enable the extension in Safari → Settings → Extensions. Add `--ios` to the
+  converter command in `package.json` for an iOS target. Safari supports the
+  APIs used (MV3 service worker, `storage`, non-blocking `webRequest`).
 
 ## Test
 
-`scripts/smoke.mjs` loads the built Chrome extension into Playwright's
-Chromium, visits store pages, and reports how many cards got badges plus a
-screenshot:
+```sh
+npm test                 # Vitest unit tests: tier ladder, Steam comparison rules,
+                         # protobuf encode/decode, page seeding, gradient, i18n
+npm run test:e2e         # Playwright: loads dist/chrome into Chromium, visits live
+                         # Steam pages, checks badges, request counts, and drives
+                         # the popup (dim / hide / outline / park) end to end
+npm run lint             # web-ext lint on the Firefox build
+```
+
+Helper scripts (all take the built `dist/chrome`):
 
 ```sh
-npm run build:chrome
-node scripts/smoke.mjs ./shots https://store.steampowered.com/ "https://store.steampowered.com/search/?term=roguelike"
-node scripts/debug-cards.mjs ./shots https://store.steampowered.com/specials 6   # dump every claimed card
-node scripts/popup-test.mjs ./shots        # drives the popup, checks dim/hide apply live
-node scripts/netcount.mjs <urls...>        # counts requests the extension makes per page
+node scripts/smoke.mjs ./shots <urls...>   # badge counts + screenshots
+node scripts/debug-cards.mjs ./shots <url> # dump every claimed card
+node scripts/popup-test.mjs ./shots        # popup screenshots through every state
+node scripts/netcount.mjs <urls...>        # classify GetItems traffic per page
 node scripts/make-icons.mjs                # re-rasterize public/icon.svg → PNGs
 ```
 

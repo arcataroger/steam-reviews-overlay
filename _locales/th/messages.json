@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "แสดงสรุปรีวิว (\"แง่บวกอย่างมาก\", \"ผสมกัน\" ฯลฯ) บนทุกเกมในร้านค้า Steam โดยไม่ต้องเลื่อนเมาส์ไปวาง และให้คุณหรี่ ซ่อน หรือใส่กรอบเกมตามคะแนนรีวิวได้"
+  },
+  "filter": {
+    "message": "กรอง"
+  },
+  "highlight": {
+    "message": "เน้น"
+  },
+  "dim": {
+    "message": "หรี่"
+  },
+  "hide": {
+    "message": "ซ่อน"
+  },
+  "off": {
+    "message": "ปิด"
+  },
+  "judgedBy": {
+    "message": "ตัดสินจาก"
+  },
+  "myLanguage": {
+    "message": "ภาษาของฉัน"
+  },
+  "allLanguages": {
+    "message": "ทุกภาษา"
+  },
+  "betweenTiers": {
+    "message": "อยู่ระหว่างสองระดับ"
+  },
+  "percentPositive": {
+    "message": "$PCT$% เป็นแง่บวก",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "แถบกรอง: เกมที่ต่ำกว่านี้จะถูกหรี่หรือซ่อน"
+  },
+  "leverHighlightAria": {
+    "message": "แถบเน้น: เกมที่อยู่ในระดับนี้หรือสูงกว่าจะถูกใส่กรอบ"
+  },
+  "modeAria": {
+    "message": "จะทำอย่างไรกับเกมที่อยู่ต่ำกว่าแถบกรอง"
+  },
+  "sourceAria": {
+    "message": "จะใช้คะแนนรีวิวแบบใดในการตัดสิน"
+  },
+  "tier1": {
+    "message": "แง่ลบเป็นอย่างยิ่ง"
+  },
+  "tier2": {
+    "message": "แง่ลบเป็นอย่างมาก"
+  },
+  "tier3": {
+    "message": "แง่ลบ"
+  },
+  "tier4": {
+    "message": "แง่ลบเป็นส่วนมาก"
+  },
+  "tier5": {
+    "message": "ผสมกัน"
+  },
+  "tier6": {
+    "message": "แง่บวกเป็นส่วนมาก"
+  },
+  "tier7": {
+    "message": "แง่บวก"
+  },
+  "tier8": {
+    "message": "แง่บวกเป็นอย่างมาก"
+  },
+  "tier9": {
+    "message": "แง่บวกเป็นอย่างยิ่ง"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ รีวิว"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ รีวิว"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ รีวิว"
+  },
+  "rule9": {
+    "message": "95%+, 500+ รีวิว"
+  },
+  "notEnoughReviews": {
+    "message": "รีวิวไม่เพียงพอ"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% จากรีวิวของผู้ใช้ $COUNT$ รายการเป็นแง่บวก",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "ไม่สามารถเชื่อมต่อกับ Steam ได้ กำลังแสดงข้อมูลที่แคชไว้"
+  },
+  "errRateLimited": {
+    "message": "Steam กำลังจำกัดจำนวนคำขอ จะลองใหม่ในไม่ช้า"
+  },
+  "errSteam": {
+    "message": "Steam ส่งการตอบกลับที่ไม่คาดคิด คะแนนบางส่วนอาจหายไป"
+  },
+  "errNotStore": {
+    "message": "เปิดหน้าร้านค้า Steam เพื่อดูคะแนนรีวิว"
+  },
+  "lastUpdated": {
+    "message": "อัปเดตคะแนน$AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "เมื่อสักครู่"
+  },
+  "minutesAgo": {
+    "message": "$N$ นาทีที่แล้ว",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

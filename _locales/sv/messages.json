@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Visar recensionssammanfattningen (”Mycket positiva”, ”Blandade” …) på varje spel i Steam-butiken utan att du behöver hovra, och låter dig tona ned, dölja eller rama in spel efter recensionsbetyg."
+  },
+  "filter": {
+    "message": "FILTER"
+  },
+  "highlight": {
+    "message": "MARKERA"
+  },
+  "dim": {
+    "message": "Tona ned"
+  },
+  "hide": {
+    "message": "Dölj"
+  },
+  "off": {
+    "message": "AV"
+  },
+  "judgedBy": {
+    "message": "Bedöms efter"
+  },
+  "myLanguage": {
+    "message": "Mitt språk"
+  },
+  "allLanguages": {
+    "message": "Alla språk"
+  },
+  "betweenTiers": {
+    "message": "mellan två nivåer"
+  },
+  "percentPositive": {
+    "message": "$PCT$ % positiva",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Filterspak: spel under denna tonas ned eller döljs"
+  },
+  "leverHighlightAria": {
+    "message": "Markeringsspak: spel på eller över denna nivå ramas in"
+  },
+  "modeAria": {
+    "message": "Vad som ska göras med spel under filterspaken"
+  },
+  "sourceAria": {
+    "message": "Vilket recensionsbetyg som ska användas"
+  },
+  "tier1": {
+    "message": "Överväldigande negativa"
+  },
+  "tier2": {
+    "message": "Väldigt negativa"
+  },
+  "tier3": {
+    "message": "Negativa"
+  },
+  "tier4": {
+    "message": "Mestadels negativa"
+  },
+  "tier5": {
+    "message": "Blandade"
+  },
+  "tier6": {
+    "message": "Mestadels positiva"
+  },
+  "tier7": {
+    "message": "Positiva"
+  },
+  "tier8": {
+    "message": "Mycket positiva"
+  },
+  "tier9": {
+    "message": "Överväldigande positiva"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ recensioner"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ recensioner"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ recensioner"
+  },
+  "rule9": {
+    "message": "95%+, 500+ recensioner"
+  },
+  "notEnoughReviews": {
+    "message": "Inte tillräckligt många recensioner"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$ % av de $COUNT$ användarrecensionerna är positiva",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Kunde inte nå Steam. Visar det som redan finns i cachen."
+  },
+  "errRateLimited": {
+    "message": "Steam begränsar antalet förfrågningar. Försöker igen snart."
+  },
+  "errSteam": {
+    "message": "Steam returnerade ett oväntat svar. Vissa betyg kan saknas."
+  },
+  "errNotStore": {
+    "message": "Öppna en sida i Steam-butiken för att se recensionsbetyg."
+  },
+  "lastUpdated": {
+    "message": "Betyg uppdaterade $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "nyss"
+  },
+  "minutesAgo": {
+    "message": "för $N$ min sedan",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

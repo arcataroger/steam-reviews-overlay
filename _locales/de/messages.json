@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Zeigt die Rezensionsbewertung („Sehr positiv“, „Ausgeglichen“ …) bei jedem Spiel im Steam-Shop an, ohne dass Sie den Mauszeiger darüber bewegen müssen, und lässt Sie Spiele nach Rezensionswertung abdunkeln, ausblenden oder umranden."
+  },
+  "filter": {
+    "message": "FILTER"
+  },
+  "highlight": {
+    "message": "HERVORHEBEN"
+  },
+  "dim": {
+    "message": "Abdunkeln"
+  },
+  "hide": {
+    "message": "Ausblenden"
+  },
+  "off": {
+    "message": "AUS"
+  },
+  "judgedBy": {
+    "message": "Beurteilt nach"
+  },
+  "myLanguage": {
+    "message": "Meine Sprache"
+  },
+  "allLanguages": {
+    "message": "Alle Sprachen"
+  },
+  "betweenTiers": {
+    "message": "zwischen zwei Stufen"
+  },
+  "percentPositive": {
+    "message": "$PCT$ % positiv",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Filterleiste: Spiele darunter werden abgedunkelt oder ausgeblendet"
+  },
+  "leverHighlightAria": {
+    "message": "Hervorhebungsleiste: Spiele auf oder über diesem Niveau werden umrandet"
+  },
+  "modeAria": {
+    "message": "Was mit Spielen unter der Filterleiste geschehen soll"
+  },
+  "sourceAria": {
+    "message": "Nach welcher Rezensionswertung beurteilt wird"
+  },
+  "tier1": {
+    "message": "Äußerst negativ"
+  },
+  "tier2": {
+    "message": "Sehr negativ"
+  },
+  "tier3": {
+    "message": "Negativ"
+  },
+  "tier4": {
+    "message": "Größtenteils negativ"
+  },
+  "tier5": {
+    "message": "Ausgeglichen"
+  },
+  "tier6": {
+    "message": "Größtenteils positiv"
+  },
+  "tier7": {
+    "message": "Positiv"
+  },
+  "tier8": {
+    "message": "Sehr positiv"
+  },
+  "tier9": {
+    "message": "Äußerst positiv"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ Rezensionen"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ Rezensionen"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ Rezensionen"
+  },
+  "rule9": {
+    "message": "95%+, 500+ Rezensionen"
+  },
+  "notEnoughReviews": {
+    "message": "Nicht genügend Rezensionen"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$ % der $COUNT$ Nutzerrezensionen sind positiv",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Steam konnte nicht erreicht werden. Es werden zwischengespeicherte Daten angezeigt."
+  },
+  "errRateLimited": {
+    "message": "Steam begrenzt die Anfragerate. Es wird in Kürze erneut versucht."
+  },
+  "errSteam": {
+    "message": "Steam hat eine unerwartete Antwort gesendet. Einige Wertungen fehlen möglicherweise."
+  },
+  "errNotStore": {
+    "message": "Öffnen Sie eine Steam-Shopseite, um Rezensionswertungen zu sehen."
+  },
+  "lastUpdated": {
+    "message": "Wertungen aktualisiert $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "gerade eben"
+  },
+  "minutesAgo": {
+    "message": "vor $N$ Min.",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

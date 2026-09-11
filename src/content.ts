@@ -3,6 +3,7 @@ import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, ingestSteam
 import { seedFromSearchRows, seedFromInlineJson } from './seed'
 import { detectLang, LANG_KEY, type LangInfo } from './lang'
 import { toneColorAt } from './tonecolor'
+import { t } from './i18n'
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 const lang: LangInfo = detectLang()
@@ -155,7 +156,7 @@ function line(sc: Score, icon: string, scope: string, cls: string): HTMLSpanElem
     i.textContent = icon
     l.appendChild(i)
   }
-  l.appendChild(document.createTextNode(sc.label || 'Not enough reviews'))
+  l.appendChild(document.createTextNode(sc.label || t('notEnoughReviews')))
   if (sc.pct !== null) {
     const p = document.createElement('span')
     p.className = 'sro-pct'
@@ -177,14 +178,14 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
   const { local, global } = summary
   if (local && global && local.label === global.label) {
     // Same label either way: one plain line, no icon. Tooltip still spells out both.
-    const l = line(global, '', 'All languages', 'sro-both')
-    l.title = `${formatTooltip(local, lang.name)}\n${formatTooltip(global, 'All languages')}`
+    const l = line(global, '', t('allLanguages'), 'sro-both')
+    l.title = `${formatTooltip(local, lang.name)}\n${formatTooltip(global, t('allLanguages'))}`
     b.appendChild(l)
   } else if (local && global) {
     b.appendChild(line(local, lang.flag, lang.name, 'sro-local'))
-    b.appendChild(line(global, '🌐', 'All languages', 'sro-global'))
+    b.appendChild(line(global, '🌐', t('allLanguages'), 'sro-global'))
   } else if (global) {
-    b.appendChild(line(global, '', 'All languages', 'sro-global'))
+    b.appendChild(line(global, '', t('allLanguages'), 'sro-global'))
   } else if (local) {
     b.appendChild(line(local, '', lang.name, 'sro-local'))
   }
@@ -355,7 +356,11 @@ function scheduleScan() {
   if (scanTimer) return
   scanTimer = window.setTimeout(() => {
     scanTimer = undefined
-    scan()
+    try {
+      scan()
+    } catch (e) {
+      console.warn('[SRO] scan failed', e)
+    }
   }, 250)
 }
 
@@ -395,8 +400,12 @@ async function main() {
   mo.observe(document.body, { childList: true, subtree: true })
 }
 
+function start() {
+  // Never let the overlay break the store page: any unexpected failure just means no badges.
+  main().catch((e) => console.warn('[SRO] overlay failed to start', e))
+}
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => void main(), { once: true })
+  document.addEventListener('DOMContentLoaded', start, { once: true })
 } else {
-  void main()
+  start()
 }

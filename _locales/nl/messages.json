@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Toont de recensiesamenvatting ('Erg positief', 'Gemengd', ...) bij elk spel in de Steam-winkel zonder dat je eroverheen hoeft te bewegen, en laat je spellen dimmen, verbergen of omlijnen op basis van de recensiescore."
+  },
+  "filter": {
+    "message": "FILTER"
+  },
+  "highlight": {
+    "message": "MARKEREN"
+  },
+  "dim": {
+    "message": "Dimmen"
+  },
+  "hide": {
+    "message": "Verbergen"
+  },
+  "off": {
+    "message": "UIT"
+  },
+  "judgedBy": {
+    "message": "Beoordeeld op"
+  },
+  "myLanguage": {
+    "message": "Mijn taal"
+  },
+  "allLanguages": {
+    "message": "Alle talen"
+  },
+  "betweenTiers": {
+    "message": "tussen twee niveaus"
+  },
+  "percentPositive": {
+    "message": "$PCT$% positief",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Filterbalk: spellen hieronder worden gedimd of verborgen"
+  },
+  "leverHighlightAria": {
+    "message": "Markeerbalk: spellen op of boven dit niveau worden omlijnd"
+  },
+  "modeAria": {
+    "message": "Wat te doen met spellen onder de filterbalk"
+  },
+  "sourceAria": {
+    "message": "Op welke recensiescore beoordeeld wordt"
+  },
+  "tier1": {
+    "message": "Overweldigend negatief"
+  },
+  "tier2": {
+    "message": "Erg negatief"
+  },
+  "tier3": {
+    "message": "Negatief"
+  },
+  "tier4": {
+    "message": "Grotendeels negatief"
+  },
+  "tier5": {
+    "message": "Verdeeld"
+  },
+  "tier6": {
+    "message": "Grotendeels positief"
+  },
+  "tier7": {
+    "message": "Positief"
+  },
+  "tier8": {
+    "message": "Heel positief"
+  },
+  "tier9": {
+    "message": "Overweldigend positief"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ recensies"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ recensies"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ recensies"
+  },
+  "rule9": {
+    "message": "95%+, 500+ recensies"
+  },
+  "notEnoughReviews": {
+    "message": "Niet genoeg recensies"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% van de $COUNT$ gebruikersrecensies is positief",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Kan Steam niet bereiken. Gecachte gegevens worden getoond."
+  },
+  "errRateLimited": {
+    "message": "Steam beperkt het aantal verzoeken. Binnenkort wordt het opnieuw geprobeerd."
+  },
+  "errSteam": {
+    "message": "Steam gaf een onverwacht antwoord. Sommige scores kunnen ontbreken."
+  },
+  "errNotStore": {
+    "message": "Open een pagina van de Steam-winkel om recensiescores te zien."
+  },
+  "lastUpdated": {
+    "message": "Scores bijgewerkt $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "zojuist"
+  },
+  "minutesAgo": {
+    "message": "$N$ min geleden",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

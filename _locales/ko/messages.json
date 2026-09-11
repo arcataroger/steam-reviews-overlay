@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam 평가 오버레이"
+  },
+  "extDescription": {
+    "message": "마우스를 올리지 않아도 Steam 상점의 모든 게임에 평가 요약(\"매우 긍정적\", \"복합적\" 등)을 표시하고, 평가 점수에 따라 게임을 어둡게 하거나 숨기거나 테두리를 표시할 수 있습니다."
+  },
+  "filter": {
+    "message": "필터"
+  },
+  "highlight": {
+    "message": "강조"
+  },
+  "dim": {
+    "message": "어둡게"
+  },
+  "hide": {
+    "message": "숨기기"
+  },
+  "off": {
+    "message": "끔"
+  },
+  "judgedBy": {
+    "message": "판단 기준"
+  },
+  "myLanguage": {
+    "message": "내 언어"
+  },
+  "allLanguages": {
+    "message": "모든 언어"
+  },
+  "betweenTiers": {
+    "message": "두 등급 사이"
+  },
+  "percentPositive": {
+    "message": "$PCT$% 긍정적",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "필터 바: 이보다 낮은 게임은 어둡게 표시되거나 숨겨집니다"
+  },
+  "leverHighlightAria": {
+    "message": "강조 바: 이 이상인 게임에는 테두리가 표시됩니다"
+  },
+  "modeAria": {
+    "message": "필터 바보다 낮은 게임의 처리 방식"
+  },
+  "sourceAria": {
+    "message": "판단에 사용할 평가 점수"
+  },
+  "tier1": {
+    "message": "압도적으로 부정적"
+  },
+  "tier2": {
+    "message": "매우 부정적"
+  },
+  "tier3": {
+    "message": "부정적"
+  },
+  "tier4": {
+    "message": "대체로 부정적"
+  },
+  "tier5": {
+    "message": "복합적"
+  },
+  "tier6": {
+    "message": "대체로 긍정적"
+  },
+  "tier7": {
+    "message": "긍정적"
+  },
+  "tier8": {
+    "message": "매우 긍정적"
+  },
+  "tier9": {
+    "message": "압도적으로 긍정적"
+  },
+  "rule1": {
+    "message": "0–19%, 평가 500개 이상"
+  },
+  "rule2": {
+    "message": "0–19%, 평가 50개 이상"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 평가 50개 이상"
+  },
+  "rule9": {
+    "message": "95%+, 평가 500개 이상"
+  },
+  "notEnoughReviews": {
+    "message": "평가 수 부족"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — 사용자 평가 $COUNT$개 중 $PCT$%가 긍정적",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Steam에 연결할 수 없습니다. 캐시된 내용을 표시합니다."
+  },
+  "errRateLimited": {
+    "message": "Steam이 요청을 제한하고 있습니다. 잠시 후 다시 시도합니다."
+  },
+  "errSteam": {
+    "message": "Steam이 예상치 못한 응답을 반환했습니다. 일부 점수가 누락될 수 있습니다."
+  },
+  "errNotStore": {
+    "message": "평가 점수를 보려면 Steam 상점 페이지를 여세요."
+  },
+  "lastUpdated": {
+    "message": "점수 업데이트: $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "방금"
+  },
+  "minutesAgo": {
+    "message": "$N$분 전",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

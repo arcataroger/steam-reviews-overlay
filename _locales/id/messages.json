@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Menampilkan ringkasan ulasan (\"Sangat Positif\", \"Campuran\", ...) di setiap game di toko Steam tanpa perlu mengarahkan kursor, dan memungkinkan Anda meredupkan, menyembunyikan, atau membingkai game berdasarkan skor ulasan."
+  },
+  "filter": {
+    "message": "FILTER"
+  },
+  "highlight": {
+    "message": "SOROTAN"
+  },
+  "dim": {
+    "message": "Redupkan"
+  },
+  "hide": {
+    "message": "Sembunyikan"
+  },
+  "off": {
+    "message": "MATI"
+  },
+  "judgedBy": {
+    "message": "Dinilai berdasarkan"
+  },
+  "myLanguage": {
+    "message": "Bahasa saya"
+  },
+  "allLanguages": {
+    "message": "Semua bahasa"
+  },
+  "betweenTiers": {
+    "message": "di antara dua tingkat"
+  },
+  "percentPositive": {
+    "message": "$PCT$% positif",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Bilah filter: game di bawah ini diredupkan atau disembunyikan"
+  },
+  "leverHighlightAria": {
+    "message": "Bilah sorotan: game pada tingkat ini atau lebih tinggi diberi bingkai"
+  },
+  "modeAria": {
+    "message": "Apa yang dilakukan pada game di bawah bilah filter"
+  },
+  "sourceAria": {
+    "message": "Skor ulasan mana yang digunakan untuk menilai"
+  },
+  "tier1": {
+    "message": "Mengecewakan"
+  },
+  "tier2": {
+    "message": "Sangat Negatif"
+  },
+  "tier3": {
+    "message": "Negatif"
+  },
+  "tier4": {
+    "message": "Mayoritas Negatif"
+  },
+  "tier5": {
+    "message": "Bercampur"
+  },
+  "tier6": {
+    "message": "Mayoritas Positif"
+  },
+  "tier7": {
+    "message": "Positif"
+  },
+  "tier8": {
+    "message": "Sangat Positif"
+  },
+  "tier9": {
+    "message": "Luar Biasa Positif"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ ulasan"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ ulasan"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ ulasan"
+  },
+  "rule9": {
+    "message": "95%+, 500+ ulasan"
+  },
+  "notEnoughReviews": {
+    "message": "Ulasan tidak cukup"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% dari $COUNT$ ulasan pengguna bersifat positif",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Tidak dapat menghubungi Steam. Menampilkan data yang sudah ada di cache."
+  },
+  "errRateLimited": {
+    "message": "Steam membatasi jumlah permintaan. Akan dicoba lagi sebentar lagi."
+  },
+  "errSteam": {
+    "message": "Steam mengembalikan respons yang tidak terduga. Beberapa skor mungkin hilang."
+  },
+  "errNotStore": {
+    "message": "Buka halaman toko Steam untuk melihat skor ulasan."
+  },
+  "lastUpdated": {
+    "message": "Skor diperbarui $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "baru saja"
+  },
+  "minutesAgo": {
+    "message": "$N$ menit yang lalu",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

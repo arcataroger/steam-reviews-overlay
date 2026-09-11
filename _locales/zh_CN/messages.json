@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam 评测概览"
+  },
+  "extDescription": {
+    "message": "无需悬停即可在 Steam 商店的每款游戏上显示评测概述（“特别好评”“褒贬不一”……），并可按评测分数对游戏进行变暗、隐藏或描边。"
+  },
+  "filter": {
+    "message": "筛选"
+  },
+  "highlight": {
+    "message": "高亮"
+  },
+  "dim": {
+    "message": "变暗"
+  },
+  "hide": {
+    "message": "隐藏"
+  },
+  "off": {
+    "message": "关"
+  },
+  "judgedBy": {
+    "message": "评判依据"
+  },
+  "myLanguage": {
+    "message": "我的语言"
+  },
+  "allLanguages": {
+    "message": "所有语言"
+  },
+  "betweenTiers": {
+    "message": "介于两级之间"
+  },
+  "percentPositive": {
+    "message": "$PCT$% 好评",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "筛选杆：低于此处的游戏将被变暗或隐藏"
+  },
+  "leverHighlightAria": {
+    "message": "高亮杆：达到或高于此处的游戏将被描边"
+  },
+  "modeAria": {
+    "message": "如何处理低于筛选杆的游戏"
+  },
+  "sourceAria": {
+    "message": "以哪种评测分数为准"
+  },
+  "tier1": {
+    "message": "差评如潮"
+  },
+  "tier2": {
+    "message": "特别差评"
+  },
+  "tier3": {
+    "message": "差评"
+  },
+  "tier4": {
+    "message": "多半差评"
+  },
+  "tier5": {
+    "message": "褒贬不一"
+  },
+  "tier6": {
+    "message": "多半好评"
+  },
+  "tier7": {
+    "message": "好评"
+  },
+  "tier8": {
+    "message": "特别好评"
+  },
+  "tier9": {
+    "message": "好评如潮"
+  },
+  "rule1": {
+    "message": "0–19%，500+ 篇评测"
+  },
+  "rule2": {
+    "message": "0–19%，50+ 篇评测"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+，50+ 篇评测"
+  },
+  "rule9": {
+    "message": "95%+，500+ 篇评测"
+  },
+  "notEnoughReviews": {
+    "message": "评测数量不足"
+  },
+  "tooltip": {
+    "message": "$SCOPE$：$LABEL$ — 在 $COUNT$ 篇用户评测中，$PCT$% 为好评",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$：$LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "无法连接 Steam。正在显示已缓存的内容。"
+  },
+  "errRateLimited": {
+    "message": "Steam 正在限制请求频率。稍后将重试。"
+  },
+  "errSteam": {
+    "message": "Steam 返回了意外的响应。部分分数可能缺失。"
+  },
+  "errNotStore": {
+    "message": "请打开 Steam 商店页面以查看评测分数。"
+  },
+  "lastUpdated": {
+    "message": "分数更新于$AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "刚刚"
+  },
+  "minutesAgo": {
+    "message": "$N$ 分钟前",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

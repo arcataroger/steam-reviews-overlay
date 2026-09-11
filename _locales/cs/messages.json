@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Zobrazuje souhrn recenzí („Velmi kladné“, „Smíšené“ …) u každé hry v obchodě Steam bez nutnosti najetí myší a umožňuje hry podle hodnocení recenzí ztmavit, skrýt nebo orámovat."
+  },
+  "filter": {
+    "message": "FILTR"
+  },
+  "highlight": {
+    "message": "ZVÝRAZNĚNÍ"
+  },
+  "dim": {
+    "message": "Ztmavit"
+  },
+  "hide": {
+    "message": "Skrýt"
+  },
+  "off": {
+    "message": "VYP"
+  },
+  "judgedBy": {
+    "message": "Posuzovat podle"
+  },
+  "myLanguage": {
+    "message": "Můj jazyk"
+  },
+  "allLanguages": {
+    "message": "Všechny jazyky"
+  },
+  "betweenTiers": {
+    "message": "mezi úrovněmi"
+  },
+  "percentPositive": {
+    "message": "$PCT$ % kladných",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Lišta filtru: hry pod ní se ztmaví nebo skryjí"
+  },
+  "leverHighlightAria": {
+    "message": "Lišta zvýraznění: hry na této úrovni a výše se orámují"
+  },
+  "modeAria": {
+    "message": "Co dělat s hrami pod lištou filtru"
+  },
+  "sourceAria": {
+    "message": "Podle kterého hodnocení recenzí posuzovat"
+  },
+  "tier1": {
+    "message": "Extrémně záporné"
+  },
+  "tier2": {
+    "message": "Velmi záporné"
+  },
+  "tier3": {
+    "message": "Záporné"
+  },
+  "tier4": {
+    "message": "Spíše záporné"
+  },
+  "tier5": {
+    "message": "Smíšené"
+  },
+  "tier6": {
+    "message": "Spíše kladné"
+  },
+  "tier7": {
+    "message": "Kladné"
+  },
+  "tier8": {
+    "message": "Velmi kladné"
+  },
+  "tier9": {
+    "message": "Extrémně kladné"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ recenzí"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ recenzí"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ recenzí"
+  },
+  "rule9": {
+    "message": "95%+, 500+ recenzí"
+  },
+  "notEnoughReviews": {
+    "message": "Nedostatek recenzí"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$ % z $COUNT$ uživatelských recenzí je kladných",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Steam není dostupný. Zobrazují se data z mezipaměti."
+  },
+  "errRateLimited": {
+    "message": "Steam omezuje počet požadavků. Brzy to zkusíme znovu."
+  },
+  "errSteam": {
+    "message": "Steam vrátil neočekávanou odpověď. Některá hodnocení mohou chybět."
+  },
+  "errNotStore": {
+    "message": "Otevřete stránku obchodu Steam, abyste viděli hodnocení recenzí."
+  },
+  "lastUpdated": {
+    "message": "Hodnocení aktualizována $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "právě teď"
+  },
+  "minutesAgo": {
+    "message": "před $N$ min",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -6,8 +6,13 @@
     "dev": "vite",
     "build:chrome": "TARGET_BROWSER=chrome vite build",
     "build:firefox": "TARGET_BROWSER=firefox vite build",
-    "build": "npm run build:chrome && npm run build:firefox",
-    "typecheck": "tsc -p ."
+    "build": "npm run build:chrome && npm run build:firefox && npm run build:safari",
+    "typecheck": "tsc -p .",
+    "build:safari": "TARGET_BROWSER=safari vite build && node scripts/safari-manifest.mjs",
+    "safari:xcode": "xcrun safari-web-extension-converter dist/safari --project-location build/safari --app-name \"Steam Reviews Overlay\" --bundle-identifier com.arcataroger.steam-reviews-overlay --macos-only --no-open --force",
+    "test": "vitest run",
+    "test:e2e": "npm run build:chrome && playwright test",
+    "lint": "web-ext lint --source-dir dist/firefox"
   },
   "keywords": [],
   "author": "",
@@ -15,11 +20,14 @@
   "type": "module",
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.7.1",
+    "@playwright/test": "^1.63.0",
     "@types/chrome": "^0.2.9",
     "@types/node": "^22.20.2",
+    "jsdom": "^29.1.1",
     "playwright": "^1.63.0",
     "typescript": "^7.0.2",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "vitest": "^5.0.0"
   },
   "private": true
 }

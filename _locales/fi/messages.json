@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Näyttää arvosteluyhteenvedon (”Erittäin myönteinen”, ”Vaihteleva” …) jokaisen Steam-kaupan pelin kohdalla ilman hiiren viemistä päälle, ja antaa himmentää, piilottaa tai kehystää pelejä arvostelupisteiden mukaan."
+  },
+  "filter": {
+    "message": "SUODATIN"
+  },
+  "highlight": {
+    "message": "KOROSTUS"
+  },
+  "dim": {
+    "message": "Himmennä"
+  },
+  "hide": {
+    "message": "Piilota"
+  },
+  "off": {
+    "message": "POIS"
+  },
+  "judgedBy": {
+    "message": "Arviointiperuste"
+  },
+  "myLanguage": {
+    "message": "Oma kieleni"
+  },
+  "allLanguages": {
+    "message": "Kaikki kielet"
+  },
+  "betweenTiers": {
+    "message": "kahden tason välissä"
+  },
+  "percentPositive": {
+    "message": "$PCT$ % myönteisiä",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Suodatinpalkki: tämän alapuolella olevat pelit himmennetään tai piilotetaan"
+  },
+  "leverHighlightAria": {
+    "message": "Korostuspalkki: tällä tasolla tai sen yläpuolella olevat pelit kehystetään"
+  },
+  "modeAria": {
+    "message": "Mitä suodatinpalkin alapuolella oleville peleille tehdään"
+  },
+  "sourceAria": {
+    "message": "Minkä arvostelupisteiden mukaan arvioidaan"
+  },
+  "tier1": {
+    "message": "Ylivoimaisen kielteinen"
+  },
+  "tier2": {
+    "message": "Erittäin kielteinen"
+  },
+  "tier3": {
+    "message": "Kielteinen"
+  },
+  "tier4": {
+    "message": "Enimmäkseen kielteinen"
+  },
+  "tier5": {
+    "message": "Vaihteleva"
+  },
+  "tier6": {
+    "message": "Enimmäkseen myönteinen"
+  },
+  "tier7": {
+    "message": "Myönteinen"
+  },
+  "tier8": {
+    "message": "Erittäin myönteinen"
+  },
+  "tier9": {
+    "message": "Ylivoimaisen myönteinen"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ arvostelua"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ arvostelua"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ arvostelua"
+  },
+  "rule9": {
+    "message": "95%+, 500+ arvostelua"
+  },
+  "notEnoughReviews": {
+    "message": "Ei tarpeeksi arvosteluja"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$ % $COUNT$ käyttäjäarvostelusta on myönteisiä",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Steamiin ei saatu yhteyttä. Näytetään välimuistissa olevat tiedot."
+  },
+  "errRateLimited": {
+    "message": "Steam rajoittaa pyyntöjen määrää. Yritetään pian uudelleen."
+  },
+  "errSteam": {
+    "message": "Steam palautti odottamattoman vastauksen. Joitakin pisteitä voi puuttua."
+  },
+  "errNotStore": {
+    "message": "Avaa Steam-kaupan sivu nähdäksesi arvostelupisteet."
+  },
+  "lastUpdated": {
+    "message": "Pisteet päivitetty $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "juuri nyt"
+  },
+  "minutesAgo": {
+    "message": "$N$ min sitten",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Pokazuje podsumowanie recenzji („Bardzo pozytywne”, „Mieszane”…) przy każdej grze w sklepie Steam bez najeżdżania kursorem oraz pozwala przyciemniać, ukrywać lub obramowywać gry według oceny recenzji."
+  },
+  "filter": {
+    "message": "FILTR"
+  },
+  "highlight": {
+    "message": "WYRÓŻNIENIE"
+  },
+  "dim": {
+    "message": "Przyciemnij"
+  },
+  "hide": {
+    "message": "Ukryj"
+  },
+  "off": {
+    "message": "WYŁ."
+  },
+  "judgedBy": {
+    "message": "Oceniaj według"
+  },
+  "myLanguage": {
+    "message": "Mój język"
+  },
+  "allLanguages": {
+    "message": "Wszystkie języki"
+  },
+  "betweenTiers": {
+    "message": "pomiędzy poziomami"
+  },
+  "percentPositive": {
+    "message": "$PCT$% pozytywnych",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Pasek filtra: gry poniżej są przyciemniane lub ukrywane"
+  },
+  "leverHighlightAria": {
+    "message": "Pasek wyróżnienia: gry na tym poziomie lub wyżej są obramowane"
+  },
+  "modeAria": {
+    "message": "Co zrobić z grami poniżej paska filtra"
+  },
+  "sourceAria": {
+    "message": "Według której oceny recenzji oceniać"
+  },
+  "tier1": {
+    "message": "Przytłaczająco negatywne"
+  },
+  "tier2": {
+    "message": "Bardzo negatywne"
+  },
+  "tier3": {
+    "message": "Negatywne"
+  },
+  "tier4": {
+    "message": "W większości negatywne"
+  },
+  "tier5": {
+    "message": "Mieszane"
+  },
+  "tier6": {
+    "message": "W większości pozytywne"
+  },
+  "tier7": {
+    "message": "Pozytywne"
+  },
+  "tier8": {
+    "message": "Bardzo pozytywne"
+  },
+  "tier9": {
+    "message": "Przytłaczająco pozytywne"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ recenzji"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ recenzji"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ recenzji"
+  },
+  "rule9": {
+    "message": "95%+, 500+ recenzji"
+  },
+  "notEnoughReviews": {
+    "message": "Za mało recenzji"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — $PCT$% z $COUNT$ recenzji użytkowników jest pozytywnych",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Nie udało się połączyć ze Steam. Wyświetlane są dane z pamięci podręcznej."
+  },
+  "errRateLimited": {
+    "message": "Steam ogranicza liczbę żądań. Wkrótce ponowimy próbę."
+  },
+  "errSteam": {
+    "message": "Steam zwrócił nieoczekiwaną odpowiedź. Niektórych ocen może brakować."
+  },
+  "errNotStore": {
+    "message": "Otwórz stronę sklepu Steam, aby zobaczyć oceny recenzji."
+  },
+  "lastUpdated": {
+    "message": "Oceny zaktualizowano $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "przed chwilą"
+  },
+  "minutesAgo": {
+    "message": "$N$ min temu",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

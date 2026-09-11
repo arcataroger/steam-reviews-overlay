@@ -1,0 +1,171 @@
+{
+  "extName": {
+    "message": "Steam Reviews Overlay"
+  },
+  "extDescription": {
+    "message": "Megjeleníti az értékelések összegzését („Nagyon pozitív”, „Vegyes” …) a Steam áruház minden játékánál anélkül, hogy fölé kellene vinni az egeret, és lehetővé teszi a játékok elhalványítását, elrejtését vagy bekeretezését az értékelési pontszám alapján."
+  },
+  "filter": {
+    "message": "SZŰRŐ"
+  },
+  "highlight": {
+    "message": "KIEMELÉS"
+  },
+  "dim": {
+    "message": "Halványítás"
+  },
+  "hide": {
+    "message": "Elrejtés"
+  },
+  "off": {
+    "message": "KI"
+  },
+  "judgedBy": {
+    "message": "Bírálat alapja"
+  },
+  "myLanguage": {
+    "message": "Saját nyelvem"
+  },
+  "allLanguages": {
+    "message": "Minden nyelv"
+  },
+  "betweenTiers": {
+    "message": "két szint között"
+  },
+  "percentPositive": {
+    "message": "$PCT$% pozitív",
+    "placeholders": {
+      "PCT": {
+        "content": "$1"
+      }
+    }
+  },
+  "leverFilterAria": {
+    "message": "Szűrősáv: az ez alatti játékok elhalványulnak vagy rejtve lesznek"
+  },
+  "leverHighlightAria": {
+    "message": "Kiemelősáv: az ezen a szinten vagy fölötte lévő játékok keretet kapnak"
+  },
+  "modeAria": {
+    "message": "Mi történjen a szűrősáv alatti játékokkal"
+  },
+  "sourceAria": {
+    "message": "Melyik értékelési pontszám alapján bíráljon"
+  },
+  "tier1": {
+    "message": "Rendkívül negatív"
+  },
+  "tier2": {
+    "message": "Nagyon negatív"
+  },
+  "tier3": {
+    "message": "Negatív"
+  },
+  "tier4": {
+    "message": "Többnyire negatív"
+  },
+  "tier5": {
+    "message": "Vegyes"
+  },
+  "tier6": {
+    "message": "Többnyire pozitív"
+  },
+  "tier7": {
+    "message": "Pozitív"
+  },
+  "tier8": {
+    "message": "Nagyon pozitív"
+  },
+  "tier9": {
+    "message": "Rendkívül pozitív"
+  },
+  "rule1": {
+    "message": "0–19%, 500+ értékelés"
+  },
+  "rule2": {
+    "message": "0–19%, 50+ értékelés"
+  },
+  "rule3": {
+    "message": "0–19%"
+  },
+  "rule4": {
+    "message": "20–39%"
+  },
+  "rule5": {
+    "message": "40–69%"
+  },
+  "rule6": {
+    "message": "70–79%"
+  },
+  "rule7": {
+    "message": "80%+"
+  },
+  "rule8": {
+    "message": "80%+, 50+ értékelés"
+  },
+  "rule9": {
+    "message": "95%+, 500+ értékelés"
+  },
+  "notEnoughReviews": {
+    "message": "Nincs elég értékelés"
+  },
+  "tooltip": {
+    "message": "$SCOPE$: $LABEL$ — a(z) $COUNT$ felhasználói értékelés $PCT$%-a pozitív",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      },
+      "PCT": {
+        "content": "$3"
+      },
+      "COUNT": {
+        "content": "$4"
+      }
+    }
+  },
+  "tooltipNoPct": {
+    "message": "$SCOPE$: $LABEL$",
+    "placeholders": {
+      "SCOPE": {
+        "content": "$1"
+      },
+      "LABEL": {
+        "content": "$2"
+      }
+    }
+  },
+  "errOffline": {
+    "message": "Nem sikerült elérni a Steamet. A gyorsítótárazott adatok jelennek meg."
+  },
+  "errRateLimited": {
+    "message": "A Steam korlátozza a kéréseket. Hamarosan újrapróbáljuk."
+  },
+  "errSteam": {
+    "message": "A Steam váratlan választ adott. Néhány pontszám hiányozhat."
+  },
+  "errNotStore": {
+    "message": "Nyiss meg egy Steam áruházi oldalt az értékelési pontszámok megtekintéséhez."
+  },
+  "lastUpdated": {
+    "message": "Pontszámok frissítve: $AGO$",
+    "placeholders": {
+      "AGO": {
+        "content": "$1"
+      }
+    }
+  },
+  "justNow": {
+    "message": "épp most"
+  },
+  "minutesAgo": {
+    "message": "$N$ perce",
+    "placeholders": {
+      "N": {
+        "content": "$1"
+      }
+    }
+  }
+}

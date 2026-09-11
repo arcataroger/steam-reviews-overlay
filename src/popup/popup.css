@@ -39,6 +39,9 @@ body {
 .seg button + button { border-left: 1px solid #2a475e; }
 .seg button[aria-checked="true"] { background: #2a475e; color: #fff; }
 .seg button:hover { color: #fff; }
+.seg .two-line { display: inline-flex; flex-direction: column; align-items: center; line-height: 1.15; }
+.seg .two-line small { font-size: 10px; color: var(--muted); }
+.seg button[aria-checked="true"] .two-line small { color: #b8c6d2; }
 .help { margin: 8px 0 0; color: var(--muted); font-size: 12px; min-height: 2.6em; }
 
 .chk { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; padding-bottom: 10px; }
@@ -84,6 +87,7 @@ body {
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.06);
   transition: opacity 0.2s;
 }
+.readout.right .plate-row { justify-content: flex-end; }
 .readout .plate-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 3px; min-height: 16px; }
 .switch { display: inline-flex; border: 1px solid #2a475e; border-radius: 3px; overflow: hidden; }
 .switch button {
@@ -218,6 +222,21 @@ body {
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.95), inset 0 0 0 1px rgba(0,0,0,0.85), 0 1px 0 rgba(255,255,255,0.1);
   z-index: 1;
 }
+/* OFF engraved in the gate floor (the handle covers it when parked) */
+.detent span {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 9px; letter-spacing: 2px; color: #7c8797; font-weight: 600;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.9);
+}
+/* Throat: a flared recess joining the rail to the gate so the transition isn't abrupt */
+.detent::before {
+  content: ""; position: absolute; left: 50%; transform: translateX(-50%);
+  width: 22px; height: 16px;
+  background: linear-gradient(180deg, #0b0f14, #151b23);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.8), inset 0 2px 4px rgba(0,0,0,0.9);
+}
+.detent.bottom::before { bottom: 100%; margin-bottom: -6px; border-radius: 11px 11px 0 0; }
+.detent.top::before { top: 100%; margin-top: -6px; border-radius: 0 0 11px 11px; }
 .lever.left .detent { left: 0; }
 .lever.right .detent { right: 0; }
 .detent.bottom { bottom: calc(var(--pad) - 13px); }

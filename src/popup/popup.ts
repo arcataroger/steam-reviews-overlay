@@ -8,7 +8,7 @@ import {
   type FilterMode,
   type ScoreSource,
 } from '../settings'
-import { LANG_KEY, type LangInfo } from '../lang'
+import { LANG_KEY, detectLang, type LangInfo } from '../lang'
 import { GRADIENT_CSS, toneColorAt } from '../tonecolor'
 
 document.documentElement.style.setProperty('--tone-gradient', GRADIENT_CSS)
@@ -44,12 +44,16 @@ const includeUnreviewed = $<HTMLInputElement>('#includeUnreviewed')
 
 let settings: Settings
 
-// Flag/language detected by the content script on the last store page visited
+// Flag/language: what the content script detected on the last store page (Steam_Language cookie),
+// falling back to the browser locale until a store page has been visited.
+function showLang(l: LangInfo) {
+  $('#srcFlag').textContent = l.flag
+  $('#srcLang').textContent = `(${l.name})`
+}
+showLang(detectLang())
 ext.storage.local.get(LANG_KEY).then((r) => {
   const l = r?.[LANG_KEY] as LangInfo | undefined
-  if (!l) return
-  $('#srcFlag').textContent = l.flag
-  $('#srcLang').textContent = l.name
+  if (l) showLang(l)
 })
 
 // Shared notches: left tick zone drives the filter lever, right tick zone the highlight lever.

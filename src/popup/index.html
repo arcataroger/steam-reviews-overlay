@@ -40,7 +40,7 @@
                aria-label="Filter games under this positive-review percentage"
                aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="rail"><div class="fill" id="fillFilter"></div></div>
-            <div class="detent bottom"></div>
+            <div class="detent bottom"><span>OFF</span></div>
             <div class="knob" id="knobFilter"><b class="arrow"></b><i></i><i></i><i></i></div>
           </div>
           <div id="notches" class="notches"></div>
@@ -48,7 +48,7 @@
                aria-label="Highlight games above this positive-review percentage"
                aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
             <div class="rail"><div class="fill" id="fillHighlight"></div></div>
-            <div class="detent top"></div>
+            <div class="detent top"><span>OFF</span></div>
             <div class="knob" id="knobHighlight"><i></i><i></i><i></i><b class="arrow"></b></div>
           </div>
         </div>
@@ -58,7 +58,7 @@
     <section class="sec">
       <div class="sec-title">Judged by</div>
       <div class="seg" role="radiogroup" id="source">
-        <button type="button" data-source="local" role="radio"><span id="srcFlag">🏳️</span> <span id="srcLang">My language</span></button>
+        <button type="button" data-source="local" role="radio"><span id="srcFlag">🏳️</span> <span class="two-line">My language<small id="srcLang"></small></span></button>
         <button type="button" data-source="global" role="radio">🌐 All languages</button>
       </div>
     </section>

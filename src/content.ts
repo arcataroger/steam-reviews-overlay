@@ -319,6 +319,16 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, price?: HTMLEl
 
 const hideTimers = new WeakMap<HTMLElement, number>()
 
+/** Cards change size when a carousel reveals them; re-derive the highlight shape when that happens. */
+const shapeWatcher = new ResizeObserver((entries) => {
+  for (const e of entries) {
+    const card = e.target as HTMLElement
+    const appid = cardsByAppId.get(card)
+    const s = appid ? peekCached(appid) : undefined
+    if (s && card.isConnected) applyFilter(card, s)
+  }
+})
+
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   const pick = chosen(summary)
   const filtered = isFiltered(pick, settings)
@@ -326,10 +336,18 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   // Overwhelmingly Positive gets an extra, slow orbiting light.
   if (!filtered && pick && isHighlighted(pick, settings)) {
     card.dataset.sroHighlight = toneFor(pick.score)
-    const hs = highlightShape(card)
-    card.dataset.sroShape = hs.shape
-    if (hs.axis) card.dataset.sroAxis = hs.axis
-    else delete card.dataset.sroAxis
+    const r = card.getBoundingClientRect()
+    if (r.width && r.height) {
+      const hs = highlightShape(card)
+      card.dataset.sroShape = hs.shape
+      if (hs.axis) card.dataset.sroAxis = hs.axis
+      else delete card.dataset.sroAxis
+    } else {
+      // Not laid out yet (hidden carousel slide): draw nothing until it has a size
+      delete card.dataset.sroShape
+      delete card.dataset.sroAxis
+    }
+    shapeWatcher.observe(card)
     card.style.setProperty('--sro-hl', toneColorAt(pick.score))
     if (pick.score === 9) card.dataset.sroOp = '1'
     else delete card.dataset.sroOp
@@ -340,6 +358,7 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     delete card.dataset.sroShape
     delete card.dataset.sroAxis
     card.style.removeProperty('--sro-hl')
+    shapeWatcher.unobserve(card)
   }
   const want = filtered ? settings.mode : null
   const cur = card.dataset.sroFiltered
@@ -383,6 +402,7 @@ const cardsByAppId = new Map<HTMLElement, number>()
 const unsubs = new WeakMap<HTMLElement, () => void>()
 
 function release(card: HTMLElement) {
+  shapeWatcher.unobserve(card)
   unsubs.get(card)?.()
   unsubs.delete(card)
   cardsByAppId.delete(card)

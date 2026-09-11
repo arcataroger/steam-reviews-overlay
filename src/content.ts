@@ -1,5 +1,5 @@
 import css from './content.css?inline'
-import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, type ReviewSummary, type Score } from './steam'
+import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, ingestSteamRequest, type ReviewSummary, type Score } from './steam'
 import { seedFromSearchRows, seedFromInlineJson } from './seed'
 import { detectLang, LANG_KEY, type LangInfo } from './lang'
 
@@ -360,6 +360,9 @@ async function main() {
     reapplyFilters(sourceChanged)
   })
   setLanguage(lang.steam)
+  ext.runtime.onMessage.addListener((msg: { type?: string; url?: string }) => {
+    if (msg?.type === 'sro:steam-getitems' && msg.url) void ingestSteamRequest(msg.url)
+  })
   void ext.storage.local.set({ [LANG_KEY]: lang }).catch(() => {})
   seedFromInlineJson()
   scan()

@@ -13,7 +13,7 @@
  * survive reloads and back/forward navigation.
  */
 
-import { encodeGetItemsRequest } from './proto'
+import { encodeGetItemsRequest, decodeGetItemsResponse, requestIncludesReviews, type RawSummary } from './proto'
 
 export type ReviewTone = 'positive' | 'mixed' | 'negative' | 'none'
 
@@ -194,13 +194,6 @@ async function drain() {
 
 let backoffUntil = 0
 
-interface RawSummary {
-  review_count?: number
-  percent_positive?: number
-  review_score?: number
-  review_score_label?: string
-}
-
 function toScore(sf: RawSummary): Score {
   const score = sf.review_score ?? 0
   const count = sf.review_count ?? 0
@@ -226,7 +219,7 @@ async function fetchBatch(appids: number[]) {
   if (wait > 0) await new Promise((r) => setTimeout(r, wait))
   const enc = encodeGetItemsRequest(appids, { country: 'US', language })
   const url =
-    'https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?format=json&input_protobuf_encoded=' +
+    'https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?sro=1&format=json&input_protobuf_encoded=' +
     encodeURIComponent(enc)
   const res = await fetch(url, { credentials: 'omit' })
   if (res.status === 429 || res.status >= 500) {
@@ -266,6 +259,54 @@ async function fetchBatch(appids: number[]) {
     })
   }
   for (const id of appids) if (!seen.has(id)) negative.set(id, now)
+}
+
+/* ---------------- piggyback on Steam's own calls ---------------- */
+
+const ingested = new Set<string>()
+
+/**
+ * Steam's frontend just finished a GetItems call that included reviews. Replay the identical
+ * URL: it comes straight out of the HTTP cache (verified: fromDiskCache, ~5 ms), so this costs
+ * no network. Decode the protobuf body and fill the cache before the cards even render.
+ */
+export async function ingestSteamRequest(url: string): Promise<number> {
+  if (ingested.has(url)) return 0
+  ingested.add(url)
+  if (ingested.size > 500) ingested.delete(ingested.values().next().value!)
+  if (!requestIncludesReviews(url)) return 0
+  let res: Response
+  try {
+    res = await fetch(url, { credentials: 'omit', cache: 'force-cache' })
+  } catch {
+    return 0
+  }
+  if (!res.ok) return 0
+  const fresh = freshnessFrom(res)
+  const buf = new Uint8Array(await res.arrayBuffer())
+  let items
+  try {
+    items = decodeGetItemsResponse(buf)
+  } catch (e) {
+    console.warn('[SRO] could not decode Steam response', e)
+    return 0
+  }
+  const now = Date.now()
+  let n = 0
+  for (const it of items) {
+    if (it.success !== 1 || it.item_type !== 0 || !it.appid || !it.summary_filtered) continue
+    // Cancel any pending fetch of ours for this id: Steam just handed it to us.
+    pending.delete(it.appid)
+    put({
+      appid: it.appid,
+      global: toScore(it.summary_filtered),
+      local: it.summary_language_specific ? toScore(it.summary_language_specific) : null,
+      ts: now,
+      expires: now + fresh,
+    })
+    n++
+  }
+  return n
 }
 
 export function formatTooltip(s: Score, scope: string): string {

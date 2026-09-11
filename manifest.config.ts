@@ -15,7 +15,7 @@ export default defineManifest({
     48: 'public/icon48.png',
     128: 'public/icon128.png',
   },
-  permissions: ['storage'],
+  permissions: ['storage', 'webRequest'],
   action: {
     default_title: 'Steam Reviews Overlay',
     default_popup: 'src/popup/index.html',
@@ -26,6 +26,10 @@ export default defineManifest({
     },
   },
   host_permissions: ['https://store.steampowered.com/*', 'https://api.steampowered.com/*'],
+  background:
+    browser === 'firefox'
+      ? ({ scripts: ['src/background.ts'], type: 'module' } as any)
+      : { service_worker: 'src/background.ts', type: 'module' },
   content_scripts: [
     {
       matches: ['https://store.steampowered.com/*'],

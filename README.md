@@ -29,14 +29,22 @@ cards across the Steam store, so you don't have to hover every capsule.
   1. Summaries already rendered on the page are reused (search rows carry the
      label, percent and count in a tooltip; the homepage embeds
      `review_summary_filtered` JSON). Those ids are never fetched.
-  2. Everything else goes in one batched, protobuf-encoded request per page to
+  2. On pages where Steam's own frontend already calls
+     `IStoreBrowseService/GetItems` with reviews (category, tag, sale pages),
+     the background script watches those calls complete (`webRequest`) and the
+     content script replays the identical URL. The browser serves it from the
+     HTTP cache (Steam marks them `public, max-age=120`), so the extension gets
+     Steam's freshly fetched data at zero network cost, decoded from protobuf,
+     before the cards finish rendering. Measured: 0 extension requests on
+     category and sale pages.
+  3. Everything else goes in one batched, protobuf-encoded request per page to
      `api.steampowered.com/IStoreBrowseService/GetItems` (no key needed, up to
      400 ids per call). We use Steam's `summary_filtered`: label, 0-9 score,
      integer percent positive, review count.
-  3. Two scores per game: Steam's language-specific summary for your Steam
+  4. Two scores per game: Steam's language-specific summary for your Steam
      language (flag icon, on top) and the all-languages summary (globe icon).
      The popup's "judged by" toggle picks which one the filter uses.
-  4. Cache is stale-while-revalidate keyed to Steam's own freshness: each batch
+  5. Cache is stale-while-revalidate keyed to Steam's own freshness: each batch
      response carries `Cache-Control: max-age=N` counting down the life of
      Steam's CDN copy, and the entry expires at exactly that moment, so
      the next fetch is guaranteed a refreshed copy. Entries are shown while

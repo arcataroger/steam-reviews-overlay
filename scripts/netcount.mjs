@@ -1,4 +1,7 @@
-// Loads pages with the extension and counts review-related requests + badge results.
+// Loads pages with the extension and classifies GetItems traffic:
+//   steam   = the store's own calls
+//   replay  = our replays of those URLs (should be served from cache, no network)
+//   own     = our own batch calls (sro=1), for ids Steam didn't ask about
 import { chromium } from 'playwright'
 import path from 'node:path'
 const ext = path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
@@ -10,8 +13,10 @@ const ctx = await chromium.launchPersistentContext('', {
 })
 for (const url of urls) {
   const page = await ctx.newPage()
-  const reqs = []
-  page.on('request', (r) => { const u = r.url(); if (u.includes('GetItems') || u.includes('/appreviews/')) reqs.push(u) })
+  const cdp = await ctx.newCDPSession(page); await cdp.send('Network.enable')
+  const seen = new Map()
+  cdp.on('Network.requestWillBeSent', (e) => { if (e.request.url.includes('GetItems')) seen.set(e.requestId, { url: e.request.url }) })
+  cdp.on('Network.responseReceived', (e) => { const r = seen.get(e.requestId); if (r) { r.disk = e.response.fromDiskCache; r.mem = e.response.fromMemoryCache; r.status = e.response.status } })
   page.on('console', (m) => { if (m.text().includes('SRO')) console.log('console:', m.text()) })
   await page.goto(url, { waitUntil: 'domcontentloaded' })
   await page.waitForTimeout(5000)
@@ -19,13 +24,16 @@ for (const url of urls) {
   await page.waitForTimeout(2500)
   const st = await page.evaluate(() => {
     const b = [...document.querySelectorAll('.sro-badge')]
-    return { cards: document.querySelectorAll('[data-sro-card]').length, badges: b.length,
-      sample: b.slice(0, 5).map(x => `${[...x.querySelectorAll('.sro-line')].map(l => l.textContent).join(' | ')} pct=${x.dataset.sroPct ?? '-'} score=${x.dataset.sroScore}`) }
+    return { cards: document.querySelectorAll('[data-sro-card]').length, badges: b.length }
   })
-  const ours = reqs.filter(u => u.includes('input_protobuf_encoded'))
-  console.log(url, '\n  requests by extension (protobuf GetItems):', ours.length, ' other GetItems/appreviews (Steam itself):', reqs.length - ours.length,
-    '\n  ids per request:', ours.map(u => { const b = atob(decodeURIComponent(u.split('input_protobuf_encoded=')[1])); return (b.match(/\x0a[\x02-\x06]\x08/g) || []).length }).join(','),
-    '\n ', JSON.stringify(st))
+  const all = [...seen.values()]
+  const own = all.filter(r => r.url.includes('sro=1'))
+  const rest = all.filter(r => !r.url.includes('sro=1'))
+  const byUrl = new Map(); for (const r of rest) byUrl.set(r.url, (byUrl.get(r.url) || []).concat(r))
+  let steam = 0, replayCached = 0, replayNet = 0
+  for (const rs of byUrl.values()) { steam++; for (const r of rs.slice(1)) (r.disk || r.mem) ? replayCached++ : replayNet++ }
+  const ownIds = own.map(r => { const b = atob(decodeURIComponent(r.url.split('input_protobuf_encoded=')[1])); return (b.match(/\x0a[\x02-\x06]\x08/g) || []).length })
+  console.log(url, `\n  steam's own calls: ${steam}  our cache replays: ${replayCached} (network: ${replayNet})  our own batch calls: ${own.length} [ids: ${ownIds.join(',')}]\n  ${JSON.stringify(st)}`)
   await page.close()
 }
 await ctx.close()

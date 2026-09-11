@@ -13,15 +13,18 @@ cards across the Steam store, so you don't have to hover every capsule.
   negative `#a34c25`. Each card also gets `data-sro-tone="positive|mixed|negative|none"`
   and `data-sro-score="0-9"` so future overlays (dimming, hiding, etc.) can hook
   in with plain CSS.
-- Toolbar popup (click the icon) with a filter: set a minimum
-  positive-review percentage on the slider (0–100, snaps to Steam's named
-  tiers: Mostly Negative 20%, Mixed 40%, Mostly Positive 70%, Very Positive
-  80%, Overwhelmingly Positive 95%, also clickable as chips) and choose whether
-  games below it are just **Labeled** (default),
+- Badges read like "Very Positive (83%)": Steam's label plus Steam's exact
+  integer percent.
+- Toolbar popup (click the icon) styled as a two-lever throttle. The **left
+  lever** is the filter bar: games under it are just **Labeled** (default),
   **Dimmed** (black overlay, still clickable) or **Hidden** (fade out, then
   collapsed with `display:none` so lists reflow). Optionally treat "No user
-  reviews" as below the bar. Settings sync via `storage.sync` and apply live
-  to open tabs.
+  reviews" as below the bar. The **right lever** is the highlight bar: games
+  at or above it can be **Outlined** (opt-in). Both levers run 0–100 % and snap
+  to Steam's named tiers (Mostly Negative 20 %, Mixed 40 %, Mostly Positive
+  70 %, Very Positive 80 %, Overwhelmingly Positive 95 %); the shared notch
+  labels sit between them and the tick on each side is clickable for that
+  lever. Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
   1. Summaries already rendered on the page are reused (search rows carry the
      label, percent and count in a tooltip; the homepage embeds

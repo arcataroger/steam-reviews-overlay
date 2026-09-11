@@ -7,32 +7,40 @@ import {
   type Settings,
   type FilterMode,
   type ScoreSource,
+  type HighlightMode,
 } from '../settings'
 import { LANG_KEY, type LangInfo } from '../lang'
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
-
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T
 
-const lever = $<HTMLDivElement>('#lever')
-const rail = lever.querySelector<HTMLDivElement>('.rail')!
-const fill = $<HTMLDivElement>('#fill')
-const knob = $<HTMLDivElement>('#knob')
+type Side = 'filter' | 'highlight'
+const KEY: Record<Side, 'threshold' | 'highlightThreshold'> = { filter: 'threshold', highlight: 'highlightThreshold' }
+
+const ui = {
+  filter: {
+    lever: $<HTMLDivElement>('#leverFilter'),
+    fill: $<HTMLDivElement>('#fillFilter'),
+    knob: $<HTMLDivElement>('#knobFilter'),
+    pct: $<HTMLSpanElement>('#pctFilter'),
+    tier: $<HTMLSpanElement>('#tierFilter'),
+    readout: $<HTMLDivElement>('#readoutFilter'),
+  },
+  highlight: {
+    lever: $<HTMLDivElement>('#leverHighlight'),
+    fill: $<HTMLDivElement>('#fillHighlight'),
+    knob: $<HTMLDivElement>('#knobHighlight'),
+    pct: $<HTMLSpanElement>('#pctHighlight'),
+    tier: $<HTMLSpanElement>('#tierHighlight'),
+    readout: $<HTMLDivElement>('#readoutHighlight'),
+  },
+}
 const notches = $<HTMLDivElement>('#notches')
-const pctReadout = $<HTMLSpanElement>('#pctReadout')
-const tierName = $<HTMLSpanElement>('#tierName')
 const modeGroup = $<HTMLDivElement>('#mode')
 const modeHelp = $<HTMLParagraphElement>('#modeHelp')
-const includeUnreviewed = $<HTMLInputElement>('#includeUnreviewed')
+const highlightGroup = $<HTMLDivElement>('#highlight')
 const sourceGroup = $<HTMLDivElement>('#source')
-
-// Flag/language detected by the content script on the last store page visited
-ext.storage.local.get(LANG_KEY).then((r) => {
-  const l = r?.[LANG_KEY] as LangInfo | undefined
-  if (!l) return
-  $('#srcFlag').textContent = l.flag
-  $('#srcLang').textContent = l.name
-})
+const includeUnreviewed = $<HTMLInputElement>('#includeUnreviewed')
 
 const HELP: Record<FilterMode, string> = {
   label: 'Only show the review summary on each game. Nothing is filtered.',
@@ -42,43 +50,61 @@ const HELP: Record<FilterMode, string> = {
 
 let settings: Settings
 
-// One notch + label per named tier, positioned at its real percentage.
+// Flag/language detected by the content script on the last store page visited
+ext.storage.local.get(LANG_KEY).then((r) => {
+  const l = r?.[LANG_KEY] as LangInfo | undefined
+  if (!l) return
+  $('#srcFlag').textContent = l.flag
+  $('#srcLang').textContent = l.name
+})
+
+// Shared notches: left tick zone drives the filter lever, right tick zone the highlight lever.
 for (const sp of SETPOINTS) {
   const n = document.createElement('div')
   n.className = `notch ${sp.tone}`
   n.dataset.pct = String(sp.pct)
   n.style.bottom = `${sp.pct}%`
-  n.innerHTML = `<span>${sp.name}<b>${sp.pct}%</b></span>`
+  n.innerHTML = `<div class="tick l" data-side="filter"></div><span>${sp.name}<b>${sp.pct}%</b></span><div class="tick r" data-side="highlight"></div>`
   notches.appendChild(n)
 }
 
-function render() {
-  const pct = settings.threshold
+function renderSide(side: Side, pct: number, enabled: boolean) {
+  const u = ui[side]
   const tier = tierFor(pct)
   const exact = tier.pct === pct
-  pctReadout.textContent = `${pct}%`
-  tierName.className = `tier ${tier.tone}`
-  tierName.innerHTML = exact ? tier.name : `${tier.name}<span class="sub">between notches</span>`
-  fill.style.height = `${pct}%`
-  knob.style.bottom = `${pct}%`
-  knob.className = `knob ${tier.tone}`
-  lever.setAttribute('aria-valuenow', String(pct))
-  lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
+  u.pct.textContent = `${pct}%`
+  u.tier.className = `tier ${tier.tone}`
+  u.tier.innerHTML = exact ? tier.name : `${tier.name}<span class="sub">between notches</span>`
+  u.fill.style.height = side === 'filter' ? `${pct}%` : `${100 - pct}%`
+  u.knob.style.bottom = `${pct}%`
+  u.knob.className = `knob ${tier.tone}`
+  u.lever.setAttribute('aria-valuenow', String(pct))
+  u.lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
+  u.lever.classList.toggle('off', !enabled)
+  u.lever.tabIndex = enabled ? 0 : -1
+  u.readout.classList.toggle('off', !enabled)
+  const cls = side === 'filter' ? 'active-l' : 'active-r'
   for (const n of notches.querySelectorAll<HTMLElement>('.notch')) {
-    n.classList.toggle('active', Number(n.dataset.pct) === pct)
+    n.classList.toggle(cls, enabled && Number(n.dataset.pct) === pct)
   }
+}
+
+function render() {
+  const filtering = settings.mode !== 'label'
+  renderSide('filter', settings.threshold, filtering)
+  renderSide('highlight', settings.highlightThreshold, settings.highlight !== 'off')
   for (const b of modeGroup.querySelectorAll<HTMLButtonElement>('button')) {
     b.setAttribute('aria-checked', String(b.dataset.mode === settings.mode))
   }
   modeHelp.textContent = HELP[settings.mode]
-  includeUnreviewed.checked = settings.includeUnreviewed
+  for (const b of highlightGroup.querySelectorAll<HTMLButtonElement>('button')) {
+    b.setAttribute('aria-checked', String(b.dataset.highlight === settings.highlight))
+  }
   for (const b of sourceGroup.querySelectorAll<HTMLButtonElement>('button')) {
     b.setAttribute('aria-checked', String(b.dataset.source === settings.source))
   }
-  const filtering = settings.mode !== 'label'
+  includeUnreviewed.checked = settings.includeUnreviewed
   includeUnreviewed.disabled = !filtering
-  lever.tabIndex = filtering ? 0 : -1
-  lever.setAttribute('aria-disabled', String(!filtering))
   document.body.classList.toggle('inactive', !filtering)
 }
 
@@ -90,65 +116,77 @@ function update(patch: Partial<Settings>) {
   saveTimer = window.setTimeout(() => void saveSettings(settings), 100)
 }
 
-function setThreshold(raw: number, snap = true) {
+function setPct(side: Side, raw: number, snap = true) {
   const v = Math.round(Math.min(100, Math.max(0, raw)))
-  update({ threshold: snap ? snapThreshold(v) : v })
+  update({ [KEY[side]]: snap ? snapThreshold(v) : v } as Partial<Settings>)
 }
 
-/* --- pointer: drag the lever anywhere along the track --- */
-function pctFromPointer(clientY: number): number {
-  const r = rail.getBoundingClientRect()
-  return ((r.bottom - clientY) / r.height) * 100
+/* --- pointer: drag either lever along its track --- */
+function wireLever(side: Side) {
+  const { lever } = ui[side]
+  const rail = lever.querySelector<HTMLDivElement>('.rail')!
+  const pctFromPointer = (clientY: number) => {
+    const r = rail.getBoundingClientRect()
+    return ((r.bottom - clientY) / r.height) * 100
+  }
+  lever.addEventListener('pointerdown', (e) => {
+    lever.setPointerCapture(e.pointerId)
+    setPct(side, pctFromPointer(e.clientY))
+    lever.focus()
+  })
+  lever.addEventListener('pointermove', (e) => {
+    if (lever.hasPointerCapture(e.pointerId)) setPct(side, pctFromPointer(e.clientY))
+  })
+  /* keyboard: arrows ±1, shift ±5, PageUp/Down = next notch, Home/End */
+  lever.addEventListener('keydown', (e) => {
+    const cur = settings[KEY[side]]
+    const step = e.shiftKey ? 5 : 1
+    const pts = SETPOINTS.map((s) => s.pct)
+    switch (e.key) {
+      case 'ArrowUp':
+      case 'ArrowRight':
+        setPct(side, cur + step, false)
+        break
+      case 'ArrowDown':
+      case 'ArrowLeft':
+        setPct(side, cur - step, false)
+        break
+      case 'PageUp':
+        setPct(side, pts.find((p) => p > cur) ?? 100, false)
+        break
+      case 'PageDown':
+        setPct(side, [...pts].reverse().find((p) => p < cur) ?? 0, false)
+        break
+      case 'Home':
+        setPct(side, 0, false)
+        break
+      case 'End':
+        setPct(side, 100, false)
+        break
+      default:
+        return
+    }
+    e.preventDefault()
+  })
 }
-lever.addEventListener('pointerdown', (e) => {
-  const notch = (e.target as HTMLElement).closest<HTMLElement>('.notch')
-  if (notch) {
-    setThreshold(Number(notch.dataset.pct))
-    return
-  }
-  lever.setPointerCapture(e.pointerId)
-  setThreshold(pctFromPointer(e.clientY))
-  lever.focus()
-})
-lever.addEventListener('pointermove', (e) => {
-  if (lever.hasPointerCapture(e.pointerId)) setThreshold(pctFromPointer(e.clientY))
-})
+wireLever('filter')
+wireLever('highlight')
 
-/* --- keyboard: arrows ±1, shift ±5, PageUp/Down = next notch, Home/End --- */
-lever.addEventListener('keydown', (e) => {
-  const cur = settings.threshold
-  const step = e.shiftKey ? 5 : 1
-  const pts = SETPOINTS.map((s) => s.pct)
-  switch (e.key) {
-    case 'ArrowUp':
-    case 'ArrowRight':
-      setThreshold(cur + step, false)
-      break
-    case 'ArrowDown':
-    case 'ArrowLeft':
-      setThreshold(cur - step, false)
-      break
-    case 'PageUp':
-      setThreshold(pts.find((p) => p > cur) ?? 100, false)
-      break
-    case 'PageDown':
-      setThreshold([...pts].reverse().find((p) => p < cur) ?? 0, false)
-      break
-    case 'Home':
-      setThreshold(0, false)
-      break
-    case 'End':
-      setThreshold(100, false)
-      break
-    default:
-      return
-  }
-  e.preventDefault()
+notches.addEventListener('click', (e) => {
+  const tick = (e.target as HTMLElement).closest<HTMLElement>('.tick[data-side]')
+  if (!tick) return
+  const side = tick.dataset.side as Side
+  if (ui[side].lever.classList.contains('off')) return
+  setPct(side, Number(tick.parentElement!.dataset.pct))
 })
 
 modeGroup.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-mode]')
   if (b) update({ mode: b.dataset.mode as FilterMode })
+})
+highlightGroup.addEventListener('click', (e) => {
+  const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-highlight]')
+  if (b) update({ highlight: b.dataset.highlight as HighlightMode })
 })
 sourceGroup.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-source]')

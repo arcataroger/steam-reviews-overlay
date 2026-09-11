@@ -5,7 +5,7 @@ import { detectLang, LANG_KEY, type LangInfo } from './lang'
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 const lang: LangInfo = detectLang()
-import { loadSettings, onSettingsChange, isFiltered, DEFAULT_SETTINGS, type Settings } from './settings'
+import { loadSettings, onSettingsChange, isFiltered, isHighlighted, DEFAULT_SETTINGS, type Settings } from './settings'
 
 let settings: Settings = DEFAULT_SETTINGS
 
@@ -155,6 +155,12 @@ function line(sc: Score, icon: string, scope: string, cls: string): HTMLSpanElem
     l.appendChild(i)
   }
   l.appendChild(document.createTextNode(sc.label || 'Not enough reviews'))
+  if (sc.pct !== null) {
+    const p = document.createElement('span')
+    p.className = 'sro-pct'
+    p.textContent = ` (${sc.pct}%)`
+    l.appendChild(p)
+  }
   return l
 }
 
@@ -228,7 +234,11 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement) {
 const hideTimers = new WeakMap<HTMLElement, number>()
 
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
-  const want = isFiltered(chosen(summary), settings) ? settings.mode : null
+  const pick = chosen(summary)
+  const filtered = isFiltered(pick, settings)
+  if (!filtered && isHighlighted(pick, settings)) card.dataset.sroHighlight = settings.highlight
+  else delete card.dataset.sroHighlight
+  const want = filtered ? settings.mode : null
   const cur = card.dataset.sroFiltered
   const t = hideTimers.get(card)
   if (t) {
@@ -306,6 +316,7 @@ function revalidateCards() {
     delete card.dataset.sroTone
     delete card.dataset.sroScore
     delete card.dataset.sroFiltered
+    delete card.dataset.sroHighlight
     card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}[data-sro-appid="${appid}"]`).forEach((n) => n.remove())
   }
 }

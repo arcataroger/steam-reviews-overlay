@@ -57,7 +57,6 @@ body {
     inset 0 1px 0 rgba(255,255,255,0.12),
     inset 0 -1px 0 rgba(0,0,0,0.5),
     0 2px 6px rgba(0,0,0,0.5);
-  transition: opacity 0.2s;
 }
 .screw {
   position: absolute; width: 8px; height: 8px; border-radius: 50%;
@@ -72,99 +71,130 @@ body {
 .screw.bl { bottom: 5px; left: 5px; } .screw.br { bottom: 5px; right: 5px; }
 
 .plate-title {
-  font-size: 10px; letter-spacing: 1.4px; color: #9aa7b6; text-align: center;
+  font-size: 9px; letter-spacing: 1.2px; color: #7f8b99;
   text-shadow: 0 1px 0 rgba(0,0,0,0.6);
 }
+.readouts { display: flex; gap: 8px; margin: 2px 0 12px; }
 .readout {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  margin: 8px 0 12px;
-  padding: 6px 10px;
+  flex: 1; min-width: 0;
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: baseline;
+  padding: 5px 9px 6px;
   border-radius: 4px;
   background: #0b0f14;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.06);
+  transition: opacity 0.2s;
 }
+.readout .plate-title { grid-column: 1 / -1; margin-bottom: 2px; }
+.readout.right { text-align: right; }
+.readout.right .digits { order: 2; }
+.readout.right .tier { order: 1; text-align: left; }
 .digits {
   font-family: "SF Mono", Menlo, Consolas, monospace;
-  font-size: 20px; font-weight: 700; letter-spacing: 1px;
+  font-size: 18px; font-weight: 700; letter-spacing: 0.5px;
   color: #7bd7ff;
   text-shadow: 0 0 6px rgba(102,192,244,0.7);
-  min-width: 3.2ch;
 }
-.tier { font-weight: 600; font-size: 12px; text-align: right; }
+.readout.right .digits { color: #ffd27b; text-shadow: 0 0 6px rgba(255,190,80,0.7); }
+.tier { font-weight: 600; font-size: 11px; line-height: 1.15; }
 .tier.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.5); }
 .tier.mixed { color: var(--mixed); text-shadow: 0 0 6px rgba(185,160,116,0.5); }
 .tier.negative { color: var(--negative); text-shadow: 0 0 6px rgba(163,76,37,0.6); }
-.tier .sub { color: var(--muted); font-weight: 400; display: block; font-size: 11px; }
+.tier .sub { color: var(--muted); font-weight: 400; display: block; font-size: 10px; }
+.readout.off { opacity: 0.4; }
 
-/* Lever: the rail spans 0-100% over --track height; labels hang off the notches. */
-.lever {
+/* Throttle quadrant: left lever | shared notches | right lever */
+.throttle {
   --track: 250px;
   --pad: 12px;
   position: relative;
   height: calc(var(--track) + var(--pad) * 2);
-  margin-left: 22px;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+}
+.lever {
+  position: relative;
   outline: none;
   cursor: grab;
   touch-action: none;
+  transition: opacity 0.2s;
 }
 .lever:active { cursor: grabbing; }
+.lever.off { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
 .lever:focus-visible .knob { box-shadow: 0 0 0 2px var(--accent), 0 3px 6px rgba(0,0,0,0.7); }
 .rail {
-  position: absolute; left: 0; top: var(--pad); bottom: var(--pad); width: 14px;
+  position: absolute; top: var(--pad); bottom: var(--pad); width: 14px;
   border-radius: 7px;
   background: linear-gradient(90deg, #0a0e13, #161c24 50%, #0a0e13);
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.9), inset 0 2px 4px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.08);
 }
+.lever.left .rail { left: 13px; }
+.lever.right .rail { right: 13px; }
 .fill {
-  position: absolute; left: 4px; right: 4px; bottom: 4px; height: 0;
+  position: absolute; left: 4px; right: 4px;
   border-radius: 3px;
-  background: linear-gradient(180deg, var(--positive), var(--mixed) 55%, var(--negative));
-  box-shadow: 0 0 6px rgba(102,192,244,0.35);
   transition: height 0.08s linear;
 }
-.notches { position: absolute; left: 14px; top: var(--pad); bottom: var(--pad); width: 100%; }
+/* left: the filtered zone grows from the bottom */
+.lever.left .fill {
+  bottom: 4px; height: 0;
+  background: linear-gradient(180deg, var(--mixed), var(--negative));
+  box-shadow: 0 0 6px rgba(163,76,37,0.5);
+}
+/* right: the highlighted zone hangs from the top */
+.lever.right .fill {
+  top: 4px; height: 0;
+  background: linear-gradient(180deg, #ffd27b, var(--positive));
+  box-shadow: 0 0 6px rgba(255,210,123,0.5);
+}
+.notches { position: relative; margin: var(--pad) 0; }
 .notch {
-  position: absolute; left: 0; height: 0; width: 100%;
+  position: absolute; left: 0; right: 0; height: 0;
   transform: translateY(50%);
-  display: flex; align-items: center; gap: 8px;
-  cursor: pointer;
+  display: flex; align-items: center;
 }
-.notch::before {
-  content: ""; width: 12px; height: 2px; flex: none;
-  background: #56637a;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.6);
+.notch .tick {
+  flex: 1; height: 16px; margin: -8px 0; /* generous click zone */
+  display: flex; align-items: center; cursor: pointer;
 }
+.notch .tick::before, .notch .tick::after { content: ""; height: 2px; background: #56637a; box-shadow: 0 1px 0 rgba(0,0,0,0.6); }
+.notch .tick.l::before { width: 100%; }
+.notch .tick.r::after { width: 100%; }
+.notch .tick.l::after, .notch .tick.r::before { display: none; }
+.notch .tick:hover::before, .notch .tick:hover::after { background: #dfe7ef; }
 .notch span {
+  flex: none; padding: 0 8px;
   font-size: 11px; line-height: 1; white-space: nowrap; color: #9aa7b6;
   text-shadow: 0 1px 0 rgba(0,0,0,0.6);
-  transition: color 0.15s;
 }
-.notch span b { font-weight: 400; opacity: 0.55; margin-left: 5px; font-size: 10px; }
-.notch:hover span { color: #fff; }
-.notch.active::before { background: #dfe7ef; box-shadow: 0 0 6px rgba(255,255,255,0.5); }
-.notch.active.positive span { color: var(--positive); }
-.notch.active.mixed span { color: var(--mixed); }
-.notch.active.negative span { color: var(--negative); }
+.notch span b { font-weight: 400; opacity: 0.55; margin-left: 4px; font-size: 10px; }
+.notch.active-l .tick.l::before, .notch.active-r .tick.r::after { background: #dfe7ef; box-shadow: 0 0 6px rgba(255,255,255,0.5); }
+.notch.active-l.positive span, .notch.active-r.positive span { color: var(--positive); }
+.notch.active-l.mixed span, .notch.active-r.mixed span { color: var(--mixed); }
+.notch.active-l.negative span, .notch.active-r.negative span { color: var(--negative); }
 
 .knob {
-  position: absolute; left: -10px; width: 34px; height: 18px;
+  position: absolute; width: 34px; height: 18px;
+  bottom: 0;
   transform: translateY(50%);
   border-radius: 5px;
   background: linear-gradient(180deg, #8494a8, #56637a 45%, #3c4756 55%, #2a323d);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.6), 0 3px 6px rgba(0,0,0,0.7);
   display: flex; align-items: center; justify-content: center; gap: 3px;
-  bottom: 0;
   transition: bottom 0.08s linear;
 }
+.lever.left .knob { left: 3px; }
+.lever.right .knob { right: 3px; }
 .knob i { display: block; width: 2px; height: 8px; background: rgba(0,0,0,0.45); box-shadow: 1px 0 0 rgba(255,255,255,0.12); }
 .knob::after {
-  content: ""; position: absolute; right: 4px; top: 6px; width: 5px; height: 5px; border-radius: 50%;
+  content: ""; position: absolute; top: 6px; width: 5px; height: 5px; border-radius: 50%;
   background: var(--led, #7bd7ff);
   box-shadow: 0 0 5px var(--led, #7bd7ff);
 }
+.lever.left .knob::after { right: 4px; }
+.lever.right .knob::after { left: 4px; }
 .knob.positive { --led: var(--positive); }
 .knob.mixed { --led: var(--mixed); }
 .knob.negative { --led: var(--negative); }
+.lever.right .knob::after { --led: #ffd27b; }
 
-body.inactive .panel, body.inactive .chk { opacity: 0.45; }
-body.inactive .lever { cursor: not-allowed; pointer-events: none; }
+body.inactive .chk { opacity: 0.45; }

@@ -2,6 +2,7 @@
 
 export type FilterMode = 'label' | 'dim' | 'hide'
 export type ScoreSource = 'global' | 'local'
+export type HighlightMode = 'off' | 'border'
 
 export interface Settings {
   /** What to do with games whose positive-review percentage is below `threshold`. */
@@ -12,6 +13,10 @@ export interface Settings {
   includeUnreviewed: boolean
   /** Which Steam score the filter looks at: all languages, or the user's language. */
   source: ScoreSource
+  /** Highlight games at or above `highlightThreshold`. */
+  highlight: HighlightMode
+  /** 0-100, same notch semantics as `threshold`. */
+  highlightThreshold: number
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -19,6 +24,8 @@ export const DEFAULT_SETTINGS: Settings = {
   threshold: 40, // Mixed
   includeUnreviewed: false,
   source: 'global',
+  highlight: 'off',
+  highlightThreshold: 95, // Overwhelmingly Positive
 }
 
 /**
@@ -64,6 +71,7 @@ const area = () => ext.storage.sync ?? ext.storage.local
 function normalize(raw: Partial<Settings> | undefined): Settings {
   const s = { ...DEFAULT_SETTINGS, ...(raw ?? {}) }
   s.threshold = Math.min(100, Math.max(0, Math.round(Number(s.threshold) || 0)))
+  s.highlightThreshold = Math.min(100, Math.max(0, Math.round(Number(s.highlightThreshold) || 0)))
   return s
 }
 
@@ -87,18 +95,32 @@ export function onSettingsChange(cb: (s: Settings) => void): void {
   })
 }
 
+type Judged = { score: number; pct: number | null } | null
+
 /**
- * Is a game below the user's bar? Uses Steam's own numbers only:
- *  - no Steam score (fewer than 10 reviews): governed by `includeUnreviewed`
- *  - threshold exactly on a named notch: compare Steam's tier (review_score), which is what
- *    Steam's own "sort by reviews" does and accounts for its review-count requirements
- *  - threshold between notches: compare Steam's integer percent_positive
+ * Steam-only comparison: is this game at or above the bar?
+ *  - on a named notch, compare Steam's tier (review_score), which is what Steam's own
+ *    "sort by reviews" does and accounts for its review-count requirements
+ *  - between notches, compare Steam's integer percent_positive
+ * Games Steam gives no score to (fewer than 10 reviews) return null: the caller decides.
  */
-export function isFiltered(summary: { score: number; pct: number | null } | null, s: Settings): boolean {
+export function meetsBar(summary: Judged, threshold: number): boolean | null {
+  if (!summary || summary.score === 0) return null
+  const notch = SETPOINTS.find((p) => p.pct === threshold)
+  if (notch) return summary.score >= notch.minScore
+  if (summary.pct === null) return summary.score >= tierFor(threshold).minScore
+  return summary.pct >= threshold
+}
+
+/** Below the filter bar? */
+export function isFiltered(summary: Judged, s: Settings): boolean {
   if (s.mode === 'label') return false
-  if (!summary || summary.score === 0) return s.includeUnreviewed
-  const notch = SETPOINTS.find((p) => p.pct === s.threshold)
-  if (notch) return summary.score < notch.minScore
-  if (summary.pct === null) return summary.score < tierFor(s.threshold).minScore
-  return summary.pct < s.threshold
+  const ok = meetsBar(summary, s.threshold)
+  return ok === null ? s.includeUnreviewed : !ok
+}
+
+/** At or above the highlight bar? */
+export function isHighlighted(summary: Judged, s: Settings): boolean {
+  if (s.highlight === 'off') return false
+  return meetsBar(summary, s.highlightThreshold) === true
 }

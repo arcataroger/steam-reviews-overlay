@@ -57,6 +57,16 @@
 [data-sro-tone="mixed"] { }
 [data-sro-tone="positive"] { }
 
+.sro-pct { opacity: 0.75; }
+
+/* ---------- highlight ---------- */
+[data-sro-highlight="border"] {
+  outline: 2px solid #66c0f4;
+  outline-offset: -2px;
+  box-shadow: 0 0 10px rgba(102, 192, 244, 0.55);
+  border-radius: inherit;
+}
+
 /* ---------- filter: dim ---------- */
 [data-sro-filtered="dim"] {
   position: relative;

@@ -15,23 +15,38 @@
       <div class="panel">
         <span class="screw tl"></span><span class="screw tr"></span>
         <span class="screw bl"></span><span class="screw br"></span>
-        <div class="plate-title">GAMES UNDER</div>
-        <div class="readout">
-          <span id="pctReadout" class="digits">40%</span>
-          <span id="tierName" class="tier"></span>
+        <div class="readouts">
+          <div class="readout left" id="readoutFilter">
+            <div class="plate-title">FILTER UNDER</div>
+            <span class="digits" id="pctFilter">40%</span>
+            <span class="tier" id="tierFilter"></span>
+          </div>
+          <div class="readout right" id="readoutHighlight">
+            <div class="plate-title">HIGHLIGHT ABOVE</div>
+            <span class="digits" id="pctHighlight">95%</span>
+            <span class="tier" id="tierHighlight"></span>
+          </div>
         </div>
-        <div id="lever" class="lever" role="slider" tabindex="0"
-             aria-label="Minimum positive review percentage"
-             aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
-          <div class="rail"><div id="fill" class="fill"></div></div>
+        <div id="throttle" class="throttle">
+          <div id="leverFilter" class="lever left" role="slider" tabindex="0"
+               aria-label="Filter games under this positive-review percentage"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
+            <div class="rail"><div class="fill" id="fillFilter"></div></div>
+            <div class="knob" id="knobFilter"><i></i><i></i><i></i></div>
+          </div>
           <div id="notches" class="notches"></div>
-          <div id="knob" class="knob"><i></i><i></i><i></i></div>
+          <div id="leverHighlight" class="lever right" role="slider" tabindex="0"
+               aria-label="Highlight games above this positive-review percentage"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="95">
+            <div class="rail"><div class="fill" id="fillHighlight"></div></div>
+            <div class="knob" id="knobHighlight"><i></i><i></i><i></i></div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="sec">
-      <div class="sec-title">…should be</div>
+      <div class="sec-title">Games under the left lever should be</div>
       <div class="seg" role="radiogroup" id="mode">
         <button type="button" data-mode="label" role="radio">Labeled</button>
         <button type="button" data-mode="dim" role="radio">Dimmed</button>
@@ -41,7 +56,15 @@
     </section>
 
     <section class="sec">
-      <div class="sec-title">…judged by</div>
+      <div class="sec-title">Games above the right lever should be</div>
+      <div class="seg" role="radiogroup" id="highlight">
+        <button type="button" data-highlight="off" role="radio">Left alone</button>
+        <button type="button" data-highlight="border" role="radio">Outlined</button>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-title">Judged by</div>
       <div class="seg" role="radiogroup" id="source">
         <button type="button" data-source="local" role="radio"><span id="srcFlag">🏳️</span> <span id="srcLang">My language</span></button>
         <button type="button" data-source="global" role="radio">🌐 All languages</button>

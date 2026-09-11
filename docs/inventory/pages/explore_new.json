@@ -1,0 +1,486 @@
+{
+ "url": "https://store.steampowered.com/explore/new/",
+ "finalUrl": "https://store.steampowered.com/explore/new/",
+ "title": "New On Steam",
+ "cards": 52,
+ "kinds": [
+  {
+   "key": "a.special.special_img_ctn|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "a.special.special_img_ctn",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.47,
+    "price": true,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "flex/row",
+    "siblings": 13
+   },
+   "count": 24,
+   "sizes": {
+    "200x100": 24
+   },
+   "sections": {
+    ".home_specials_ctn.sidebar_wide.underten": 12,
+    ".home_specials_ctn.underfive.underten": 12
+   },
+   "headings": {
+    "Under $10": 12,
+    "Under $5": 12
+   },
+   "chains": {
+    "div.home_specials_grid < div.home_specials_ctn.sidebar_wide.underten < div.home_rightcol < div.page_content": 12,
+    "div.home_specials_grid < div.home_specials_ctn.underfive.underten < div.home_rightcol < div.page_content": 12
+   },
+   "ours": {
+    "same|shape=row|badge=sro-badge sro-corner": 21,
+    "same|shape=null|badge=sro-badge sro-corner": 3
+   },
+   "examples": [
+    {
+     "appid": 4001890,
+     "title": "",
+     "sizeBucket": "200x100",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "4px"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.special.special_img_ctn"
+     },
+     "html": "<a href=\"…\" class=\"special special_img_ctn ds_collapse_flag app_impression_tracked\" data-ds-appid=\"4001890\" data-ds-itemkey=\"App_4001890\" data-ds-tagids=\"[3859,3843,15564,1685,492,1774,3839]\" data-ds-descids=\"[5]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4001890,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"4001890\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" data-sro-op=\"1\" style=\"…\"><img><div class=\"special_discount\"><div class=\"discount_block discount_block_inline discount_block_collapsable no_discount\" data-price-final=\"799\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$7.99</div></div></div></div><i class=\"sro-orbit sro-orbit-paused\" aria-hidden=\"true\"><i></i></i><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"4001890\" data-sro-score=\"9\" data-sro-pct=\"95\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Overwhelmingly Positive</span></span></a>"
+    },
+    {
+     "appid": 4656000,
+     "title": "",
+     "sizeBucket": "200x100",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "4px"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.special.special_img_ctn"
+     },
+     "html": "<a href=\"…\" class=\"special special_img_ctn ds_collapse_flag app_impression_tracked\" data-ds-appid=\"4656000\" data-ds-itemkey=\"App_4656000\" data-ds-tagids=\"[3859,5711,1664,3843,7178,597,1719]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[45812612]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4656000,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"4656000\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" data-sro-op=\"1\" style=\"…\"><img><div class=\"special_discount\"><div class=\"discount_block discount_block_inline discount_block_collapsable no_discount\" data-price-final=\"799\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$7.99</div></div></div></div><i class=\"sro-orbit sro-orbit-paused\" aria-hidden=\"true\"><i></i></i><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"4656000\" data-sro-score=\"9\" data-sro-pct=\"96\" style=\"…\"><span class=\"sro-line sro-global sro-positive\">Overwhelmingly Positive</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.tab_item|link=app,img=true,price=true,date=false,nativeSummary=false,title=true,platforms=true,carousel=false",
+   "signature": "a.tab_item",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=true,platforms=true,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.23,
+    "price": true,
+    "date": false,
+    "nativeSummary": false,
+    "title": true,
+    "platforms": true,
+    "discount": true,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 16
+   },
+   "count": 16,
+   "sizes": {
+    "800x60": 16
+   },
+   "sections": {
+    ".tab_content_items": 16
+   },
+   "headings": {
+    "Popular New Releases": 16
+   },
+   "chains": {
+    "div.tab_content_items < div#tab_newreleases_content.tab_content < div.home_tabs_content < div.home_leftcol.home_tab_col": 16
+   },
+   "ours": {
+    "same|shape=row|badge=sro-badge sro-corner": 16
+   },
+   "examples": [
+    {
+     "appid": 1465470,
+     "title": "The Crust",
+     "sizeBucket": "800x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "flex",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.tab_item"
+     },
+     "html": "<a href=\"…\" class=\"tab_item app_impression_tracked\" data-ds-appid=\"1465470\" data-ds-itemkey=\"App_1465470\" data-ds-tagids=\"[7332,1755,255534,220585,8945,3810,9]\" data-ds-crtrids=\"[37345251,33021448]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1465470,&quot;params&quot;:{&quot;bDisableHover&quot;:false},&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"1465470\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"discount_block tab_item_discount\" data-price-final=\"2079\" data-bundlediscount=\"0\" data-discount=\"35\" role=\"link\"><div class=\"discount_pct\">-35%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$31.99</div><div class=\"discount_final_price\">$20.79</div></div></div><div class=\"tab_item_content\"><div class=\"tab_item_name\">The Crust</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><span class=\"platform_img mac\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Base Building</span><span class=\"top_tag\">, Space</span><span class=\"top_tag\">, Automation</span><span class=\"top_tag\">, Colony Sim</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1465470\" data-sro-score=\"6\" data-sro-pct=\"75\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Mostly Positive</span></span></a>"
+    },
+    {
+     "appid": 3560360,
+     "title": "Forsworn",
+     "sizeBucket": "800x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "flex",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.tab_item"
+     },
+     "html": "<a href=\"…\" class=\"tab_item app_impression_tracked\" data-ds-appid=\"3560360\" data-ds-itemkey=\"App_3560360\" data-ds-tagids=\"[14139,3959,21725,1741,10695,17305,9]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3560360,&quot;params&quot;:{&quot;bDisableHover&quot;:false},&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"3560360\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"discount_block tab_item_discount\" data-price-final=\"1279\" data-bundlediscount=\"0\" data-discount=\"20\" role=\"link\"><div class=\"discount_pct\">-20%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$15.99</div><div class=\"discount_final_price\">$12.79</div></div></div><div class=\"tab_item_content\"><div class=\"tab_item_name\">Forsworn</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><span class=\"platform_img linux\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Turn-Based Tactics</span><span class=\"top_tag\">, Roguelite</span><span class=\"top_tag\">, Tactical RPG</span><span class=\"top_tag\">, Turn-Based Strategy</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"3560360\" data-sro-score=\"6\" data-sro-pct=\"78\" style=\"…\"><span class=\"sro-line sro-global sro-positive\">Mostly Positive</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.store_capsule|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "a.store_capsule",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.79,
+    "price": true,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "block",
+    "siblings": 10
+   },
+   "count": 10,
+   "sizes": {
+    "240x140": 10
+   },
+   "sections": {
+    ".bucket_contents.peeking_carousel": 10
+   },
+   "headings": {
+    "Released This Month": 10
+   },
+   "chains": {
+    "div.bucket_contents.peeking_carousel.store_capsule_container_scrolling.store_horizontal_autoslider < div.store_horizontal_autoslider_ctn < div.bucket < div.newonsteam_buckets.page_content": 10
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 10
+   },
+   "examples": [
+    {
+     "appid": 1867240,
+     "title": "",
+     "sizeBucket": "240x140",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "inline-block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "radial-gradient(62.67% 62.67% at 62.67% 100%, rgb(61, 72, 86) 0%, rgb(40, 54, 69) 100%)"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "scroll hidden",
+       "overflowX": "scroll",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.store_capsule"
+     },
+     "html": "<a data-ds-appid=\"1867240\" data-ds-itemkey=\"App_1867240\" data-ds-tagids=\"[493,1663,19,4168,3859,1708,1775]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[42656369,32941731]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1867240,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"3999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"6\" data-sro-pct=\"76\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Mostly Positive</span><span class=\"sro-line sro-global sro-mixed\"><span class=\"sro-ico\">🌐</span>Mixed</span></span></a>"
+    },
+    {
+     "appid": 3219630,
+     "title": "",
+     "sizeBucket": "240x140",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "inline-block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "radial-gradient(62.67% 62.67% at 62.67% 100%, rgb(61, 72, 86) 0%, rgb(40, 54, 69) 100%)"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "scroll hidden",
+       "overflowX": "scroll",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.store_capsule"
+     },
+     "html": "<a data-ds-appid=\"3219630\" data-ds-itemkey=\"App_3219630\" data-ds-tagids=\"[1667,3859,1662,4667,1687,3978,4182]\" data-ds-descids=\"[1,2,5]\" data-ds-crtrids=\"[2113939]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3219630,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"3219630\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"3999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"3219630\" data-sro-score=\"6\" data-sro-pct=\"70\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Mostly Positive</span><span class=\"sro-line sro-global sro-mixed\"><span class=\"sro-ico\">🌐</span>Mixed</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.newonsteam_headercap|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "a.newonsteam_headercap",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.8,
+    "price": true,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "flex/row",
+    "siblings": 2
+   },
+   "count": 2,
+   "sizes": {
+    "600x340": 2
+   },
+   "sections": {
+    ".page_content": 2
+   },
+   "headings": {
+    "New Releases": 2
+   },
+   "chains": {
+    "div.newonsteam_capsules.newonsteam_headercaps < div.page_content < div.page_ctn.top_capsules < div.game.game_page_background": 2
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 2
+   },
+   "examples": [
+    {
+     "appid": 3751260,
+     "title": "",
+     "sizeBucket": "600x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "linear-gradient(to right, rgb(53, 101, 128) 0%, rgb(64, 121, 153) 100%)"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "20px"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.newonsteam_headercap"
+     },
+     "html": "<a data-ds-appid=\"3751260\" data-ds-itemkey=\"App_3751260\" data-ds-tagids=\"[122,1695,4604,21,4231,12686,1697]\" data-ds-descids=\"[1,2,5]\" data-ds-crtrids=\"[33042543]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3751260,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"newonsteam_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"3751260\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tPopular this month\t\t\t\t\t\t\t\t<div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"6999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$69.99</div></div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"3751260\" data-sro-score=\"8\" data-sro-pct=\"85\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
+    },
+    {
+     "appid": 3195440,
+     "title": "",
+     "sizeBucket": "600x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "linear-gradient(to right, rgb(53, 101, 128) 0%, rgb(64, 121, 153) 100%)"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "20px"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.newonsteam_headercap"
+     },
+     "html": "<a data-ds-appid=\"3195440\" data-ds-itemkey=\"App_3195440\" data-ds-tagids=\"[1667,122,21,87918,3964,7432,3810]\" data-ds-crtrids=\"[39269540]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3195440,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"newonsteam_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"3195440\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tPopular this month\t\t\t\t\t\t\t\t<div class=\"discount_block discount_block_inline\" data-price-final=\"1619\" data-bundlediscount=\"0\" data-discount=\"10\" role=\"link\"><div class=\"discount_pct\">-10%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$17.99</div><div class=\"discount_final_price\">$16.19</div></div></div><div class=\"broadcast_live_stream_icon\">Live</div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"3195440\" data-sro-score=\"8\" data-sro-pct=\"96\" style=\"…\"><span class=\"sro-line sro-global sro-positive\">Very Positive</span></span></a>"
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "capturedAt": "2026-09-11T15:24:51.740Z"
+}

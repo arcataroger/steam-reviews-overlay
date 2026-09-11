@@ -1,0 +1,156 @@
+{
+ "url": "https://store.steampowered.com/sub/354231/",
+ "finalUrl": "https://store.steampowered.com/sub/354231/",
+ "title": "Valve Index VR Kit on Steam",
+ "cards": 2,
+ "kinds": [
+  {
+   "key": "a.|link=app,img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "a.",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": false,
+    "artFraction": 0,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 21
+   },
+   "count": 1,
+   "sizes": {
+    "100x20": 1
+   },
+   "sections": {
+    "#game_area_description": 1
+   },
+   "headings": {
+    "Half-Life: Alyx": 1
+   },
+   "chains": {
+    "div#game_area_description.game_area_description < div.game_description_column.leftcol < div.main_page_content.page_content < div.page_content_ctn": 1
+   },
+   "ours": {
+    "unclaimed|shape=null|badge=null": 1
+   },
+   "examples": [
+    {
+     "appid": 546560,
+     "title": "",
+     "sizeBucket": "100x20",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "inline",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "hidden",
+       "overflowX": "hidden",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": false,
+      "sameElement": false,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": null,
+      "badgeParent": null
+     },
+     "html": "<a href=\"…\" target=\"_blank\" rel=\"\">Half-Life: Alyx</a>"
+    }
+   ]
+  },
+  {
+   "key": "ul.bb_ul|link=app,img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "ul.bb_ul",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": false,
+    "artFraction": 0,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 21
+   },
+   "count": 1,
+   "sizes": {
+    "580x20": 1
+   },
+   "sections": {
+    "#game_area_description": 1
+   },
+   "headings": {
+    "Requires": 1
+   },
+   "chains": {
+    "div#game_area_description.game_area_description < div.game_description_column.leftcol < div.main_page_content.page_content < div.page_content_ctn": 1
+   },
+   "ours": {
+    "unclaimed|shape=null|badge=null": 1
+   },
+   "examples": [
+    {
+     "appid": 1070910,
+     "title": "",
+     "sizeBucket": "580x20",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "hidden",
+       "overflowX": "hidden",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": false,
+      "sameElement": false,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": null,
+      "badgeParent": null
+     },
+     "html": "<ul class=\"bb_ul\"><li><a href=\"…\" target=\"_blank\" rel=\"\">Valve Index Ready</a> PC</li></ul>"
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "capturedAt": "2026-09-11T15:30:30.970Z"
+}

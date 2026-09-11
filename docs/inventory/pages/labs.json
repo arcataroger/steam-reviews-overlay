@@ -1,0 +1,454 @@
+{
+ "url": "https://store.steampowered.com/labs/",
+ "finalUrl": "https://store.steampowered.com/labs/",
+ "title": "Steam Labs",
+ "cards": 9,
+ "kinds": [
+  {
+   "key": "div.capsule|link=news,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "div.capsule",
+   "hashedClasses": false,
+   "featureKey": "link=news,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "news",
+    "img": true,
+    "artFraction": 0.63,
+    "price": false,
+    "date": true,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 21
+   },
+   "count": 3,
+   "sizes": {
+    "680x460": 1,
+    "680x440": 1,
+    "680x400": 1
+   },
+   "sections": {
+    ".left-column": 3
+   },
+   "headings": {
+    "Active Experiments": 1,
+    "016 Personal Calendar": 1,
+    "Past Experiments": 1
+   },
+   "chains": {
+    "div.left-column < div.labs-content < div.page_content < div.labs.page_content_ctn": 3
+   },
+   "ours": {
+    "same|shape=null|badge=none": 2,
+    "unclaimed|shape=null|badge=null": 1
+   },
+   "examples": [
+    {
+     "appid": 593110,
+     "title": "",
+     "sizeBucket": "680x460",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "4px",
+       "backgroundImage": "radial-gradient(at 0% 0%, rgb(81, 95, 133), rgb(24, 38, 74))"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"capsule\" data-sro-card=\"593110\"><div class=\"capsule-banner\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><img></div></a></div><div class=\"exp_text_ctn\"><h2>016 Personal Calendar </h2><p><b>Oct 21, 2025</b> - Explore a personalized list of games that have released recently or are coming soon. For more details, see the <a href=\"…\">Personal Calendar Announcement</a>, or just click the button below to see your own personal calendar.                    </p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the Personal Calendar Experiment</a></div></div></div>"
+    },
+    {
+     "appid": 593110,
+     "title": "",
+     "sizeBucket": "680x440",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "4px",
+       "backgroundImage": "radial-gradient(at 0% 0%, rgb(81, 95, 133), rgb(24, 38, 74))"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"capsule\" data-sro-card=\"593110\"><div class=\"capsule-banner\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><img></div></a></div><div class=\"exp_text_ctn\"><h2>015 DLC For You</h2><p><b>Jan 27, 2023</b> - Explore all the extra content available for all the games that you already own. Read more about the experiment <a href=\"…\">here</a> or just click the button below to check out your DLC Hub.                    </p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the DLC For You Experiment</a></div></div></div>"
+    }
+   ]
+  },
+  {
+   "key": "div.capsule|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "div.capsule",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.77,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 21
+   },
+   "count": 3,
+   "sizes": {
+    "680x380": 1,
+    "680x420": 1,
+    "680x400": 1
+   },
+   "sections": {
+    ".left-column": 3
+   },
+   "headings": {
+    "009 News Hub": 1,
+    "008 Play Next": 1,
+    "006 Community Recommendations": 1
+   },
+   "chains": {
+    "div.left-column < div.labs-content < div.page_content < div.labs.page_content_ctn": 3
+   },
+   "ours": {
+    "same|shape=null|badge=none": 3
+   },
+   "examples": [
+    {
+     "appid": 1247770,
+     "title": "",
+     "sizeBucket": "680x380",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "4px",
+       "backgroundImage": "radial-gradient(at 0% 0%, rgb(81, 95, 133), rgb(24, 38, 74))"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"capsule\" data-sro-card=\"1247770\"><div class=\"capsule-banner ds_no_flags app_impression_tracked\" data-ds-appid=\"1247770\"><a href=\"…\"></a><div class=\"capsule-banner-ctn\"><a href=\"…\"><div class=\"shipped\">\n                                    Shipped!\t\t\t\t\t\t\t\t</div></a><a href=\"…\"><img></a></div></div><div class=\"exp_text_ctn\"><h2>008 Play Next</h2><p>\n                            Now available as a shelf in your Steam client library                        </p></div></div>"
+    },
+    {
+     "appid": 1163670,
+     "title": "",
+     "sizeBucket": "680x420",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "4px",
+       "backgroundImage": "radial-gradient(at 0% 0%, rgb(81, 95, 133), rgb(24, 38, 74))"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"capsule\" data-sro-card=\"1163670\"><div class=\"capsule-banner ds_no_flags app_impression_tracked\" data-ds-appid=\"1163670\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><div class=\"shipped\">\n                                    Shipped!                                </div><img></div></a></div><div class=\"exp_text_ctn\"><h2>006 Community Recommendations</h2><p>\n\t\t\t\t\t\t\tDiscover games the Steam Community is currently enjoying in a feed of recent reviews.\t\t\t\t\t\t</p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the Community Recommendations</a></div></div></div>"
+    }
+   ]
+  },
+  {
+   "key": "div.capsule-banner|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "div.capsule-banner",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 1,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 2
+   },
+   "count": 1,
+   "sizes": {
+    "680x300": 1
+   },
+   "sections": {
+    ".capsule": 1
+   },
+   "headings": {
+    "004.1 Search Query Expansion": 1
+   },
+   "chains": {
+    "div.capsule < div.left-column < div.labs-content < div.page_content": 1
+   },
+   "ours": {
+    "unclaimed|shape=null|badge=null": 1
+   },
+   "examples": [
+    {
+     "appid": 1254040,
+     "title": "",
+     "sizeBucket": "680x300",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": false,
+      "sameElement": false,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": null,
+      "badgeParent": null
+     },
+     "html": "<div class=\"capsule-banner ds_no_flags app_impression_tracked\" data-ds-appid=\"1254040\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><div class=\"shipped\">\n\t\t                            Shipped!                                </div><img></div></a></div>"
+    }
+   ]
+  },
+  {
+   "key": "div.exp_text_ctn|link=news,img=false,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "div.exp_text_ctn",
+   "hashedClasses": false,
+   "featureKey": "link=news,img=false,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "news",
+    "img": false,
+    "artFraction": 0,
+    "price": false,
+    "date": true,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 2
+   },
+   "count": 1,
+   "sizes": {
+    "680x160": 1
+   },
+   "sections": {
+    ".capsule": 1
+   },
+   "headings": {
+    "004.1 Search Query Expansion": 1
+   },
+   "chains": {
+    "div.capsule < div.left-column < div.labs-content < div.page_content": 1
+   },
+   "ours": {
+    "same|shape=null|badge=none": 1
+   },
+   "examples": [
+    {
+     "appid": 593110,
+     "title": "",
+     "sizeBucket": "680x160",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"exp_text_ctn\" data-sro-card=\"593110\"><h2>009 News Hub</h2><p><b>March 5, 2020</b> - Whether you're at work, on the bus, or playing at home, you can now browse a personalized hub to easily find the updates, announcements, and events from the games you play and games you are interested in.                        </p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try News Hub Now</a><a href=\"…\" class=\"experiment-button\">Read more</a></div></div>"
+    }
+   ]
+  },
+  {
+   "key": "div.capsule|link=app,img=true,price=false,date=true,nativeSummary=false,title=true,platforms=false,carousel=false",
+   "signature": "div.capsule",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=false,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.63,
+    "price": false,
+    "date": true,
+    "nativeSummary": false,
+    "title": true,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 21
+   },
+   "count": 1,
+   "sizes": {
+    "680x460": 1
+   },
+   "sections": {
+    ".left-column": 1
+   },
+   "headings": {
+    "003 Automatic Show | An automated show about games": 1
+   },
+   "chains": {
+    "div.left-column < div.labs-content < div.page_content < div.labs.page_content_ctn": 1
+   },
+   "ours": {
+    "same|shape=null|badge=none": 1
+   },
+   "examples": [
+    {
+     "appid": 1156220,
+     "title": "The machine learning curator",
+     "sizeBucket": "680x460",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "4px",
+       "backgroundImage": "radial-gradient(at 0% 0%, rgb(81, 95, 133), rgb(24, 38, 74))"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"capsule ds_no_flags app_impression_tracked\" data-ds-appid=\"1156220\" data-sro-card=\"1156220\"><div class=\"capsule-banner\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><div class=\"shipped\">\n                                    Shipped!                                </div><img></div></a></div><div class=\"exp_text_ctn\"><h2>002 Interactive Recommender | <span class=\"experiment-name\">The machine learning curator</span></h2><p><b>July 11th, 2019</b> - This experiment looks at how much you've played each game in your Steam library, and uses the magic of machine learning to recommend games you might like. Filter your results by picking games that are popular or niche, and drill down by release date and tags.</p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the Interactive Recommender Experiment</a></div></div></div>"
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "capturedAt": "2026-09-11T15:31:18.579Z"
+}

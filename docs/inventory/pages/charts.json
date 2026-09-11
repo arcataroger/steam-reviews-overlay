@@ -1,0 +1,226 @@
+{
+ "url": "https://store.steampowered.com/charts",
+ "finalUrl": "https://store.steampowered.com/charts",
+ "title": "Steam Charts",
+ "cards": 10,
+ "kinds": [
+  {
+   "key": "a.S0OGjWAy4Co-|link=app,img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "a.S0OGjWAy4Co-",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": false,
+    "artFraction": 0,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 6
+   },
+   "count": 8,
+   "sizes": {
+    "540x40": 8
+   },
+   "sections": {
+    ".NBN-f1mBrso-.Panel": 8
+   },
+   "headings": {
+    "CHARTS OVERVIEW": 8
+   },
+   "chains": {
+    "div.NBN-f1mBrso-.Panel < div.Panel < div.fm1dMrfMpDc- < div.Panel.uX4qL3T--O8-.wnzEl6A2mnI-": 8
+   },
+   "ours": {
+    "unclaimed|shape=null|badge=null": 8
+   },
+   "examples": [
+    {
+     "appid": 730,
+     "title": "",
+     "sizeBucket": "540x40",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": false,
+      "sameElement": false,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": null,
+      "badgeParent": null
+     },
+     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">2</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div></div><div></div></a>"
+    },
+    {
+     "appid": 3219630,
+     "title": "",
+     "sizeBucket": "540x40",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": false,
+      "sameElement": false,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": null,
+      "badgeParent": null
+     },
+     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">3</div><div class=\"eT-MIEVrsB8-\"><div>Halloween: The Game</div></div><div></div></a>"
+    }
+   ]
+  },
+  {
+   "key": "div.xjiY68vUbWQ-|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "div.xjiY68vUbWQ-",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.83,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 6
+   },
+   "count": 2,
+   "sizes": {
+    "540x380": 2
+   },
+   "sections": {
+    ".NBN-f1mBrso-.Panel": 2
+   },
+   "headings": {
+    "CHARTS OVERVIEW": 2
+   },
+   "chains": {
+    "div.NBN-f1mBrso-.Panel < div.Panel < div.fm1dMrfMpDc- < div.Panel.uX4qL3T--O8-.wnzEl6A2mnI-": 2
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 2
+   },
+   "examples": [
+    {
+     "appid": 1867240,
+     "title": "",
+     "sizeBucket": "540x380",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div.xjiY68vUbWQ-"
+     },
+     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>WARDOGS</div><div class=\"hv-Pl2EA7-c-\">TOP SELLING RIGHT NOW</div></div><div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"6\" data-sro-pct=\"76\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Mostly Positive</span><span class=\"sro-line sro-global sro-mixed\"><span class=\"sro-ico\">🌐</span>Mixed</span></span></div>"
+    },
+    {
+     "appid": 730,
+     "title": "",
+     "sizeBucket": "540x380",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div.xjiY68vUbWQ-"
+     },
+     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div><div class=\"hv-Pl2EA7-c-\">MOST PLAYED RIGHT NOW</div></div><div><div>1,251,033</div><div class=\"kY5DWfq2Oe0-\">IN GAME</div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "capturedAt": "2026-09-11T15:25:19.717Z"
+}

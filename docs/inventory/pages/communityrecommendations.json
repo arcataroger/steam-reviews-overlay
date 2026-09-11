@@ -1,0 +1,463 @@
+{
+ "url": "https://store.steampowered.com/communityrecommendations/",
+ "finalUrl": "https://store.steampowered.com/communityrecommendations/",
+ "title": "Community Recommendations",
+ "cards": 23,
+ "kinds": [
+  {
+   "key": "div#AppN.appeared.has_microtrailer.reviewed_app|link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "signature": "div#AppN.appeared.has_microtrailer.reviewed_app",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.5,
+    "price": true,
+    "date": false,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": true,
+    "carousel": false,
+    "parentDisplay": "flex/column",
+    "siblings": 23
+   },
+   "count": 15,
+   "sizes": {
+    "1160x340": 15
+   },
+   "sections": {
+    "#reviewed_apps": 15
+   },
+   "headings": {
+    "There are no reviews that match the filters set above": 15
+   },
+   "chains": {
+    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 15
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 15
+   },
+   "examples": [
+    {
+     "appid": 2536520,
+     "title": "Bearsonal",
+     "sizeBucket": "1160x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "column",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "reviews",
+       "text": "A Classic for a Reason I haven't played "
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div#AppN.appeared.has_microtrailer.reviewed_app"
+     },
+     "html": "<div id=\"App2536520\" class=\"reviewed_app visible app_impression_tracked appeared has_microtrailer\" data-appid=\"2536520\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"2536520\" data-ds-itemkey=\"App_2536520\" data-ds-tagids=\"[122,19,4231,1646,1720,5851,4236]\" data-ds-descids=\"[2,5]\" data-ds-crtrids=\"[45010423]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:2536520,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"2536520\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/2536520/1834865890/5b6b794cb4b26b1717a63650a37028d2d053cd05/1769459896/microtrailer.webm?t=1771023560&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/2536520/1834865890/5b6b794cb4b26b1717a63650a37028d2d053cd05/1769459896/microtrailer.mp4?t=1771023560&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large main_cap_discount\" data-price-final=\"2799\" data-bundlediscount=\"0\" data-discount=\"30\" role=\"link\"><div class=\"discount_pct\">-30%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$39.99</div><div class"
+    },
+    {
+     "appid": 3971950,
+     "title": "kouneyagami",
+     "sizeBucket": "1160x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "column",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "reviews",
+       "text": "that One kind of rhythm gamer will compl"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div#AppN.appeared.has_microtrailer.reviewed_app"
+     },
+     "html": "<div id=\"App3971950\" class=\"reviewed_app visible appeared has_microtrailer\" data-appid=\"3971950\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"3971950\" data-ds-itemkey=\"App_3971950\" data-ds-tagids=\"[1752,1621,3799,4085,7208,21,1742]\" data-ds-crtrids=\"[45862608]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3971950,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"3971950\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/3971950/530409973/b9e83138392b4e16f88f96dd156f5032609fa8d2/1789038312/microtrailer.webm?t=1789039242&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/3971950/530409973/b9e83138392b4e16f88f96dd156f5032609fa8d2/1789038312/microtrailer.mp4?t=1789039242&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large main_cap_discount\" data-price-final=\"3599\" data-bundlediscount=\"0\" data-discount=\"10\" role=\"link\"><div class=\"discount_pct\">-10%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$39.99</div><div class=\"discount_final_price\">$35.99</div></div></div></div><div class=\"right_c"
+    }
+   ]
+  },
+  {
+   "key": "div#AppN.appeared.has_microtrailer.has_multiple_reviews.reviewed_app|link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "signature": "div#AppN.appeared.has_microtrailer.has_multiple_reviews.reviewed_app",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.5,
+    "price": true,
+    "date": false,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": true,
+    "carousel": false,
+    "parentDisplay": "flex/column",
+    "siblings": 23
+   },
+   "count": 5,
+   "sizes": {
+    "1160x340": 5
+   },
+   "sections": {
+    "#reviewed_apps": 5
+   },
+   "headings": {
+    "There are no reviews that match the filters set above": 5
+   },
+   "chains": {
+    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 5
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 5
+   },
+   "examples": [
+    {
+     "appid": 275850,
+     "title": "Anakin Skywalker",
+     "sizeBucket": "1160x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "column",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "reviews",
+       "text": "No Man's Sky had the best comeback story"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div#AppN.appeared.has_microtrailer.has_multiple_reviews.reviewed_app"
+     },
+     "html": "<div id=\"App275850\" class=\"reviewed_app has_multiple_reviews visible appeared has_microtrailer\" data-appid=\"275850\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"275850\" data-ds-itemkey=\"App_275850\" data-ds-tagids=\"[1695,1755,1100689,3834,3942,1662,3859]\" data-ds-crtrids=\"[34051164]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:275850,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"275850\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/275850/69556425/fe3ddf6e8b23a73b60d94b8f4b9e7069bc456b01/1788806348/microtrailer.webm?t=1788959172&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/275850/69556425/fe3ddf6e8b23a73b60d94b8f4b9e7069bc456b01/1788806348/microtrailer.mp4?t=1788959172&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large main_cap_discount\" data-price-final=\"2399\" data-bundlediscount=\"0\" data-discount=\"60\" role=\"link\"><div class=\"discount_pct\">-60%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$59.99</div><div class=\"discount_final_price\">$23.99</"
+    },
+    {
+     "appid": 3271280,
+     "title": "trashintheabyss",
+     "sizeBucket": "1160x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "column",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "reviews",
+       "text": "yayyyy!!! been following this game for a"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div#AppN.appeared.has_microtrailer.has_multiple_reviews.reviewed_app"
+     },
+     "html": "<div id=\"App3271280\" class=\"reviewed_app has_multiple_reviews visible appeared app_impression_tracked has_microtrailer\" data-appid=\"3271280\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"3271280\" data-ds-itemkey=\"App_3271280\" data-ds-tagids=\"[32322,1666,6815,4325,1716,4166,4252]\" data-ds-crtrids=\"[46033105,6638525]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3271280,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"3271280\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.akamai.steamstatic.com/store_trailers/3271280/1878528544/3f7b9e5262d150ce814ba304c26615fb022aeb2e/1788944740/microtrailer.webm?t=1789055433&amp;v=2\" data-mpeg4=\"https://video.akamai.steamstatic.com/store_trailers/3271280/1878528544/3f7b9e5262d150ce814ba304c26615fb022aeb2e/1788944740/microtrailer.mp4?t=1789055433&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$14.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review23493"
+    }
+   ]
+  },
+  {
+   "key": "div#AppN.appeared.has_multiple_reviews.reviewed_app|link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "signature": "div#AppN.appeared.has_multiple_reviews.reviewed_app",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.5,
+    "price": true,
+    "date": false,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "flex/column",
+    "siblings": 23
+   },
+   "count": 2,
+   "sizes": {
+    "1160x340": 2
+   },
+   "sections": {
+    "#reviewed_apps": 2
+   },
+   "headings": {
+    "There are no reviews that match the filters set above": 2
+   },
+   "chains": {
+    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 2
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 2
+   },
+   "examples": [
+    {
+     "appid": 2421750,
+     "title": "AdrianWithA",
+     "sizeBucket": "1160x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "column",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "reviews",
+       "text": "Needs more time to cook Well the gamepla"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div#AppN.appeared.has_multiple_reviews.reviewed_app"
+     },
+     "html": "<div id=\"App2421750\" class=\"reviewed_app has_multiple_reviews visible appeared app_impression_tracked\" data-appid=\"2421750\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"2421750\" data-ds-itemkey=\"App_2421750\" data-ds-tagids=\"[19,4182,1663,21978,97070,1774,4667]\" data-ds-descids=\"[2,5]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:2421750,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"2421750\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$24.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review234941052\" data-recommendationid=\"234941052\" data-appid=\"2421750\"><div class=\"content\"><span class=\"reviewCopy\">Needs more time to cook Well the gameplay, shooting and CQC is fun, but it's not GOTY yet. I recently upgraded my GPU and soon my CPU, but I couldn't keep the games fps stable on complete low...</span><div class=\"gradient\"></div></div><div class=\"view_more\"><a data-panel=\"[]\" href=\"…\" target=\"_blank\">Read Entire Review</a></div><div class=\"autho"
+    },
+    {
+     "appid": 1867240,
+     "title": "KettleHatt",
+     "sizeBucket": "1160x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "column",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "reviews",
+       "text": "review bombing a game because it's havin"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div#AppN.appeared.has_multiple_reviews.reviewed_app"
+     },
+     "html": "<div id=\"App1867240\" class=\"reviewed_app has_multiple_reviews visible appeared app_impression_tracked\" data-appid=\"1867240\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"1867240\" data-ds-itemkey=\"App_1867240\" data-ds-tagids=\"[493,1663,19,4168,3859,1708,1775]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[42656369,32941731]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1867240,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review234983438\" data-recommendationid=\"234983438\" data-appid=\"1867240\"><div class=\"content\"><span class=\"reviewCopy\">review bombing a game because it's having server issues a couple hours after launch is jobless behavior game is lit, excited to see where it goes</span><div class=\"gradient\"></div></div><div class=\"view_more\"><a data-panel=\"[]\" href=\"…\" target=\"_blank\">Read Entire Review</a></div><div class=\"author_block\"><div cl"
+    }
+   ]
+  },
+  {
+   "key": "div#AppN.appeared.reviewed_app|link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "signature": "div#AppN.appeared.reviewed_app",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.5,
+    "price": true,
+    "date": false,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": true,
+    "carousel": false,
+    "parentDisplay": "flex/column",
+    "siblings": 23
+   },
+   "count": 1,
+   "sizes": {
+    "1160x340": 1
+   },
+   "sections": {
+    "#reviewed_apps": 1
+   },
+   "headings": {
+    "There are no reviews that match the filters set above": 1
+   },
+   "chains": {
+    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 1
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 1
+   },
+   "examples": [
+    {
+     "appid": 668580,
+     "title": "Slayer",
+     "sizeBucket": "1160x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "hidden",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "column",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "reviews",
+       "text": "Atomic heart is easily one of my favouri"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div#AppN.appeared.reviewed_app"
+     },
+     "html": "<div id=\"App668580\" class=\"reviewed_app visible appeared app_impression_tracked\" data-appid=\"668580\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"668580\" data-ds-itemkey=\"App_668580\" data-ds-tagids=\"[21,1663,12095,19,4182,1695,4106]\" data-ds-descids=\"[1,2,5]\" data-ds-crtrids=\"[21394]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:668580,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"668580\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large main_cap_discount\" data-price-final=\"1199\" data-bundlediscount=\"0\" data-discount=\"80\" role=\"link\"><div class=\"discount_pct\">-80%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$59.99</div><div class=\"discount_final_price\">$11.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review234957609\" data-recommendationid=\"234957609\" data-appid=\"668580\"><div class=\"content\"><span class=\"reviewCopy\">Atomic heart is easily one of my favourite games of all time from the gunplay and the characters i could not really fault the game at all. ...</span><div class=\"gradient\"></div></div><div class=\"view_more\"><a data-panel=\"[]"
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "capturedAt": "2026-09-11T15:49:26.410Z"
+}

@@ -114,6 +114,27 @@ if (!qaLocale) {
   })
 }
 
+/** A numeric fragment ("70–79%", "500+", "≤ 69%") as an LTR bidi isolate: in an RTL paragraph the
+ *  bidi algorithm would otherwise reorder the operators and dashes around the digits. */
+function ltrToken(text: string): HTMLElement {
+  const el = document.createElement('bdi')
+  el.dir = 'ltr'
+  el.textContent = text
+  return el
+}
+const NUMERIC_RUN = /[+≤≥]?\d[\d.,]*(?:\s*[–\-]\s*\d[\d.,]*)?(?:\s*%)?\+?/g
+/** Set text, isolating every numeric run so ranges and counts read correctly in RTL locales. */
+function setTextWithNumbers(el: HTMLElement, text: string) {
+  el.textContent = ''
+  let last = 0
+  for (const m of text.matchAll(NUMERIC_RUN)) {
+    if (m.index! > last) el.appendChild(document.createTextNode(text.slice(last, m.index)))
+    el.appendChild(ltrToken(m[0]))
+    last = m.index! + m[0].length
+  }
+  if (last < text.length) el.appendChild(document.createTextNode(text.slice(last)))
+}
+
 // One notch per Steam tier. Left tick zone drives the filter lever, right tick zone the highlight lever.
 for (const tier of TIERS) {
   const n = document.createElement('div')
@@ -127,7 +148,7 @@ for (const tier of TIERS) {
   const label = document.createElement('span')
   label.textContent = tierName(tier.score)
   const b = document.createElement('b')
-  b.textContent = tierRule(tier.score)
+  setTextWithNumbers(b, tierRule(tier.score))
   label.appendChild(b)
   const tr = document.createElement('div')
   tr.className = 'tick r'
@@ -147,9 +168,13 @@ function renderSide(side: Side, value: number) {
   // (Mixed 40–69% → "≤ 69%"); highlight covers the tier and above, so its number is the band start
   // (Positive 80%+ → "≥ 80%").
   const pct = side === 'filter' ? bandEndPct(pos) : Math.round(posToPct(pos))
-  // The formula is wrapped in an LTR isolate (U+2066…U+2069) so RTL locales neither mirror ≤ into ≥
-  // nor reorder it, while the box itself still aligns logically with its title.
-  u.pct.textContent = off ? t('off') : `\u2066${side === 'filter' ? '≤' : '≥'} ${pct}%\u2069`
+  // The formula sits in a <bdi dir="ltr"> so RTL locales neither mirror ≤ into ≥ nor reorder it,
+  // while the box itself still aligns logically with its title.
+  if (off) u.pct.textContent = t('off')
+  else {
+    u.pct.textContent = ''
+    u.pct.appendChild(ltrToken(`${side === 'filter' ? '≤' : '≥'} ${pct}%`))
+  }
   u.pct.className = `digits ${off ? 'none' : ''}`
   u.tier.textContent = tierName(tier.score)
   u.tier.className = `tier ${off ? '' : tier.tone}`

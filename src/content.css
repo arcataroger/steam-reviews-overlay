@@ -239,3 +239,6 @@
 /* A card we made the containing block for a corner chip stays one even if Steam rewrites the
    element's inline style on re-render (the inline position we set would go with it). */
 [data-sro-card][data-sro-pos] { position: relative; }
+
+/* Beside a row's title (dense tables): a small gap, never wrapping the title */
+.sro-badge.sro-beside-title { margin-inline-start: 8px; vertical-align: baseline; }

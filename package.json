@@ -15,7 +15,11 @@
     "lint": "npm run build:firefox && web-ext lint --source-dir dist/firefox",
     "shots:gallery": "node scripts/screenshots.mjs ./shots",
     "shots:locales": "node scripts/locale-matrix.mjs ./shots/matrix",
-    "demo": "node scripts/demo.mjs"
+    "demo": "node scripts/demo.mjs",
+    "inventory:nav": "node scripts/nav-urls.mjs docs/inventory/nav-urls.json",
+    "inventory:crawl": "node scripts/inventory.mjs docs/inventory/pages $(node -e \"for (const e of require('./docs/inventory/nav-urls.json')) console.log(e.url)\")",
+    "inventory:merge": "node scripts/inventory-merge.mjs docs/inventory docs/inventory/pages",
+    "inventory": "npm run inventory:nav && npm run inventory:crawl && npm run inventory:merge"
   },
   "keywords": [],
   "author": "arcataroger",

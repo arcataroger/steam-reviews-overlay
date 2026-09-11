@@ -129,7 +129,7 @@ function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): 
   for (const n of parent.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')) {
     if (tile.contains(n) || appIdOf(n) !== appid) continue
     const r = n.getBoundingClientRect()
-    if (r.height >= 40 && r.width >= 60 && n.querySelector('img, picture, video')) return true
+    if (r.height >= 40 && r.width >= 60 && n.querySelector('img, picture, video, [style*="background-image"]')) return true
   }
   return false
 }
@@ -489,13 +489,47 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
     place()
     if (clear()) return
   }
+  badge.remove()
+  badge.classList.remove('sro-corner')
+  badge.style.cssText = ''
+  // Last resort for dense rows (charts tables): inline right after the title text
+  if (placeBesideTitle(card, badge, cr)) return
   // Nothing fits without covering something: no label beats an overlapping one
   badge.remove()
+}
+
+/** Inline after the card's title, when that leaves the card's size alone and covers nothing. */
+function placeBesideTitle(card: HTMLElement, badge: HTMLSpanElement, cardRect: DOMRect): boolean {
+  const leaves = [...card.querySelectorAll<HTMLElement>('*')].filter(
+    (el) => el.children.length === 0 && (el.textContent ?? '').trim().length >= 3 && el.getBoundingClientRect().width && !badge.contains(el),
+  )
+  // A named title wins; otherwise the largest-type text in the card (hashed React classes carry no hint)
+  const title =
+    leaves.find((el) => el.matches('.title, .tab_item_name, [class*="title" i], [class*="name" i]')) ??
+    leaves.sort((a, b) => parseFloat(getComputedStyle(b).fontSize) - parseFloat(getComputedStyle(a).fontSize))[0]
+  if (!title) return false
+  badge.classList.add('sro-inline', 'sro-beside-title')
+  title.insertAdjacentElement('afterend', badge)
+  const after = card.getBoundingClientRect()
+  const br = badge.getBoundingClientRect()
+  const ok =
+    br.width > 0 &&
+    within(br, after) &&
+    Math.abs(after.width - cardRect.width) <= 1 &&
+    Math.abs(after.height - cardRect.height) <= 1 &&
+    obstaclesFor(card, badge).length === 0
+  if (!ok) {
+    badge.remove()
+    badge.classList.remove('sro-inline', 'sro-beside-title')
+  }
+  return ok
 }
 
 /* ---------- filtering (dim / hide) ---------- */
 
 const hideTimers = new Map<HTMLElement, number>()
+/** Cards kept dim (not hidden) because the keyboard is inside them; one focusout listener each. */
+const focusWatched = new WeakSet<HTMLElement>()
 
 /**
  * Overwhelmingly Positive orbit: a masked ring element whose inner layer rotates (a transform,
@@ -608,7 +642,13 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   }
   if (card.matches(':focus-within')) {
     card.dataset.sroFiltered = 'dim'
-    card.addEventListener('focusout', () => { if (alive() && cardsByAppId.has(card)) applyFilter(card, summary) }, { once: true })
+    if (!focusWatched.has(card)) {
+      focusWatched.add(card)
+      card.addEventListener('focusout', () => {
+        focusWatched.delete(card)
+        if (alive() && cardsByAppId.has(card)) applyFilter(card, summary)
+      }, { once: true })
+    }
     return
   }
   // hide: fade out first, then display:none so the layout reflows
@@ -617,7 +657,11 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     card,
     window.setTimeout(() => {
       hideTimers.delete(card)
-      if (card.dataset.sroFiltered === 'hiding') card.dataset.sroFiltered = 'hide'
+      if (card.dataset.sroFiltered !== 'hiding') return
+      // Focus arrived during the fade: keep the card in the layout (dimmed) rather than pull it
+      // out from under the keyboard; applyFilter re-arms the hide once focus leaves.
+      if (card.matches(':focus-within')) applyFilter(card, summary)
+      else card.dataset.sroFiltered = 'hide'
     }, 320),
   )
 }
@@ -718,7 +762,7 @@ let replaceTimer: number | undefined
 function onAssetLoad(e: Event) {
   if (!alive() || !(e.target instanceof HTMLImageElement)) return
   const card = e.target.closest<HTMLElement>(`[${CARD_ATTR}]`)
-  if (!card || !card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) return
+  if (!card || !(card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`) || card.dataset.sroHighlight)) return
   replaceQueue.add(card)
   if (replaceTimer) return
   replaceTimer = window.setTimeout(() => {
@@ -726,7 +770,11 @@ function onAssetLoad(e: Event) {
     for (const c of replaceQueue) {
       const appid = cardsByAppId.get(c)
       const s = appid && c.isConnected ? peekCached(appid) : undefined
-      if (s && c.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
+      if (!s) continue
+      if (c.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
+      // The highlight shape weighs the artwork's share of the card; an image that was still empty
+      // when the shape was chosen (lazy carousel slide) can flip a capsule from ring to underglow.
+      if (c.dataset.sroHighlight) applyFilter(c, s)
     }
     replaceQueue.clear()
   }, 150)

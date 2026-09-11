@@ -1,0 +1,614 @@
+{
+ "url": "https://store.steampowered.com/explore/upcoming",
+ "finalUrl": "https://store.steampowered.com/explore/upcoming",
+ "title": "Upcoming Releases",
+ "cards": 26,
+ "kinds": [
+  {
+   "key": "a.tab_item|link=app,img=true,price=false,date=true,nativeSummary=false,title=true,platforms=true,carousel=false",
+   "signature": "a.tab_item",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=false,title=true,platforms=true,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.23,
+    "price": false,
+    "date": true,
+    "nativeSummary": false,
+    "title": true,
+    "platforms": true,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 17
+   },
+   "count": 13,
+   "sizes": {
+    "820x60": 1,
+    "800x60": 12
+   },
+   "sections": {
+    "#tab_popular_comingsoon_content": 13
+   },
+   "headings": {
+    "Popular wishlisted games": 13
+   },
+   "chains": {
+    "div#tab_popular_comingsoon_content.tab_content < div.home_tabs_content < div.home_leftcol.home_tab_col < div.flex.page_content": 13
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-corner": 13
+   },
+   "examples": [
+    {
+     "appid": 2402680,
+     "title": "Dimraeth",
+     "sizeBucket": "820x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "linear-gradient(to right, rgb(198, 230, 248) 5%, rgb(149, 188, 211) 95%)"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.tab_item"
+     },
+     "html": "<a href=\"…\" class=\"tab_item focus app_impression_tracked\" data-ds-appid=\"2402680\" data-ds-itemkey=\"App_2402680\" data-ds-tagids=\"[493,122,4231,3834,29482,1695,3843]\" data-ds-crtrids=\"[45826650]\" data-sro-card=\"2402680\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"810x69\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"release_date\">Sep 14, 2026</div><div class=\"tab_item_content\"><div class=\"tab_item_name\">Dimraeth</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Early Access</span><span class=\"top_tag\">, RPG</span><span class=\"top_tag\">, Action RPG</span><span class=\"top_tag\">, Exploration</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"2402680\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    },
+    {
+     "appid": 4126040,
+     "title": "Aniimo",
+     "sizeBucket": "800x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.tab_item"
+     },
+     "html": "<a href=\"…\" class=\"tab_item app_impression_tracked\" data-ds-appid=\"4126040\" data-ds-itemkey=\"App_4126040\" data-ds-tagids=\"[1695,916648,21,5652,122,3859,3834]\" data-sro-card=\"4126040\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"792x69\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"release_date\">Sep 15, 2026</div><div class=\"discount_block no_discount tab_item_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price free\">Free</div></div></div><div class=\"tab_item_content\"><div class=\"tab_item_name\">Aniimo</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Open World</span><span class=\"top_tag\">, Creature Collector</span><span class=\"top_tag\">, Adventure</span><span class=\"top_tag\">, Collectathon</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"4126040\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.store_capsule|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "a.store_capsule",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.79,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "block",
+    "siblings": 8
+   },
+   "count": 5,
+   "sizes": {
+    "240x140": 5
+   },
+   "sections": {
+    ".bucket_contents": 5
+   },
+   "headings": {
+    "Popular wishlisted games": 5
+   },
+   "chains": {
+    "div.bucket_contents.store_capsule_container_scrolling.store_horizontal_autoslider < div.store_horizontal_autoslider_ctn < div.bucket.popularwishlist < div.page_content": 5
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-corner": 5
+   },
+   "examples": [
+    {
+     "appid": 4534960,
+     "title": "",
+     "sizeBucket": "240x140",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "inline-block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "scroll hidden",
+       "overflowX": "scroll",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.store_capsule"
+     },
+     "html": "<a data-ds-appid=\"4534960\" data-ds-itemkey=\"App_4534960\" data-ds-tagids=\"[3859,3843,4136,1685,1719,19,21]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4534960,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"4534960\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"230x135\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block empty discount_block_inline\"></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"4534960\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    },
+    {
+     "appid": 4824610,
+     "title": "",
+     "sizeBucket": "240x140",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "inline-block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "scroll hidden",
+       "overflowX": "scroll",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.store_capsule"
+     },
+     "html": "<a data-ds-appid=\"4824610\" data-ds-itemkey=\"App_4824610\" data-ds-tagids=\"[19,3978,3814,1659,7208,4106,1667]\" data-ds-descids=\"[2,5]\" data-ds-crtrids=\"[33273264,34827950]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4824610,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"4824610\" data-sro-tone=\"none\" data-sro-score=\"0\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block empty discount_block_inline\"></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"4824610\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.store_capsule|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "a.store_capsule",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.79,
+    "price": true,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "block",
+    "siblings": 8
+   },
+   "count": 3,
+   "sizes": {
+    "240x140": 3
+   },
+   "sections": {
+    ".bucket_contents": 3
+   },
+   "headings": {
+    "Popular wishlisted games": 3
+   },
+   "chains": {
+    "div.bucket_contents.store_capsule_container_scrolling.store_horizontal_autoslider < div.store_horizontal_autoslider_ctn < div.bucket.popularwishlist < div.page_content": 3
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-corner": 3
+   },
+   "examples": [
+    {
+     "appid": 2769570,
+     "title": "",
+     "sizeBucket": "240x140",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "inline-block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "scroll hidden",
+       "overflowX": "scroll",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.store_capsule"
+     },
+     "html": "<a data-ds-appid=\"2769570\" data-ds-itemkey=\"App_2769570\" data-ds-tagids=\"[122,19,21,1684,4182,1695,44868]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[44451136,3090835]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:2769570,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"2769570\" data-sro-tone=\"none\" data-sro-score=\"0\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"6999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$69.99</div></div></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"2769570\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    },
+    {
+     "appid": 4115450,
+     "title": "",
+     "sizeBucket": "240x140",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "inline-block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "scroll hidden",
+       "overflowX": "scroll",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.store_capsule"
+     },
+     "html": "<a data-ds-appid=\"4115450\" data-ds-itemkey=\"App_4115450\" data-ds-tagids=\"[4231,6915,19,25959,4604,29482,122]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4115450,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"4115450\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"230x135\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"5999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$59.99</div></div></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"4115450\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.tab_item|link=app,img=true,price=true,date=true,nativeSummary=false,title=true,platforms=true,carousel=false",
+   "signature": "a.tab_item",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=true,platforms=true,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.23,
+    "price": true,
+    "date": true,
+    "nativeSummary": false,
+    "title": true,
+    "platforms": true,
+    "discount": true,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 17
+   },
+   "count": 3,
+   "sizes": {
+    "800x60": 3
+   },
+   "sections": {
+    "#tab_popular_comingsoon_content": 3
+   },
+   "headings": {
+    "Popular wishlisted games": 3
+   },
+   "chains": {
+    "div#tab_popular_comingsoon_content.tab_content < div.home_tabs_content < div.home_leftcol.home_tab_col < div.flex.page_content": 3
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-corner": 3
+   },
+   "examples": [
+    {
+     "appid": 4358690,
+     "title": "Graveyard Keeper 2",
+     "sizeBucket": "800x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "flex",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.tab_item"
+     },
+     "html": "<a href=\"…\" class=\"tab_item app_impression_tracked\" data-ds-appid=\"4358690\" data-ds-itemkey=\"App_4358690\" data-ds-tagids=\"[3810,1643,4845,597,22602,1702,4172]\" data-ds-crtrids=\"[32946824,6858705]\" data-sro-card=\"4358690\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"792x69\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"release_date\">Sep 22, 2026</div><div class=\"discount_block tab_item_discount\" data-price-final=\"1999\" data-bundlediscount=\"0\" data-discount=\"20\" role=\"link\"><div class=\"discount_pct\">-20%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$24.99</div><div class=\"discount_final_price\">$19.99</div></div></div><div class=\"tab_item_content\"><div class=\"tab_item_name\">Graveyard Keeper 2</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Sandbox</span><span class=\"top_tag\">, Building</span><span class=\"top_tag\">, Capitalism</span><span class=\"top_tag\">, Casual</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"4358690\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    },
+    {
+     "appid": 3669870,
+     "title": "CONTROL Resonant",
+     "sizeBucket": "800x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.tab_item"
+     },
+     "html": "<a href=\"…\" class=\"tab_item app_impression_tracked\" data-ds-appid=\"3669870\" data-ds-itemkey=\"App_3669870\" data-ds-tagids=\"[4231,1646,1742,3854,4145,10808,4166]\" data-ds-descids=\"[2,5]\" data-ds-crtrids=\"[34087437]\" data-sro-card=\"3669870\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"792x69\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"release_date\">Sep 24, 2026</div><div class=\"discount_block tab_item_discount no_discount\" data-price-final=\"5999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$59.99</div></div></div><div class=\"tab_item_content\"><div class=\"tab_item_name\">CONTROL Resonant</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Action RPG</span><span class=\"top_tag\">, Hack and Slash</span><span class=\"top_tag\">, Story Rich</span><span class=\"top_tag\">, Lore-Rich</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"3669870\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.comingsoon_headercap|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "a.comingsoon_headercap",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.81,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "flex/row",
+    "siblings": 2
+   },
+   "count": 1,
+   "sizes": {
+    "600x340": 1
+   },
+   "sections": {
+    ".bucket_contents": 1
+   },
+   "headings": {
+    "Upcoming Releases": 1
+   },
+   "chains": {
+    "div.bucket_contents.comingsoon_capsules.comingsoon_headercaps < div.page_content < div.page_ctn.top_capsules < div.game.game_page_background": 1
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-corner": 1
+   },
+   "examples": [
+    {
+     "appid": 1757350,
+     "title": "",
+     "sizeBucket": "600x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "linear-gradient(to right, rgb(53, 101, 128) 0%, rgb(64, 121, 153) 100%)"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "20px"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.comingsoon_headercap"
+     },
+     "html": "<a data-ds-appid=\"1757350\" data-ds-itemkey=\"App_1757350\" data-ds-tagids=\"[1667,19,1774,3839,3978,4145,1662]\" data-ds-descids=\"[2,5]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1757350,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"comingsoon_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"1757350\" data-sro-tone=\"none\" data-sro-score=\"0\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tTop Wishlists\t\t\t\t\t\t\t\t<div class=\"discount_block empty discount_block_inline\"></div></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"1757350\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    }
+   ]
+  },
+  {
+   "key": "a.comingsoon_headercap|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "a.comingsoon_headercap",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.81,
+    "price": true,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "flex/row",
+    "siblings": 2
+   },
+   "count": 1,
+   "sizes": {
+    "600x340": 1
+   },
+   "sections": {
+    ".bucket_contents": 1
+   },
+   "headings": {
+    "Upcoming Releases": 1
+   },
+   "chains": {
+    "div.bucket_contents.comingsoon_capsules.comingsoon_headercaps < div.page_content < div.page_ctn.top_capsules < div.game.game_page_background": 1
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-corner": 1
+   },
+   "examples": [
+    {
+     "appid": 2963950,
+     "title": "",
+     "sizeBucket": "600x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "linear-gradient(to right, rgb(53, 101, 128) 0%, rgb(64, 121, 153) 100%)"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "20px"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.comingsoon_headercap"
+     },
+     "html": "<a data-ds-appid=\"2963950\" data-ds-itemkey=\"App_2963950\" data-ds-tagids=\"[4434,122,21,4085,1742,4325,4182]\" data-ds-descids=\"[1,2,5]\" data-ds-crtrids=\"[37895402,32528477]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:2963950,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"comingsoon_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"2963950\" data-sro-tone=\"none\" data-sro-score=\"0\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tTop Wishlists\t\t\t\t\t\t\t\t<div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"6999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$69.99</div></div></div></div><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"2963950\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></a>"
+    }
+   ]
+  }
+ ],
+ "errors": [],
+ "capturedAt": "2026-09-11T15:25:17.949Z"
+}

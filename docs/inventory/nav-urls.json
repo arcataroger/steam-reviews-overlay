@@ -1,0 +1,512 @@
+[
+ {
+  "url": "https://store.steampowered.com/",
+  "label": "Store Home",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/explore/new/",
+  "label": "New ReleasesExplore new content on Steam",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/explore/upcoming",
+  "label": "Upcoming ReleasesSee what's on the release calendar",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/charts",
+  "label": "All Charts & StatsExplore top titles by week, month, or year",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/charts/topselling/",
+  "label": "Top Sellers",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/specials/",
+  "label": "Discounts & Events",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/genre/Free%20to%20Play",
+  "label": "Free to Play",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/demos",
+  "label": "Demos",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/news/",
+  "label": "News & Updates",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/points/",
+  "label": "Points Shop",
+  "group": "Browse"
+ },
+ {
+  "url": "https://store.steampowered.com/app/1867240/WARDOGS",
+  "label": "WARDOGS$39.99",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/app/730/CounterStrike_2",
+  "label": "Counter-Strike 2Free",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/app/3219630/Halloween_The_Game",
+  "label": "Halloween: The Game$39.99",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/personalcalendar/",
+  "label": "NEWYour Personal CalendarExplore a personalized list of games that have released recently or are coming soon.Explore My Calendar",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/explore/next/0",
+  "label": "Your Discovery Queue",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/communityrecommendations/",
+  "label": "Community Recommendations",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/explore/next/3",
+  "label": "New Releases Queue",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/recommended/friendactivity/",
+  "label": "Popular Among Friends",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/curators/",
+  "label": "Steam Curators",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/dlcforyou/",
+  "label": "DLC For You",
+  "group": "Recommendations"
+ },
+ {
+  "url": "https://store.steampowered.com/category/strategy",
+  "label": "Strategy",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/casual",
+  "label": "Casual",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/multiplayer_coop",
+  "label": "Co-Operative",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sports",
+  "label": "All Sports",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/racing",
+  "label": "Racing",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/puzzle_matching/",
+  "label": "Puzzle",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/action",
+  "label": "Action",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/strategy_cities_settlements",
+  "label": "City & Settlement",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/anime",
+  "label": "Anime",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/simulation",
+  "label": "Simulation",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/fighting_martial_arts",
+  "label": "Fighting",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/adventure",
+  "label": "Adventure",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/story_rich",
+  "label": "Story-Rich",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/exploration_open_world",
+  "label": "Open World",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rpg",
+  "label": "Role-Playing",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/genre/Early%20Access",
+  "label": "Early Access",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/horror",
+  "label": "Horror",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rogue_like_rogue_lite",
+  "label": "Rogue-Like",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/tag/browse/",
+  "label": "View all tags",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/action_fps",
+  "label": "First-Person Shooter",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/action_tps",
+  "label": "Third-Person Shooter",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/hack_and_slash",
+  "label": "Hack & Slash",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/arcade_rhythm",
+  "label": "Arcade & Rhythm",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/action_run_jump",
+  "label": "Platformers & Runners",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/shmup",
+  "label": "shmup",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/hidden_object",
+  "label": "Hidden Object",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/metroidvania",
+  "label": "Metroidvania",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/puzzle_matching",
+  "label": "Puzzle",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/adventure_rpg",
+  "label": "Adventure RPG",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/visual_novel",
+  "label": "Visual Novels",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rpg_action",
+  "label": "Action Role-Playing",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rpg_strategy_tactics",
+  "label": "Strategy & Tactical Role-Playing",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rpg_jrpg",
+  "label": "Japanese Role-Playing",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rpg_turn_based",
+  "label": "Turn-Based Role-Playing",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rpg_party_based",
+  "label": "Party-Based",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sim_building_automation",
+  "label": "Building & Automation Sims",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sim_hobby_sim",
+  "label": "Hobby & Job Sims",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sim_dating",
+  "label": "Dating Sims",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sim_farming_crafting",
+  "label": "Farming & Crafting Sims",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sim_space_flight",
+  "label": "Space & Flight Sims",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sim_life",
+  "label": "Life & Immersive Sims",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sim_physics_sandbox",
+  "label": "Sandbox & Physics Sims",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/strategy_turn_based",
+  "label": "Turn-Based Strategy",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/strategy_real_time",
+  "label": "Real-Time Strategy",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/tower_defense",
+  "label": "Tower Defense",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/strategy_card_board",
+  "label": "Card & Board",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/strategy_grand_4x",
+  "label": "Grand Strategy & 4X",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/strategy_military",
+  "label": "Military Strategy",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sports_sim",
+  "label": "Sports Sims & Sports Managers",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/racing_sim",
+  "label": "Racing Sim",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sports_team",
+  "label": "Team Sports",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sports_individual",
+  "label": "Individual Sports",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/science_fiction",
+  "label": "Sci-Fi & Cyberpunk",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/space",
+  "label": "Space",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/survival",
+  "label": "Survival",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/mystery_detective",
+  "label": "Mystery & Detective",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/app/1675200/Steam_Deck",
+  "label": "Steam Deck",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/app/4165870/Steam_Controller",
+  "label": "Steam Controller",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/app/4165910/Steam_Machine",
+  "label": "Steam Machine",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/app/4165890/Steam_Frame",
+  "label": "Steam Frame",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/app/377490/Steam_Hardware_Advertising_App",
+  "label": "Steam Hardware",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/app/1696780/Steam_Deck_Docking_Station",
+  "label": "Steam Deck Docking Station",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/sub/354231/",
+  "label": "Valve Index",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/greatondeck",
+  "label": "Great on Deck",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/vr",
+  "label": "VR Titles",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/controller",
+  "label": "Controller-Friendly",
+  "group": "Hardware"
+ },
+ {
+  "url": "https://store.steampowered.com/category/multiplayer_lan",
+  "label": "Local Area Network",
+  "group": "Ways to Play"
+ },
+ {
+  "url": "https://store.steampowered.com/category/multiplayer_local_party",
+  "label": "Local Multiplayer & Party",
+  "group": "Ways to Play"
+ },
+ {
+  "url": "https://store.steampowered.com/category/multiplayer_mmo",
+  "label": "Massively Multiplayer",
+  "group": "Ways to Play"
+ },
+ {
+  "url": "https://store.steampowered.com/category/multiplayer",
+  "label": "Multiplayer",
+  "group": "Ways to Play"
+ },
+ {
+  "url": "https://store.steampowered.com/category/multiplayer_online_competitive",
+  "label": "Online Competitive",
+  "group": "Ways to Play"
+ },
+ {
+  "url": "https://store.steampowered.com/category/singleplayer",
+  "label": "Singleplayer",
+  "group": "Ways to Play"
+ },
+ {
+  "url": "https://store.steampowered.com/news/collection/sales/",
+  "label": "SALE EVENTS",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/software",
+  "label": "Software",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/soundtracks",
+  "label": "Soundtracks",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/pccafe",
+  "label": "For PC Cafés",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/macos",
+  "label": "macOS",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/linux",
+  "label": "SteamOS + Linux",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/sale/nextfest/",
+  "label": "Steam Next Fest",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/steamawards/archive",
+  "label": "The Steam Awards",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/yearinreview/",
+  "label": "Steam Replay",
+  "group": "Special Sections"
+ },
+ {
+  "url": "https://store.steampowered.com/labs/",
+  "label": "Steam Labs",
+  "group": "Special Sections"
+ }
+]

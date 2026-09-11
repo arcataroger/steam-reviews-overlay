@@ -41,12 +41,13 @@ describe('Steam tier ladder', () => {
     expect(posToPct(8.5)).toBe(87.5)
   })
 
-  it('snaps to a tier when close, and always within count-only gaps', () => {
+  it('always snaps to the nearest tier', () => {
     expect(snapPosition(5.05)).toBe(5)
-    expect(snapPosition(5.5)).toBe(5.5)
-    expect(snapPosition(7.4)).toBe(7) // Positive/Very Positive: no in-between
+    expect(snapPosition(5.5)).toBe(6)
+    expect(snapPosition(7.4)).toBe(7)
     expect(snapPosition(7.6)).toBe(8)
-    expect(snapPosition(1.5)).toBe(2)
+    expect(snapPosition(0.2)).toBe(1)
+    expect(snapPosition(12)).toBe(9)
   })
 })
 

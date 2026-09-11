@@ -4,7 +4,6 @@ import {
   snapPosition,
   posToPct,
   tierFor,
-  hasPercentGap,
   TIERS,
   OFF_FILTER,
   OFF_HIGHLIGHT,
@@ -122,18 +121,11 @@ function renderSide(side: Side, value: number) {
   const off = side === 'filter' ? value <= OFF_FILTER : value >= OFF_HIGHLIGHT
   const pos = off ? (side === 'filter' ? 1 : 9) : value
   const tier = tierFor(pos)
-  const onTier = Number.isInteger(pos)
   u.readout.classList.toggle('off', off)
   u.pct.textContent = off ? t('off') : `${Math.round(posToPct(pos))}%`
   u.pct.className = `digits ${off ? 'none' : ''}`
-  u.tier.textContent = onTier ? tierName(tier.score) : `${tierName(tier.score)} +`
+  u.tier.textContent = tierName(tier.score)
   u.tier.className = `tier ${off ? '' : tier.tone}`
-  if (!onTier && !off) {
-    const sub = document.createElement('span')
-    sub.className = 'sub'
-    sub.textContent = t('betweenTiers')
-    u.tier.appendChild(sub)
-  }
   const c = toneColorAt(pos)
   if (off) u.pct.style.removeProperty('--c')
   else u.pct.style.setProperty('--c', c)
@@ -142,7 +134,7 @@ function renderSide(side: Side, value: number) {
   u.knob.style.setProperty('--pct', String(off ? (side === 'filter' ? GATE_L : GATE_R) : trackPct(pos)))
   u.knob.className = off ? 'knob parked' : 'knob'
   u.lever.setAttribute('aria-valuenow', String(off ? (side === 'filter' ? 0 : 10) : pos))
-  u.lever.setAttribute('aria-valuetext', off ? t('off') : onTier ? tierName(tier.score) : t('percentPositive', Math.round(posToPct(pos))))
+  u.lever.setAttribute('aria-valuetext', off ? t('off') : tierName(tier.score))
   const cls = side === 'filter' ? 'active-l' : 'active-r'
   for (const n of notches.querySelectorAll<HTMLElement>('.notch')) {
     n.classList.toggle(cls, !off && Number(n.dataset.pos) === pos)
@@ -168,12 +160,12 @@ function update(patch: Partial<Settings>) {
   saveTimer = window.setTimeout(() => void saveSettings(settings), 100)
 }
 
-/** `raw` is a ladder position (1..9) that may run past the ends into the gates. */
-function setPos(side: Side, raw: number, snap = true) {
+/** `raw` is a ladder position (1..9) that may run past the ends into the gates; always snaps to a tier. */
+function setPos(side: Side, raw: number) {
   let v: number
-  if (side === 'filter' && raw <= (snap ? 0.6 : 0.99)) v = OFF_FILTER
-  else if (side === 'highlight' && raw >= (snap ? 9.4 : 9.01)) v = OFF_HIGHLIGHT
-  else v = snap ? snapPosition(raw) : Math.min(9, Math.max(1, Math.round(raw * 100) / 100))
+  if (side === 'filter' && raw <= 0.6) v = OFF_FILTER
+  else if (side === 'highlight' && raw >= 9.4) v = OFF_HIGHLIGHT
+  else v = snapPosition(raw)
   update({ [KEY[side]]: v } as Partial<Settings>)
 }
 
@@ -196,46 +188,27 @@ function wireLever(side: Side) {
   lever.addEventListener('pointermove', (e) => {
     if (lever.hasPointerCapture(e.pointerId)) setPos(side, posFromPointer(e.clientY))
   })
-  /* keyboard: arrows step by tier (or 1% within a percent gap with shift), PageUp/Down = next tier, Home/End = gates */
+  /* keyboard: arrows and PageUp/Down step one tier, Home/End park the lever */
   lever.addEventListener('keydown', (e) => {
     const cur = settings[KEY[side]]
     const lo = side === 'filter' ? OFF_FILTER : 1
     const hi = side === 'highlight' ? OFF_HIGHLIGHT : 9
-    const fine = e.shiftKey
-    const stepUp = () => {
-      if (cur >= 9) return hi
-      const base = Math.floor(cur)
-      if (fine && hasPercentGap(base)) {
-        const span = posToPct(base + 1) - posToPct(base)
-        return Math.min(base + 1, cur + 1 / span)
-      }
-      return Math.floor(cur) + 1
-    }
-    const stepDown = () => {
-      if (cur <= 1) return lo
-      const base = Number.isInteger(cur) ? cur - 1 : Math.floor(cur)
-      if (fine && hasPercentGap(base)) {
-        const span = posToPct(base + 1) - posToPct(base)
-        return Math.max(base, cur - 1 / span)
-      }
-      return base
-    }
     switch (e.key) {
       case 'ArrowUp':
       case 'ArrowRight':
       case 'PageUp':
-        setPos(side, stepUp(), false)
+        setPos(side, cur >= 9 ? hi : cur + 1)
         break
       case 'ArrowDown':
       case 'ArrowLeft':
       case 'PageDown':
-        setPos(side, stepDown(), false)
+        setPos(side, cur <= 1 ? lo : cur - 1)
         break
       case 'Home':
-        setPos(side, lo, false)
+        setPos(side, lo)
         break
       case 'End':
-        setPos(side, hi, false)
+        setPos(side, hi)
         break
       default:
         return

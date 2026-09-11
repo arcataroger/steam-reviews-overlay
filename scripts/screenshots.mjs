@@ -16,7 +16,6 @@ const STATES = {
   hide_verypositive: { ...base, mode: 'hide', threshold: 8 },
   outline_op:        { ...base, highlightThreshold: 9 },
   both:              { ...base, mode: 'dim', threshold: 6, highlightThreshold: 9 },
-  between_tiers:     { ...base, mode: 'hide', threshold: 5.5, highlightThreshold: 8.5 },
   my_language:       { ...base, mode: 'dim', threshold: 5, source: 'local', highlightThreshold: 8 },
 }
 const manifest = []

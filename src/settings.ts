@@ -5,10 +5,7 @@ export type ScoreSource = 'global' | 'local'
 
 /**
  * Lever positions live on Steam's tier ladder: 1 = Overwhelmingly Negative ... 9 = Overwhelmingly
- * Positive (Steam's own review_score). Integer = exactly that tier. A fractional position between
- * two tiers whose percent bands differ means "this percent positive" (linearly interpolated);
- * between tiers that differ only by review count (e.g. Positive vs Very Positive) there is no
- * in-between and the lever snaps to a tier.
+ * Positive (Steam's own review_score). Levers always rest on a tier.
  */
 export interface Settings {
   mode: FilterMode
@@ -67,14 +64,9 @@ export function posToPct(pos: number): number {
   return tierAt(lo).pct + (tierAt(lo + 1).pct - tierAt(lo).pct) * frac
 }
 
-/** Snap: to a tier when close, or always when the neighbours differ only by review count. */
-export function snapPosition(pos: number, tolerance = 0.12): number {
-  const clamped = Math.min(9, Math.max(1, pos))
-  const nearest = Math.round(clamped)
-  if (Math.abs(clamped - nearest) <= tolerance) return nearest
-  const lo = Math.floor(clamped)
-  if (!hasPercentGap(lo)) return nearest
-  return Math.round(clamped * 100) / 100
+/** Levers always snap to the nearest tier. */
+export function snapPosition(pos: number): number {
+  return Math.round(Math.min(9, Math.max(1, pos)))
 }
 
 const KEY = 'sro:settings:v4'

@@ -198,41 +198,44 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
 
 /**
  * How to draw a highlight:
- *  card  – capsule that is mostly artwork (overhanging tags, hover zoom): faint glow behind it
+ *  card  – capsule that is mostly artwork, or a hero-sized card: faint glow behind it
  *  row   – compact listing row (search results, tab rows): crisp inset rectangle
- *  panel – tall text-heavy card stacked with others (category/sale pages): wings on both edges,
- *          since adjacent rectangles would fuse into one line
+ *  panel – tall card either stacked vertically with others (wings on the sides) or packed
+ *          edge-to-edge in a carousel (wings top and bottom): adjacent rectangles would fuse
  */
-function cardShape(card: HTMLElement): 'card' | 'row' | 'panel' {
+function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; axis?: 'x' | 'y' } {
   const r = card.getBoundingClientRect()
-  if (!r.width || !r.height) return 'row'
+  if (!r.width || !r.height) return { shape: 'row' }
+  const tall = r.height >= 160
+  // Edge-to-edge neighbours beside this card (events carousels): wings top/bottom, whatever the art
+  if (tall) {
+    for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
+      if (!(sib instanceof HTMLElement)) continue
+      const q = sib.getBoundingClientRect()
+      if (!q.width || !q.height) continue
+      const beside = Math.abs(q.left - r.left) > Math.abs(q.top - r.top)
+      const gap = q.left > r.left ? q.left - r.right : r.left - q.right
+      if (beside && gap >= 0 && gap < 12) return { shape: 'panel', axis: 'x' }
+      break
+    }
+  }
+  if (r.width >= 1100) return { shape: 'card' } // hero carousels: underglow
   let imgArea = 0
   for (const img of card.querySelectorAll<HTMLElement>('img, video')) {
     const ir = img.getBoundingClientRect()
     imgArea = Math.max(imgArea, ir.width * ir.height)
   }
-  if (imgArea / (r.width * r.height) > 0.5) return 'card'
-  return r.height >= 160 ? 'panel' : 'row'
-}
-
-/**
- * How this card sits against its neighbours: below/above it ('y'), beside it with normal spacing
- * ('x'), or beside it with almost no gap ('x-tight', e.g. the events carousel where adjacent
- * rectangles would fuse and Steam's own labels already break the frame).
- */
-function stacking(card: HTMLElement): { axis: 'x' | 'y'; tight: boolean } {
-  const r = card.getBoundingClientRect()
+  if (imgArea / (r.width * r.height) > 0.5) return { shape: 'card' }
+  if (!tall) return { shape: 'row' }
+  // Tall text-heavy card: wings on the sides when stacked vertically; rectangle when spaced out beside others
   for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
     if (!(sib instanceof HTMLElement)) continue
     const q = sib.getBoundingClientRect()
     if (!q.width || !q.height) continue
-    if (Math.abs(q.left - r.left) > Math.abs(q.top - r.top)) {
-      const gap = q.left > r.left ? q.left - r.right : r.left - q.right
-      return { axis: 'x', tight: gap < 12 }
-    }
-    return { axis: 'y', tight: false }
+    const beside = Math.abs(q.left - r.left) > Math.abs(q.top - r.top)
+    return beside ? { shape: 'row' } : { shape: 'panel', axis: 'y' }
   }
-  return { axis: 'y', tight: false }
+  return { shape: 'panel', axis: 'y' }
 }
 
 /** Where Steam already reserves a spot for reviews (search rows: the thumbs icon column), sit there. */
@@ -311,15 +314,10 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   // Overwhelmingly Positive gets an extra, slow orbiting light.
   if (!filtered && pick && isHighlighted(pick, settings)) {
     card.dataset.sroHighlight = toneFor(pick.score)
-    let shape = cardShape(card)
-    delete card.dataset.sroAxis
-    if (shape === 'panel') {
-      const st = stacking(card)
-      // Side-by-side cards keep the rectangle unless they're packed too tightly for one
-      if (st.axis === 'x' && !st.tight) shape = 'row'
-      else card.dataset.sroAxis = st.axis
-    }
-    card.dataset.sroShape = shape
+    const hs = highlightShape(card)
+    card.dataset.sroShape = hs.shape
+    if (hs.axis) card.dataset.sroAxis = hs.axis
+    else delete card.dataset.sroAxis
     card.style.setProperty('--sro-hl', toneColorAt(pick.score))
     if (pick.score === 9) card.dataset.sroOp = '1'
     else delete card.dataset.sroOp

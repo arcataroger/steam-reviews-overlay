@@ -40,10 +40,17 @@
 .search_result_row .responsive_search_name_combined {
   grid-template-columns: minmax(200px, 41%) minmax(85px, 30%) minmax(30px, max-content) minmax(100px, 25%);
 }
-.search_result_row .search_reviewscore { width: auto; white-space: nowrap; }
+.search_result_row .search_reviewscore {
+  width: auto; white-space: nowrap;
+  display: flex; align-items: center; gap: 6px; /* icon and label share a centre line with the date */
+}
 .search_reviewscore .sro-badge.sro-slot {
-  margin-left: 6px;
-  vertical-align: middle;
+  margin-left: 0;
+  max-width: 150px; /* never reach the price column */
+}
+.search_reviewscore .sro-badge.sro-slot .sro-line {
+  display: block; max-width: 150px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 /* Steam's narrow layout moves reviews to a 24px column beside the platform icons */
 @media (max-width: 750px) {

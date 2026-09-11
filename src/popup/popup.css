@@ -218,6 +218,7 @@ body {
   background: linear-gradient(180deg, #6e7c8e, #4a5566 45%, #343e4b 55%, #262d36);
 }
 /* Parked: centered in the gate regardless of track scale */
+.knob.parked { z-index: 3; }
 .lever.left .knob.parked { bottom: calc(var(--pad) - var(--gate)); }
 .lever.right .knob.parked { bottom: calc(var(--pad) + var(--track) + var(--gate)); }
 
@@ -243,6 +244,7 @@ body {
 .lever.right .detent { right: 0; }
 .detent.bottom { bottom: calc(var(--pad) - var(--gate) - 13px); }
 .detent.top { top: calc(var(--pad) - var(--gate) - 13px); }
+.lever.left .knob { left: 3px; }
 .lever.right .knob { right: 3px; }
 .knob i { display: block; width: 2px; height: 8px; background: rgba(0,0,0,0.45); box-shadow: 1px 0 0 rgba(255,255,255,0.12); }
 /* Engraved pointer on the handle: filter acts on everything below it, highlight on everything above */

@@ -88,11 +88,19 @@
 .sro-pct { opacity: 0.75; }
 
 /* ---------- highlight ---------- */
+/* Drawn as an overlay layer so positioned thumbnails inside the card can't cover it */
 [data-sro-highlight] {
-  outline: 2px solid var(--sro-hl);
-  outline-offset: -2px;
+  position: relative;
   box-shadow: 0 0 10px color-mix(in srgb, var(--sro-hl) 55%, transparent);
+}
+[data-sro-highlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
   border-radius: inherit;
+  box-shadow: inset 0 0 0 2px var(--sro-hl);
 }
 /* --sro-hl is set inline per card from the lever gradient; tone attrs are fallbacks */
 [data-sro-highlight="positive"] { --sro-hl: #66c0f4; }

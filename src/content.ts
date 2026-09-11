@@ -265,6 +265,7 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   if (!filtered && isHighlighted(pick, settings)) {
     card.dataset.sroHighlight = tierFor(settings.highlightThreshold).tone
     card.style.setProperty('--sro-hl', toneColorAt(settings.highlightThreshold))
+    if (getComputedStyle(card).position === 'static') card.style.position = 'relative'
   } else {
     delete card.dataset.sroHighlight
     card.style.removeProperty('--sro-hl')

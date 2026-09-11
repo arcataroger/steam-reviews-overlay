@@ -379,7 +379,7 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     }
     const r = badge.getBoundingClientRect()
     const cr = card.getBoundingClientRect()
-    const clipped = r.width === 0 || r.right > cr.right + 2 || r.bottom > cr.bottom + 2 || r.top < cr.top - 2
+    const clipped = !r.width || !r.height || !within(r, cr) // any edge, incl. the left in a row-reverse price row
     // A badge must never change the card's size (capsules in carousels size themselves from the
     // price block, and an inline label there reflows the whole row). If it did, or got clipped,
     // take it out of the flow: an absolute chip just above the price bar instead.

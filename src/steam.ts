@@ -433,6 +433,13 @@ export async function ingestSteamRequest(url: string): Promise<number> {
   const now = Date.now()
   let n = 0
   for (const it of items) {
+    // Steam echoes the requested id even when it cannot resolve it (appid comes back 0)
+    const id = it.id || it.appid
+    if (id && (it.success !== 1 || !it.summary_filtered)) {
+      // Unknown or reviewless item: remember it briefly so it does not fall through to a batch fetch
+      if (!negative.has(id)) negative.set(id, now + NEG_MS)
+      pending.delete(id)
+    }
     if (it.success !== 1 || it.item_type !== 0 || !it.appid || !it.summary_filtered) continue
     if (isNonGameType(it.type)) {
       negative.set(it.appid, now + NON_GAME_MS) // hardware, Steam's own news app, videos: never a label

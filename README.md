@@ -16,15 +16,18 @@ cards across the Steam store, so you don't have to hover every capsule.
 - Badges read like "Very Positive (83%)": Steam's label plus Steam's exact
   integer percent.
 - Toolbar popup (click the icon) styled as a two-lever throttle. The **left
-  lever** is the filter bar: games under it are just **Labeled** (default),
-  **Dimmed** (black overlay, still clickable) or **Hidden** (fade out, then
-  collapsed with `display:none` so lists reflow). Optionally treat "No user
-  reviews" as below the bar. The **right lever** is the highlight bar: games
-  at or above it can be **Outlined** (opt-in). Both levers run 0–100 % and snap
-  to Steam's named tiers (Mostly Negative 20 %, Mixed 40 %, Mostly Positive
-  70 %, Very Positive 80 %, Overwhelmingly Positive 95 %); the shared notch
-  labels sit between them and the tick on each side is clickable for that
-  lever. Settings sync via `storage.sync` and apply live to open tabs.
+  lever** sets the bar under which games are **dimmed** (black overlay, still
+  clickable) or **hidden** (fade out, then collapsed so lists reflow); a
+  Dim/Hide switch sits in its readout. At its resting position (0 %) nothing is
+  filtered. The **right lever** sets the bar above which games are outlined; at
+  its resting position (100 %) nothing is outlined. Both levers run 0–100 %
+  and snap to Steam's named tiers (Mostly Negative 20 %, Mixed 40 %, Mostly
+  Positive 70 %, Very Positive 80 %, Overwhelmingly Positive 95 %); the shared
+  notch labels sit between them and the tick on each side is clickable for
+  that lever. The rails are banded in Steam's three review colors (negative
+  under 40 %, mixed to 70 %, positive above) and the outline takes the color
+  at the lever's position. Optionally treat games with no reviews as below the
+  bar. Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
   1. Summaries already rendered on the page are reused (search rows carry the
      label, percent and count in a tooltip; the homepage embeds

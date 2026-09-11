@@ -7,7 +7,6 @@ import {
   type Settings,
   type FilterMode,
   type ScoreSource,
-  type HighlightMode,
 } from '../settings'
 import { LANG_KEY, type LangInfo } from '../lang'
 
@@ -37,16 +36,8 @@ const ui = {
 }
 const notches = $<HTMLDivElement>('#notches')
 const modeGroup = $<HTMLDivElement>('#mode')
-const modeHelp = $<HTMLParagraphElement>('#modeHelp')
-const highlightGroup = $<HTMLDivElement>('#highlight')
 const sourceGroup = $<HTMLDivElement>('#source')
 const includeUnreviewed = $<HTMLInputElement>('#includeUnreviewed')
-
-const HELP: Record<FilterMode, string> = {
-  label: 'Only show the review summary on each game. Nothing is filtered.',
-  dim: 'Darken games below the bar with a black overlay. Still clickable.',
-  hide: 'Collapse games below the bar so they disappear from lists and grids.',
-}
 
 let settings: Settings
 
@@ -79,14 +70,17 @@ for (const sp of SETPOINTS) {
   notches.appendChild(n)
 }
 
-function renderSide(side: Side, pct: number, enabled: boolean) {
+function renderSide(side: Side, pct: number) {
   const u = ui[side]
   const tier = tierFor(pct)
   const exact = tier.pct === pct
-  u.pct.textContent = `${pct}%`
-  u.tier.className = `tier ${tier.tone}`
-  u.tier.textContent = tier.name
-  if (!exact) {
+  // 0% on the left / 100% on the right = feature off
+  const off = side === 'filter' ? pct === 0 : pct >= 100
+  u.pct.textContent = off ? 'off' : `${pct}%`
+  u.pct.className = `digits ${off ? 'none' : tier.tone}`
+  u.tier.textContent = off ? (side === 'filter' ? 'nothing filtered' : 'nothing outlined') : tier.name
+  u.tier.className = `tier ${off ? '' : tier.tone}`
+  if (!exact && !off) {
     const sub = document.createElement('span')
     sub.className = 'sub'
     sub.textContent = 'between notches'
@@ -97,32 +91,22 @@ function renderSide(side: Side, pct: number, enabled: boolean) {
   u.knob.className = `knob ${tier.tone}`
   u.lever.setAttribute('aria-valuenow', String(pct))
   u.lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
-  u.lever.classList.toggle('off', !enabled)
-  u.lever.tabIndex = enabled ? 0 : -1
-  u.readout.classList.toggle('off', !enabled)
   const cls = side === 'filter' ? 'active-l' : 'active-r'
   for (const n of notches.querySelectorAll<HTMLElement>('.notch')) {
-    n.classList.toggle(cls, enabled && Number(n.dataset.pct) === pct)
+    n.classList.toggle(cls, !off && Number(n.dataset.pct) === pct)
   }
 }
 
 function render() {
-  const filtering = settings.mode !== 'label'
-  renderSide('filter', settings.threshold, filtering)
-  renderSide('highlight', settings.highlightThreshold, settings.highlight !== 'off')
+  renderSide('filter', settings.threshold)
+  renderSide('highlight', settings.highlightThreshold)
   for (const b of modeGroup.querySelectorAll<HTMLButtonElement>('button')) {
     b.setAttribute('aria-checked', String(b.dataset.mode === settings.mode))
-  }
-  modeHelp.textContent = HELP[settings.mode]
-  for (const b of highlightGroup.querySelectorAll<HTMLButtonElement>('button')) {
-    b.setAttribute('aria-checked', String(b.dataset.highlight === settings.highlight))
   }
   for (const b of sourceGroup.querySelectorAll<HTMLButtonElement>('button')) {
     b.setAttribute('aria-checked', String(b.dataset.source === settings.source))
   }
   includeUnreviewed.checked = settings.includeUnreviewed
-  includeUnreviewed.disabled = !filtering
-  document.body.classList.toggle('inactive', !filtering)
 }
 
 let saveTimer: number | undefined
@@ -192,18 +176,12 @@ wireLever('highlight')
 notches.addEventListener('click', (e) => {
   const tick = (e.target as HTMLElement).closest<HTMLElement>('.tick[data-side]')
   if (!tick) return
-  const side = tick.dataset.side as Side
-  if (ui[side].lever.classList.contains('off')) return
-  setPct(side, Number(tick.parentElement!.dataset.pct))
+  setPct(tick.dataset.side as Side, Number(tick.parentElement!.dataset.pct))
 })
 
 modeGroup.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-mode]')
   if (b) update({ mode: b.dataset.mode as FilterMode })
-})
-highlightGroup.addEventListener('click', (e) => {
-  const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-highlight]')
-  if (b) update({ highlight: b.dataset.highlight as HighlightMode })
 })
 sourceGroup.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-source]')

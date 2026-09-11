@@ -74,7 +74,7 @@ body {
   font-size: 9px; letter-spacing: 1.2px; color: #7f8b99;
   text-shadow: 0 1px 0 rgba(0,0,0,0.6);
 }
-.readouts { display: flex; gap: 8px; margin: 2px 0 12px; }
+.readouts { display: flex; gap: 8px; margin: 2px 0 18px; }
 .readout {
   flex: 1; min-width: 0;
   display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: baseline;
@@ -84,7 +84,16 @@ body {
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.06);
   transition: opacity 0.2s;
 }
-.readout .plate-title { grid-column: 1 / -1; margin-bottom: 2px; }
+.readout .plate-row { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 4px; min-height: 16px; }
+.readout.right .plate-row { justify-content: flex-end; }
+.switch { display: inline-flex; border: 1px solid #2a475e; border-radius: 3px; overflow: hidden; }
+.switch button {
+  border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 10px;
+  padding: 1px 7px; cursor: pointer; letter-spacing: 0.3px;
+}
+.switch button + button { border-left: 1px solid #2a475e; }
+.switch button[aria-checked="true"] { background: #2a475e; color: #fff; }
+.switch button:hover { color: #fff; }
 .readout.right { text-align: right; }
 .readout.right .digits { order: 2; }
 .readout.right .tier { order: 1; text-align: left; }
@@ -94,7 +103,11 @@ body {
   color: #7bd7ff;
   text-shadow: 0 0 6px rgba(102,192,244,0.7);
 }
-.readout.right .digits { color: #ffd27b; text-shadow: 0 0 6px rgba(255,190,80,0.7); }
+/* Readout digits take the review color at the lever's position */
+.digits.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.7); }
+.digits.mixed { color: var(--mixed); text-shadow: 0 0 6px rgba(185,160,116,0.7); }
+.digits.negative { color: var(--negative); text-shadow: 0 0 6px rgba(163,76,37,0.8); }
+.digits.none { color: #7f8b99; text-shadow: none; }
 .tier { font-weight: 600; font-size: 11px; line-height: 1.15; }
 .tier.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.5); }
 .tier.mixed { color: var(--mixed); text-shadow: 0 0 6px rgba(185,160,116,0.5); }
@@ -124,28 +137,36 @@ body {
 .rail {
   position: absolute; top: var(--pad); bottom: var(--pad); width: 14px;
   border-radius: 7px;
-  background: linear-gradient(90deg, #0a0e13, #161c24 50%, #0a0e13);
+  /* Steam's tone bands, bottom to top: negative <40%, mixed 40-70%, positive >=70% */
+  --bands: linear-gradient(to top,
+    var(--negative) 0 40%,
+    var(--mixed) 40% 70%,
+    var(--positive) 70% 100%);
+  background: var(--bands);
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.9), inset 0 2px 4px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+/* dark glass over the whole rail; the .fill window reveals the active zone */
+.rail::before {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(8, 12, 17, 0.82);
 }
 .lever.left .rail { left: 13px; }
 .lever.right .rail { right: 13px; }
 .fill {
-  position: absolute; left: 4px; right: 4px;
-  border-radius: 3px;
+  position: absolute; left: 0; right: 0;
+  background: var(--bands);
+  background-attachment: local;
   transition: height 0.08s linear;
+  box-shadow: inset 0 0 0 4px rgba(8, 12, 17, 0.55);
 }
+/* The fill shows the same band gradient, sized to the full rail and clipped: use fixed
+   background-size so the bands stay aligned no matter the fill height. */
+.lever .fill { background-size: 100% var(--track); }
 /* left: the filtered zone grows from the bottom */
-.lever.left .fill {
-  bottom: 4px; height: 0;
-  background: linear-gradient(180deg, var(--mixed), var(--negative));
-  box-shadow: 0 0 6px rgba(163,76,37,0.5);
-}
+.lever.left .fill { bottom: 0; height: 0; background-position: bottom; }
 /* right: the highlighted zone hangs from the top */
-.lever.right .fill {
-  top: 4px; height: 0;
-  background: linear-gradient(180deg, #ffd27b, var(--positive));
-  box-shadow: 0 0 6px rgba(255,210,123,0.5);
-}
+.lever.right .fill { top: 0; height: 0; background-position: top; }
 .notches { position: relative; margin: var(--pad) 0; }
 .notch {
   position: absolute; left: 0; right: 0; height: 0;
@@ -195,6 +216,4 @@ body {
 .knob.positive { --led: var(--positive); }
 .knob.mixed { --led: var(--mixed); }
 .knob.negative { --led: var(--negative); }
-.lever.right .knob::after { --led: #ffd27b; }
 
-body.inactive .chk { opacity: 0.45; }

@@ -60,12 +60,15 @@
 .sro-pct { opacity: 0.75; }
 
 /* ---------- highlight ---------- */
-[data-sro-highlight="border"] {
-  outline: 2px solid #66c0f4;
+[data-sro-highlight] {
+  outline: 2px solid var(--sro-hl);
   outline-offset: -2px;
-  box-shadow: 0 0 10px rgba(102, 192, 244, 0.55);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--sro-hl) 55%, transparent);
   border-radius: inherit;
 }
+[data-sro-highlight="positive"] { --sro-hl: #66c0f4; }
+[data-sro-highlight="mixed"]    { --sro-hl: #b9a074; }
+[data-sro-highlight="negative"] { --sro-hl: #a34c25; }
 
 /* ---------- filter: dim ---------- */
 [data-sro-filtered="dim"] {

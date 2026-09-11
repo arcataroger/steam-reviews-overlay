@@ -22,8 +22,8 @@ await store.waitForTimeout(7000)
 
 async function setMode(mode, threshold) {
   await popup.bringToFront()
-  await popup.click(`button[data-mode="${mode}"]`)
-  if (mode !== "label") await popup.click(`.notch[data-pct="${threshold}"] .tick.l`, { force: true })
+  if (mode !== 'label') await popup.click(`button[data-mode="${mode}"]`)
+  await popup.click(`.notch[data-pct="${threshold}"] .tick.l`, { force: true })
   await popup.waitForTimeout(400)
   await popup.screenshot({ path: `${out}/popup_${mode}.png` })
 }
@@ -42,15 +42,14 @@ for (const mode of ['dim', 'hide']) {
 }
 // highlight: outline games at/above Very Positive
 await popup.bringToFront()
-await popup.click('button[data-highlight="border"]')
 await popup.click('.notch[data-pct="80"] .tick.r', { force: true })
 await popup.waitForTimeout(400)
 await popup.screenshot({ path: `${out}/popup_highlight.png` })
 await store.bringToFront(); await store.waitForTimeout(800)
 console.log('highlight', JSON.stringify(await store.evaluate(() => document.querySelectorAll('[data-sro-highlight]').length)))
 await store.screenshot({ path: `${out}/store_highlight.png` })
-await popup.bringToFront(); await popup.click('button[data-highlight="off"]')
-await setMode('label', 40)
+await popup.bringToFront(); await popup.focus('#leverHighlight'); await popup.keyboard.press('End')
+await setMode('label', 0)
 await store.waitForTimeout(500)
 console.log('label', JSON.stringify(await store.evaluate(() => document.querySelectorAll('[data-sro-filtered]').length)))
 await ctx.close()

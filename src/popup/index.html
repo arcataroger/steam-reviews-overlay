@@ -17,49 +17,39 @@
         <span class="screw bl"></span><span class="screw br"></span>
         <div class="readouts">
           <div class="readout left" id="readoutFilter">
-            <div class="plate-title">FILTER UNDER</div>
-            <span class="digits" id="pctFilter">40%</span>
+            <div class="plate-row">
+              <div class="switch" role="radiogroup" id="mode" aria-label="What to do with games under the left lever">
+                <button type="button" data-mode="dim" role="radio">Dim</button>
+                <button type="button" data-mode="hide" role="radio">Hide</button>
+              </div>
+              <span class="plate-title">UNDER</span>
+            </div>
+            <span class="digits" id="pctFilter">0%</span>
             <span class="tier" id="tierFilter"></span>
           </div>
           <div class="readout right" id="readoutHighlight">
-            <div class="plate-title">HIGHLIGHT ABOVE</div>
-            <span class="digits" id="pctHighlight">95%</span>
+            <div class="plate-row">
+              <span class="plate-title">OUTLINE ABOVE</span>
+            </div>
+            <span class="digits" id="pctHighlight">100%</span>
             <span class="tier" id="tierHighlight"></span>
           </div>
         </div>
         <div id="throttle" class="throttle">
           <div id="leverFilter" class="lever left" role="slider" tabindex="0"
                aria-label="Filter games under this positive-review percentage"
-               aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="rail"><div class="fill" id="fillFilter"></div></div>
             <div class="knob" id="knobFilter"><i></i><i></i><i></i></div>
           </div>
           <div id="notches" class="notches"></div>
           <div id="leverHighlight" class="lever right" role="slider" tabindex="0"
                aria-label="Highlight games above this positive-review percentage"
-               aria-valuemin="0" aria-valuemax="100" aria-valuenow="95">
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
             <div class="rail"><div class="fill" id="fillHighlight"></div></div>
             <div class="knob" id="knobHighlight"><i></i><i></i><i></i></div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title">Games under the left lever should be</div>
-      <div class="seg" role="radiogroup" id="mode">
-        <button type="button" data-mode="label" role="radio">Labeled</button>
-        <button type="button" data-mode="dim" role="radio">Dimmed</button>
-        <button type="button" data-mode="hide" role="radio">Hidden</button>
-      </div>
-      <p id="modeHelp" class="help"></p>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title">Games above the right lever should be</div>
-      <div class="seg" role="radiogroup" id="highlight">
-        <button type="button" data-highlight="off" role="radio">Left alone</button>
-        <button type="button" data-highlight="border" role="radio">Outlined</button>
       </div>
     </section>
 

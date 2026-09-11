@@ -5,7 +5,7 @@ import { detectLang, LANG_KEY, type LangInfo } from './lang'
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 const lang: LangInfo = detectLang()
-import { loadSettings, onSettingsChange, isFiltered, isHighlighted, DEFAULT_SETTINGS, type Settings } from './settings'
+import { loadSettings, onSettingsChange, isFiltered, isHighlighted, tierFor, DEFAULT_SETTINGS, type Settings } from './settings'
 
 let settings: Settings = DEFAULT_SETTINGS
 
@@ -236,7 +236,8 @@ const hideTimers = new WeakMap<HTMLElement, number>()
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   const pick = chosen(summary)
   const filtered = isFiltered(pick, settings)
-  if (!filtered && isHighlighted(pick, settings)) card.dataset.sroHighlight = settings.highlight
+  // Outline color = the review color at the lever's position (Steam's three tones)
+  if (!filtered && isHighlighted(pick, settings)) card.dataset.sroHighlight = tierFor(settings.highlightThreshold).tone
   else delete card.dataset.sroHighlight
   const want = filtered ? settings.mode : null
   const cur = card.dataset.sroFiltered

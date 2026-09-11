@@ -1,31 +1,27 @@
 /** User settings shared between the popup and the content script. */
 
-export type FilterMode = 'label' | 'dim' | 'hide'
+export type FilterMode = 'dim' | 'hide'
 export type ScoreSource = 'global' | 'local'
-export type HighlightMode = 'off' | 'border'
 
 export interface Settings {
-  /** What to do with games whose positive-review percentage is below `threshold`. */
+  /** What to do with games under `threshold`. */
   mode: FilterMode
-  /** 0-100. Games with (positive / total * 100) < threshold are filtered. */
+  /** 0-100. Games under this are dimmed/hidden; 0 filters nothing. */
   threshold: number
   /** Also filter games with no reviews at all. */
   includeUnreviewed: boolean
   /** Which Steam score the filter looks at: all languages, or the user's language. */
   source: ScoreSource
-  /** Highlight games at or above `highlightThreshold`. */
-  highlight: HighlightMode
-  /** 0-100, same notch semantics as `threshold`. */
+  /** 0-100. Games at/above this are outlined; 100 highlights nothing. */
   highlightThreshold: number
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-  mode: 'label',
-  threshold: 40, // Mixed
+  mode: 'dim',
+  threshold: 0,
   includeUnreviewed: false,
   source: 'global',
-  highlight: 'off',
-  highlightThreshold: 95, // Overwhelmingly Positive
+  highlightThreshold: 100,
 }
 
 /**
@@ -68,8 +64,15 @@ const KEY = 'sro:settings:v2'
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 const area = () => ext.storage.sync ?? ext.storage.local
 
-function normalize(raw: Partial<Settings> | undefined): Settings {
-  const s = { ...DEFAULT_SETTINGS, ...(raw ?? {}) }
+function normalize(raw: (Partial<Settings> & { mode?: string; highlight?: string }) | undefined): Settings {
+  const s = { ...DEFAULT_SETTINGS, ...(raw ?? {}) } as Settings & { highlight?: string }
+  // Migrate older shapes: 'label' mode -> lever at 0; highlight 'off' -> lever at 100
+  if ((s.mode as string) === 'label') {
+    s.mode = 'dim'
+    s.threshold = 0
+  }
+  if (s.highlight === 'off') s.highlightThreshold = 100
+  delete s.highlight
   s.threshold = Math.min(100, Math.max(0, Math.round(Number(s.threshold) || 0)))
   s.highlightThreshold = Math.min(100, Math.max(0, Math.round(Number(s.highlightThreshold) || 0)))
   return s
@@ -112,15 +115,15 @@ export function meetsBar(summary: Judged, threshold: number): boolean | null {
   return summary.pct >= threshold
 }
 
-/** Below the filter bar? */
+/** Below the filter bar? At 0% only unreviewed games (if opted in) can be filtered. */
 export function isFiltered(summary: Judged, s: Settings): boolean {
-  if (s.mode === 'label') return false
   const ok = meetsBar(summary, s.threshold)
-  return ok === null ? s.includeUnreviewed : !ok
+  if (ok === null) return s.includeUnreviewed
+  return s.threshold > 0 && !ok
 }
 
-/** At or above the highlight bar? */
+/** At or above the highlight bar? 100% means the feature is off. */
 export function isHighlighted(summary: Judged, s: Settings): boolean {
-  if (s.highlight === 'off') return false
+  if (s.highlightThreshold >= 100) return false
   return meetsBar(summary, s.highlightThreshold) === true
 }

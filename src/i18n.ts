@@ -9,9 +9,24 @@ export function setFallbackCatalog(cat: typeof fallback) {
   fallback = cat
 }
 
+/** QA override: when set (popup `?locale=xx`), the loaded catalog wins over the browser locale. */
+let forced = false
+export async function forceLocale(locale: string): Promise<boolean> {
+  try {
+    const url = ext?.runtime?.getURL?.(`_locales/${locale}/messages.json`)
+    if (!url) return false
+    const cat = await (await fetch(url)).json()
+    fallback = cat
+    forced = true
+    return true
+  } catch {
+    return false
+  }
+}
+
 export function t(key: string, ...subs: (string | number)[]): string {
   const s = subs.map(String)
-  const viaApi = ext?.i18n?.getMessage?.(key, s)
+  const viaApi = forced ? undefined : ext?.i18n?.getMessage?.(key, s)
   if (viaApi) return viaApi
   const entry = fallback?.[key]
   if (!entry) return key

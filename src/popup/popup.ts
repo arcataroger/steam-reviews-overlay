@@ -14,8 +14,13 @@ import {
 } from '../settings'
 import { LANG_KEY, detectLang, type LangInfo } from '../lang'
 import { GRADIENT_CSS, toneColorAt } from '../tonecolor'
-import { t, tierName, tierRule } from '../i18n'
+import { t, tierName, tierRule, forceLocale } from '../i18n'
 import { STATUS_KEY, type Status } from '../steam'
+
+// QA: /src/popup/index.html?locale=de renders the popup in that catalog regardless of browser locale
+const qaLocale = new URLSearchParams(location.search).get('locale')
+if (qaLocale) await forceLocale(qaLocale)
+if (qaLocale === 'ar') document.documentElement.dir = 'rtl'
 
 // Static strings
 for (const el of document.querySelectorAll<HTMLElement>('[data-i18n]')) el.textContent = t(el.dataset.i18n!)

@@ -103,11 +103,9 @@ body {
   color: #7bd7ff;
   text-shadow: 0 0 6px rgba(102,192,244,0.7);
 }
-/* Readout digits take the review color at the lever's position */
-.digits.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.7); }
-.digits.mixed { color: var(--mixed); text-shadow: 0 0 6px rgba(185,160,116,0.7); }
-.digits.negative { color: var(--negative); text-shadow: 0 0 6px rgba(163,76,37,0.8); }
-.digits.none { color: #7f8b99; text-shadow: none; }
+/* Readout digits take the gradient color at the lever's position (inline --c) */
+.digits { color: var(--c, #7bd7ff); text-shadow: 0 0 6px color-mix(in srgb, var(--c, #7bd7ff) 70%, transparent); }
+.digits.none { --c: #7f8b99; text-shadow: none; }
 .tier { font-weight: 600; font-size: 11px; line-height: 1.15; }
 .tier.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.5); }
 .tier.mixed { color: var(--mixed); text-shadow: 0 0 6px rgba(185,160,116,0.5); }
@@ -137,11 +135,8 @@ body {
 .rail {
   position: absolute; top: var(--pad); bottom: var(--pad); width: 14px;
   border-radius: 7px;
-  /* Steam's tone bands, bottom to top: negative <40%, mixed 40-70%, positive >=70% */
-  --bands: linear-gradient(to top,
-    var(--negative) 0 40%,
-    var(--mixed) 40% 70%,
-    var(--positive) 70% 100%);
+  /* Steam's three review colors at their band centers, blended between (set from tonecolor.ts) */
+  --bands: var(--tone-gradient);
   background: var(--bands);
   box-shadow: inset 0 0 0 1px rgba(0,0,0,0.9), inset 0 2px 4px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.08);
   overflow: hidden;
@@ -208,12 +203,9 @@ body {
 .knob i { display: block; width: 2px; height: 8px; background: rgba(0,0,0,0.45); box-shadow: 1px 0 0 rgba(255,255,255,0.12); }
 .knob::after {
   content: ""; position: absolute; top: 6px; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--led, #7bd7ff);
-  box-shadow: 0 0 5px var(--led, #7bd7ff);
+  background: var(--c, #7bd7ff);
+  box-shadow: 0 0 5px var(--c, #7bd7ff);
 }
 .lever.left .knob::after { right: 4px; }
 .lever.right .knob::after { left: 4px; }
-.knob.positive { --led: var(--positive); }
-.knob.mixed { --led: var(--mixed); }
-.knob.negative { --led: var(--negative); }
 

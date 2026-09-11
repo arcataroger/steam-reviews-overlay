@@ -2,6 +2,7 @@ import css from './content.css?inline'
 import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, ingestSteamRequest, type ReviewSummary, type Score } from './steam'
 import { seedFromSearchRows, seedFromInlineJson } from './seed'
 import { detectLang, LANG_KEY, type LangInfo } from './lang'
+import { toneColorAt } from './tonecolor'
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 const lang: LangInfo = detectLang()
@@ -236,9 +237,14 @@ const hideTimers = new WeakMap<HTMLElement, number>()
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   const pick = chosen(summary)
   const filtered = isFiltered(pick, settings)
-  // Outline color = the review color at the lever's position (Steam's three tones)
-  if (!filtered && isHighlighted(pick, settings)) card.dataset.sroHighlight = tierFor(settings.highlightThreshold).tone
-  else delete card.dataset.sroHighlight
+  // Outline color is sampled from the lever gradient at the lever's position
+  if (!filtered && isHighlighted(pick, settings)) {
+    card.dataset.sroHighlight = tierFor(settings.highlightThreshold).tone
+    card.style.setProperty('--sro-hl', toneColorAt(settings.highlightThreshold))
+  } else {
+    delete card.dataset.sroHighlight
+    card.style.removeProperty('--sro-hl')
+  }
   const want = filtered ? settings.mode : null
   const cur = card.dataset.sroFiltered
   const t = hideTimers.get(card)
@@ -318,6 +324,7 @@ function revalidateCards() {
     delete card.dataset.sroScore
     delete card.dataset.sroFiltered
     delete card.dataset.sroHighlight
+    card.style.removeProperty('--sro-hl')
     card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}[data-sro-appid="${appid}"]`).forEach((n) => n.remove())
   }
 }

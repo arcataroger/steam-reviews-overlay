@@ -66,6 +66,7 @@
   box-shadow: 0 0 10px color-mix(in srgb, var(--sro-hl) 55%, transparent);
   border-radius: inherit;
 }
+/* --sro-hl is set inline per card from the lever gradient; tone attrs are fallbacks */
 [data-sro-highlight="positive"] { --sro-hl: #66c0f4; }
 [data-sro-highlight="mixed"]    { --sro-hl: #b9a074; }
 [data-sro-highlight="negative"] { --sro-hl: #a34c25; }

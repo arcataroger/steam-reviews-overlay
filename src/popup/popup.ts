@@ -9,6 +9,9 @@ import {
   type ScoreSource,
 } from '../settings'
 import { LANG_KEY, type LangInfo } from '../lang'
+import { GRADIENT_CSS, toneColorAt } from '../tonecolor'
+
+document.documentElement.style.setProperty('--tone-gradient', GRADIENT_CSS)
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T
@@ -77,7 +80,10 @@ function renderSide(side: Side, pct: number) {
   // 0% on the left / 100% on the right = feature off
   const off = side === 'filter' ? pct === 0 : pct >= 100
   u.pct.textContent = off ? 'off' : `${pct}%`
-  u.pct.className = `digits ${off ? 'none' : tier.tone}`
+  u.pct.className = `digits ${off ? 'none' : ''}`
+  const c = toneColorAt(pct)
+  u.pct.style.setProperty('--c', c)
+  u.knob.style.setProperty('--c', c)
   u.tier.textContent = off ? (side === 'filter' ? 'nothing filtered' : 'nothing outlined') : tier.name
   u.tier.className = `tier ${off ? '' : tier.tone}`
   if (!exact && !off) {
@@ -88,7 +94,7 @@ function renderSide(side: Side, pct: number) {
   }
   u.fill.style.height = side === 'filter' ? `${pct}%` : `${100 - pct}%`
   u.knob.style.bottom = `${pct}%`
-  u.knob.className = `knob ${tier.tone}`
+  u.knob.className = 'knob'
   u.lever.setAttribute('aria-valuenow', String(pct))
   u.lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
   const cls = side === 'filter' ? 'active-l' : 'active-r'

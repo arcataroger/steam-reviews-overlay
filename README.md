@@ -24,9 +24,10 @@ cards across the Steam store, so you don't have to hover every capsule.
   and snap to Steam's named tiers (Mostly Negative 20 %, Mixed 40 %, Mostly
   Positive 70 %, Very Positive 80 %, Overwhelmingly Positive 95 %); the shared
   notch labels sit between them and the tick on each side is clickable for
-  that lever. The rails are banded in Steam's three review colors (negative
-  under 40 %, mixed to 70 %, positive above) and the outline takes the color
-  at the lever's position. Optionally treat games with no reviews as below the
+  that lever. The rails carry a gradient through Steam's three review colors
+  (solid negative to 20 %, mixed at 55 %, solid positive from 85 %, blended
+  between) and the outline, readout and knob light sample that gradient at
+  the lever's position. Optionally treat games with no reviews as below the
   bar. Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
   1. Summaries already rendered on the page are reused (search rows carry the

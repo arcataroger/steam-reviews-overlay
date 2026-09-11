@@ -119,13 +119,14 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
 
 const SUMMARY_RE = /^\s*(Overwhelmingly |Very |Mostly )?(Positive|Negative|Mixed)\b/i
 
-/** Does the card already show Steam's own textual review summary (e.g. expanded sale cards)? */
-function hasNativeSummary(card: HTMLElement): boolean {
+/** Steam's own textual review summary on the card (expanded sale cards, featured capsules), if any. */
+function nativeSummaryEl(card: HTMLElement): HTMLElement | null {
   for (const el of card.querySelectorAll<HTMLElement>('[class*="review" i]:not(.sro-badge)')) {
-    if (SUMMARY_RE.test(el.textContent ?? '') && el.getClientRects().length) return true
+    if (SUMMARY_RE.test(el.textContent ?? '') && el.getClientRects().length) return el
   }
-  return false
+  return null
 }
+const hasNativeSummary = (card: HTMLElement) => !!nativeSummaryEl(card)
 
 function findPriceEl(card: HTMLElement): HTMLElement | null {
   for (const sel of PRICE_SELECTORS) {
@@ -222,8 +223,17 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   card.dataset.sroScore = String(pick?.score ?? 0)
   applyFilter(card, summary)
   // Cards that already show Steam's own review text (featured capsules, expanded sale cards)
-  // still get filtered/highlighted, just no second label.
-  if (hasNativeSummary(card)) return
+  // still get filtered/highlighted. They only get our label when the local and global labels
+  // disagree: Steam shows one of them, and the other is what makes the filter make sense.
+  const native = nativeSummaryEl(card)
+  if (native) {
+    const mismatch = summary.local && summary.global && summary.local.label !== summary.global.label
+    if (!mismatch) return
+    const badge = makeBadge(summary)
+    badge.classList.add('sro-inline', 'sro-beside-native')
+    native.insertAdjacentElement('afterend', badge)
+    return
+  }
   const badge = makeBadge(summary)
 
   const slot = findReviewSlot(card)

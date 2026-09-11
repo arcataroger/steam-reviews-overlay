@@ -63,6 +63,9 @@
   .search_reviewscore .sro-badge.sro-slot { margin-left: 6px; }
 }
 
+/* Beside Steam's own summary text on a card whose local and global labels differ */
+.sro-badge.sro-beside-native { margin-left: 10px; vertical-align: middle; }
+
 /* Placed inline next to a price element */
 .sro-badge.sro-inline {
   margin-left: 8px;

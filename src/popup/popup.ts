@@ -64,7 +64,18 @@ for (const sp of SETPOINTS) {
   n.className = `notch ${sp.tone}`
   n.dataset.pct = String(sp.pct)
   n.style.bottom = `${sp.pct}%`
-  n.innerHTML = `<div class="tick l" data-side="filter"></div><span>${sp.name}<b>${sp.pct}%</b></span><div class="tick r" data-side="highlight"></div>`
+  const tl = document.createElement('div')
+  tl.className = 'tick l'
+  tl.dataset.side = 'filter'
+  const label = document.createElement('span')
+  label.textContent = sp.name
+  const b = document.createElement('b')
+  b.textContent = `${sp.pct}%`
+  label.appendChild(b)
+  const tr = document.createElement('div')
+  tr.className = 'tick r'
+  tr.dataset.side = 'highlight'
+  n.append(tl, label, tr)
   notches.appendChild(n)
 }
 
@@ -74,7 +85,13 @@ function renderSide(side: Side, pct: number, enabled: boolean) {
   const exact = tier.pct === pct
   u.pct.textContent = `${pct}%`
   u.tier.className = `tier ${tier.tone}`
-  u.tier.innerHTML = exact ? tier.name : `${tier.name}<span class="sub">between notches</span>`
+  u.tier.textContent = tier.name
+  if (!exact) {
+    const sub = document.createElement('span')
+    sub.className = 'sub'
+    sub.textContent = 'between notches'
+    u.tier.appendChild(sub)
+  }
   u.fill.style.height = side === 'filter' ? `${pct}%` : `${100 - pct}%`
   u.knob.style.bottom = `${pct}%`
   u.knob.className = `knob ${tier.tone}`

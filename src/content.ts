@@ -121,8 +121,9 @@ const SUMMARY_RE = /^\s*(Overwhelmingly |Very |Mostly )?(Positive|Negative|Mixed
 
 /** Steam's own textual review summary on the card (expanded sale cards, featured capsules), if any. */
 function nativeSummaryEl(card: HTMLElement): HTMLElement | null {
+  // Presence in the DOM is what matters: a hidden carousel slide's summary shows once the slide does.
   for (const el of card.querySelectorAll<HTMLElement>('[class*="review" i]:not(.sro-badge)')) {
-    if (SUMMARY_RE.test(el.textContent ?? '') && el.getClientRects().length) return el
+    if (SUMMARY_RE.test(el.textContent ?? '')) return el
   }
   return null
 }
@@ -339,10 +340,14 @@ const shapeWatcher = new ResizeObserver((entries) => {
     const appid = cardsByAppId.get(card)
     const s = appid ? peekCached(appid) : undefined
     if (!s || !card.isConnected) continue
-    // A lifted corner chip was measured against the old layout: re-place it. Otherwise just re-derive the shape.
+    // A lifted corner chip was measured against the old layout: re-place it. Otherwise re-derive the
+    // shape and make sure the badge still matches (a slide that just became visible may need one).
     const chip = card.querySelector<HTMLElement>(`:scope > .${BADGE_CLASS}.sro-corner`)
     if (chip?.style.bottom) placeBadge(card, s)
-    else applyFilter(card, s)
+    else {
+      applyFilter(card, s)
+      if (appid) reconcileBadge(card, appid)
+    }
   }
 })
 
@@ -449,6 +454,17 @@ function attach(card: HTMLElement, appid: number) {
   unsubs.set(card, unsub)
 }
 
+/** Make the card's badge match its current state: missing badge, or a plain label beside Steam's own text. */
+function reconcileBadge(card: HTMLElement, appid: number) {
+  if (card.dataset.sroFiltered === 'hide' || !card.getClientRects().length) return
+  const badge = card.querySelector<HTMLElement>(`.${BADGE_CLASS}`)
+  const native = hasNativeSummary(card)
+  const stale = (!badge && !native) || (badge && native && !badge.classList.contains('sro-beside-native'))
+  if (!stale) return
+  const cached = peekCached(appid)
+  if (cached) placeBadge(card, cached)
+}
+
 function revalidateCards() {
   for (const [card, appid] of cardsByAppId) {
     if (!card.isConnected) {
@@ -459,10 +475,7 @@ function revalidateCards() {
     if (ids.size === 1 && ids.has(appid)) {
       // Steam re-renders capsule contents (hover microtrailers, rotating carousels), which can
       // drop our badge while the card itself survives. Put it back from cache.
-      if (!card.querySelector(`.${BADGE_CLASS}`) && !hasNativeSummary(card)) {
-        const cached = peekCached(appid)
-        if (cached) placeBadge(card, cached)
-      }
+      reconcileBadge(card, appid)
       continue
     }
     release(card)

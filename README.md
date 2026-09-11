@@ -128,6 +128,7 @@ Screenshot galleries are on demand only (not part of the test run):
 
 ```sh
 npm run shots:gallery      # popup states, store modes, mobile → ./shots
+node scripts/build-gallery.mjs ./shots ./shots/gallery.html   # assemble the contact sheet
 npm run shots:locales      # all 30 languages × every screen, with overlap checks → ./shots/matrix
 npm run demo               # open a visible Chromium with the extension loaded
 npm run dev                # CRXJS dev server: rebuilds dist/chrome and hot-reloads the demo browser

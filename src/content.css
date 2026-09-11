@@ -49,12 +49,17 @@
 @media (max-width: 750px) {
   /* Keep desktop's order (OS icons, then the review label) instead of Steam's reviews-first swap */
   html.responsive .search_result_row .responsive_search_name_combined {
-    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+    grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr) auto;
     grid-template-areas:
       "title title title price"
       "platforms reviews reviews price";
   }
-  html.responsive .search_result_row .search_reviewscore { margin-left: 10px; }
+  /* The label may be ellipsized rather than ever pushing into the price */
+  html.responsive .search_result_row .search_reviewscore {
+    margin-left: 10px; padding-right: 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  html.responsive .search_reviewscore .sro-badge.sro-slot,
+  html.responsive .search_reviewscore .sro-badge.sro-slot .sro-line { display: inline; }
   .search_reviewscore .sro-badge.sro-slot { margin-left: 6px; }
 }
 

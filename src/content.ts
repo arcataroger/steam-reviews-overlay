@@ -148,10 +148,13 @@ function line(sc: Score, icon: string, scope: string, cls: string): HTMLSpanElem
   const l = document.createElement('span')
   l.className = `sro-line ${cls} sro-${toneFor(sc.score)}`
   l.title = formatTooltip(sc, scope)
-  const i = document.createElement('span')
-  i.className = 'sro-ico'
-  i.textContent = icon
-  l.append(i, document.createTextNode(sc.label || 'Not enough reviews'))
+  if (icon) {
+    const i = document.createElement('span')
+    i.className = 'sro-ico'
+    i.textContent = icon
+    l.appendChild(i)
+  }
+  l.appendChild(document.createTextNode(sc.label || 'Not enough reviews'))
   return l
 }
 
@@ -164,8 +167,20 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
     b.dataset.sroScore = String(pick.score)
     if (pick.pct !== null) b.dataset.sroPct = String(pick.pct)
   }
-  if (summary.local) b.appendChild(line(summary.local, lang.flag, lang.name, 'sro-local'))
-  if (summary.global) b.appendChild(line(summary.global, '🌐', 'All languages', 'sro-global'))
+  const { local, global } = summary
+  if (local && global && local.label === global.label) {
+    // Same label either way: one plain line, no icon. Tooltip still spells out both.
+    const l = line(global, '', 'All languages', 'sro-both')
+    l.title = `${formatTooltip(local, lang.name)}\n${formatTooltip(global, 'All languages')}`
+    b.appendChild(l)
+  } else if (local && global) {
+    b.appendChild(line(local, lang.flag, lang.name, 'sro-local'))
+    b.appendChild(line(global, '🌐', 'All languages', 'sro-global'))
+  } else if (global) {
+    b.appendChild(line(global, '', 'All languages', 'sro-global'))
+  } else if (local) {
+    b.appendChild(line(local, '', lang.name, 'sro-local'))
+  }
   return b
 }
 

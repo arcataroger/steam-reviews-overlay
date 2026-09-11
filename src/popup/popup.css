@@ -217,7 +217,9 @@ body {
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.7);
   background: linear-gradient(180deg, #6e7c8e, #4a5566 45%, #343e4b 55%, #262d36);
 }
-.knob.parked::after { background: #3a4351; box-shadow: none; }
+/* Parked: centered in the gate regardless of track scale */
+.lever.left .knob.parked { bottom: calc(var(--pad) - var(--gate)); }
+.lever.right .knob.parked { bottom: calc(var(--pad) + var(--track) + var(--gate)); }
 
 /* Detent: a recessed parking gate at the end of the track, big enough to hold the whole handle.
    Gray crosshatch marks it as the OFF position. */
@@ -248,11 +250,5 @@ body {
 .lever.left .knob .arrow { border-top: 6px solid rgba(0,0,0,0.55); filter: drop-shadow(0 1px 0 rgba(255,255,255,0.15)); }
 .lever.right .knob .arrow { border-bottom: 6px solid rgba(0,0,0,0.55); filter: drop-shadow(0 -1px 0 rgba(255,255,255,0.15)); }
 .knob.parked .arrow { opacity: 0.5; }
-.knob::after {
-  content: ""; position: absolute; top: 6px; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--c, #7bd7ff);
-  box-shadow: 0 0 5px var(--c, #7bd7ff);
-}
-.lever.left .knob::after { right: 4px; }
-.lever.right .knob::after { left: 4px; }
+
 

@@ -35,12 +35,22 @@
 .sro-line.sro-none     { color: var(--sro-none); }
 .sro-ico { font-size: 10px; line-height: 1; opacity: 0.9; }
 
-/* Search result rows: next to Steam's own review icon, in its column */
+/* Search result rows: next to Steam's own review icon, in its column. Steam sizes that grid
+   column at 4% (30px, icon only); let it grow to fit the label so it never runs into the price. */
+.search_result_row .responsive_search_name_combined {
+  grid-template-columns: minmax(200px, 41%) minmax(85px, 30%) minmax(30px, max-content) minmax(100px, 25%);
+}
+.search_result_row .search_reviewscore { width: auto; white-space: nowrap; }
 .search_reviewscore .sro-badge.sro-slot {
   margin-left: 6px;
   vertical-align: middle;
 }
-.search_result_row .search_reviewscore { white-space: nowrap; }
+/* Steam's narrow layout moves reviews to a 24px column beside the platform icons */
+@media (max-width: 750px) {
+  html.responsive .search_result_row .responsive_search_name_combined {
+    grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr) auto;
+  }
+}
 
 /* Placed inline next to a price element */
 .sro-badge.sro-inline {

@@ -69,7 +69,9 @@ cards across the Steam store, so you don't have to hover every capsule.
   are labeled with Steam's text ("3 user reviews", "No user reviews") and are
   never filtered, so new and small releases aren't penalized.
 
-- Localized into every language Steam supports (30 locales under `_locales/`).
+- Localized into every language Steam supports (30 locales under `_locales/`),
+  including the extension name. "Steam" itself stays "Steam" in every locale,
+  as it does on Valve's own store.
   The nine review labels in the popup are pulled from Steam itself per
   language (`node --experimental-strip-types scripts/steam-labels.mjs`), and
   the badges on the store show Steam's own localized label strings from the

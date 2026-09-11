@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "Steam Reviews Overlay"
+    "message": "Sobreposição de análises do Steam"
   },
   "extDescription": {
     "message": "Mostra o resumo das análises (\"Muito positivas\", \"Neutras\"...) em todos os jogos da loja Steam sem precisar passar o mouse, e permite escurecer, ocultar ou contornar jogos pela nota das análises."

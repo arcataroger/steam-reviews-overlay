@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "Steam Reviews Overlay"
+    "message": "Overlay recensioni Steam"
   },
   "extDescription": {
     "message": "Mostra il riepilogo delle recensioni (\"Molto positiva\", \"Nella media\"...) su ogni gioco dello store di Steam senza passarci sopra col mouse, e permette di oscurare, nascondere o evidenziare i giochi in base al punteggio delle recensioni."

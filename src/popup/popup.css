@@ -247,6 +247,9 @@ body {
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.7);
   background: linear-gradient(180deg, #6e7c8e, #4a5566 45%, #343e4b 55%, #262d36);
 }
+/* Briefly lit when the other lever shoves it along */
+.knob.pushed { box-shadow: 0 0 0 2px rgba(255,255,255,0.45), 0 3px 8px rgba(0,0,0,0.8); }
+
 /* Parked: centered in the gate regardless of track scale */
 .knob.parked { z-index: 3; }
 .lever.left .knob.parked { bottom: calc(var(--pad) - var(--gate)); }

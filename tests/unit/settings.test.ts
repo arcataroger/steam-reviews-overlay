@@ -11,6 +11,7 @@ import {
   DEFAULT_SETTINGS,
   OFF_FILTER,
   OFF_HIGHLIGHT,
+  reconcile,
   type Settings,
 } from '../../src/settings'
 
@@ -89,5 +90,22 @@ describe('filter and highlight', () => {
     expect(isFiltered(game(5, 50), s({ threshold: 5 }))).toBe(false)
     expect(isHighlighted(game(8, 90), s({ highlightThreshold: 8 }))).toBe(true)
     expect(isHighlighted(game(7, 90), s({ highlightThreshold: 8 }))).toBe(false)
+  })
+})
+
+describe('levers never invert', () => {
+  it('moving the filter above the highlight pushes the highlight up', () => {
+    const r = reconcile(s({ threshold: 8, highlightThreshold: 5 }), 'filter')
+    expect(r.highlightThreshold).toBe(8)
+  })
+  it('moving the highlight below the filter pushes the filter down', () => {
+    const r = reconcile(s({ threshold: 8, highlightThreshold: 5 }), 'highlight')
+    expect(r.threshold).toBe(5)
+  })
+  it('leaves valid or parked states alone', () => {
+    expect(reconcile(s({ threshold: 5, highlightThreshold: 8 }), 'filter')).toEqual(s({ threshold: 5, highlightThreshold: 8 }))
+    expect(reconcile(s({ threshold: 5, highlightThreshold: 5 }), 'filter').highlightThreshold).toBe(5)
+    expect(reconcile(s({ threshold: OFF_FILTER, highlightThreshold: 2 }), 'highlight').threshold).toBe(OFF_FILTER)
+    expect(reconcile(s({ threshold: 8, highlightThreshold: OFF_HIGHLIGHT }), 'filter').highlightThreshold).toBe(OFF_HIGHLIGHT)
   })
 })

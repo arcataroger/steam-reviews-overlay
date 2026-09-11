@@ -2,6 +2,7 @@ import {
   loadSettings,
   saveSettings,
   snapPosition,
+  reconcile,
   posToPct,
   tierFor,
   TIERS,
@@ -160,13 +161,21 @@ function update(patch: Partial<Settings>) {
   saveTimer = window.setTimeout(() => void saveSettings(settings), 100)
 }
 
-/** `raw` is a ladder position (1..9) that may run past the ends into the gates; always snaps to a tier. */
+/** `raw` is a ladder position (1..9) that may run past the ends into the gates; always snaps to a tier.
+ *  Moving one lever past the other pushes the other along (highlight never sits below filter). */
 function setPos(side: Side, raw: number) {
   let v: number
   if (side === 'filter' && raw <= 0.6) v = OFF_FILTER
   else if (side === 'highlight' && raw >= 9.4) v = OFF_HIGHLIGHT
   else v = snapPosition(raw)
-  update({ [KEY[side]]: v } as Partial<Settings>)
+  const next = reconcile({ ...settings, [KEY[side]]: v }, side)
+  const pushed = side === 'filter' ? next.highlightThreshold !== settings.highlightThreshold : next.threshold !== settings.threshold
+  update(next)
+  if (pushed) {
+    const other = ui[side === 'filter' ? 'highlight' : 'filter'].knob
+    other.classList.add('pushed')
+    setTimeout(() => other.classList.remove('pushed'), 250)
+  }
 }
 
 /* --- pointer: drag either lever along its track --- */

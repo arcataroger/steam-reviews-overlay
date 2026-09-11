@@ -163,6 +163,17 @@ export function isHighlighted(summary: Judged, s: Settings): boolean {
   return meetsBar(summary, s.highlightThreshold) === true
 }
 
+/**
+ * Keep the highlight bar at or above the filter bar (a highlight below the filter could never show,
+ * since filtered games are never outlined). The lever the user moved wins and pushes the other.
+ */
+export function reconcile(s: Settings, moved: 'filter' | 'highlight'): Settings {
+  const filterOn = s.threshold > OFF_FILTER
+  const highlightOn = s.highlightThreshold < OFF_HIGHLIGHT
+  if (!filterOn || !highlightOn || s.highlightThreshold >= s.threshold) return s
+  return moved === 'filter' ? { ...s, highlightThreshold: s.threshold } : { ...s, threshold: s.highlightThreshold }
+}
+
 /** Tone at a position (for colors): the tier at or just below it. */
 export function tierFor(pos: number): Tier {
   return tierAt(Math.max(1, Math.floor(Math.min(9, pos))))

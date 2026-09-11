@@ -219,10 +219,13 @@ body {
 }
 .notch span b { white-space: nowrap; }
 .notch span b { font-weight: 400; opacity: 0.5; font-size: 8.5px; letter-spacing: 0.2px; }
-.notch.active-l .tick.l::before, .notch.active-r .tick.r::after { background: #dfe7ef; box-shadow: 0 0 6px rgba(255,255,255,0.5); }
+/* When a lever rests on a notch, its tick lights up in the same color as the label */
 .notch.active-l.positive span, .notch.active-r.positive span { color: var(--positive); }
 .notch.active-l.mixed span, .notch.active-r.mixed span { color: var(--mixed); }
 .notch.active-l.negative span, .notch.active-r.negative span { color: var(--negative); }
+.notch.positive.active-l .tick.l::before, .notch.positive.active-r .tick.r::after { background: var(--positive); box-shadow: 0 0 6px color-mix(in srgb, var(--positive) 60%, transparent); }
+.notch.mixed.active-l .tick.l::before, .notch.mixed.active-r .tick.r::after { background: var(--mixed); box-shadow: 0 0 6px color-mix(in srgb, var(--mixed) 60%, transparent); }
+.notch.negative.active-l .tick.l::before, .notch.negative.active-r .tick.r::after { background: var(--negative); box-shadow: 0 0 6px color-mix(in srgb, var(--negative) 60%, transparent); }
 
 .knob {
   position: absolute; width: 34px; height: 18px;

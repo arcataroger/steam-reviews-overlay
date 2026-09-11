@@ -47,10 +47,14 @@
 }
 /* Steam's narrow layout moves reviews to a 24px column beside the platform icons */
 @media (max-width: 750px) {
+  /* Keep desktop's order (OS icons, then the review label) instead of Steam's reviews-first swap */
   html.responsive .search_result_row .responsive_search_name_combined {
-    grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr) auto;
+    grid-template-columns: max-content max-content minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title title title price"
+      "platforms reviews reviews price";
   }
-  .search_reviewscore .sro-badge.sro-slot { margin-right: 10px; }
+  .search_reviewscore .sro-badge.sro-slot { margin-left: 10px; }
 }
 
 /* Placed inline next to a price element */

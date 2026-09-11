@@ -92,7 +92,13 @@ const GATE_R = 112
 // falling back to the browser locale until a store page has been visited.
 function showLang(l: LangInfo) {
   $('#srcFlag').textContent = l.flag
-  $('#srcLang').textContent = `(${l.name})`
+  $('#srcLang').textContent = l.name
+  const local = document.querySelector<HTMLButtonElement>('#source [data-source="local"]')!
+  const global = document.querySelector<HTMLButtonElement>('#source [data-source="global"]')!
+  local.title = `${t('myLanguage')} (${l.name})`
+  local.setAttribute('aria-label', local.title)
+  global.title = t('allLanguages')
+  global.setAttribute('aria-label', global.title)
 }
 showLang(qaLocale ? langForLocale(qaLocale) : detectLang())
 if (!qaLocale) {

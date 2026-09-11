@@ -117,6 +117,12 @@
     linear-gradient(to right, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px),
     linear-gradient(to left, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px);
 }
+/* Cards stacked side by side (carousels, grids): wings on the top and bottom edges instead */
+[data-sro-highlight][data-sro-shape="panel"][data-sro-axis="x"]::before {
+  background:
+    linear-gradient(to bottom, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px),
+    linear-gradient(to top, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px);
+}
 /* Capsules (mostly artwork): almost a rectangle, sitting just behind the card with a hint of fuzz.
    Tolerates Steam's overhanging tags ("TODAY'S DEAL") and the thumbnail growing on hover. */
 [data-sro-highlight][data-sro-shape="card"] {

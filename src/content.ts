@@ -215,6 +215,18 @@ function cardShape(card: HTMLElement): 'card' | 'row' | 'panel' {
   return r.height >= 160 ? 'panel' : 'row'
 }
 
+/** Are this card's neighbours beside it (carousel/grid row) or below it (vertical list)? */
+function stackAxis(card: HTMLElement): 'x' | 'y' {
+  const r = card.getBoundingClientRect()
+  for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
+    if (!(sib instanceof HTMLElement)) continue
+    const q = sib.getBoundingClientRect()
+    if (!q.width || !q.height) continue
+    return Math.abs(q.left - r.left) > Math.abs(q.top - r.top) ? 'x' : 'y'
+  }
+  return 'y'
+}
+
 /** Where Steam already reserves a spot for reviews (search rows: the thumbs icon column), sit there. */
 function findReviewSlot(card: HTMLElement): HTMLElement | null {
   const slot = card.querySelector<HTMLElement>('.search_reviewscore')
@@ -292,6 +304,8 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   if (!filtered && pick && isHighlighted(pick, settings)) {
     card.dataset.sroHighlight = toneFor(pick.score)
     card.dataset.sroShape = cardShape(card)
+    if (card.dataset.sroShape === 'panel') card.dataset.sroAxis = stackAxis(card)
+    else delete card.dataset.sroAxis
     card.style.setProperty('--sro-hl', toneColorAt(pick.score))
     if (pick.score === 9) card.dataset.sroOp = '1'
     else delete card.dataset.sroOp
@@ -300,6 +314,7 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     delete card.dataset.sroHighlight
     delete card.dataset.sroOp
     delete card.dataset.sroShape
+    delete card.dataset.sroAxis
     card.style.removeProperty('--sro-hl')
   }
   const want = filtered ? settings.mode : null
@@ -440,6 +455,7 @@ function clearPreviousInstance() {
     delete el.dataset.sroHighlight
     delete el.dataset.sroOp
     delete el.dataset.sroShape
+    delete el.dataset.sroAxis
     el.style.removeProperty('--sro-hl')
   }
   document.getElementById('sro-styles')?.remove()

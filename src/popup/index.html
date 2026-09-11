@@ -46,6 +46,10 @@
             <div class="knob" id="knobFilter"><b class="arrow"></b><i></i><i></i><i></i></div>
           </div>
           <div id="notches" class="notches"></div>
+          <div class="seg source-toggle" role="radiogroup" id="source" data-i18n-aria="sourceAria">
+            <button type="button" data-source="local" role="radio"><span id="srcFlag">🏳️</span><small id="srcLang" hidden></small></button>
+            <button type="button" data-source="global" role="radio">🌐</button>
+          </div>
           <div id="leverHighlight" class="lever right" role="slider" tabindex="0" data-i18n-aria="leverHighlightAria"
                aria-label="Highlight bar"
                aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
@@ -54,14 +58,6 @@
             <div class="knob" id="knobHighlight"><i></i><i></i><i></i><b class="arrow"></b></div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="sec">
-      <div class="sec-title" data-i18n="judgedBy">Judged by</div>
-      <div class="seg" role="radiogroup" id="source" data-i18n-aria="sourceAria">
-        <button type="button" data-source="local" role="radio"><span id="srcFlag">🏳️</span> <span class="two-line"><span data-i18n="myLanguage">My language</span><small id="srcLang"></small></span></button>
-        <button type="button" data-source="global" role="radio">🌐 <span data-i18n="allLanguages">All languages</span></button>
       </div>
     </section>
 

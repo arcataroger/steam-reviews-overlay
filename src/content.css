@@ -116,12 +116,9 @@
 [data-sro-filtered="dim"]:hover::after {
   background: rgba(0, 0, 0, 0.45);
 }
+/* The label dims with the rest of the card (it sits under the overlay) */
 [data-sro-filtered="dim"] .sro-badge {
-  z-index: 6;
-  position: relative;
-}
-[data-sro-filtered="dim"] .sro-badge.sro-corner {
-  position: absolute;
+  z-index: 1;
 }
 
 /* ---------- filter: hide ---------- */

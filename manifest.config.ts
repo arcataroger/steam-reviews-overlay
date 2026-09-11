@@ -10,6 +10,7 @@ export default defineManifest({
   description: '__MSG_extDescription__',
   default_locale: 'en',
   version: pkg.version,
+  ...(browser === 'chrome' ? { minimum_chrome_version: '111' } : {}), // color-mix() in the overlay CSS
   icons: {
     16: 'public/icon16.png',
     32: 'public/icon32.png',

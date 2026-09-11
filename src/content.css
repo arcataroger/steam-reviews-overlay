@@ -5,7 +5,6 @@
   --sro-negative: #c85e2d;
   --sro-none: #929396;
 
-  display: inline-block;
   font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
   font-size: 11px;
   line-height: 1.2;
@@ -14,7 +13,7 @@
   vertical-align: middle;
   pointer-events: auto;
   cursor: default;
-  z-index: 5;
+  z-index: 5; /* only matters for the absolute corner chip; the dim overlay (z 4 → badge z 1) still covers it */
 }
 .sro-badge.sro-positive { color: var(--sro-positive); }
 .sro-badge.sro-mixed    { color: var(--sro-mixed); }
@@ -37,19 +36,22 @@
 
 /* Search result rows: next to Steam's own review icon, in its column. Steam sizes that grid
    column at 4% (30px, icon only); let it grow to fit the label so it never runs into the price. */
-.search_result_row .responsive_search_name_combined {
+.search_result_row[data-sro-card] .responsive_search_name_combined {
   grid-template-columns: minmax(200px, 41%) minmax(85px, 30%) minmax(30px, max-content) minmax(100px, 25%);
 }
 .search_result_row .search_reviewscore {
   width: auto; white-space: nowrap;
-  display: flex; align-items: center; gap: 6px; /* icon and label share a centre line with the date */
+  display: flex; align-items: center; justify-content: flex-start; gap: 6px; /* icon, then label, on the date's centre line */
+  overflow: visible;
 }
+.search_result_row .search_reviewscore .search_review_summary { flex: none; }
 .search_reviewscore .sro-badge.sro-slot {
-  margin-left: 0;
-  max-width: 150px; /* never reach the price column */
+  margin-left: 0; margin-right: 0;
+  flex: 0 1 auto; min-width: 0;
+  max-width: 140px; /* never reach the price column */
 }
 .search_reviewscore .sro-badge.sro-slot .sro-line {
-  display: block; max-width: 150px;
+  display: block; max-width: 140px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 /* Steam's narrow layout moves reviews to a 24px column beside the platform icons */
@@ -76,6 +78,7 @@
 /* Placed inline next to a price element */
 .sro-badge.sro-inline {
   margin-left: 8px;
+  margin-right: 4px; /* never flush against the card edge or a highlight line */
   vertical-align: middle;
 }
 
@@ -90,16 +93,11 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
 }
 
-/* Hook for future per-tone overlays on the card itself */
-[data-sro-tone="negative"] { }
-[data-sro-tone="mixed"] { }
-[data-sro-tone="positive"] { }
-
-.sro-pct { opacity: 0.75; }
+/* Cards also carry data-sro-tone="positive|mixed|negative|none" and data-sro-score for custom user styles */
 
 /* ---------- highlight ---------- */
 /* Row listings (search results, tab rows): a crisp inset ring, drawn above positioned children */
-[data-sro-highlight] { position: relative; border-radius: inherit; }
+[data-sro-highlight] { position: relative; }
 [data-sro-highlight][data-sro-shape="row"]::before {
   content: "";
   position: absolute;
@@ -120,15 +118,22 @@
   border-radius: inherit;
   --wing-solid: color-mix(in srgb, var(--sro-hl) 92%, transparent);
   --wing-fade: color-mix(in srgb, var(--sro-hl) 28%, transparent);
+  /* wings stop 6px short of the card's other edges so neighbours' wings never join into one bar */
   background:
     linear-gradient(to right, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px),
     linear-gradient(to left, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px);
+  background-size: 100% calc(100% - 12px);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 /* Cards stacked side by side (carousels, grids): wings on the top and bottom edges instead */
 [data-sro-highlight][data-sro-shape="panel"][data-sro-axis="x"]::before {
   background:
     linear-gradient(to bottom, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px),
     linear-gradient(to top, var(--wing-solid) 0 5px, var(--wing-fade) 5px, transparent 26px);
+  background-size: calc(100% - 12px) 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 /* Capsules (mostly artwork): almost a rectangle, sitting just behind the card with a hint of fuzz.
    Tolerates Steam's overhanging tags ("TODAY'S DEAL") and the thumbnail growing on hover. */
@@ -138,31 +143,33 @@
     0 0 4px 2px color-mix(in srgb, var(--sro-hl) 45%, transparent);
 }
 
-/* --sro-hl is set inline per card from the lever gradient; tone attrs are fallbacks */
+/* --sro-hl is set inline per card to the game's OWN review color; tone attrs are fallbacks */
 [data-sro-highlight="positive"] { --sro-hl: #66c0f4; }
 [data-sro-highlight="mixed"]    { --sro-hl: #b9a074; }
 [data-sro-highlight="negative"] { --sro-hl: #c85e2d; }
 
-/* Overwhelmingly Positive: a soft point of light slowly orbits the frame */
-@property --sro-orbit {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-/* The orbit lives in the card's own stacking layer, just above its background and below every
-   child (overhanging tags, hover zoom), and runs entirely outside the box like the underglow. */
+/* Overwhelmingly Positive: two soft points of light slowly orbit the frame.
+   .sro-orbit is a masked ring just outside the card box, in the card's own stacking layer below every
+   child; its inner layer holds a static gradient and only rotates (composited, no repaint). */
 [data-sro-op] { isolation: isolate; }
-[data-sro-op]::after {
-  content: "";
+.sro-orbit {
   position: absolute;
   inset: -3px;
   z-index: -1;
   pointer-events: none;
   border-radius: inherit;
   padding: 3px;
-  /* two equal points of light, 180° apart, orbiting at the same speed */
+  overflow: hidden;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+.sro-orbit > i {
+  position: absolute;
+  inset: -100%;
   background: conic-gradient(
-    from var(--sro-orbit),
+    from 0deg,
     transparent 0deg,
     transparent 120deg,
     color-mix(in srgb, var(--sro-hl) 35%, transparent) 150deg,
@@ -175,18 +182,15 @@
     color-mix(in srgb, var(--sro-hl) 35%, transparent) 358deg,
     transparent 360deg
   );
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  filter: drop-shadow(0 0 3px var(--sro-hl));
   animation: sro-orbit 7s linear infinite;
+  will-change: transform;
 }
+.sro-orbit-paused > i { animation-play-state: paused; }
 @keyframes sro-orbit {
-  to { --sro-orbit: 360deg; }
+  to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-sro-op]::after { animation: none; opacity: 0.6; }
+  .sro-orbit > i { animation: none; opacity: 0.6; }
 }
 
 /* ---------- filter: dim ---------- */
@@ -199,7 +203,7 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
   pointer-events: none;
-  z-index: 4;
+  z-index: 30; /* above Steam's own price chips and tags inside the card */
   border-radius: inherit;
   transition: background 0.25s ease;
 }

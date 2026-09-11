@@ -7,11 +7,21 @@ import { t } from './i18n'
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 const lang: LangInfo = detectLang()
-import { loadSettings, onSettingsChange, isFiltered, isHighlighted, tierFor, DEFAULT_SETTINGS, type Settings } from './settings'
+
+/**
+ * After an extension reload/update Chrome keeps the old content-script instance alive (orphaned
+ * from extension APIs but with live observers and timers). The new instance announces itself on
+ * the page; the old one shuts down. `dead` short-circuits every callback of a retired instance.
+ */
+const TAKEOVER_EVENT = 'sro:takeover'
+let dead = false
+const alive = () => !dead && !!ext.runtime?.id
+import { loadSettings, onSettingsChange, isFiltered, isHighlighted, DEFAULT_SETTINGS, type Settings } from './settings'
 
 let settings: Settings = DEFAULT_SETTINGS
 
-const APP_RE = /\/app\/(\d+)/
+/** /app/N at the store root (or a news-hub /news/app/N link); NOT /points/shop/app/N and the like. */
+const APP_RE = /(?:^|steampowered\.com)\/(?:news\/)?app\/(\d+)/
 const CARD_ATTR = 'data-sro-card'
 const BADGE_CLASS = 'sro-badge'
 
@@ -24,8 +34,12 @@ const EXCLUDE_SELECTOR = [
   '#search_suggestion_contents',
   '.search_results_filtered_warning',
   '.game_review_summary',
+  '.game_area_purchase_game', // an app page's own purchase boxes (and their bundle-contents strips)
   '.sro-badge',
 ].join(',')
+
+/** Capsules narrower than this have no room for a text label; they still get filtered/highlighted. */
+const MIN_LABEL_WIDTH = 120
 
 /** Price-ish elements, roughly ordered from most to least specific. */
 const PRICE_SELECTORS = [
@@ -45,8 +59,11 @@ const PRICE_SELECTORS = [
   '[class*="Price"]',
 ]
 
-const MAX_CARD_W = 1400
+/** A card is never wider than Steam's content column; page-wide wrappers (hero carousel
+ *  containers) must not be claimed as cards. */
+const MAX_CARD_W = 1300
 const MAX_CARD_H = 700
+const maxCardWidth = () => Math.min(MAX_CARD_W, window.innerWidth - 80)
 
 function injectStyles() {
   if (document.getElementById('sro-styles')) return
@@ -60,7 +77,9 @@ function injectStyles() {
 const NON_GAME_LINK = /\/(sale|publisher|developer|franchise|curator|bundle|sub|dlc|news|category|genre|tags?)\//
 
 function linksToNonGame(card: HTMLElement): boolean {
-  const link = card.matches('a[href]') ? (card as HTMLAnchorElement) : card.querySelector<HTMLAnchorElement>('a[href]')
+  const link = card.matches('a[href]')
+    ? (card as HTMLAnchorElement)
+    : (card.querySelector<HTMLAnchorElement>('a[href]:has(img, video)') ?? card.querySelector<HTMLAnchorElement>('a[href*="/app/"]'))
   const href = link?.getAttribute('href') ?? ''
   return !!href && !APP_RE.test(href) && NON_GAME_LINK.test(href)
 }
@@ -101,15 +120,15 @@ function appIdsWithin(root: Element, limit = 3): Set<number> {
  * one game and isn't absurdly large. That ancestor is the "card".
  */
 function findCard(start: HTMLElement, appid: number): HTMLElement | null {
+  if (start.closest(EXCLUDE_SELECTOR)) return null
   let card: HTMLElement | null = null
   let el: HTMLElement | null = start
   let hops = 0
   while (el && el !== document.body && hops < 12) {
-    if (el.matches(EXCLUDE_SELECTOR) || el.closest(EXCLUDE_SELECTOR)) return null
     const ids = appIdsWithin(el, 2)
     if (ids.size !== 1 || !ids.has(appid)) break
     const rect = el.getBoundingClientRect()
-    if (rect.width > MAX_CARD_W || rect.height > MAX_CARD_H) break
+    if (rect.width > maxCardWidth() || rect.height > MAX_CARD_H) break
     card = el
     el = el.parentElement
     hops++
@@ -122,8 +141,13 @@ const SUMMARY_RE = /^\s*(Overwhelmingly |Very |Mostly )?(Positive|Negative|Mixed
 /** Steam's own textual review summary on the card (expanded sale cards, featured capsules), if any. */
 function nativeSummaryEl(card: HTMLElement): HTMLElement | null {
   // Presence in the DOM is what matters: a hidden carousel slide's summary shows once the slide does.
+  // Match structurally (Steam tags its summary with a tone class in every language) with the English
+  // wording as a fallback.
   for (const el of card.querySelectorAll<HTMLElement>('[class*="review" i]:not(.sro-badge)')) {
-    if (SUMMARY_RE.test(el.textContent ?? '')) return el
+    const text = (el.textContent ?? '').trim()
+    if (!text) continue // icon-only summaries (search rows' thumbs) show no text: not a native label
+    if (el.matches('.positive, .mixed, .negative') || el.querySelector(':scope > .positive, :scope > .mixed, :scope > .negative')) return el
+    if (SUMMARY_RE.test(text)) return el
   }
   return null
 }
@@ -208,7 +232,8 @@ function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; a
   const r = card.getBoundingClientRect()
   if (!r.width || !r.height) return { shape: 'row' }
   const tall = r.height >= 160
-  // Edge-to-edge neighbours beside this card (events carousels): wings top/bottom, whatever the art
+  // Neighbours beside this card: edge-to-edge tiles (events carousels) get wings top/bottom whatever
+  // the art; overlapping slides (hero carousels, peeking neighbours) are hero cards → underglow.
   if (tall) {
     for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
       if (!(sib instanceof HTMLElement)) continue
@@ -216,6 +241,7 @@ function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; a
       if (!q.width || !q.height) continue
       const beside = Math.abs(q.left - r.left) > Math.abs(q.top - r.top)
       const gap = q.left > r.left ? q.left - r.right : r.left - q.right
+      if (beside && gap < -20) return { shape: 'card' }
       if (beside && gap >= 0 && gap < 12) return { shape: 'panel', axis: 'x' }
       break
     }
@@ -277,6 +303,8 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   // Hidden cards (display:none after a hide) can't be measured; revalidate/reapply will place the
   // badge once the card is visible again.
   if (!card.getClientRects().length) return
+  // Tiny capsules (bundle-contents strips) have no room for text
+  if (card.getBoundingClientRect().width < MIN_LABEL_WIDTH) return
 
   const price = findPriceEl(card)
   if (price) {
@@ -305,7 +333,9 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
       Math.abs(cr.height - before.height) > 1 ||
       Math.abs(pr.width - priceBefore.width) > 1 ||
       Math.abs(pr.height - priceBefore.height) > 1
-    if (clipped || resized) {
+    // "Price-like" containers on the React store also hold release dates: never sit on text
+    const collides = !clipped && !resized && obstaclesFor(card, badge).length > 0
+    if (clipped || resized || collides) {
       badge.remove()
       badge.classList.remove('sro-inline')
       // The card and price rects are back to their pre-insertion values: no need to re-measure.
@@ -316,25 +346,110 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   }
 }
 
+/** Rects of text/icon/button leaves inside the card that the badge overlaps. */
+function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
+  const br = badge.getBoundingClientRect()
+  const out: DOMRect[] = []
+  for (const el of card.querySelectorAll<HTMLElement>('*')) {
+    if (badge.contains(el) || el === badge || el.classList.contains(ORBIT_CLASS)) continue
+    const iconish = el.matches('img, svg, button, [role="button"]')
+    if (!iconish && (el.children.length || !(el.textContent ?? '').trim())) continue
+    const er = el.getBoundingClientRect()
+    if (!er.width || !er.height) continue
+    if (br.left < er.right - 1 && br.right > er.left + 1 && br.top < er.bottom - 1 && br.bottom > er.top + 1) out.push(er)
+  }
+  return out
+}
+
+const within = (br: DOMRect, cr: DOMRect) => br.left >= cr.left - 2 && br.right <= cr.right + 2 && br.top >= cr.top - 2 && br.bottom <= cr.bottom + 2
+
 /** Absolute chip in the card's lower-right corner, lifted above the price block when there is one. */
 function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOMRect, priceRect?: DOMRect) {
   badge.classList.add('sro-corner')
-  const cs = getComputedStyle(card)
-  if (cs.position === 'static') card.style.position = 'relative'
-  card.appendChild(badge)
-  if (cardRect && priceRect) {
-    const lift = Math.max(0, Math.round(cardRect.bottom - priceRect.top))
-    const room = cardRect.height - badge.offsetHeight - 4
-    if (lift > 0 && lift < room) badge.style.bottom = `${lift + 4}px`
+  if (getComputedStyle(card).position === 'static') {
+    card.style.position = 'relative'
+    card.dataset.sroPos = '1' // remembered so stripCard can undo it
   }
+  card.appendChild(badge)
+  const cr = cardRect ?? card.getBoundingClientRect()
+  const bh = badge.offsetHeight
+  const bw = badge.offsetWidth
+  const apply = (pos: { bottom?: number; top?: number; right?: number; left?: number }) => {
+    badge.style.bottom = pos.bottom !== undefined ? `${pos.bottom}px` : 'auto'
+    badge.style.top = pos.top !== undefined ? `${pos.top}px` : 'auto'
+    badge.style.right = pos.right !== undefined ? `${pos.right}px` : 'auto'
+    badge.style.left = pos.left !== undefined ? `${pos.left}px` : 'auto'
+  }
+  const clear = () => {
+    const br = badge.getBoundingClientRect()
+    return within(br, cr) && obstaclesFor(card, badge).length === 0
+  }
+  // Candidate positions, best first: bottom-right lifted above the price block, bottom-right
+  // lifted above whatever it hits, shifted left of it, then the other corners.
+  const candidates: Array<() => void> = []
+  if (priceRect) {
+    const lift = Math.max(0, Math.round(cr.bottom - priceRect.top))
+    if (lift > 0 && lift < cr.height - bh - 4) candidates.push(() => apply({ bottom: lift + 4, right: 4 }))
+  }
+  candidates.push(() => apply({ bottom: 4, right: 4 }))
+  candidates.push(() => {
+    apply({ bottom: 4, right: 4 })
+    const obs = obstaclesFor(card, badge)
+    if (!obs.length) return
+    const minTop = Math.min(...obs.map((o) => o.top))
+    const lift = Math.round(cr.bottom - minTop) + 4
+    if (lift < cr.height - bh - 4) apply({ bottom: lift, right: 4 })
+  })
+  candidates.push(() => {
+    apply({ bottom: 4, right: 4 })
+    const obs = obstaclesFor(card, badge)
+    if (!obs.length) return
+    const minLeft = Math.min(...obs.map((o) => o.left))
+    const shift = Math.round(cr.right - minLeft) + 6
+    if (shift + bw < cr.width - 4) apply({ bottom: 4, right: shift })
+  })
+  candidates.push(() => apply({ top: 4, right: 4 }))
+  for (const place of candidates) {
+    place()
+    if (clear()) return
+  }
+  // Nothing fits without covering something: no label beats an overlapping one
+  badge.remove()
 }
 
 /* ---------- filtering (dim / hide) ---------- */
 
-const hideTimers = new WeakMap<HTMLElement, number>()
+const hideTimers = new Map<HTMLElement, number>()
+
+/**
+ * Overwhelmingly Positive orbit: a masked ring element whose inner layer rotates (a transform,
+ * so it composites instead of repainting a gradient every frame). Paused while off-screen.
+ */
+const ORBIT_CLASS = 'sro-orbit'
+const orbitVisibility = new IntersectionObserver((entries) => {
+  for (const e of entries) (e.target as HTMLElement).classList.toggle('sro-orbit-paused', !e.isIntersecting)
+})
+function setOrbit(card: HTMLElement, on: boolean) {
+  const existing = card.querySelector<HTMLElement>(`:scope > .${ORBIT_CLASS}`)
+  if (!on) {
+    if (existing) {
+      orbitVisibility.unobserve(existing)
+      existing.remove()
+    }
+    return
+  }
+  if (existing) return
+  const ring = document.createElement('i')
+  ring.className = ORBIT_CLASS
+  ring.setAttribute('aria-hidden', 'true')
+  ring.appendChild(document.createElement('i'))
+  card.appendChild(ring)
+  orbitVisibility.observe(ring)
+}
 
 /** Cards change size when a carousel reveals them; re-derive the highlight shape when that happens. */
 const shapeWatcher = new ResizeObserver((entries) => {
+  if (!alive()) return
   for (const e of entries) {
     const card = e.target as HTMLElement
     const appid = cardsByAppId.get(card)
@@ -343,11 +458,16 @@ const shapeWatcher = new ResizeObserver((entries) => {
     // A lifted corner chip was measured against the old layout: re-place it. Otherwise re-derive the
     // shape and make sure the badge still matches (a slide that just became visible may need one).
     const chip = card.querySelector<HTMLElement>(`:scope > .${BADGE_CLASS}.sro-corner`)
-    if (chip?.style.bottom) placeBadge(card, s)
-    else {
-      applyFilter(card, s)
-      if (appid) reconcileBadge(card, appid)
+    if (chip?.style.bottom) {
+      const price = findPriceEl(card)
+      const block = price?.closest<HTMLElement>('.discount_block, .discount_prices, .search_price_discount_combined') ?? price
+      if (block) {
+        const lift = Math.max(0, Math.round(card.getBoundingClientRect().bottom - block.getBoundingClientRect().top))
+        chip.style.bottom = lift > 0 ? `${lift + 4}px` : ''
+      }
     }
+    applyFilter(card, s)
+    if (appid) reconcileBadge(card, appid)
   }
 })
 
@@ -373,17 +493,20 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     card.style.setProperty('--sro-hl', toneColorAt(pick.score))
     if (pick.score === 9) card.dataset.sroOp = '1'
     else delete card.dataset.sroOp
-    if (getComputedStyle(card).position === 'static') card.style.position = 'relative'
+    setOrbit(card, pick.score === 9)
   } else {
     delete card.dataset.sroHighlight
     delete card.dataset.sroOp
     delete card.dataset.sroShape
     delete card.dataset.sroAxis
     card.style.removeProperty('--sro-hl')
+    setOrbit(card, false)
     shapeWatcher.unobserve(card)
   }
   const want = filtered ? settings.mode : null
   const cur = card.dataset.sroFiltered
+  // A hide already in progress keeps its timer; anything else cancels a pending one.
+  if (want === 'hide' && (cur === 'hide' || (cur === 'hiding' && hideTimers.has(card)))) return
   const t = hideTimers.get(card)
   if (t) {
     clearTimeout(t)
@@ -398,7 +521,6 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     return
   }
   // hide: fade out first, then display:none so the layout reflows
-  if (cur === 'hide' || cur === 'hiding') return
   card.dataset.sroFiltered = 'hiding'
   hideTimers.set(
     card,
@@ -445,13 +567,25 @@ function sameScore(a: Score | null, b: Score | null): boolean {
 function attach(card: HTMLElement, appid: number) {
   let last: ReviewSummary | undefined
   const unsub = subscribe(appid, (s) => {
-    if (!card.isConnected) return
+    if (!alive() || !card.isConnected) return
     // Re-render only if something visible changed
     if (last && sameScore(last.global, s.global) && sameScore(last.local, s.local)) return
     last = s
     placeBadge(card, s)
   })
   unsubs.set(card, unsub)
+}
+
+/** Remove everything we put on a card (attributes, inline styles, badge, orbit). */
+function stripCard(card: HTMLElement) {
+  card.removeAttribute(CARD_ATTR)
+  for (const k of ['sroTone', 'sroScore', 'sroFiltered', 'sroHighlight', 'sroOp', 'sroShape', 'sroAxis']) delete card.dataset[k]
+  card.style.removeProperty('--sro-hl')
+  if (card.dataset.sroPos) {
+    card.style.removeProperty('position')
+    delete card.dataset.sroPos
+  }
+  card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}, :scope > .${ORBIT_CLASS}`).forEach((n) => n.remove())
 }
 
 /** Make the card's badge match its current state: missing badge, or a plain label beside Steam's own text. */
@@ -469,6 +603,7 @@ function revalidateCards() {
   for (const [card, appid] of cardsByAppId) {
     if (!card.isConnected) {
       release(card)
+      stripCard(card) // a re-attached node must be claimable again
       continue
     }
     const ids = appIdsWithin(card, 2)
@@ -490,14 +625,23 @@ function revalidateCards() {
   }
 }
 
+let lastRevalidate = 0
 function scan(root: ParentNode = document) {
-  revalidateCards()
+  // Revalidation walks every tracked card; do it for full scans, and at most once a second otherwise
+  if (root === document || Date.now() - lastRevalidate > 1000) {
+    revalidateCards()
+    lastRevalidate = Date.now()
+  }
   seedFromSearchRows(root)
   const candidates = root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')
   for (const el of candidates) {
     const appid = appIdOf(el)
     if (!appid || appid === pageAppId) continue
-    if (el.closest(`[${CARD_ATTR}]`)) continue
+    const owner = el.closest<HTMLElement>(`[${CARD_ATTR}]`)
+    if (owner) {
+      if (cardsByAppId.has(owner)) continue
+      stripCard(owner) // left by a re-attached clone or a retired instance
+    }
     if (el.closest(EXCLUDE_SELECTOR)) continue
     const card = findCard(el, appid)
     if (!card || card.hasAttribute(CARD_ATTR)) continue
@@ -513,12 +657,20 @@ function scan(root: ParentNode = document) {
 }
 
 let scanTimer: number | undefined
-function scheduleScan() {
+const pendingRoots = new Set<ParentNode>()
+let fullScanPending = false
+function scheduleScan(root?: Element) {
+  if (!alive()) return
+  if (root) pendingRoots.add(root)
+  else fullScanPending = true
   if (scanTimer) return
   scanTimer = window.setTimeout(() => {
     scanTimer = undefined
+    const roots = fullScanPending || pendingRoots.size > 24 ? [document] : [...pendingRoots]
+    pendingRoots.clear()
+    fullScanPending = false
     try {
-      scan()
+      for (const r of roots) scan(r)
     } catch (e) {
       console.warn('[SRO] scan failed', e)
     }
@@ -527,23 +679,35 @@ function scheduleScan() {
 
 /** Remove badges and markers left by a previous instance of this script (extension reload/update). */
 function clearPreviousInstance() {
-  document.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
-  for (const el of document.querySelectorAll<HTMLElement>(`[${CARD_ATTR}]`)) {
-    el.removeAttribute(CARD_ATTR)
-    delete el.dataset.sroTone
-    delete el.dataset.sroScore
-    delete el.dataset.sroFiltered
-    delete el.dataset.sroHighlight
-    delete el.dataset.sroOp
-    delete el.dataset.sroShape
-    delete el.dataset.sroAxis
-    el.style.removeProperty('--sro-hl')
-  }
+  // Ask any older instance to stop first, then sweep what it left behind.
+  document.dispatchEvent(new Event(TAKEOVER_EVENT))
+  document.querySelectorAll(`.${BADGE_CLASS}, .${ORBIT_CLASS}`).forEach((n) => n.remove())
+  for (const el of document.querySelectorAll<HTMLElement>(`[${CARD_ATTR}]`)) stripCard(el)
   document.getElementById('sro-styles')?.remove()
 }
 
+function shutdown() {
+  dead = true
+  mo?.disconnect()
+  shapeWatcher.disconnect()
+  orbitVisibility.disconnect()
+  if (scanTimer) clearTimeout(scanTimer)
+  for (const t of hideTimers.values()) clearTimeout(t)
+  hideTimers.clear()
+  for (const card of [...cardsByAppId.keys()]) release(card)
+}
+
+let mo: MutationObserver | undefined
+
 async function main() {
   clearPreviousInstance()
+  document.addEventListener(TAKEOVER_EVENT, shutdown, { once: true })
+  // Register early: Steam's own GetItems calls can complete before settings finish loading
+  ext.runtime.onMessage.addListener((msg: { type?: string; url?: string }, sender) => {
+    if (!alive()) return
+    if (sender.id !== ext.runtime.id || sender.tab) return // only our background script
+    if (msg?.type === 'sro:steam-getitems' && typeof msg.url === 'string') void ingestSteamRequest(msg.url)
+  })
   injectStyles()
   settings = await loadSettings()
   onSettingsChange((s) => {
@@ -552,27 +716,18 @@ async function main() {
     reapplyFilters(sourceChanged)
   })
   setLanguage(lang.steam)
-  ext.runtime.onMessage.addListener((msg: { type?: string; url?: string }) => {
-    if (msg?.type === 'sro:steam-getitems' && msg.url) void ingestSteamRequest(msg.url)
-  })
   void ext.storage.local.set({ [LANG_KEY]: lang }).catch(() => {})
   seedFromInlineJson()
   scan()
-  const mo = new MutationObserver((muts) => {
+  mo = new MutationObserver((muts) => {
+    if (!alive()) return
     for (const m of muts) {
-      if (m.type === 'childList' && m.addedNodes.length) {
-        // Ignore our own badge insertions
-        let relevant = false
-        for (const n of m.addedNodes) {
-          if (n.nodeType === 1 && !(n as Element).classList.contains(BADGE_CLASS)) {
-            relevant = true
-            break
-          }
-        }
-        if (relevant) {
-          scheduleScan()
-          return
-        }
+      if (m.type !== 'childList' || !m.addedNodes.length) continue
+      for (const n of m.addedNodes) {
+        if (n.nodeType !== 1) continue
+        const el = n as Element
+        if (el.classList.contains(BADGE_CLASS) || el.classList.contains(ORBIT_CLASS)) continue // our own insertions
+        scheduleScan(el)
       }
     }
   })

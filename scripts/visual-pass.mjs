@@ -5,7 +5,7 @@ import { chromium } from 'playwright'
 import path from 'node:path'
 import fs from 'node:fs'
 import crypto from 'node:crypto'
-const ext = path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
+const ext = process.env.SRO_EXT_DIR ? path.resolve(process.env.SRO_EXT_DIR) : path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
 const id = [...crypto.createHash('sha256').update(ext).digest('hex').slice(0, 32)].map(c => String.fromCharCode(97 + parseInt(c, 16))).join('')
 const [out, ...urls] = process.argv.slice(2)
 fs.mkdirSync(out, { recursive: true })
@@ -71,7 +71,7 @@ for (const url of urls) {
     await page.waitForTimeout(6000)
     const entry = { url, state: stateName, stops: [], errors }
     const seenIssues = new Set()
-    for (let stop = 0; stop < 8; stop++) {
+    for (let stop = 0; stop < (Number(process.env.SRO_STOPS) || 8); stop++) {
       await page.waitForTimeout(stop === 0 ? 500 : 1400)
       const r = await page.evaluate(CHECKS)
       const file = `${slug(url)}__${stateName}__${stop}.png`

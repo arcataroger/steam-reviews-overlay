@@ -51,17 +51,9 @@ export const TIERS: Tier[] = [
 
 export const tierAt = (score: number): Tier => TIERS[Math.min(9, Math.max(1, score)) - 1]
 
-/** Can the lever rest between tier `lo` and `lo + 1`? Only if their percent bands differ. */
-export function hasPercentGap(lo: number): boolean {
-  return lo >= 1 && lo < 9 && tierAt(lo).pct !== tierAt(lo + 1).pct
-}
-
-/** Percent positive represented by a position (integer positions map to the band start). */
+/** Start of the percent band for a tier position. */
 export function posToPct(pos: number): number {
-  const lo = Math.floor(pos)
-  const frac = pos - lo
-  if (!frac || lo >= 9) return tierAt(lo).pct
-  return tierAt(lo).pct + (tierAt(lo + 1).pct - tierAt(lo).pct) * frac
+  return tierAt(Math.round(pos)).pct
 }
 
 /** Levers always snap to the nearest tier. */
@@ -87,19 +79,22 @@ function normalize(raw: Partial<Settings> | undefined): Settings {
   return s
 }
 
-/** Older versions stored a 0-100 percent (0/-1 = off on the left, 100/101 = off on the right). */
-function pctToPos(pct: number, side: 'filter' | 'highlight'): number {
-  if (side === 'filter' && pct < 0) return OFF_FILTER
-  if (side === 'highlight' && pct > 100) return OFF_HIGHLIGHT
-  // Prefer the "stronger" tier on ties: 0 -> Negative, 80 -> Very Positive
+/**
+ * Older versions stored a 0-100 percent (0/-1 = off on the left, 100/101 = off on the right).
+ * The old filter meant "under P%"; the new one is inclusive, so map to the tier just below the band
+ * that starts at P. The highlight ("at or above P%") maps to the tier whose band starts at P.
+ */
+export function pctToPos(pct: number, side: 'filter' | 'highlight'): number {
+  if (side === 'filter') {
+    if (pct <= 0) return OFF_FILTER
+    const first = TIERS.find((t) => t.pct >= pct)
+    return first ? Math.max(OFF_FILTER, first.score - 1) : 9
+  }
+  if (pct > 100) return OFF_HIGHLIGHT
   const exact = [...TIERS].reverse().find((t) => t.pct === pct)
   if (exact) return exact.score
-  for (let lo = 1; lo < 9; lo++) {
-    const a = tierAt(lo).pct
-    const b = tierAt(lo + 1).pct
-    if (pct > a && pct < b) return lo + (pct - a) / (b - a)
-  }
-  return pct < 20 ? 3 : 9
+  const next = TIERS.find((t) => t.pct > pct)
+  return next ? next.score : 9
 }
 
 export async function loadSettings(): Promise<Settings> {
@@ -113,19 +108,28 @@ export async function loadSettings(): Promise<Settings> {
     const wasLabel = old.mode === 'label'
     const t = old.threshold ?? -1
     const h = old.highlightThreshold ?? 101
-    return normalize({
+    const migrated = normalize({
       mode: wasLabel || old.mode !== 'hide' ? 'dim' : 'hide',
       source: old.source,
       threshold: wasLabel || t <= 0 ? OFF_FILTER : pctToPos(t, 'filter'),
       highlightThreshold: old.highlight === 'off' || h >= 100 ? OFF_HIGHLIGHT : pctToPos(h, 'highlight'),
     })
+    // Persist once and retire the old keys so this doesn't re-run on every load
+    void saveSettings(migrated).then(() => area().remove(OLD_KEYS)).catch(() => {})
+    return migrated
   } catch {
     return { ...DEFAULT_SETTINGS }
   }
 }
 
 export async function saveSettings(s: Settings): Promise<void> {
-  await area().set({ [KEY]: s })
+  try {
+    await area().set({ [KEY]: s })
+  } catch (e) {
+    // storage.sync can throttle (MAX_WRITE_OPERATIONS_PER_MINUTE) — keep the setting locally at least
+    console.warn('[SRO] settings save failed, falling back to local', e)
+    await ext.storage.local.set({ [KEY]: s })
+  }
 }
 
 export function onSettingsChange(cb: (s: Settings) => void): void {
@@ -138,17 +142,13 @@ export function onSettingsChange(cb: (s: Settings) => void): void {
 type Judged = { score: number; pct: number | null } | null
 
 /**
- * Steam-only comparison: is this game at or above the bar?
- *  - on a tier: compare Steam's review_score (what Steam's own "sort by reviews" does; respects
- *    its review-count rules)
- *  - between tiers: compare Steam's integer percent_positive to the interpolated percent
+ * Steam-only comparison: is this game at or above the tier? Compares Steam's review_score, which
+ * is what Steam's own "sort by reviews" does and respects its review-count rules.
  * Games Steam gives no score to (fewer than 10 reviews) return null.
  */
 export function meetsBar(summary: Judged, pos: number): boolean | null {
   if (!summary || summary.score === 0) return null
-  if (Number.isInteger(pos)) return summary.score >= pos
-  if (summary.pct === null) return summary.score >= Math.ceil(pos)
-  return summary.pct >= posToPct(pos)
+  return summary.score >= Math.round(pos)
 }
 
 /** At the filter tier or lower? Parked lever filters nothing; unscored games are never filtered. */

@@ -40,16 +40,21 @@ export function encodeGetItemsRequest(appids: number[], opts: { country?: string
 
 /* ---------------- decoding ---------------- */
 
+/** Query marker on our own batch URLs so the background's webRequest listener ignores them. */
+export const OWN_MARKER = 'sro=1'
+
 export type Field = { f: number; wt: number; v: number | Uint8Array }
 
 /** Generic wire-format walk of one message. */
 export function decodeFields(buf: Uint8Array): Field[] {
   const out: Field[] = []
   let i = 0
+  // Values above 2^53 lose precision; nothing we decode gets near that.
   const varint = (): number => {
     let n = 0
     let shift = 1
     while (true) {
+      if (i >= buf.length) throw new Error('truncated varint')
       const b = buf[i++]
       n += (b & 0x7f) * shift
       if (!(b & 0x80)) return n
@@ -63,6 +68,7 @@ export function decodeFields(buf: Uint8Array): Field[] {
     if (wt === 0) out.push({ f, wt, v: varint() })
     else if (wt === 2) {
       const len = varint()
+      if (i + len > buf.length) throw new Error('truncated field')
       out.push({ f, wt, v: buf.subarray(i, i + len) })
       i += len
     } else if (wt === 5) i += 4

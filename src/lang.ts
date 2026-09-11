@@ -37,6 +37,15 @@ export interface LangInfo {
   flag: string
 }
 
+/** Region subtag of a BCP 47 tag ("zh-Hans-CN" → "CN"), or undefined. */
+export function regionOf(tag: string): string | undefined {
+  try {
+    return new Intl.Locale(tag.replace('_', '-')).maximize().region ?? undefined
+  } catch {
+    return tag.split(/[-_]/).find((p, i) => i > 0 && /^[A-Za-z]{2}$/.test(p))
+  }
+}
+
 export function flagFor(country: string): string {
   const cc = country.toUpperCase()
   if (!/^[A-Z]{2}$/.test(cc)) return '🏳️'
@@ -52,7 +61,7 @@ export function detectLang(): LangInfo {
     steam = BCP47_TO_STEAM.find(([re]) => re.test(locale))?.[1] ?? 'english'
   }
   // Prefer the browser's region for the flag when it plausibly belongs to this language
-  const region = locale.split(/[-_]/)[1]
+  const region = regionOf(locale)
   const localeLang = BCP47_TO_STEAM.find(([re]) => re.test(locale))?.[1]
   const country = region && localeLang === steam ? region : STEAM_TO_COUNTRY[steam]
   return { steam, name: STEAM_LANG_NAMES[steam] ?? steam, flag: flagFor(country) }
@@ -62,8 +71,8 @@ export function detectLang(): LangInfo {
 export function langForLocale(locale: string): LangInfo {
   const bcp = locale.replace('_', '-')
   const steam = BCP47_TO_STEAM.find(([re]) => re.test(bcp))?.[1] ?? 'english'
-  const region = bcp.split('-')[1]
-  const country = region && /^[A-Za-z]{2}$/.test(region) ? region : STEAM_TO_COUNTRY[steam]
+  const region = locale.includes('_') || locale.includes('-') ? regionOf(locale) : undefined
+  const country = region ?? STEAM_TO_COUNTRY[steam]
   return { steam, name: STEAM_LANG_NAMES[steam] ?? steam, flag: flagFor(country) }
 }
 

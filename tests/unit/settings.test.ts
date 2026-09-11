@@ -6,7 +6,7 @@ import {
   isHighlighted,
   snapPosition,
   posToPct,
-  hasPercentGap,
+  pctToPos,
   TIERS,
   DEFAULT_SETTINGS,
   OFF_FILTER,
@@ -25,21 +25,10 @@ describe('Steam tier ladder', () => {
     expect(TIERS[0].name).toBe('Overwhelmingly Negative')
   })
 
-  it('only allows in-between positions where percent bands differ', () => {
-    expect(hasPercentGap(1)).toBe(false) // Overwhelmingly Negative -> Very Negative (both 0-19%)
-    expect(hasPercentGap(2)).toBe(false)
-    expect(hasPercentGap(3)).toBe(true) // Negative 0% -> Mostly Negative 20%
-    expect(hasPercentGap(4)).toBe(true) // 20 -> 40
-    expect(hasPercentGap(5)).toBe(true) // 40 -> 70
-    expect(hasPercentGap(6)).toBe(true) // 70 -> 80
-    expect(hasPercentGap(7)).toBe(false) // Positive -> Very Positive (both 80%+)
-    expect(hasPercentGap(8)).toBe(true) // 80 -> 95
-  })
-
-  it('interpolates percent between tiers', () => {
+  it('maps tier positions to their band start', () => {
     expect(posToPct(5)).toBe(40)
-    expect(posToPct(5.5)).toBe(55)
-    expect(posToPct(8.5)).toBe(87.5)
+    expect(posToPct(6)).toBe(70)
+    expect(posToPct(9)).toBe(95)
   })
 
   it('always snaps to the nearest tier', () => {
@@ -65,10 +54,10 @@ describe('meetsBar follows Steam, never our own math', () => {
     expect(meetsBar(game(3, 10), 3)).toBe(true)
   })
 
-  it('between tiers, compares Steam integer percent', () => {
-    expect(meetsBar(game(5, 54), 5.5)).toBe(false) // 54 < 55
-    expect(meetsBar(game(5, 55), 5.5)).toBe(true)
-    expect(meetsBar(game(6, 70), 5.5)).toBe(true)
+  it('ignores percent entirely: only Steam’s tier counts', () => {
+    expect(meetsBar(game(5, 69), 5)).toBe(true)
+    expect(meetsBar(game(4, 39), 5)).toBe(false)
+    expect(meetsBar(game(5, 40), 6)).toBe(false)
   })
 
   it('returns null for games Steam has not scored', () => {
@@ -111,5 +100,21 @@ describe('levers never invert or share a tier', () => {
     expect(reconcile(s({ threshold: 5, highlightThreshold: 8 }), 'filter')).toEqual(s({ threshold: 5, highlightThreshold: 8 }))
     expect(reconcile(s({ threshold: OFF_FILTER, highlightThreshold: 2 }), 'highlight').threshold).toBe(OFF_FILTER)
     expect(reconcile(s({ threshold: 8, highlightThreshold: OFF_HIGHLIGHT }), 'filter').highlightThreshold).toBe(OFF_HIGHLIGHT)
+  })
+})
+
+describe('settings migration from the percent-based versions', () => {
+  it('maps an old "under P%" filter to the tier just below the band starting at P (inclusive filter)', () => {
+    expect(pctToPos(40, 'filter')).toBe(4) // under 40% → Mostly Negative and below
+    expect(pctToPos(80, 'filter')).toBe(6) // under 80% → Mostly Positive and below
+    expect(pctToPos(95, 'filter')).toBe(8)
+    expect(pctToPos(0, 'filter')).toBe(OFF_FILTER)
+    expect(pctToPos(-1, 'filter')).toBe(OFF_FILTER)
+  })
+  it('maps an old "at or above P%" highlight to the tier whose band starts at P', () => {
+    expect(pctToPos(80, 'highlight')).toBe(8) // ties prefer the stronger tier
+    expect(pctToPos(95, 'highlight')).toBe(9)
+    expect(pctToPos(50, 'highlight')).toBe(6) // between bands: next tier up
+    expect(pctToPos(101, 'highlight')).toBe(OFF_HIGHLIGHT)
   })
 })

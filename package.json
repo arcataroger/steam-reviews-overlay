@@ -18,8 +18,8 @@
     "demo": "node scripts/demo.mjs"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "arcataroger",
+  "license": "MIT",
   "type": "module",
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.7.1",
@@ -30,7 +30,8 @@
     "playwright": "^1.63.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.0",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.0",
+    "web-ext": "^8.0.0"
   },
   "private": true
 }

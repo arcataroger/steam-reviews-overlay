@@ -13,7 +13,7 @@
  * survive reloads and back/forward navigation.
  */
 
-import { encodeGetItemsRequest, decodeGetItemsResponse, requestIncludesReviews, type RawSummary } from './proto'
+import { encodeGetItemsRequest, decodeGetItemsResponse, requestIncludesReviews, OWN_MARKER, type RawSummary } from './proto'
 import { t } from './i18n'
 
 /* ---------------- status (surfaced in the popup) ---------------- */
@@ -29,10 +29,15 @@ export const STATUS_KEY = 'sro:status:v1'
 let lastOk = 0
 let lastKind: StatusKind | null = null
 
+let lastOkWrite = 0
 function reportStatus(kind: StatusKind) {
   const now = Date.now()
-  if (kind === 'ok') lastOk = now
-  if (kind === lastKind && kind !== 'ok') return
+  if (kind === 'ok') {
+    lastOk = now
+    // an "ok" only needs persisting when it clears an error or every 30 s
+    if (lastKind === 'ok' && now - lastOkWrite < 30_000) return
+    lastOkWrite = now
+  } else if (kind === lastKind) return
   lastKind = kind
   const st: Status = { kind, ts: now, lastOk }
   ext.storage.local.set({ [STATUS_KEY]: st }).catch(() => {})
@@ -65,7 +70,7 @@ const ext: typeof chrome = (globalThis as any).browser ?? chrome
 export const FALLBACK_FRESH_MS = 60_000 // only if Steam sends no usable max-age
 export const STALE_MS = 15 * 60_000
 const NEG_MS = 10 * 60_000
-const MAX_BATCH = 400
+const MAX_BATCH = 400 // conservative vs the ~8 KB URL cap Steam's edge enforces (≈800 ids fit); see docs/data-sourcing-research.md
 const DEBOUNCE_MS = 300
 const CACHE_KEY = 'sro:cache:v3'
 
@@ -115,9 +120,12 @@ function schedulePersist() {
   persistTimer = window.setTimeout(async () => {
     persistTimer = undefined
     const now = Date.now()
-    const obj: Record<string, ReviewSummary> = {}
-    for (const [k, v] of mem) if (now - v.ts < STALE_MS) obj[k] = v
     try {
+      // Merge with what other tabs wrote so tabs don't clobber each other's entries
+      const res = await ext.storage.local.get(CACHE_KEY)
+      const obj: Record<string, ReviewSummary> = {}
+      for (const v of Object.values((res?.[CACHE_KEY] as Record<string, ReviewSummary>) ?? {})) if (v && now - v.ts < STALE_MS) obj[v.appid] = v
+      for (const [k, v] of mem) if (now - v.ts < STALE_MS && !(obj[k] && obj[k].ts > v.ts)) obj[k] = v
       await ext.storage.local.set({ [CACHE_KEY]: obj })
     } catch (e) {
       console.warn('[SRO] cache persist failed', e)
@@ -146,6 +154,8 @@ export function seed(appid: number, side: 'global' | 'local', score: Score) {
   const now = Date.now()
   const cur = mem.get(appid)
   if (cur && cur[side] && cur.expires > now) return
+  const have = cur?.[side]
+  if (have && have.label === score.label && have.pct === score.pct && have.count === score.count) return // nothing new
   put({
     appid,
     global: side === 'global' ? score : (cur?.global ?? null),
@@ -170,17 +180,34 @@ export function subscribe(appid: number, cb: Listener): () => void {
   let set = listeners.get(appid)
   if (!set) listeners.set(appid, (set = new Set()))
   set.add(cb)
+  let live = true
   void loadPersisted().then(() => {
+    if (!live) return
     const cur = mem.get(appid)
     const now = Date.now()
     if (cur && now - cur.ts < STALE_MS) cb(cur)
     const complete = !!(cur && cur.global && cur.local)
     if (!cur || !complete || cur.expires <= now) enqueue(appid)
   })
+  startRevalidation()
   return () => {
+    live = false
     set!.delete(cb)
     if (!set!.size) listeners.delete(appid)
   }
+}
+
+/** Long-lived tabs: re-fetch ids that still have listeners once Steam's copy has expired. */
+let revalidateTimer: number | undefined
+function startRevalidation() {
+  if (revalidateTimer) return
+  revalidateTimer = window.setInterval(() => {
+    const now = Date.now()
+    for (const appid of listeners.keys()) {
+      const cur = mem.get(appid)
+      if (!cur || cur.expires <= now) enqueue(appid)
+    }
+  }, 60_000)
 }
 
 function enqueue(appid: number) {
@@ -217,21 +244,30 @@ async function drain() {
 
 let backoffUntil = 0
 let retries = 0
+const MAX_RETRIES = 8
 
-/** Put a failed batch back on the queue with a growing delay (capped), so a Steam hiccup self-heals. */
+/**
+ * Put a failed batch back on the queue with exponential backoff (jittered, capped at 10 min).
+ * After MAX_RETRIES the ids are negative-cached so a broken Steam doesn't get hammered forever.
+ */
 function retryLater(appids: number[], baseMs: number) {
-  retries = Math.min(retries + 1, 5)
-  const delay = baseMs * retries
+  if (retries >= MAX_RETRIES) {
+    const now = Date.now()
+    for (const id of appids) negative.set(id, now)
+    return
+  }
+  const delay = Math.min(10 * 60_000, baseMs * 2 ** retries) + Math.random() * 1000
+  retries++
   backoffUntil = Date.now() + delay
-  for (const id of appids) pending.add(id)
-  if (!flushTimer) flushTimer = window.setTimeout(() => void drain(), delay)
+  for (const id of appids) pending.add(id) // drain() is still looping; fetchBatch waits out backoffUntil
 }
 
 function toScore(sf: RawSummary): Score {
   const score = sf.review_score ?? 0
   const count = sf.review_count ?? 0
   return {
-    label: sf.review_score_label || (count ? `${count} user reviews` : 'No user reviews'),
+    label: sf.review_score_label ?? '', // empty → renderer shows the localized "Not enough reviews"
+
     score,
     pct: score > 0 ? (sf.percent_positive ?? null) : null,
     count,
@@ -252,7 +288,7 @@ async function fetchBatch(appids: number[]) {
   if (wait > 0) await new Promise((r) => setTimeout(r, wait))
   const enc = encodeGetItemsRequest(appids, { country: 'US', language })
   const url =
-    'https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?sro=1&format=json&input_protobuf_encoded=' +
+    `https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?${OWN_MARKER}&format=json&input_protobuf_encoded=` +
     encodeURIComponent(enc)
   let res: Response
   try {
@@ -273,7 +309,10 @@ async function fetchBatch(appids: number[]) {
     return
   }
   if (!res.ok) {
+    // 4xx (e.g. URL too long): don't keep asking for these ids this session
     reportStatus('steam')
+    const now = Date.now()
+    for (const id of appids) negative.set(id, now)
     return
   }
   const fresh = freshnessFrom(res)
@@ -290,6 +329,7 @@ async function fetchBatch(appids: number[]) {
     json = await res.json()
   } catch {
     reportStatus('steam')
+    retryLater(appids, 10_000) // an HTML error page with 200: transient, try again later
     return
   }
   reportStatus('ok')
@@ -326,8 +366,18 @@ const ingested = new Set<string>()
  * no network. Decode the protobuf body and fill the cache before the cards even render.
  */
 export async function ingestSteamRequest(url: string): Promise<number> {
-  if (ingested.has(url)) return 0
-  ingested.add(url)
+  // Only ever replay Steam's GetItems endpoint, whatever the message said
+  let u: URL
+  try {
+    u = new URL(url)
+  } catch {
+    return 0
+  }
+  if (u.origin !== 'https://api.steampowered.com' || !u.pathname.startsWith('/IStoreBrowseService/GetItems/')) return 0
+  // Same URL again within the minute is the same cached response; later it's a fresh one worth reading
+  const key = `${url}#${Math.floor(Date.now() / 60_000)}`
+  if (ingested.has(key)) return 0
+  ingested.add(key)
   if (ingested.size > 500) ingested.delete(ingested.values().next().value!)
   if (!requestIncludesReviews(url)) return 0
   let res: Response
@@ -336,7 +386,7 @@ export async function ingestSteamRequest(url: string): Promise<number> {
   } catch {
     return 0 // the page's own request already succeeded; our replay failing is not user-facing
   }
-  if (!res.ok) return 0
+  if (!res.ok || !/octet-stream|protobuf/i.test(res.headers.get('content-type') ?? '')) return 0
   reportStatus('ok')
   const fresh = freshnessFrom(res)
   const buf = new Uint8Array(await res.arrayBuffer())

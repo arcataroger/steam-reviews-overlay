@@ -2,7 +2,7 @@ import { test as base, chromium, type BrowserContext, type Page } from '@playwri
 import path from 'node:path'
 import crypto from 'node:crypto'
 
-const extPath = path.resolve(import.meta.dirname, '../../dist/chrome')
+const extPath = process.env.SRO_EXT_DIR ? path.resolve(process.env.SRO_EXT_DIR) : path.resolve(import.meta.dirname, '../../dist/chrome')
 // Chrome derives unpacked extension ids from the SHA-256 of the absolute path, hex -> a..p
 export const extensionId = [...crypto.createHash('sha256').update(extPath).digest('hex').slice(0, 32)]
   .map((c) => String.fromCharCode(97 + parseInt(c, 16)))

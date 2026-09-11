@@ -35,6 +35,7 @@ body {
   box-shadow: 0 1px 0 rgba(0,0,0,0.35);
 }
 .hdr img { border-radius: 4px; }
+.status:empty { display: none; }
 .status {
   margin: 4px 16px 0;
   padding: 4px 9px;
@@ -48,7 +49,6 @@ body {
 body.has-notice .throttle { --track: 230px; }
 .sec { padding: 14px 16px 2px; }
 .sec:last-of-type { padding-bottom: 14px; }
-.sec-title { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.9px; margin-bottom: 2px; }
 
 .seg { display: flex; margin-top: 8px; border: 1px solid #2a475e; border-radius: 5px; overflow: hidden; background: rgba(0,0,0,0.15); }
 .seg button {
@@ -66,7 +66,6 @@ body.has-notice .throttle { --track: 230px; }
 }
 .source-toggle button { padding: 4px 0; font-size: 14px; line-height: 1; }
 .source-toggle button[aria-checked="true"] { background: #2a475e; }
-.help { margin: 8px 0 0; color: var(--muted); font-size: 12px; min-height: 2.6em; }
 
 
 /* ---------- control panel ---------- */
@@ -127,8 +126,6 @@ body.has-notice .throttle { --track: 230px; }
 .digits {
   font-family: "SF Mono", Menlo, Consolas, "Roboto Mono", monospace;
   font-size: 18px; font-weight: 700; letter-spacing: 0.3px; font-variant-numeric: tabular-nums; white-space: nowrap;
-  color: #7bd7ff;
-  text-shadow: 0 0 6px rgba(102,192,244,0.7);
 }
 /* Readout digits take the gradient color at the lever's position (inline --c) */
 .digits { color: var(--c, #7bd7ff); text-shadow: 0 0 6px color-mix(in srgb, var(--c, #7bd7ff) 70%, transparent); }
@@ -144,7 +141,7 @@ body.has-notice .throttle { --track: 230px; }
 .tier.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.5); }
 .tier.mixed { color: var(--mixed); text-shadow: 0 0 6px rgba(185,160,116,0.5); }
 .tier.negative { color: var(--negative); text-shadow: 0 0 6px rgba(200,94,45,0.6); }
-.readout.off { opacity: 0.4; }
+.readout.off .digits, .readout.off .tier, .readout.off .plate-title { color: #7f8b99; text-shadow: none; }
 
 /* Throttle quadrant: left lever | shared notches | right lever */
 .throttle {
@@ -164,7 +161,6 @@ body.has-notice .throttle { --track: 230px; }
   transition: opacity 0.2s;
 }
 .lever:active { cursor: grabbing; }
-.lever.off { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
 .lever:focus-visible .knob { box-shadow: 0 0 0 2px var(--accent), 0 3px 6px rgba(0,0,0,0.7); }
 .rail {
   /* runs the full length, straight through the parking gates */
@@ -231,7 +227,7 @@ body.has-notice .throttle { --track: 230px; }
   text-shadow: 0 1px 0 rgba(0,0,0,0.6);
 }
 .notch span b { white-space: nowrap; }
-.notch span b { font-weight: 400; opacity: 0.5; font-size: 8.5px; letter-spacing: 0.2px; }
+.notch span b { font-weight: 400; color: #9aa7b6; font-size: 9px; letter-spacing: 0.2px; }
 /* When a lever rests on a notch, its tick lights up in the same color as the label */
 .notch.active-l.positive span, .notch.active-r.positive span { color: var(--positive); }
 .notch.active-l.mixed span, .notch.active-r.mixed span { color: var(--mixed); }
@@ -319,4 +315,8 @@ body.has-notice .throttle { --track: 230px; }
   .sec { padding-left: 10px; padding-right: 10px; }
   .panel { padding-left: 8px; padding-right: 8px; }
   .notch span { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knob, .fill, .readout, .lever, .knob.pushed { transition: none; }
 }

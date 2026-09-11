@@ -5,9 +5,9 @@
  * fetched review data at zero network cost, before the cards even finish rendering.
  */
 
-const ext: typeof chrome = (globalThis as any).browser ?? chrome
+import { OWN_MARKER } from './proto'
 
-export const OWN_MARKER = 'sro=1'
+const ext: typeof chrome = (globalThis as any).browser ?? chrome
 
 ext.webRequest.onCompleted.addListener(
   (details) => {
@@ -23,7 +23,8 @@ ext.webRequest.onCompleted.addListener(
  * (Chrome cuts them off from extension APIs). Re-inject so those tabs keep working without a
  * manual reload. The fresh script clears any leftovers from the old instance on startup.
  */
-ext.runtime.onInstalled.addListener(async () => {
+ext.runtime.onInstalled.addListener(async ({ reason }) => {
+  if (reason !== 'install' && reason !== 'update') return // browser updates don't orphan content scripts
   const files = ext.runtime.getManifest().content_scripts?.flatMap((cs) => cs.js ?? []) ?? []
   if (!files.length) return
   let tabs: chrome.tabs.Tab[] = []

@@ -11,10 +11,10 @@
       <img src="../../public/icon48.png" alt="" width="20" height="20" />
       <span data-i18n="extName">Steam Reviews Overlay</span>
     </header>
-    <div id="status" class="status" hidden role="status"></div>
+    <div id="status" class="status" role="status" aria-live="polite"></div>
 
     <section class="sec panel-wrap">
-      <div class="panel">
+      <div class="panel" aria-busy="true">
         <span class="screw tl"></span><span class="screw tr"></span>
         <span class="screw bl"></span><span class="screw br"></span>
         <div class="readouts">
@@ -42,19 +42,19 @@
                aria-label="Filter bar"
                aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="rail"><div class="fill" id="fillFilter"></div></div>
-            <div class="detent bottom"><span data-i18n="off">OFF</span></div>
+            <div class="detent bottom"><span data-i18n="off" aria-hidden="true">OFF</span></div>
             <div class="knob" id="knobFilter"><b class="arrow"></b><i></i><i></i><i></i></div>
           </div>
           <div id="notches" class="notches"></div>
           <div class="seg source-toggle" role="radiogroup" id="source" data-i18n-aria="sourceAria">
-            <button type="button" data-source="local" role="radio"><span id="srcFlag">🏳️</span><small id="srcLang" hidden></small></button>
+            <button type="button" data-source="local" role="radio"><span id="srcFlag">🏳️</span></button>
             <button type="button" data-source="global" role="radio">🌐</button>
           </div>
           <div id="leverHighlight" class="lever right" role="slider" tabindex="0" data-i18n-aria="leverHighlightAria"
                aria-label="Highlight bar"
                aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
             <div class="rail"><div class="fill" id="fillHighlight"></div></div>
-            <div class="detent top"><span data-i18n="off">OFF</span></div>
+            <div class="detent top"><span data-i18n="off" aria-hidden="true">OFF</span></div>
             <div class="knob" id="knobHighlight"><i></i><i></i><i></i><b class="arrow"></b></div>
           </div>
         </div>

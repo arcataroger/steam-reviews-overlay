@@ -29,19 +29,20 @@ cards across the Steam store, so you don't have to hover every capsule.
   Overwhelmingly Positive". Both levers run along
   Steam's full nine-tier ladder (Overwhelmingly Negative, Very Negative,
   Negative, Mostly Negative, Mixed, Mostly Positive, Positive, Very Positive,
-  Overwhelmingly Positive), each notch labeled with Steam's rule for it. Where
-  two neighbouring tiers differ by percentage the lever can rest between them
-  and the bar becomes that exact percent; where they differ only by review
-  count (the three negatives; Positive vs Very Positive) it snaps to a tier.
-  The shared notch labels sit between the levers and the tick on each side is
-  clickable for that lever. The rails carry a gradient through Steam's three review colors
-  (solid negative to 20 %, mixed at 55 %, solid positive from 85 %, blended
-  between) and the outline, readout and knob light sample that gradient at
-  the lever's position. Settings sync via `storage.sync` and apply live to open tabs.
+  Overwhelmingly Positive), each notch labeled with Steam's rule for it. Levers
+  always rest on a tier. The shared notch labels sit between the levers and
+  the tick on each side is clickable for that lever; the flag/globe toggle in
+  the band below picks whether the levers judge by your language's score or
+  the all-languages score. The rails carry a gradient through Steam's three review colors,
+  and the readouts sample it at the lever's position. Highlights on the store
+  use each game's own review color. Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
-  1. Summaries already rendered on the page are reused (search rows carry the
-     label, percent and count in a tooltip; the homepage embeds
-     `review_summary_filtered` JSON). Those ids are never fetched.
+  1. Summaries already rendered on the page are reused for an instant first
+     paint (search rows carry the label, percent and count in a tooltip; the
+     homepage embeds `review_summary_filtered` JSON). The page only ever
+     carries one language's number, so the batch below still fetches the other
+     side for those ids (English store pages only; other locales rely on the
+     batch).
   2. On pages where Steam's own frontend already calls
      `IStoreBrowseService/GetItems` with reviews (category, tag, sale pages),
      the background script watches those calls complete (`webRequest`) and the
@@ -58,11 +59,14 @@ cards across the Steam store, so you don't have to hover every capsule.
      language (flag icon, on top) and the all-languages summary (globe icon).
      The popup's "judged by" toggle picks which one the filter uses.
   5. Cache is stale-while-revalidate keyed to Steam's own freshness: each batch
-     response carries `Cache-Control: max-age=N` counting down the life of
-     Steam's CDN copy, and the entry expires at exactly that moment, so
-     the next fetch is guaranteed a refreshed copy. Entries are shown while
-     revalidating for up to 15 min, then dropped. Persistence only exists to
-     survive reloads and back/forward navigation.
+     response carries `Cache-Control: max-age=N`; the entry expires when that
+     runs out (counted from receipt; Steam doesn't expose an Age header
+     cross-origin, and the browser's own cache still refetches at the true
+     moment). Ids still on the page are re-fetched once they expire, entries
+     are shown while revalidating for up to 15 min, then dropped. Persistence
+     only exists to survive reloads and back/forward navigation. On errors the
+     batch retries with exponential backoff (jittered, capped at 10 min) and
+     gives up after eight tries.
 - Filtering follows Steam's algorithm: on a tier the comparison is by
   Steam's `review_score` (what Steam's own "sort by reviews" does, so its
   review-count rules apply: 96% with 300 reviews is "Very Positive", not

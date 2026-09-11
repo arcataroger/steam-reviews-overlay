@@ -118,17 +118,26 @@
   inherits: false;
   initial-value: 0deg;
 }
+/* The orbit lives in the card's own stacking layer, just above its background and below every
+   child (overhanging tags, hover zoom), and runs entirely outside the box like the underglow. */
+[data-sro-op] { isolation: isolate; }
 [data-sro-op]::after {
   content: "";
   position: absolute;
-  inset: -1px;
-  z-index: 7;
+  inset: -3px;
+  z-index: -1;
   pointer-events: none;
   border-radius: inherit;
-  padding: 2px;
+  padding: 3px;
+  /* two equal points of light, 180° apart, orbiting at the same speed */
   background: conic-gradient(
     from var(--sro-orbit),
     transparent 0deg,
+    transparent 120deg,
+    color-mix(in srgb, var(--sro-hl) 35%, transparent) 150deg,
+    #ffffff 172deg,
+    color-mix(in srgb, var(--sro-hl) 35%, transparent) 178deg,
+    transparent 180deg,
     transparent 300deg,
     color-mix(in srgb, var(--sro-hl) 35%, transparent) 330deg,
     #ffffff 352deg,

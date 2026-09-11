@@ -10,10 +10,13 @@ import {
 
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T
 
-const threshold = $<HTMLInputElement>('#threshold')
+const lever = $<HTMLDivElement>('#lever')
+const rail = lever.querySelector<HTMLDivElement>('.rail')!
+const fill = $<HTMLDivElement>('#fill')
+const knob = $<HTMLDivElement>('#knob')
+const notches = $<HTMLDivElement>('#notches')
+const pctReadout = $<HTMLSpanElement>('#pctReadout')
 const tierName = $<HTMLSpanElement>('#tierName')
-const chips = $<HTMLDivElement>('#chips')
-const datalist = $<HTMLDataListElement>('#setpoints')
 const modeGroup = $<HTMLDivElement>('#mode')
 const modeHelp = $<HTMLParagraphElement>('#modeHelp')
 const includeUnreviewed = $<HTMLInputElement>('#includeUnreviewed')
@@ -26,30 +29,30 @@ const HELP: Record<FilterMode, string> = {
 
 let settings: Settings
 
-// Build the tier chips + slider tick marks once
+// One notch + label per named tier, positioned at its real percentage.
 for (const sp of SETPOINTS) {
-  if (sp.pct === 0) continue // "Negative" starts at 0%: nothing can be under it
-  const b = document.createElement('button')
-  b.type = 'button'
-  b.className = sp.tone
-  b.dataset.pct = String(sp.pct)
-  b.innerHTML = `${sp.name}<span class="p">${sp.pct}%</span>`
-  chips.appendChild(b)
-  const o = document.createElement('option')
-  o.value = String(sp.pct)
-  datalist.appendChild(o)
+  const n = document.createElement('div')
+  n.className = `notch ${sp.tone}`
+  n.dataset.pct = String(sp.pct)
+  n.style.bottom = `${sp.pct}%`
+  n.innerHTML = `<span>${sp.name}<b>${sp.pct}%</b></span>`
+  notches.appendChild(n)
 }
 
 function render() {
-  threshold.value = String(settings.threshold)
-  const tier = tierFor(settings.threshold)
-  const exact = tier.pct === settings.threshold
+  const pct = settings.threshold
+  const tier = tierFor(pct)
+  const exact = tier.pct === pct
+  pctReadout.textContent = `${pct}%`
   tierName.className = `tier ${tier.tone}`
-  tierName.innerHTML = exact
-    ? `${tier.name}<span class="pct">${settings.threshold}%</span>`
-    : `${settings.threshold}% positive<span class="pct">(${tier.name})</span>`
-  for (const c of chips.querySelectorAll<HTMLButtonElement>('button')) {
-    c.classList.toggle('active', Number(c.dataset.pct) === settings.threshold)
+  tierName.innerHTML = exact ? tier.name : `${tier.name}<span class="sub">between notches</span>`
+  fill.style.height = `${pct}%`
+  knob.style.bottom = `${pct}%`
+  knob.className = `knob ${tier.tone}`
+  lever.setAttribute('aria-valuenow', String(pct))
+  lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
+  for (const n of notches.querySelectorAll<HTMLElement>('.notch')) {
+    n.classList.toggle('active', Number(n.dataset.pct) === pct)
   }
   for (const b of modeGroup.querySelectorAll<HTMLButtonElement>('button')) {
     b.setAttribute('aria-checked', String(b.dataset.mode === settings.mode))
@@ -57,9 +60,9 @@ function render() {
   modeHelp.textContent = HELP[settings.mode]
   includeUnreviewed.checked = settings.includeUnreviewed
   const filtering = settings.mode !== 'label'
-  threshold.disabled = !filtering
   includeUnreviewed.disabled = !filtering
-  for (const c of chips.querySelectorAll<HTMLButtonElement>('button')) c.disabled = !filtering
+  lever.tabIndex = filtering ? 0 : -1
+  lever.setAttribute('aria-disabled', String(!filtering))
   document.body.classList.toggle('inactive', !filtering)
 }
 
@@ -71,11 +74,62 @@ function update(patch: Partial<Settings>) {
   saveTimer = window.setTimeout(() => void saveSettings(settings), 100)
 }
 
-threshold.addEventListener('input', () => update({ threshold: snapThreshold(Number(threshold.value)) }))
-chips.addEventListener('click', (e) => {
-  const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-pct]')
-  if (b) update({ threshold: Number(b.dataset.pct) })
+function setThreshold(raw: number, snap = true) {
+  const v = Math.round(Math.min(100, Math.max(0, raw)))
+  update({ threshold: snap ? snapThreshold(v) : v })
+}
+
+/* --- pointer: drag the lever anywhere along the track --- */
+function pctFromPointer(clientY: number): number {
+  const r = rail.getBoundingClientRect()
+  return ((r.bottom - clientY) / r.height) * 100
+}
+lever.addEventListener('pointerdown', (e) => {
+  const notch = (e.target as HTMLElement).closest<HTMLElement>('.notch')
+  if (notch) {
+    setThreshold(Number(notch.dataset.pct))
+    return
+  }
+  lever.setPointerCapture(e.pointerId)
+  setThreshold(pctFromPointer(e.clientY))
+  lever.focus()
 })
+lever.addEventListener('pointermove', (e) => {
+  if (lever.hasPointerCapture(e.pointerId)) setThreshold(pctFromPointer(e.clientY))
+})
+
+/* --- keyboard: arrows ±1, shift ±5, PageUp/Down = next notch, Home/End --- */
+lever.addEventListener('keydown', (e) => {
+  const cur = settings.threshold
+  const step = e.shiftKey ? 5 : 1
+  const pts = SETPOINTS.map((s) => s.pct)
+  switch (e.key) {
+    case 'ArrowUp':
+    case 'ArrowRight':
+      setThreshold(cur + step, false)
+      break
+    case 'ArrowDown':
+    case 'ArrowLeft':
+      setThreshold(cur - step, false)
+      break
+    case 'PageUp':
+      setThreshold(pts.find((p) => p > cur) ?? 100, false)
+      break
+    case 'PageDown':
+      setThreshold([...pts].reverse().find((p) => p < cur) ?? 0, false)
+      break
+    case 'Home':
+      setThreshold(0, false)
+      break
+    case 'End':
+      setThreshold(100, false)
+      break
+    default:
+      return
+  }
+  e.preventDefault()
+})
+
 modeGroup.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-mode]')
   if (b) update({ mode: b.dataset.mode as FilterMode })

@@ -13,7 +13,7 @@ const ctx = await chromium.launchPersistentContext('', {
 const popup = await ctx.newPage()
 await popup.goto(`chrome-extension://${id}/src/popup/index.html`)
 await popup.waitForTimeout(500)
-await popup.setViewportSize({ width: 340, height: 400 })
+await popup.setViewportSize({ width: 340, height: 600 })
 await popup.screenshot({ path: `${out}/popup_default.png` })
 
 const store = await ctx.newPage()
@@ -23,7 +23,7 @@ await store.waitForTimeout(7000)
 async function setMode(mode, threshold) {
   await popup.bringToFront()
   await popup.click(`button[data-mode="${mode}"]`)
-  await popup.$eval('#threshold', (el, v) => { el.value = String(v); el.dispatchEvent(new Event('input', { bubbles: true })) }, threshold)
+  if (mode !== "label") await popup.click(`.notch[data-pct="${threshold}"] span`)
   await popup.waitForTimeout(400)
   await popup.screenshot({ path: `${out}/popup_${mode}.png` })
 }

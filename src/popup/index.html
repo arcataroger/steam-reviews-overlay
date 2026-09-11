@@ -11,14 +11,23 @@
       <span>Steam Reviews Overlay</span>
     </header>
 
-    <section class="sec">
-      <div class="label-row">
-        <span class="sec-title">Games under</span>
-        <span id="tierName" class="tier"></span>
+    <section class="sec panel-wrap">
+      <div class="panel">
+        <span class="screw tl"></span><span class="screw tr"></span>
+        <span class="screw bl"></span><span class="screw br"></span>
+        <div class="plate-title">GAMES UNDER</div>
+        <div class="readout">
+          <span id="pctReadout" class="digits">40%</span>
+          <span id="tierName" class="tier"></span>
+        </div>
+        <div id="lever" class="lever" role="slider" tabindex="0"
+             aria-label="Minimum positive review percentage"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
+          <div class="rail"><div id="fill" class="fill"></div></div>
+          <div id="notches" class="notches"></div>
+          <div id="knob" class="knob"><i></i><i></i><i></i></div>
+        </div>
       </div>
-      <input id="threshold" type="range" min="0" max="100" step="1" list="setpoints" />
-      <datalist id="setpoints"></datalist>
-      <div id="chips" class="chips"></div>
     </section>
 
     <section class="sec">

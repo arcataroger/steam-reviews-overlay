@@ -22,10 +22,27 @@ cards across the Steam store, so you don't have to hover every capsule.
   collapsed with `display:none` so lists reflow). Optionally treat "No user
   reviews" as below the bar. Settings sync via `storage.sync` and apply live
   to open tabs.
-- Data comes from Steam's public `store.steampowered.com/appreviews/<id>?json=1`
-  endpoint (all languages, all purchase types). Responses are cached in
-  `storage.local` for 24 h, fetches are lazy (only cards near the viewport)
-  and throttled (4 in flight, backs off on 429).
+- Data is Steam's own, never recomputed:
+  1. Summaries already rendered on the page are reused (search rows carry the
+     label, percent and count in a tooltip; the homepage embeds
+     `review_summary_filtered` JSON). Those ids are never fetched.
+  2. Everything else goes in one batched, protobuf-encoded request per page to
+     `api.steampowered.com/IStoreBrowseService/GetItems` (no key needed, up to
+     400 ids per call). We use Steam's `summary_filtered`: label, 0-9 score,
+     integer percent positive, review count.
+  3. Cache is stale-while-revalidate: fresh for 120 s (Steam's own CDN
+     `max-age` on that endpoint, so anything shorter would just re-download the
+     same cached response), shown-but-revalidated up to 15 min, dropped after.
+     It only exists to survive reloads and back/forward navigation.
+- Filtering follows Steam's algorithm: on a named notch the comparison is by
+  Steam's tier (`review_score`), which is what Steam's own "sort by reviews"
+  does and respects its review-count rules (e.g. 96% with 300 reviews is
+  "Very Positive", not "Overwhelmingly"). Between notches the comparison uses
+  Steam's integer percent. Games Steam gives no score to (under 10 reviews)
+  are labeled with Steam's text ("3 user reviews", "No user reviews") and
+  only filtered if "Treat games with no reviews as below the bar" is on.
+  Steam's "Positive" (80%+ with 10–49 reviews) passes the "Very Positive" notch
+  because it is the same percentage band.
 
 ## Build
 
@@ -56,6 +73,7 @@ npm run build:chrome
 node scripts/smoke.mjs ./shots https://store.steampowered.com/ "https://store.steampowered.com/search/?term=roguelike"
 node scripts/debug-cards.mjs ./shots https://store.steampowered.com/specials 6   # dump every claimed card
 node scripts/popup-test.mjs ./shots        # drives the popup, checks dim/hide apply live
+node scripts/netcount.mjs <urls...>        # counts requests the extension makes per page
 node scripts/make-icons.mjs                # re-rasterize public/icon.svg → PNGs
 ```
 

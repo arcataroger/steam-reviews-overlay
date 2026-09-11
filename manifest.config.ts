@@ -25,7 +25,7 @@ export default defineManifest({
       48: 'public/icon48.png',
     },
   },
-  host_permissions: ['https://store.steampowered.com/*'],
+  host_permissions: ['https://store.steampowered.com/*', 'https://api.steampowered.com/*'],
   content_scripts: [
     {
       matches: ['https://store.steampowered.com/*'],

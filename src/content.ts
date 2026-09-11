@@ -1,5 +1,6 @@
 import css from './content.css?inline'
-import { getReviewSummary, formatTooltip, peekCached, type ReviewSummary } from './steam'
+import { subscribe, formatTooltip, peekCached, type ReviewSummary } from './steam'
+import { seedFromSearchRows, seedFromInlineJson } from './seed'
 import { loadSettings, onSettingsChange, isFiltered, DEFAULT_SETTINGS, type Settings } from './settings'
 
 let settings: Settings = DEFAULT_SETTINGS
@@ -137,10 +138,11 @@ function findPriceEl(card: HTMLElement): HTMLElement | null {
 function makeBadge(summary: ReviewSummary): HTMLSpanElement {
   const b = document.createElement('span')
   b.className = `${BADGE_CLASS} sro-${summary.tone}`
-  b.textContent = summary.desc
+  b.textContent = summary.label || 'Not enough reviews'
   b.title = formatTooltip(summary)
   b.dataset.sroAppid = String(summary.appid)
   b.dataset.sroScore = String(summary.score)
+  if (summary.pct !== null) b.dataset.sroPct = String(summary.pct)
   return b
 }
 
@@ -187,7 +189,7 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement) {
 const hideTimers = new WeakMap<HTMLElement, number>()
 
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
-  const want = isFiltered(summary.positive, summary.total, settings) ? settings.mode : null
+  const want = isFiltered(summary, settings) ? settings.mode : null
   const cur = card.dataset.sroFiltered
   const t = hideTimers.get(card)
   if (t) {
@@ -224,45 +226,47 @@ function reapplyFilters() {
 /* ---------- scanning & scheduling ---------- */
 
 const cardsByAppId = new Map<HTMLElement, number>()
+const unsubs = new WeakMap<HTMLElement, () => void>()
 
-const io = new IntersectionObserver(
-  (entries) => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue
-      const card = e.target as HTMLElement
-      io.unobserve(card)
-      const appid = cardsByAppId.get(card)
-      if (!appid) continue
-      if (hasNativeSummary(card)) continue
-      void getReviewSummary(appid).then((s) => {
-        if (s) placeBadge(card, s)
-        else card.removeAttribute(CARD_ATTR) // allow retry on next scan
-      })
-    }
-  },
-  { rootMargin: '600px 0px' },
-)
+function release(card: HTMLElement) {
+  unsubs.get(card)?.()
+  unsubs.delete(card)
+  cardsByAppId.delete(card)
+}
+
+function attach(card: HTMLElement, appid: number) {
+  if (hasNativeSummary(card)) return
+  let last: ReviewSummary | undefined
+  const unsub = subscribe(appid, (s) => {
+    if (!card.isConnected) return
+    // Re-render only if something visible changed
+    if (last && last.label === s.label && last.pct === s.pct && last.count === s.count) return
+    last = s
+    placeBadge(card, s)
+  })
+  unsubs.set(card, unsub)
+}
 
 function revalidateCards() {
   for (const [card, appid] of cardsByAppId) {
     if (!card.isConnected) {
-      cardsByAppId.delete(card)
+      release(card)
       continue
     }
     const ids = appIdsWithin(card, 2)
     if (ids.size === 1 && ids.has(appid)) continue
-    io.unobserve(card)
+    release(card)
     card.removeAttribute(CARD_ATTR)
     delete card.dataset.sroTone
     delete card.dataset.sroScore
     delete card.dataset.sroFiltered
     card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}[data-sro-appid="${appid}"]`).forEach((n) => n.remove())
-    cardsByAppId.delete(card)
   }
 }
 
 function scan(root: ParentNode = document) {
   revalidateCards()
+  seedFromSearchRows(root)
   const candidates = root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')
   for (const el of candidates) {
     const appid = appIdOf(el)
@@ -277,7 +281,7 @@ function scan(root: ParentNode = document) {
     if (r.height < 60 && !card.querySelector('img, picture, video')) continue
     card.setAttribute(CARD_ATTR, String(appid))
     cardsByAppId.set(card, appid)
-    io.observe(card)
+    attach(card, appid)
   }
 }
 
@@ -297,6 +301,7 @@ async function main() {
     settings = s
     reapplyFilters()
   })
+  seedFromInlineJson()
   scan()
   const mo = new MutationObserver((muts) => {
     for (const m of muts) {

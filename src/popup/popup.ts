@@ -4,6 +4,7 @@ import {
   snapPosition,
   reconcile,
   posToPct,
+  bandEndPct,
   tierFor,
   TIERS,
   OFF_FILTER,
@@ -128,8 +129,10 @@ function renderSide(side: Side, value: number) {
   const pos = off ? (side === 'filter' ? 1 : 9) : value
   const tier = tierFor(pos)
   u.readout.classList.toggle('off', off)
-  // Big digits use the tier's band start, exactly as printed on the ladder ("80%+" → "≤ 80%" / "≥ 80%").
-  const pct = Math.round(posToPct(pos))
+  // Both inclusive: filter covers the tier and below, so its number is the top of the tier's band
+  // (Mixed 40–69% → "≤ 69%"); highlight covers the tier and above, so its number is the band start
+  // (Positive 80%+ → "≥ 80%").
+  const pct = side === 'filter' ? bandEndPct(pos) : Math.round(posToPct(pos))
   u.pct.textContent = off ? t('off') : `${side === 'filter' ? '≤' : '≥'} ${pct}%`
   u.pct.className = `digits ${off ? 'none' : ''}`
   u.tier.textContent = tierName(tier.score)

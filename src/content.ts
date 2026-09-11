@@ -215,16 +215,24 @@ function cardShape(card: HTMLElement): 'card' | 'row' | 'panel' {
   return r.height >= 160 ? 'panel' : 'row'
 }
 
-/** Are this card's neighbours beside it (carousel/grid row) or below it (vertical list)? */
-function stackAxis(card: HTMLElement): 'x' | 'y' {
+/**
+ * How this card sits against its neighbours: below/above it ('y'), beside it with normal spacing
+ * ('x'), or beside it with almost no gap ('x-tight', e.g. the events carousel where adjacent
+ * rectangles would fuse and Steam's own labels already break the frame).
+ */
+function stacking(card: HTMLElement): { axis: 'x' | 'y'; tight: boolean } {
   const r = card.getBoundingClientRect()
   for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
     if (!(sib instanceof HTMLElement)) continue
     const q = sib.getBoundingClientRect()
     if (!q.width || !q.height) continue
-    return Math.abs(q.left - r.left) > Math.abs(q.top - r.top) ? 'x' : 'y'
+    if (Math.abs(q.left - r.left) > Math.abs(q.top - r.top)) {
+      const gap = q.left > r.left ? q.left - r.right : r.left - q.right
+      return { axis: 'x', tight: gap < 12 }
+    }
+    return { axis: 'y', tight: false }
   }
-  return 'y'
+  return { axis: 'y', tight: false }
 }
 
 /** Where Steam already reserves a spot for reviews (search rows: the thumbs icon column), sit there. */
@@ -303,9 +311,15 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   // Overwhelmingly Positive gets an extra, slow orbiting light.
   if (!filtered && pick && isHighlighted(pick, settings)) {
     card.dataset.sroHighlight = toneFor(pick.score)
-    card.dataset.sroShape = cardShape(card)
-    if (card.dataset.sroShape === 'panel') card.dataset.sroAxis = stackAxis(card)
-    else delete card.dataset.sroAxis
+    let shape = cardShape(card)
+    delete card.dataset.sroAxis
+    if (shape === 'panel') {
+      const st = stacking(card)
+      // Side-by-side cards keep the rectangle unless they're packed too tightly for one
+      if (st.axis === 'x' && !st.tight) shape = 'row'
+      else card.dataset.sroAxis = st.axis
+    }
+    card.dataset.sroShape = shape
     card.style.setProperty('--sro-hl', toneColorAt(pick.score))
     if (pick.score === 9) card.dataset.sroOp = '1'
     else delete card.dataset.sroOp

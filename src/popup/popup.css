@@ -44,8 +44,6 @@ body {
 .seg button[aria-checked="true"] .two-line small { color: #b8c6d2; }
 .help { margin: 8px 0 0; color: var(--muted); font-size: 12px; min-height: 2.6em; }
 
-.chk { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; padding-bottom: 10px; }
-.chk input { margin: 2px 0 0; accent-color: var(--accent); }
 
 /* ---------- control panel ---------- */
 .panel-wrap { padding-top: 12px; }
@@ -137,7 +135,8 @@ body {
 .lever.off { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
 .lever:focus-visible .knob { box-shadow: 0 0 0 2px var(--accent), 0 3px 6px rgba(0,0,0,0.7); }
 .rail {
-  position: absolute; top: var(--pad); bottom: var(--pad); width: 14px;
+  /* runs the full length, straight through the parking gates */
+  position: absolute; top: calc(var(--pad) - var(--gate)); bottom: calc(var(--pad) - var(--gate)); width: 14px;
   border-radius: 7px;
   /* Steam's three review colors at their band centers, blended between (set from tonecolor.ts) */
   --bands: var(--tone-gradient);
@@ -159,13 +158,12 @@ body {
   transition: height 0.08s linear;
   box-shadow: inset 0 0 0 4px rgba(8, 12, 17, 0.55);
 }
-/* The fill shows the same band gradient, sized to the full rail and clipped: use fixed
-   background-size so the bands stay aligned no matter the fill height. */
-.lever .fill { background-size: 100% var(--track); }
-/* left: the filtered zone grows from the bottom */
-.lever.left .fill { bottom: 0; height: 0; background-position: bottom; }
-/* right: the highlighted zone hangs from the top */
-.lever.right .fill { top: 0; height: 0; background-position: top; }
+/* The fill shows the same band gradient sized to the 0-100% track so bands stay aligned. */
+.lever .fill { background-size: 100% var(--track); --pct: 0; }
+/* left: the filtered zone grows up from the 0% mark */
+.lever.left .fill { bottom: var(--gate); height: calc(var(--track) * var(--pct) / 100); background-position: bottom; }
+/* right: the highlighted zone hangs down from the 100% mark */
+.lever.right .fill { top: var(--gate); height: calc(var(--track) * (100 - var(--pct)) / 100); background-position: top; }
 .notches { position: relative; margin: var(--pad) 0; }
 .notch {
   position: absolute; left: 0; right: 0; height: 0;
@@ -215,7 +213,7 @@ body {
    Gray crosshatch marks it as the OFF position. */
 .detent {
   position: absolute; width: 40px; height: 26px;
-  border-radius: 6px;
+  border-radius: 8px;
   background:
     repeating-linear-gradient(45deg, rgba(150,160,175,0.16) 0 1px, transparent 1px 5px),
     repeating-linear-gradient(-45deg, rgba(150,160,175,0.16) 0 1px, transparent 1px 5px),
@@ -229,15 +227,6 @@ body {
   font-size: 9px; letter-spacing: 2px; color: #7c8797; font-weight: 600;
   text-shadow: 0 1px 0 rgba(0,0,0,0.9);
 }
-/* Throat: a flared recess joining the rail to the gate so the transition isn't abrupt */
-.detent::before {
-  content: ""; position: absolute; left: 50%; transform: translateX(-50%);
-  width: 22px; height: 16px;
-  background: linear-gradient(180deg, #0b0f14, #151b23);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.8), inset 0 2px 4px rgba(0,0,0,0.9);
-}
-.detent.bottom::before { bottom: 100%; margin-bottom: -2px; height: calc(var(--gate) - 9px); border-radius: 11px 11px 0 0; }
-.detent.top::before { top: 100%; margin-top: -2px; height: calc(var(--gate) - 9px); border-radius: 0 0 11px 11px; }
 .lever.left .detent { left: 0; }
 .lever.right .detent { right: 0; }
 .detent.bottom { bottom: calc(var(--pad) - var(--gate) - 13px); }

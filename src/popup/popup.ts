@@ -42,7 +42,6 @@ const ui = {
 const notches = $<HTMLDivElement>('#notches')
 const modeGroup = $<HTMLDivElement>('#mode')
 const sourceGroup = $<HTMLDivElement>('#source')
-const includeUnreviewed = $<HTMLInputElement>('#includeUnreviewed')
 
 let settings: Settings
 
@@ -104,7 +103,7 @@ function renderSide(side: Side, value: number) {
     sub.textContent = 'between notches'
     u.tier.appendChild(sub)
   }
-  u.fill.style.height = side === 'filter' ? `${pct}%` : `${100 - pct}%`
+  u.fill.style.setProperty('--pct', String(off ? (side === 'filter' ? 0 : 100) : pct))
   u.knob.style.setProperty('--pct', String(off ? (side === 'filter' ? GATE_L : GATE_R) : pct))
   u.knob.className = off ? 'knob parked' : 'knob'
   u.lever.setAttribute('aria-valuenow', String(pct))
@@ -124,7 +123,6 @@ function render() {
   for (const b of sourceGroup.querySelectorAll<HTMLButtonElement>('button')) {
     b.setAttribute('aria-checked', String(b.dataset.source === settings.source))
   }
-  includeUnreviewed.checked = settings.includeUnreviewed
 }
 
 let saveTimer: number | undefined
@@ -214,7 +212,6 @@ sourceGroup.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-source]')
   if (b) update({ source: b.dataset.source as ScoreSource })
 })
-includeUnreviewed.addEventListener('change', () => update({ includeUnreviewed: includeUnreviewed.checked }))
 
 loadSettings().then((s) => {
   settings = s

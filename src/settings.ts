@@ -8,8 +8,6 @@ export interface Settings {
   mode: FilterMode
   /** 0-100, or OFF_FILTER (-1) = lever parked, nothing filtered. */
   threshold: number
-  /** Also filter games with no reviews at all. */
-  includeUnreviewed: boolean
   /** Which Steam score the filter looks at: all languages, or the user's language. */
   source: ScoreSource
   /** 0-100, or OFF_HIGHLIGHT (101) = lever parked, nothing outlined. */
@@ -23,7 +21,6 @@ export const OFF_HIGHLIGHT = 101
 export const DEFAULT_SETTINGS: Settings = {
   mode: 'dim',
   threshold: OFF_FILTER,
-  includeUnreviewed: false,
   source: 'global',
   highlightThreshold: OFF_HIGHLIGHT,
 }
@@ -87,7 +84,8 @@ export async function loadSettings(): Promise<Settings> {
     const old = res?.[OLD_KEY] as (Omit<Partial<Settings>, 'mode'> & { mode?: string; highlight?: string }) | undefined
     if (!old) return { ...DEFAULT_SETTINGS }
     const wasLabel = old.mode === 'label'
-    const m: Partial<Settings> = { ...old, mode: wasLabel || !old.mode ? 'dim' : (old.mode as FilterMode) }
+    const m: Partial<Settings> & { includeUnreviewed?: boolean } = { ...old, mode: wasLabel || !old.mode ? 'dim' : (old.mode as FilterMode) }
+    delete m.includeUnreviewed
     if (wasLabel || !old.threshold) m.threshold = OFF_FILTER
     if (old.highlight === 'off' || old.highlightThreshold === undefined || old.highlightThreshold >= 100) m.highlightThreshold = OFF_HIGHLIGHT
     delete (m as any).highlight
@@ -125,12 +123,10 @@ export function meetsBar(summary: Judged, threshold: number): boolean | null {
   return summary.pct >= threshold
 }
 
-/** Below the filter bar? Parked lever filters nothing. */
+/** Below the filter bar? Parked lever filters nothing; games Steam hasn't scored are never filtered. */
 export function isFiltered(summary: Judged, s: Settings): boolean {
   if (s.threshold < 0) return false
-  const ok = meetsBar(summary, s.threshold)
-  if (ok === null) return s.includeUnreviewed
-  return !ok
+  return meetsBar(summary, s.threshold) === false
 }
 
 /** At or above the highlight bar? Parked lever highlights nothing. */

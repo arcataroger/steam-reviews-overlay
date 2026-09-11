@@ -31,8 +31,7 @@ cards across the Steam store, so you don't have to hover every capsule.
   that lever. The rails carry a gradient through Steam's three review colors
   (solid negative to 20 %, mixed at 55 %, solid positive from 85 %, blended
   between) and the outline, readout and knob light sample that gradient at
-  the lever's position. Optionally treat games with no reviews as below the
-  bar. Settings sync via `storage.sync` and apply live to open tabs.
+  the lever's position. Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
   1. Summaries already rendered on the page are reused (search rows carry the
      label, percent and count in a tooltip; the homepage embeds
@@ -63,8 +62,8 @@ cards across the Steam store, so you don't have to hover every capsule.
   does and respects its review-count rules (e.g. 96% with 300 reviews is
   "Very Positive", not "Overwhelmingly"). Between notches the comparison uses
   Steam's integer percent. Games Steam gives no score to (under 10 reviews)
-  are labeled with Steam's text ("3 user reviews", "No user reviews") and
-  only filtered if "Treat games with no reviews as below the bar" is on.
+  are labeled with Steam's text ("3 user reviews", "No user reviews") and are
+  never filtered, so new and small releases aren't penalized.
   Steam's "Positive" (80%+ with 10–49 reviews) passes the "Very Positive" notch
   because it is the same percentage band.
 

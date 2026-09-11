@@ -4,6 +4,8 @@ import {
   snapThreshold,
   tierFor,
   SETPOINTS,
+  OFF_FILTER,
+  OFF_HIGHLIGHT,
   type Settings,
   type FilterMode,
   type ScoreSource,
@@ -77,12 +79,16 @@ for (const sp of SETPOINTS) {
   notches.appendChild(n)
 }
 
-function renderSide(side: Side, pct: number) {
+/** Gate positions in track units: the handle parks 12% of track length beyond the end notch. */
+const GATE_L = -12
+const GATE_R = 112
+
+function renderSide(side: Side, value: number) {
   const u = ui[side]
+  const off = side === 'filter' ? value < 0 : value > 100
+  const pct = off ? (side === 'filter' ? 0 : 100) : value
   const tier = tierFor(pct)
   const exact = tier.pct === pct
-  // 0% on the left / 100% on the right = feature off
-  const off = side === 'filter' ? pct === 0 : pct >= 100
   u.pct.textContent = off ? 'OFF' : `${pct}%`
   u.readout.classList.toggle('off', off)
   u.pct.className = `digits ${off ? 'none' : ''}`
@@ -99,7 +105,7 @@ function renderSide(side: Side, pct: number) {
     u.tier.appendChild(sub)
   }
   u.fill.style.height = side === 'filter' ? `${pct}%` : `${100 - pct}%`
-  u.knob.style.setProperty('--pct', String(pct))
+  u.knob.style.setProperty('--pct', String(off ? (side === 'filter' ? GATE_L : GATE_R) : pct))
   u.knob.className = off ? 'knob parked' : 'knob'
   u.lever.setAttribute('aria-valuenow', String(pct))
   u.lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
@@ -129,13 +135,14 @@ function update(patch: Partial<Settings>) {
   saveTimer = window.setTimeout(() => void saveSettings(settings), 100)
 }
 
+/** `raw` is in track units and may run past the end notches into the gates. */
 function setPct(side: Side, raw: number, snap = true) {
-  let v = Math.round(Math.min(100, Math.max(0, raw)))
-  if (snap) {
-    // The OFF detent at the end of each track grabs harder than the tier notches
-    if (side === 'filter' && v <= 5) v = 0
-    else if (side === 'highlight' && v >= 95 + 3) v = 100
-    else v = snapThreshold(v)
+  let v: number
+  if (side === 'filter' && raw <= (snap ? -5 : -1)) v = OFF_FILTER
+  else if (side === 'highlight' && raw >= (snap ? 105 : 101)) v = OFF_HIGHLIGHT
+  else {
+    v = Math.round(Math.min(100, Math.max(0, raw)))
+    if (snap) v = snapThreshold(v)
   }
   update({ [KEY[side]]: v } as Partial<Settings>)
 }
@@ -161,26 +168,28 @@ function wireLever(side: Side) {
     const cur = settings[KEY[side]]
     const step = e.shiftKey ? 5 : 1
     const pts = SETPOINTS.map((s) => s.pct)
+    const lo = side === 'filter' ? OFF_FILTER : 0
+    const hi = side === 'highlight' ? OFF_HIGHLIGHT : 100
     switch (e.key) {
       case 'ArrowUp':
       case 'ArrowRight':
-        setPct(side, cur + step, false)
+        setPct(side, Math.min(hi, cur + step), false)
         break
       case 'ArrowDown':
       case 'ArrowLeft':
-        setPct(side, cur - step, false)
+        setPct(side, Math.max(lo, cur - step), false)
         break
       case 'PageUp':
-        setPct(side, pts.find((p) => p > cur) ?? 100, false)
+        setPct(side, pts.find((p) => p > cur) ?? hi, false)
         break
       case 'PageDown':
-        setPct(side, [...pts].reverse().find((p) => p < cur) ?? 0, false)
+        setPct(side, [...pts].reverse().find((p) => p < cur) ?? lo, false)
         break
       case 'Home':
-        setPct(side, 0, false)
+        setPct(side, lo, false)
         break
       case 'End':
-        setPct(side, 100, false)
+        setPct(side, hi, false)
         break
       default:
         return

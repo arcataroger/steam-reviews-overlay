@@ -20,9 +20,11 @@ cards across the Steam store, so you don't have to hover every capsule.
 - Toolbar popup (click the icon) styled as a two-lever throttle. The **left
   lever** sets the bar under which games are **dimmed** (black overlay, still
   clickable) or **hidden** (fade out, then collapsed so lists reflow); a
-  Dim/Hide switch sits in its readout. At its resting position (0 %) nothing is
-  filtered. The **right lever** sets the bar above which games are outlined; at
-  its resting position (100 %) nothing is outlined. Both levers run 0–100 %
+  Dim/Hide switch sits in its readout. The **right lever** sets the bar above
+  which games are outlined. Each track runs past its end notch into a parking
+  gate marked OFF; a parked lever does nothing. "Under Negative" is a real
+  stop (it filters Very Negative and Overwhelmingly Negative), as is "above
+  Overwhelmingly Positive". Both levers run 0–100 %
   and snap to Steam's named tiers (Mostly Negative 20 %, Mixed 40 %, Mostly
   Positive 70 %, Very Positive 80 %, Overwhelmingly Positive 95 %); the shared
   notch labels sit between them and the tick on each side is clickable for

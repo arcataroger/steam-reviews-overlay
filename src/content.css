@@ -88,12 +88,20 @@
 .sro-pct { opacity: 0.75; }
 
 /* ---------- highlight ---------- */
-/* Drawn as an overlay layer so positioned thumbnails inside the card can't cover it */
+/* Cards: a soft halo behind the item. It tolerates Steam's overhanging tags ("TODAY'S DEAL") and
+   the thumbnail growing on hover, which a hard rectangle did not. */
 [data-sro-highlight] {
   position: relative;
+  border-radius: inherit;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--sro-hl) 45%, transparent),
+    0 0 14px 4px color-mix(in srgb, var(--sro-hl) 55%, transparent);
+}
+/* Tabular rows (search results): the crisp inset ring, drawn above positioned children */
+.search_result_row[data-sro-highlight] {
   box-shadow: 0 0 10px color-mix(in srgb, var(--sro-hl) 55%, transparent);
 }
-[data-sro-highlight]::before {
+.search_result_row[data-sro-highlight]::before {
   content: "";
   position: absolute;
   inset: 0;

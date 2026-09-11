@@ -12,7 +12,10 @@
     "safari:xcode": "xcrun safari-web-extension-converter dist/safari --project-location build/safari --app-name \"Steam Reviews Overlay\" --bundle-identifier com.arcataroger.steam-reviews-overlay --macos-only --no-open --force",
     "test": "vitest run",
     "test:e2e": "npm run build:chrome && playwright test",
-    "lint": "web-ext lint --source-dir dist/firefox"
+    "lint": "web-ext lint --source-dir dist/firefox",
+    "shots:gallery": "node scripts/screenshots.mjs ./shots",
+    "shots:locales": "node scripts/locale-matrix.mjs ./shots/matrix",
+    "demo": "node scripts/demo.mjs"
   },
   "keywords": [],
   "author": "",

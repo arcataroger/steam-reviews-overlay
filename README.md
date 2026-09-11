@@ -122,6 +122,15 @@ npm run test:e2e         # Playwright: loads dist/chrome into Chromium, visits l
 npm run lint             # web-ext lint on the Firefox build
 ```
 
+Screenshot galleries are on demand only (not part of the test run):
+
+```sh
+npm run shots:gallery      # popup states, store modes, mobile → ./shots
+npm run shots:locales      # all 30 languages × every screen, with overlap checks → ./shots/matrix
+npm run demo               # open a visible Chromium with the extension loaded
+npm run dev                # CRXJS dev server: rebuilds dist/chrome and hot-reloads the demo browser
+```
+
 Helper scripts (all take the built `dist/chrome`):
 
 ```sh

@@ -196,8 +196,14 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
   return b
 }
 
-/** Capsule (mostly artwork, overhanging tags, hover zoom) vs. row listing (small thumbnail beside text). */
-function cardShape(card: HTMLElement): 'card' | 'row' {
+/**
+ * How to draw a highlight:
+ *  card  – capsule that is mostly artwork (overhanging tags, hover zoom): faint glow behind it
+ *  row   – compact listing row (search results, tab rows): crisp inset rectangle
+ *  panel – tall text-heavy card stacked with others (category/sale pages): wings on both edges,
+ *          since adjacent rectangles would fuse into one line
+ */
+function cardShape(card: HTMLElement): 'card' | 'row' | 'panel' {
   const r = card.getBoundingClientRect()
   if (!r.width || !r.height) return 'row'
   let imgArea = 0
@@ -205,7 +211,8 @@ function cardShape(card: HTMLElement): 'card' | 'row' {
     const ir = img.getBoundingClientRect()
     imgArea = Math.max(imgArea, ir.width * ir.height)
   }
-  return imgArea / (r.width * r.height) > 0.5 ? 'card' : 'row'
+  if (imgArea / (r.width * r.height) > 0.5) return 'card'
+  return r.height >= 160 ? 'panel' : 'row'
 }
 
 /** Where Steam already reserves a spot for reviews (search rows: the thumbs icon column), sit there. */

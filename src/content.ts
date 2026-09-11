@@ -275,6 +275,7 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
 
   const price = findPriceEl(card)
   if (price) {
+    const before = card.getBoundingClientRect()
     badge.classList.add('sro-inline')
     // If the price is the sole content of a flex/inline row, append inside it; else after it.
     const parent = price.parentElement
@@ -283,23 +284,34 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     } else {
       price.insertAdjacentElement('afterend', badge)
     }
-    // Fallback to corner if the inline badge got clipped/hidden
     const r = badge.getBoundingClientRect()
     const cr = card.getBoundingClientRect()
-    if (r.width === 0 || r.right > cr.right + 2 || r.bottom > cr.bottom + 2 || r.top < cr.top - 2) {
+    const clipped = r.width === 0 || r.right > cr.right + 2 || r.bottom > cr.bottom + 2 || r.top < cr.top - 2
+    // A badge must never change the card's size (capsules in carousels size themselves from the
+    // price block, and an inline label there reflows the whole row). If it did, or got clipped,
+    // take it out of the flow: an absolute chip just above the price bar instead.
+    const resized = Math.abs(cr.width - before.width) > 1 || Math.abs(cr.height - before.height) > 1
+    if (clipped || resized) {
       badge.remove()
       badge.classList.remove('sro-inline')
-      placeInCorner(card, badge)
+      placeInCorner(card, badge, price)
     }
   } else {
     placeInCorner(card, badge)
   }
 }
 
-function placeInCorner(card: HTMLElement, badge: HTMLSpanElement) {
+/** Absolute chip in the card's lower-right corner, lifted above the price bar when there is one. */
+function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, price?: HTMLElement) {
   badge.classList.add('sro-corner')
   const cs = getComputedStyle(card)
   if (cs.position === 'static') card.style.position = 'relative'
+  if (price) {
+    const cr = card.getBoundingClientRect()
+    const pr = price.getBoundingClientRect()
+    const lift = Math.max(0, Math.round(cr.bottom - pr.top))
+    if (lift > 0 && lift < cr.height) badge.style.bottom = `${lift + 4}px`
+  }
   card.appendChild(badge)
 }
 

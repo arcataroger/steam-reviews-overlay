@@ -50,6 +50,7 @@
   html.responsive .search_result_row .responsive_search_name_combined {
     grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr) auto;
   }
+  .search_reviewscore .sro-badge.sro-slot { margin-right: 10px; }
 }
 
 /* Placed inline next to a price element */

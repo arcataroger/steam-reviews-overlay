@@ -102,11 +102,11 @@ body {
   transition: opacity 0.2s;
 }
 .readout.right .plate-row { justify-content: flex-end; }
-.readout .plate-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 3px; min-height: 16px; }
-.switch { display: inline-flex; border: 1px solid #2a475e; border-radius: 3px; overflow: hidden; }
+.readout .plate-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 6px; margin-bottom: 3px; min-height: 16px; }
+.switch { display: inline-flex; max-width: 100%; border: 1px solid #2a475e; border-radius: 3px; overflow: hidden; }
 .switch button {
-  border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 10px;
-  padding: 2px 8px; cursor: pointer; letter-spacing: 0.3px;
+  min-width: 0; border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 10px;
+  padding: 2px 7px; cursor: pointer; letter-spacing: 0.2px; white-space: nowrap;
 }
 .switch button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .switch button + button { border-left: 1px solid #2a475e; }
@@ -122,7 +122,10 @@ body {
 /* Readout digits take the gradient color at the lever's position (inline --c) */
 .digits { color: var(--c, #7bd7ff); text-shadow: 0 0 6px color-mix(in srgb, var(--c, #7bd7ff) 70%, transparent); }
 .digits.none { --c: #7f8b99; text-shadow: none; }
-.tier { font-weight: 600; font-size: 11px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 13px; }
+.tier {
+  font-weight: 600; font-size: 11px; line-height: 1.2; min-height: 13px;
+  overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
 .readout.off .tier { visibility: hidden; }
 .readout.off .digits { letter-spacing: 2px; }
 .tier.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.5); }
@@ -197,7 +200,7 @@ body {
   display: flex; align-items: center;
 }
 .notch .tick {
-  flex: 1; height: 16px; margin: -8px 0; /* generous click zone */
+  flex: 1; min-width: 14px; height: 16px; margin: -8px 0; /* generous click zone */
   touch-action: none;
   display: flex; align-items: center; cursor: pointer;
 }
@@ -207,11 +210,12 @@ body {
 .notch .tick.l::after, .notch .tick.r::before { display: none; }
 .notch .tick:hover::before, .notch .tick:hover::after { background: #dfe7ef; }
 .notch span {
-  flex: none; padding: 0 6px;
-  display: flex; flex-direction: column; align-items: center;
-  font-size: 11px; line-height: 1.05; white-space: nowrap; color: #9aa7b6;
+  flex: 0 1 auto; min-width: 0; padding: 0 6px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  font-size: 11px; line-height: 1.05; color: #9aa7b6;
   text-shadow: 0 1px 0 rgba(0,0,0,0.6);
 }
+.notch span b { white-space: nowrap; }
 .notch span b { font-weight: 400; opacity: 0.5; font-size: 8.5px; letter-spacing: 0.2px; }
 .notch.active-l .tick.l::before, .notch.active-r .tick.r::after { background: #dfe7ef; box-shadow: 0 0 6px rgba(255,255,255,0.5); }
 .notch.active-l.positive span, .notch.active-r.positive span { color: var(--positive); }
@@ -257,6 +261,7 @@ body {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-size: 9px; letter-spacing: 2px; color: #7c8797; font-weight: 600;
   text-shadow: 0 1px 0 rgba(0,0,0,0.9);
+  white-space: nowrap; overflow: hidden;
 }
 .lever.left .detent { left: 0; }
 .lever.right .detent { right: 0; }

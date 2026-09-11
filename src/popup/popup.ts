@@ -27,6 +27,17 @@ for (const el of document.querySelectorAll<HTMLElement>('[data-i18n]')) el.textC
 for (const el of document.querySelectorAll<HTMLElement>('[data-i18n-aria]')) el.setAttribute('aria-label', t(el.dataset.i18nAria!))
 document.title = t('extName')
 
+// Fit the engraved OFF label inside the parking gate whatever the locale's word length
+function fitGateLabels() {
+  for (const span of document.querySelectorAll<HTMLElement>('.detent span')) {
+    span.style.letterSpacing = span.textContent!.length > 4 ? '0.5px' : ''
+    let size = 9
+    span.style.fontSize = `${size}px`
+    while (span.scrollWidth > span.clientWidth - 4 && size > 6) span.style.fontSize = `${--size}px`
+  }
+}
+fitGateLabels()
+
 document.documentElement.style.setProperty('--tone-gradient', GRADIENT_CSS)
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome

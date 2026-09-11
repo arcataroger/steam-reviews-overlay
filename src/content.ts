@@ -56,6 +56,15 @@ function injectStyles() {
   document.documentElement.appendChild(style)
 }
 
+/** Cards whose own link goes to a sale/publisher/franchise page aren't a game, even if they carry an appid. */
+const NON_GAME_LINK = /\/(sale|publisher|developer|franchise|curator|bundle|sub|dlc|news|category|genre|tags?)\//
+
+function linksToNonGame(card: HTMLElement): boolean {
+  const link = card.matches('a[href]') ? (card as HTMLAnchorElement) : card.querySelector<HTMLAnchorElement>('a[href]')
+  const href = link?.getAttribute('href') ?? ''
+  return !!href && !APP_RE.test(href) && NON_GAME_LINK.test(href)
+}
+
 /** The appid of the page itself (on /app/123/ pages) — already shows reviews; skip it. */
 const pageAppId = (() => {
   const m = location.pathname.match(APP_RE)
@@ -359,6 +368,7 @@ function scan(root: ParentNode = document) {
     const r = card.getBoundingClientRect()
     if (r.width < 40 || r.height < 16) continue
     if (r.height < 60 && !card.querySelector('img, picture, video')) continue
+    if (linksToNonGame(card)) continue
     card.setAttribute(CARD_ATTR, String(appid))
     cardsByAppId.set(card, appid)
     attach(card, appid)

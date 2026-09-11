@@ -54,7 +54,8 @@
       "title title title price"
       "platforms reviews reviews price";
   }
-  .search_reviewscore .sro-badge.sro-slot { margin-left: 10px; }
+  html.responsive .search_result_row .search_reviewscore { margin-left: 10px; }
+  .search_reviewscore .sro-badge.sro-slot { margin-left: 6px; }
 }
 
 /* Placed inline next to a price element */

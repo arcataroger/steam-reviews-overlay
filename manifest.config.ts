@@ -16,7 +16,7 @@ export default defineManifest({
     48: 'public/icon48.png',
     128: 'public/icon128.png',
   },
-  permissions: ['storage', 'webRequest'],
+  permissions: ['storage', 'webRequest', 'scripting'],
   action: {
     default_title: '__MSG_extName__',
     default_popup: 'src/popup/index.html',

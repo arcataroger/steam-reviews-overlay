@@ -389,7 +389,22 @@ function scheduleScan() {
   }, 250)
 }
 
+/** Remove badges and markers left by a previous instance of this script (extension reload/update). */
+function clearPreviousInstance() {
+  document.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
+  for (const el of document.querySelectorAll<HTMLElement>(`[${CARD_ATTR}]`)) {
+    el.removeAttribute(CARD_ATTR)
+    delete el.dataset.sroTone
+    delete el.dataset.sroScore
+    delete el.dataset.sroFiltered
+    delete el.dataset.sroHighlight
+    el.style.removeProperty('--sro-hl')
+  }
+  document.getElementById('sro-styles')?.remove()
+}
+
 async function main() {
+  clearPreviousInstance()
   injectStyles()
   settings = await loadSettings()
   onSettingsChange((s) => {

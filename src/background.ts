@@ -17,3 +17,23 @@ ext.webRequest.onCompleted.addListener(
   },
   { urls: ['https://api.steampowered.com/IStoreBrowseService/GetItems/*'], types: ['xmlhttprequest'] },
 )
+
+/**
+ * After an install, update or reload, content scripts in already-open store tabs are orphaned
+ * (Chrome cuts them off from extension APIs). Re-inject so those tabs keep working without a
+ * manual reload. The fresh script clears any leftovers from the old instance on startup.
+ */
+ext.runtime.onInstalled.addListener(async () => {
+  const files = ext.runtime.getManifest().content_scripts?.flatMap((cs) => cs.js ?? []) ?? []
+  if (!files.length) return
+  let tabs: chrome.tabs.Tab[] = []
+  try {
+    tabs = await ext.tabs.query({ url: 'https://store.steampowered.com/*' })
+  } catch {
+    return
+  }
+  for (const tab of tabs) {
+    if (tab.id === undefined) continue
+    ext.scripting.executeScript({ target: { tabId: tab.id }, files }).catch(() => {})
+  }
+})

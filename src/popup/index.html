@@ -18,18 +18,18 @@
         <div class="readouts">
           <div class="readout left" id="readoutFilter">
             <div class="plate-row">
+              <span class="plate-title">FILTER</span>
               <div class="switch" role="radiogroup" id="mode" aria-label="What to do with games under the left lever">
                 <button type="button" data-mode="dim" role="radio">Dim</button>
                 <button type="button" data-mode="hide" role="radio">Hide</button>
               </div>
-              <span class="plate-title">UNDER</span>
             </div>
             <span class="digits" id="pctFilter">0%</span>
             <span class="tier" id="tierFilter"></span>
           </div>
           <div class="readout right" id="readoutHighlight">
             <div class="plate-row">
-              <span class="plate-title">OUTLINE ABOVE</span>
+              <span class="plate-title">HIGHLIGHT</span>
             </div>
             <span class="digits" id="pctHighlight">100%</span>
             <span class="tier" id="tierHighlight"></span>
@@ -40,16 +40,16 @@
                aria-label="Filter games under this positive-review percentage"
                aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
             <div class="rail"><div class="fill" id="fillFilter"></div></div>
-            <div class="detent bottom"><span>OFF</span></div>
-            <div class="knob" id="knobFilter"><i></i><i></i><i></i></div>
+            <div class="detent bottom"></div>
+            <div class="knob" id="knobFilter"><b class="arrow"></b><i></i><i></i><i></i></div>
           </div>
           <div id="notches" class="notches"></div>
           <div id="leverHighlight" class="lever right" role="slider" tabindex="0"
                aria-label="Highlight games above this positive-review percentage"
                aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
             <div class="rail"><div class="fill" id="fillHighlight"></div></div>
-            <div class="detent top"><span>OFF</span></div>
-            <div class="knob" id="knobHighlight"><i></i><i></i><i></i></div>
+            <div class="detent top"></div>
+            <div class="knob" id="knobHighlight"><i></i><i></i><i></i><b class="arrow"></b></div>
           </div>
         </div>
       </div>

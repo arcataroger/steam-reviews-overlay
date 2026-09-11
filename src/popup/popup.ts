@@ -83,7 +83,8 @@ function renderSide(side: Side, pct: number) {
   u.readout.classList.toggle('off', off)
   u.pct.className = `digits ${off ? 'none' : ''}`
   const c = toneColorAt(pct)
-  u.pct.style.setProperty('--c', c)
+  if (off) u.pct.style.removeProperty('--c')
+  else u.pct.style.setProperty('--c', c)
   u.knob.style.setProperty('--c', c)
   u.tier.textContent = off ? (side === 'filter' ? 'nothing filtered' : 'nothing outlined') : tier.name
   u.tier.className = `tier ${off ? '' : tier.tone}`

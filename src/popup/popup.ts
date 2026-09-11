@@ -56,6 +56,9 @@ function fitGateLabels() {
   }
 }
 fitGateLabels()
+// The Dim/Hide switch is 10px type in a ~64px button: long words ("Ausblenden", "Sembunyikan")
+// step down to 7px before they would be cut with an ellipsis.
+for (const b of document.querySelectorAll<HTMLElement>('.switch button')) fitText(b, 10, 7, 4)
 
 document.documentElement.style.setProperty('--tone-gradient', GRADIENT_CSS)
 

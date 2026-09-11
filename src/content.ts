@@ -688,6 +688,11 @@ const cardsByAppId = new Map<HTMLElement, number>()
 const unsubs = new WeakMap<HTMLElement, () => void>()
 
 function release(card: HTMLElement) {
+  const t = hideTimers.get(card)
+  if (t) {
+    clearTimeout(t) // a recycled node must not be collapsed by its previous occupant's fade
+    hideTimers.delete(card)
+  }
   shapeWatcher.unobserve(card)
   unsubs.get(card)?.()
   unsubs.delete(card)
@@ -806,7 +811,10 @@ function scan(root: ParentNode = document) {
     if (s && owner.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(owner, s)
   }
   seedFromSearchRows(root)
-  const candidates = root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')
+  // querySelectorAll never returns the root itself, and a mutation can hand us the card's own
+  // anchor (search rows and capsules ARE the <a>): include it.
+  const candidates = [...root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')]
+  if (root instanceof HTMLElement && root.matches('a[href*="/app/"], [data-ds-appid]')) candidates.unshift(root)
   for (const el of candidates) {
     const appid = appIdOf(el)
     if (!appid || appid === pageAppId) continue

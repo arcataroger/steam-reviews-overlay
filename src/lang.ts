@@ -58,4 +58,13 @@ export function detectLang(): LangInfo {
   return { steam, name: STEAM_LANG_NAMES[steam] ?? steam, flag: flagFor(country) }
 }
 
+/** For QA/previews: the Steam language + flag a given extension locale code corresponds to. */
+export function langForLocale(locale: string): LangInfo {
+  const bcp = locale.replace('_', '-')
+  const steam = BCP47_TO_STEAM.find(([re]) => re.test(bcp))?.[1] ?? 'english'
+  const region = bcp.split('-')[1]
+  const country = region && /^[A-Za-z]{2}$/.test(region) ? region : STEAM_TO_COUNTRY[steam]
+  return { steam, name: STEAM_LANG_NAMES[steam] ?? steam, flag: flagFor(country) }
+}
+
 export const LANG_KEY = 'sro:lang:v1'

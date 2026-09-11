@@ -35,6 +35,13 @@
 .sro-line.sro-none     { color: var(--sro-none); }
 .sro-ico { font-size: 10px; line-height: 1; opacity: 0.9; }
 
+/* Search result rows: next to Steam's own review icon, in its column */
+.search_reviewscore .sro-badge.sro-slot {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.search_result_row .search_reviewscore { white-space: nowrap; }
+
 /* Placed inline next to a price element */
 .sro-badge.sro-inline {
   margin-left: 8px;

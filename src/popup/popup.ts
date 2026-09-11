@@ -12,7 +12,7 @@ import {
   type FilterMode,
   type ScoreSource,
 } from '../settings'
-import { LANG_KEY, detectLang, type LangInfo } from '../lang'
+import { LANG_KEY, detectLang, langForLocale, type LangInfo } from '../lang'
 import { GRADIENT_CSS, toneColorAt } from '../tonecolor'
 import { t, tierName, tierRule, forceLocale } from '../i18n'
 import { STATUS_KEY, type Status } from '../steam'
@@ -81,11 +81,13 @@ function showLang(l: LangInfo) {
   $('#srcFlag').textContent = l.flag
   $('#srcLang').textContent = `(${l.name})`
 }
-showLang(detectLang())
-ext.storage.local.get(LANG_KEY).then((r) => {
-  const l = r?.[LANG_KEY] as LangInfo | undefined
-  if (l) showLang(l)
-})
+showLang(qaLocale ? langForLocale(qaLocale) : detectLang())
+if (!qaLocale) {
+  ext.storage.local.get(LANG_KEY).then((r) => {
+    const l = r?.[LANG_KEY] as LangInfo | undefined
+    if (l) showLang(l)
+  })
+}
 
 // One notch per Steam tier. Left tick zone drives the filter lever, right tick zone the highlight lever.
 for (const t of TIERS) {

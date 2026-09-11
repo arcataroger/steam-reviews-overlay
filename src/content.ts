@@ -192,6 +192,13 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
   return b
 }
 
+/** Where Steam already reserves a spot for reviews (search rows: the thumbs icon column), sit there. */
+function findReviewSlot(card: HTMLElement): HTMLElement | null {
+  const slot = card.querySelector<HTMLElement>('.search_reviewscore')
+  if (slot && slot.getClientRects().length) return slot
+  return null
+}
+
 function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   if (!card.isConnected) return
   card.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
@@ -200,6 +207,13 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   card.dataset.sroTone = toneFor(pick?.score ?? 0)
   card.dataset.sroScore = String(pick?.score ?? 0)
   applyFilter(card, summary)
+
+  const slot = findReviewSlot(card)
+  if (slot) {
+    badge.classList.add('sro-slot')
+    slot.appendChild(badge)
+    return
+  }
 
   const price = findPriceEl(card)
   if (price) {

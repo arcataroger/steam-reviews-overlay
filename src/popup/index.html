@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Steam Reviews Overlay</title>
     <link rel="stylesheet" href="./popup.css" />
   </head>
@@ -20,10 +21,10 @@
           <div class="readout left" id="readoutFilter">
             <div class="plate-row">
               <span class="plate-title" data-i18n="filter">FILTER</span>
-              <div class="switch" role="radiogroup" id="mode" data-i18n-aria="modeAria">
-                <button type="button" data-mode="dim" role="radio" data-i18n="dim">Dim</button>
-                <button type="button" data-mode="hide" role="radio" data-i18n="hide">Hide</button>
-              </div>
+            </div>
+            <div class="switch" role="radiogroup" id="mode" data-i18n-aria="modeAria">
+              <button type="button" data-mode="dim" role="radio" data-i18n="dim">Dim</button>
+              <button type="button" data-mode="hide" role="radio" data-i18n="hide">Hide</button>
             </div>
             <span class="digits" id="pctFilter">0%</span>
             <span class="tier" id="tierFilter"></span>

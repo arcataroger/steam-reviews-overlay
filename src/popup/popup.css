@@ -65,7 +65,7 @@ body {
 .panel-wrap { padding-top: 14px; }
 .panel {
   position: relative;
-  padding: 13px 14px 14px;
+  padding: 16px 20px 18px;
   border-radius: 10px;
   background:
     repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px),
@@ -84,8 +84,8 @@ body {
   content: ""; position: absolute; left: 1px; right: 1px; top: 3.5px; height: 1px;
   background: rgba(0,0,0,0.7); transform: rotate(35deg);
 }
-.screw.tl { top: 5px; left: 5px; } .screw.tr { top: 5px; right: 5px; }
-.screw.bl { bottom: 5px; left: 5px; } .screw.br { bottom: 5px; right: 5px; }
+.screw.tl { top: 6px; left: 6px; } .screw.tr { top: 6px; right: 6px; }
+.screw.bl { bottom: 6px; left: 6px; } .screw.br { bottom: 6px; right: 6px; }
 
 .plate-title {
   font-size: 9px; letter-spacing: 1.6px; color: #8391a1; font-weight: 600;

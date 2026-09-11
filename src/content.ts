@@ -201,6 +201,18 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
   return b
 }
 
+/** Capsule (mostly artwork, overhanging tags, hover zoom) vs. row listing (small thumbnail beside text). */
+function cardShape(card: HTMLElement): 'card' | 'row' {
+  const r = card.getBoundingClientRect()
+  if (!r.width || !r.height) return 'row'
+  let imgArea = 0
+  for (const img of card.querySelectorAll<HTMLElement>('img, video')) {
+    const ir = img.getBoundingClientRect()
+    imgArea = Math.max(imgArea, ir.width * ir.height)
+  }
+  return imgArea / (r.width * r.height) > 0.5 ? 'card' : 'row'
+}
+
 /** Where Steam already reserves a spot for reviews (search rows: the thumbs icon column), sit there. */
 function findReviewSlot(card: HTMLElement): HTMLElement | null {
   const slot = card.querySelector<HTMLElement>('.search_reviewscore')
@@ -211,11 +223,14 @@ function findReviewSlot(card: HTMLElement): HTMLElement | null {
 function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   if (!card.isConnected) return
   card.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
-  const badge = makeBadge(summary)
   const pick = chosen(summary)
   card.dataset.sroTone = toneFor(pick?.score ?? 0)
   card.dataset.sroScore = String(pick?.score ?? 0)
   applyFilter(card, summary)
+  // Cards that already show Steam's own review text (featured capsules, expanded sale cards)
+  // still get filtered/highlighted, just no second label.
+  if (hasNativeSummary(card)) return
+  const badge = makeBadge(summary)
 
   const slot = findReviewSlot(card)
   if (slot) {
@@ -261,13 +276,19 @@ const hideTimers = new WeakMap<HTMLElement, number>()
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   const pick = chosen(summary)
   const filtered = isFiltered(pick, settings)
-  // Outline color is sampled from the lever gradient at the lever's position
-  if (!filtered && isHighlighted(pick, settings)) {
-    card.dataset.sroHighlight = tierFor(settings.highlightThreshold).tone
-    card.style.setProperty('--sro-hl', toneColorAt(settings.highlightThreshold))
+  // Highlight in the game's OWN review color (Steam's tone for its tier), not the lever's.
+  // Overwhelmingly Positive gets an extra, slow orbiting light.
+  if (!filtered && pick && isHighlighted(pick, settings)) {
+    card.dataset.sroHighlight = toneFor(pick.score)
+    card.dataset.sroShape = cardShape(card)
+    card.style.setProperty('--sro-hl', toneColorAt(pick.score))
+    if (pick.score === 9) card.dataset.sroOp = '1'
+    else delete card.dataset.sroOp
     if (getComputedStyle(card).position === 'static') card.style.position = 'relative'
   } else {
     delete card.dataset.sroHighlight
+    delete card.dataset.sroOp
+    delete card.dataset.sroShape
     card.style.removeProperty('--sro-hl')
   }
   const want = filtered ? settings.mode : null
@@ -323,7 +344,6 @@ function sameScore(a: Score | null, b: Score | null): boolean {
 }
 
 function attach(card: HTMLElement, appid: number) {
-  if (hasNativeSummary(card)) return
   let last: ReviewSummary | undefined
   const unsub = subscribe(appid, (s) => {
     if (!card.isConnected) return
@@ -342,13 +362,22 @@ function revalidateCards() {
       continue
     }
     const ids = appIdsWithin(card, 2)
-    if (ids.size === 1 && ids.has(appid)) continue
+    if (ids.size === 1 && ids.has(appid)) {
+      // Steam re-renders capsule contents (hover microtrailers, rotating carousels), which can
+      // drop our badge while the card itself survives. Put it back from cache.
+      if (!card.querySelector(`.${BADGE_CLASS}`) && !hasNativeSummary(card)) {
+        const cached = peekCached(appid)
+        if (cached) placeBadge(card, cached)
+      }
+      continue
+    }
     release(card)
     card.removeAttribute(CARD_ATTR)
     delete card.dataset.sroTone
     delete card.dataset.sroScore
     delete card.dataset.sroFiltered
     delete card.dataset.sroHighlight
+    delete card.dataset.sroOp
     card.style.removeProperty('--sro-hl')
     card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}[data-sro-appid="${appid}"]`).forEach((n) => n.remove())
   }
@@ -398,6 +427,8 @@ function clearPreviousInstance() {
     delete el.dataset.sroScore
     delete el.dataset.sroFiltered
     delete el.dataset.sroHighlight
+    delete el.dataset.sroOp
+    delete el.dataset.sroShape
     el.style.removeProperty('--sro-hl')
   }
   document.getElementById('sro-styles')?.remove()

@@ -88,20 +88,9 @@
 .sro-pct { opacity: 0.75; }
 
 /* ---------- highlight ---------- */
-/* Cards: a soft halo behind the item. It tolerates Steam's overhanging tags ("TODAY'S DEAL") and
-   the thumbnail growing on hover, which a hard rectangle did not. */
-[data-sro-highlight] {
-  position: relative;
-  border-radius: inherit;
-  box-shadow:
-    0 0 0 2px color-mix(in srgb, var(--sro-hl) 45%, transparent),
-    0 0 14px 4px color-mix(in srgb, var(--sro-hl) 55%, transparent);
-}
-/* Tabular rows (search results): the crisp inset ring, drawn above positioned children */
-.search_result_row[data-sro-highlight] {
-  box-shadow: 0 0 10px color-mix(in srgb, var(--sro-hl) 55%, transparent);
-}
-.search_result_row[data-sro-highlight]::before {
+/* Row listings (search results, tab rows): a crisp inset ring, drawn above positioned children */
+[data-sro-highlight] { position: relative; border-radius: inherit; }
+[data-sro-highlight][data-sro-shape="row"]::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -110,10 +99,55 @@
   border-radius: inherit;
   box-shadow: inset 0 0 0 2px var(--sro-hl);
 }
+/* Capsules (mostly artwork): almost a rectangle, sitting just behind the card with a hint of fuzz.
+   Tolerates Steam's overhanging tags ("TODAY'S DEAL") and the thumbnail growing on hover. */
+[data-sro-highlight][data-sro-shape="card"] {
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--sro-hl) 85%, transparent),
+    0 0 4px 2px color-mix(in srgb, var(--sro-hl) 45%, transparent);
+}
+
 /* --sro-hl is set inline per card from the lever gradient; tone attrs are fallbacks */
 [data-sro-highlight="positive"] { --sro-hl: #66c0f4; }
 [data-sro-highlight="mixed"]    { --sro-hl: #b9a074; }
 [data-sro-highlight="negative"] { --sro-hl: #c85e2d; }
+
+/* Overwhelmingly Positive: a soft point of light slowly orbits the frame */
+@property --sro-orbit {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+[data-sro-op]::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 7;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--sro-orbit),
+    transparent 0deg,
+    transparent 300deg,
+    color-mix(in srgb, var(--sro-hl) 35%, transparent) 330deg,
+    #ffffff 352deg,
+    color-mix(in srgb, var(--sro-hl) 35%, transparent) 358deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 3px var(--sro-hl));
+  animation: sro-orbit 7s linear infinite;
+}
+@keyframes sro-orbit {
+  to { --sro-orbit: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-sro-op]::after { animation: none; opacity: 0.6; }
+}
 
 /* ---------- filter: dim ---------- */
 [data-sro-filtered="dim"] {

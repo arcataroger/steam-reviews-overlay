@@ -210,6 +210,14 @@
 [data-sro-filtered="dim"]:hover::after {
   background: rgba(0, 0, 0, 0.45);
 }
+/* Keyboard users: a focused link inside a dimmed card lifts the overlay and shows a focus ring */
+[data-sro-filtered="dim"]:focus-within::after {
+  background: rgba(0, 0, 0, 0.2);
+}
+[data-sro-filtered="dim"]:focus-within {
+  outline: 2px solid #66c0f4;
+  outline-offset: -2px;
+}
 /* The label dims with the rest of the card (it sits under the overlay) */
 [data-sro-filtered="dim"] .sro-badge {
   z-index: 1;

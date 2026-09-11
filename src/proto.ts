@@ -102,6 +102,8 @@ export interface DecodedItem {
   success: number
   appid?: number
   item_type?: number
+  /** EStoreAppType (0 game, 1 demo, 4 dlc, 10 hardware, 14 advertising, ...) */
+  type?: number
   summary_filtered?: RawSummary
   summary_language_specific?: RawSummary
 }
@@ -114,7 +116,7 @@ function decodeSummary(buf: Uint8Array | undefined): RawSummary | undefined {
 
 /**
  * CStoreBrowse_GetItems_Response { repeated StoreItem store_items = 1; }
- * StoreItem { item_type = 1; id = 2; success = 3; appid = 9; StoreItem_Reviews reviews = 23; }
+ * StoreItem { item_type = 1; id = 2; success = 3; appid = 9; EStoreAppType type = 10; StoreItem_Reviews reviews = 23; }
  * StoreItem_Reviews { summary_filtered = 1; summary_unfiltered = 2; summary_language_specific = 3; }
  * StoreReviewSummary { review_count = 1; percent_positive = 2; review_score = 3; review_score_label = 4; }
  */
@@ -130,6 +132,7 @@ export function decodeGetItemsResponse(buf: Uint8Array): DecodedItem[] {
       success: num(it, 3) ?? 0,
       appid: num(it, 9),
       item_type: num(it, 1),
+      type: num(it, 10),
       summary_filtered: decodeSummary(bytes(rf, 1)),
       summary_language_specific: decodeSummary(bytes(rf, 3)),
     })

@@ -70,6 +70,11 @@ const ext: typeof chrome = (globalThis as any).browser ?? chrome
 export const FALLBACK_FRESH_MS = 60_000 // only if Steam sends no usable max-age
 export const STALE_MS = 15 * 60_000
 const NEG_MS = 10 * 60_000
+/** EStoreAppType values that are not something a review label belongs on: movie 3, video 7, series 8,
+ *  episode 9, hardware 10, advertising 14 (Steam's own news/event app), config 15, shortcut 17,
+ *  depot-only 18, comics 19/20. Games, demos, mods, DLC, software, music and tools keep their label. */
+const NON_GAME_TYPES = new Set([3, 7, 8, 9, 10, 14, 15, 17, 18, 19, 20])
+export const isNonGameType = (type: number | undefined) => type !== undefined && NON_GAME_TYPES.has(type)
 const MAX_BATCH = 400 // conservative vs the ~8 KB URL cap Steam's edge enforces (≈800 ids fit); see docs/data-sourcing-research.md
 const DEBOUNCE_MS = 300
 const CACHE_KEY = 'sro:cache:v3'
@@ -321,6 +326,7 @@ async function fetchBatch(appids: number[]) {
       store_items?: {
         id?: number
         success?: number
+        type?: number
         reviews?: { summary_filtered?: RawSummary; summary_language_specific?: RawSummary }
       }[]
     }
@@ -340,7 +346,7 @@ async function fetchBatch(appids: number[]) {
     if (!item.id) continue
     seen.add(item.id)
     const g = item.reviews?.summary_filtered
-    if (item.success !== 1 || !g) {
+    if (item.success !== 1 || !g || isNonGameType(item.type)) {
       negative.set(item.id, now)
       continue
     }
@@ -401,6 +407,10 @@ export async function ingestSteamRequest(url: string): Promise<number> {
   let n = 0
   for (const it of items) {
     if (it.success !== 1 || it.item_type !== 0 || !it.appid || !it.summary_filtered) continue
+    if (isNonGameType(it.type)) {
+      negative.set(it.appid, now) // hardware, Steam's own news app, videos: never a label
+      continue
+    }
     // Cancel any pending fetch of ours for this id: Steam just handed it to us.
     pending.delete(it.appid)
     put({

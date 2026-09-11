@@ -92,15 +92,31 @@ export function pctToPos(pct: number, side: 'filter' | 'highlight'): number {
     return first ? Math.max(OFF_FILTER, first.score - 1) : 9
   }
   if (pct > 100) return OFF_HIGHLIGHT
-  const exact = [...TIERS].reverse().find((t) => t.pct === pct)
+  // "at or above 80%" included Positive as well as Very Positive: take the LOWEST tier on a tie
+  const exact = TIERS.find((t) => t.pct === pct)
   if (exact) return exact.score
   const next = TIERS.find((t) => t.pct > pct)
   return next ? next.score : 9
 }
 
+const STAMP = `${KEY}:t`
+
+/** Read the newest copy from sync and local (saves mirror to both; sync can be throttled or absent). */
+async function readNewest(): Promise<Record<string, unknown> | undefined> {
+  const [syncRes, localRes] = await Promise.all([
+    ext.storage.sync ? ext.storage.sync.get([KEY, STAMP, ...OLD_KEYS]).catch(() => undefined) : undefined,
+    ext.storage.local.get([KEY, STAMP, ...OLD_KEYS]).catch(() => undefined),
+  ])
+  const ts = (r?: Record<string, unknown>) => Number(r?.[STAMP] ?? 0)
+  if (localRes?.[KEY] && (!syncRes?.[KEY] || ts(localRes) > ts(syncRes))) return localRes
+  if (syncRes?.[KEY]) return syncRes
+  // No current settings anywhere: surface legacy keys from either area for migration
+  return { ...(localRes ?? {}), ...(syncRes ?? {}) }
+}
+
 export async function loadSettings(): Promise<Settings> {
   try {
-    const res = await area().get([KEY, ...OLD_KEYS])
+    const res = await readNewest()
     if (res?.[KEY]) return normalize(res[KEY] as Partial<Settings>)
     const old = (res?.[OLD_KEYS[0]] ?? res?.[OLD_KEYS[1]]) as
       | (Omit<Partial<Settings>, 'mode'> & { mode?: string; highlight?: string })
@@ -124,12 +140,15 @@ export async function loadSettings(): Promise<Settings> {
 }
 
 export async function saveSettings(s: Settings): Promise<void> {
-  try {
-    await area().set({ [KEY]: s })
-  } catch (e) {
-    // storage.sync can throttle (MAX_WRITE_OPERATIONS_PER_MINUTE) — keep the setting locally at least
-    console.warn('[SRO] settings save failed, falling back to local', e)
-    await ext.storage.local.set({ [KEY]: s })
+  const payload = { [KEY]: s, [STAMP]: Date.now() }
+  // Local always (fast, never throttled); sync as well so other devices follow. Whichever is newer wins on load.
+  await ext.storage.local.set(payload)
+  if (ext.storage.sync) {
+    try {
+      await ext.storage.sync.set(payload)
+    } catch (e) {
+      console.warn('[SRO] settings sync write failed (kept locally)', e)
+    }
   }
 }
 

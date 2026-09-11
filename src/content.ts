@@ -20,12 +20,10 @@ import { loadSettings, onSettingsChange, isFiltered, isHighlighted, DEFAULT_SETT
 
 let settings: Settings = DEFAULT_SETTINGS
 
-/** /app/N at the store root; on the news hub also /news/app/N (elsewhere a news link inside a page
- *  is not a game card). NOT /points/shop/app/N, community links and the like. */
-const ON_NEWS_HUB = location.pathname.startsWith('/news')
-const APP_RE = ON_NEWS_HUB
-  ? /(?:^|store\.steampowered\.com)\/(?:news\/)?app\/(\d+)/
-  : /(?:^|store\.steampowered\.com)\/app\/(\d+)/
+/** /app/N at the store root, or an event/news link /news/app/N (event tiles are game cards too).
+ *  NOT /points/shop/app/N, community links and the like. Oversized containers that merely contain
+ *  a news link are rejected by the height cap in findCard / revalidateCards. */
+const APP_RE = /(?:^|store\.steampowered\.com)\/(?:news\/)?app\/(\d+)/
 const CARD_ATTR = 'data-sro-card'
 const BADGE_CLASS = 'sro-badge'
 
@@ -65,8 +63,12 @@ const PRICE_SELECTORS = [
 
 /** A card is never wider than Steam's content column; page-wide wrappers (hero carousel
  *  containers) must not be claimed as cards. */
-const MAX_CARD_W = 1300
+const MAX_CARD_W = 1240 // page columns are 1300 wide: a container that wide is never a card
 const MAX_CARD_H = 700
+/** Page-level containers are never a card, however small they measure while still loading. */
+const NEVER_CARD_SELECTOR =
+  '.page_content, .page_content_ctn, #responsive_page_template_content, .responsive_page_content, main, [role="main"], ' +
+  '.app_reviews_area, .game_page_autocollapse_ctn, .leftcol, .rightcol, .block, #game_area_reviews' // app-page sections
 const maxCardWidth = () => Math.min(MAX_CARD_W, window.innerWidth - 80)
 
 function injectStyles() {
@@ -119,6 +121,18 @@ function appIdsWithin(root: Element, limit = 3): Set<number> {
   return ids
 }
 
+/** Does `parent` hold, outside `tile`, another artwork-sized link to the same game? */
+function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): boolean {
+  const tr = tile.getBoundingClientRect()
+  if (tr.width < 60 || tr.height < 40) return false
+  for (const n of parent.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')) {
+    if (tile.contains(n) || appIdOf(n) !== appid) continue
+    const r = n.getBoundingClientRect()
+    if (r.height >= 40 && r.width >= 60 && n.querySelector('img, picture, video')) return true
+  }
+  return false
+}
+
 /**
  * Walk up from a game link to the largest ancestor that still references only this
  * one game and isn't absurdly large. That ancestor is the "card".
@@ -134,8 +148,11 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
     const rect = el.getBoundingClientRect()
     // Height is capped for every candidate (a 4000px reviews container is never a card); the width
     // cap only applies when climbing, since a search row can be wider than a phone viewport.
-    if (rect.height > MAX_CARD_H) break
+    if (rect.height > MAX_CARD_H || el.matches(NEVER_CARD_SELECTOR)) break
     if (card && rect.width > maxCardWidth()) break
+    // A row of tiles that all belong to the same game (three news posts about one title) is a group,
+    // not a card: stop at the tile when the parent holds another artwork-bearing link to it.
+    if (card && hasSiblingTile(el, card, appid)) break
     card = el
     el = el.parentElement
     hops++
@@ -298,7 +315,9 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     const before = card.getBoundingClientRect()
     native.insertAdjacentElement('afterend', badge)
     const after = card.getBoundingClientRect()
-    if (Math.abs(after.width - before.width) > 1 || Math.abs(after.height - before.height) > 1 || obstaclesFor(card, badge).length) {
+    const br = badge.getBoundingClientRect()
+    const clipped = !br.width || !within(br, after)
+    if (clipped || Math.abs(after.width - before.width) > 1 || Math.abs(after.height - before.height) > 1 || obstaclesFor(card, badge).length) {
       badge.remove()
       badge.classList.remove('sro-inline', 'sro-beside-native')
       placeInCorner(card, badge, before)
@@ -370,14 +389,27 @@ function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   const cr = card.getBoundingClientRect()
   const cardArea = Math.max(1, cr.width * cr.height)
   const out: DOMRect[] = []
-  for (const el of card.querySelectorAll<HTMLElement>('*')) {
-    if (badge.contains(el) || el === badge || el.classList.contains(ORBIT_CLASS)) continue
-    const iconish = el.matches('img, svg, video, button, [role="button"]')
-    if (!iconish && (el.children.length || !(el.textContent ?? '').trim())) continue
+  const hits = (er: DOMRect) => br.left < er.right - 1 && br.right > er.left + 1 && br.top < er.bottom - 1 && br.bottom > er.top + 1
+  // Icons, buttons and small artwork: whole-tile art and wrappers are what a chip sits on, not obstacles
+  for (const el of card.querySelectorAll<HTMLElement>('img, svg, video, button, [role="button"]')) {
+    if (badge.contains(el) || el.classList.contains(ORBIT_CLASS)) continue
     const er = el.getBoundingClientRect()
     if (!er.width || !er.height) continue
-    if (iconish && (er.width * er.height) / cardArea > 0.33) continue // artwork / whole-tile wrapper
-    if (br.left < er.right - 1 && br.right > er.left + 1 && br.top < er.bottom - 1 && br.bottom > er.top + 1) out.push(er)
+    if ((er.width * er.height) / cardArea > 0.33) continue
+    if (hits(er)) out.push(er)
+  }
+  // Text is measured node by node (a date line mixing bare text with spans is still text)
+  const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT)
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    if (!node.textContent?.trim() || badge.contains(node)) continue
+    const range = document.createRange()
+    range.selectNodeContents(node)
+    for (const er of range.getClientRects()) {
+      if (er.width && er.height && hits(er)) {
+        out.push(er)
+        break
+      }
+    }
   }
   return out
 }
@@ -474,12 +506,21 @@ const shapeWatcher = new ResizeObserver((entries) => {
   for (const e of entries) {
     const card = e.target as HTMLElement
     const appid = cardsByAppId.get(card)
-    const s = appid ? peekCached(appid) : undefined
-    if (!s || !card.isConnected) continue
+    if (!appid || !card.isConnected) continue
+    const r = card.getBoundingClientRect()
+    // A container that grew past card size (a section filled in after we claimed it) is not a card;
+    // growth without a DOM mutation never reaches the scanner, so release it here.
+    if (r.height > MAX_CARD_H) {
+      release(card)
+      stripCard(card)
+      scheduleScan(card)
+      continue
+    }
+    const s = peekCached(appid)
+    if (!s) continue
     // A lifted corner chip was measured against the old layout: re-place it. Otherwise re-derive the
     // shape and make sure the badge still matches (a slide that just became visible may need one).
     // Only act on a real size change (the observer also fires on observe())
-    const r = card.getBoundingClientRect()
     const size = `${Math.round(r.width)}x${Math.round(r.height)}`
     if (card.dataset.sroSize === size) continue
     const first = !card.dataset.sroSize
@@ -522,7 +563,6 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     delete card.dataset.sroAxis
     card.style.removeProperty('--sro-hl')
     setOrbit(card, false)
-    shapeWatcher.unobserve(card)
   }
   const want = filtered ? settings.mode : null
   const cur = card.dataset.sroFiltered
@@ -649,6 +689,14 @@ function scan(root: ParentNode = document) {
     revalidateCards()
     lastRevalidate = Date.now()
   }
+  // Something changed inside a card we already labelled: a corner chip measured against the old
+  // content may now sit on text that arrived late, so place it again.
+  const owner = root instanceof Element ? root.closest<HTMLElement>(`[${CARD_ATTR}]`) : null
+  if (owner) {
+    const appid = cardsByAppId.get(owner)
+    const s = appid ? peekCached(appid) : undefined
+    if (s && owner.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(owner, s)
+  }
   seedFromSearchRows(root)
   const candidates = root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')
   for (const el of candidates) {
@@ -669,6 +717,7 @@ function scan(root: ParentNode = document) {
     if (linksToNonGame(card)) continue
     card.setAttribute(CARD_ATTR, String(appid))
     cardsByAppId.set(card, appid)
+    shapeWatcher.observe(card) // catches a container that grows past card size after being claimed
     attach(card, appid)
   }
 }
@@ -739,6 +788,12 @@ async function main() {
   mo = new MutationObserver((muts) => {
     if (!alive()) return
     for (const m of muts) {
+      if (m.type === 'characterData') {
+        // Text filled in after placement (a release date rendering late) can end up under a chip
+        const owner = m.target.parentElement?.closest<HTMLElement>(`[${CARD_ATTR}]`)
+        if (owner) scheduleScan(owner)
+        continue
+      }
       if (m.type !== 'childList' || !m.addedNodes.length) continue
       for (const n of m.addedNodes) {
         if (n.nodeType !== 1) continue
@@ -748,7 +803,7 @@ async function main() {
       }
     }
   })
-  mo.observe(document.body, { childList: true, subtree: true })
+  mo.observe(document.body, { childList: true, characterData: true, subtree: true })
 }
 
 function start() {

@@ -112,7 +112,7 @@ describe('settings migration from the percent-based versions', () => {
     expect(pctToPos(-1, 'filter')).toBe(OFF_FILTER)
   })
   it('maps an old "at or above P%" highlight to the tier whose band starts at P', () => {
-    expect(pctToPos(80, 'highlight')).toBe(8) // ties prefer the stronger tier
+    expect(pctToPos(80, 'highlight')).toBe(7) // "at or above 80%" included Positive: lowest tier on a tie
     expect(pctToPos(95, 'highlight')).toBe(9)
     expect(pctToPos(50, 'highlight')).toBe(6) // between bands: next tier up
     expect(pctToPos(101, 'highlight')).toBe(OFF_HIGHLIGHT)

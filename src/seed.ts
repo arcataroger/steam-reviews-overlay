@@ -6,7 +6,9 @@ const ext: typeof chrome | undefined = (globalThis as any).browser ?? (globalThi
 
 /** First line of the tooltip is Steam's localized label; then "NN% of the 1,234 user reviews ..." in any language. */
 const TOOLTIP_RE = /^(.*?)<br>[^<]*?(\d+)\s*%[^<\d]*?([\d][\d.,\s\u00a0]*)/i
-const LANG_NOTE_RE = /written in your language|in your language/i
+/** Steam appends its "calculated from reviews written in your language" note as a second paragraph
+ *  (`<br><br>...`), in every language; the wording itself is localized, the structure is not. */
+const LANG_NOTE_RE = /<br\s*\/?>\s*<br\s*\/?>\s*\S/i
 
 /** Map a Steam label to its 0-9 score: English wording, or the UI locale's tier names from the catalog. */
 let localTierNames: Map<string, number> | null = null

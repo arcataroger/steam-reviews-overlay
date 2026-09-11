@@ -13,7 +13,7 @@ test.describe('popup levers drive the overlay live', () => {
     // Filter lever to Very Positive, Dim
     await popup.click('button[data-mode="dim"]')
     await popup.click('.notch[data-pos="8"] .tick.l', { force: true })
-    await expect(popup.locator('#tierFilter')).toHaveText('Very Positive')
+    await expect(popup.locator('#tierFilter')).toContainText('Very Positive')
     await store.bringToFront()
     await expect.poll(() => store.locator('[data-sro-filtered="dim"]').count()).toBeGreaterThan(0)
 

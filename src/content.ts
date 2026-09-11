@@ -166,12 +166,6 @@ function line(sc: Score, icon: string, scope: string, cls: string): HTMLSpanElem
     l.appendChild(i)
   }
   l.appendChild(document.createTextNode(sc.label || t('notEnoughReviews')))
-  if (sc.pct !== null) {
-    const p = document.createElement('span')
-    p.className = 'sro-pct'
-    p.textContent = ` (${sc.pct}%)`
-    l.appendChild(p)
-  }
   return l
 }
 

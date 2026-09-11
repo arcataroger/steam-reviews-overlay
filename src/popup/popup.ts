@@ -4,7 +4,6 @@ import {
   snapPosition,
   reconcile,
   posToPct,
-  bandEndPct,
   tierFor,
   TIERS,
   OFF_FILTER,
@@ -124,10 +123,10 @@ function renderSide(side: Side, value: number) {
   const pos = off ? (side === 'filter' ? 1 : 9) : value
   const tier = tierFor(pos)
   u.readout.classList.toggle('off', off)
-  // Both inclusive: filter = this tier or lower (≤ top of its band), highlight = this tier or higher (≥ band start).
-  u.pct.textContent = off ? t('off') : side === 'filter' ? `≤ ${bandEndPct(pos)}%` : `≥ ${Math.round(posToPct(pos))}%`
-  u.pct.className = `digits ${off ? 'none' : ''}`
-  u.tier.textContent = tierName(tier.score)
+  // Readout quotes the ladder's own rule for the tier; direction sits on the tier name (both inclusive).
+  u.pct.textContent = off ? t('off') : tierRule(tier.score)
+  u.pct.className = `digits ${off ? 'none' : 'rule'}`
+  u.tier.textContent = off ? tierName(tier.score) : `${side === 'filter' ? '≤' : '≥'} ${tierName(tier.score)}`
   u.tier.className = `tier ${off ? '' : tier.tone}`
   const c = toneColorAt(pos)
   if (off) u.pct.style.removeProperty('--c')

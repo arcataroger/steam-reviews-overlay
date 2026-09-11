@@ -5,3 +5,5 @@ dist
 build/
 .demo-profile/
 shots/
+test-results/
+playwright-report/

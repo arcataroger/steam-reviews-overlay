@@ -35,7 +35,7 @@ cards across the Steam store, so you don't have to hover every capsule.
      The popup's "judged by" toggle picks which one the filter uses.
   4. Cache is stale-while-revalidate keyed to Steam's own freshness: each batch
      response carries `Cache-Control: max-age=N` counting down the life of
-     Steam's CDN copy, and the entry expires at exactly that moment (+1 s), so
+     Steam's CDN copy, and the entry expires at exactly that moment, so
      the next fetch is guaranteed a refreshed copy. Entries are shown while
      revalidating for up to 15 min, then dropped. Persistence only exists to
      survive reloads and back/forward navigation.

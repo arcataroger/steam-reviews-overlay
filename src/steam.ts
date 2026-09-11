@@ -7,7 +7,7 @@
  * protobuf-encoded IStoreBrowseService/GetItems request per page for the rest.
  *
  * Freshness: each batch response carries Steam's own `Cache-Control: max-age=N`, which counts
- * down as Steam's CDN copy ages. We expire our entry at exactly that moment (+1s slack), so the
+ * down as Steam's CDN copy ages. We expire our entry at exactly that moment, so the
  * next fetch is guaranteed to hit a refreshed copy rather than the same cached one. Entries are
  * still shown while revalidating for up to STALE_MS, then dropped. Persistence exists only to
  * survive reloads and back/forward navigation.
@@ -218,7 +218,7 @@ function freshnessFrom(res: Response): number {
   const m = cc.match(/max-age=(\d+)/)
   if (!m) return FALLBACK_FRESH_MS
   const age = Number(res.headers.get('age') ?? 0)
-  return Math.max(0, Number(m[1]) - age) * 1000 + 1000
+  return Math.max(0, Number(m[1]) - age) * 1000
 }
 
 async function fetchBatch(appids: number[]) {

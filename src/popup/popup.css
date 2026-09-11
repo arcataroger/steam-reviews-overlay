@@ -214,6 +214,9 @@ body {
 .notch .tick.r::after { width: 100%; }
 .notch .tick.l::after, .notch .tick.r::before { display: none; }
 .notch .tick:hover::before, .notch .tick:hover::after { background: #dfe7ef; }
+/* Ticks on a parked lever's side look unpowered */
+.notches.off-l .tick.l::before, .notches.off-r .tick.r::after { background: #333c48; box-shadow: none; }
+.notches.off-l .tick.l:hover::before, .notches.off-r .tick.r:hover::after { background: #56637a; }
 .notch span {
   flex: 0 1 auto; min-width: 0; padding: 0 6px;
   display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -283,9 +286,11 @@ body {
 .knob i { display: block; width: 2px; height: 8px; background: rgba(0,0,0,0.45); box-shadow: 1px 0 0 rgba(255,255,255,0.12); }
 /* Engraved pointer on the handle: filter acts on everything below it, highlight on everything above */
 .knob .arrow { display: block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; margin: 0 2px; }
-.lever.left .knob .arrow { border-top: 6px solid rgba(0,0,0,0.55); filter: drop-shadow(0 1px 0 rgba(255,255,255,0.15)); }
-.lever.right .knob .arrow { border-bottom: 6px solid rgba(0,0,0,0.55); filter: drop-shadow(0 -1px 0 rgba(255,255,255,0.15)); }
-.knob.parked .arrow { opacity: 0.5; }
+/* Pointer lit in the tier color, like the tick line it points at */
+.lever.left .knob .arrow { border-top: 6px solid var(--c, #7bd7ff); }
+.lever.right .knob .arrow { border-bottom: 6px solid var(--c, #7bd7ff); }
+.knob .arrow { filter: drop-shadow(0 0 3px var(--c, #7bd7ff)) drop-shadow(0 0 1px var(--c, #7bd7ff)); }
+.knob.parked .arrow { --c: #4a5566; filter: none; opacity: 0.8; }
 
 
 

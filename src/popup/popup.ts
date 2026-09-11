@@ -130,6 +130,7 @@ function renderSide(side: Side, value: number) {
   const c = toneColorAt(pos)
   if (off) u.pct.style.removeProperty('--c')
   else u.pct.style.setProperty('--c', c)
+  u.knob.style.setProperty('--c', c)
   u.fill.style.setProperty('--pct', String(off ? (side === 'filter' ? 0 : 100) : trackPct(pos)))
   u.fill.classList.toggle('off', off)
   u.knob.style.setProperty('--pct', String(off ? (side === 'filter' ? GATE_L : GATE_R) : trackPct(pos)))
@@ -140,6 +141,8 @@ function renderSide(side: Side, value: number) {
   for (const n of notches.querySelectorAll<HTMLElement>('.notch')) {
     n.classList.toggle(cls, !off && Number(n.dataset.pos) === pos)
   }
+  // a parked lever's side of the ladder goes dark
+  notches.classList.toggle(side === 'filter' ? 'off-l' : 'off-r', off)
 }
 
 function render() {

@@ -1,6 +1,10 @@
 import css from './content.css?inline'
-import { subscribe, formatTooltip, peekCached, type ReviewSummary } from './steam'
+import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, type ReviewSummary, type Score } from './steam'
 import { seedFromSearchRows, seedFromInlineJson } from './seed'
+import { detectLang, LANG_KEY, type LangInfo } from './lang'
+
+const ext: typeof chrome = (globalThis as any).browser ?? chrome
+const lang: LangInfo = detectLang()
 import { loadSettings, onSettingsChange, isFiltered, DEFAULT_SETTINGS, type Settings } from './settings'
 
 let settings: Settings = DEFAULT_SETTINGS
@@ -135,14 +139,33 @@ function findPriceEl(card: HTMLElement): HTMLElement | null {
   return null
 }
 
+/** The score the filter (and the card's tone) should look at, per the user's setting. */
+function chosen(summary: ReviewSummary): Score | null {
+  return settings.source === 'local' ? (summary.local ?? summary.global) : (summary.global ?? summary.local)
+}
+
+function line(sc: Score, icon: string, scope: string, cls: string): HTMLSpanElement {
+  const l = document.createElement('span')
+  l.className = `sro-line ${cls} sro-${toneFor(sc.score)}`
+  l.title = formatTooltip(sc, scope)
+  const i = document.createElement('span')
+  i.className = 'sro-ico'
+  i.textContent = icon
+  l.append(i, document.createTextNode(sc.label || 'Not enough reviews'))
+  return l
+}
+
 function makeBadge(summary: ReviewSummary): HTMLSpanElement {
   const b = document.createElement('span')
-  b.className = `${BADGE_CLASS} sro-${summary.tone}`
-  b.textContent = summary.label || 'Not enough reviews'
-  b.title = formatTooltip(summary)
+  const pick = chosen(summary)
+  b.className = `${BADGE_CLASS} sro-${toneFor(pick?.score ?? 0)}`
   b.dataset.sroAppid = String(summary.appid)
-  b.dataset.sroScore = String(summary.score)
-  if (summary.pct !== null) b.dataset.sroPct = String(summary.pct)
+  if (pick) {
+    b.dataset.sroScore = String(pick.score)
+    if (pick.pct !== null) b.dataset.sroPct = String(pick.pct)
+  }
+  if (summary.local) b.appendChild(line(summary.local, lang.flag, lang.name, 'sro-local'))
+  if (summary.global) b.appendChild(line(summary.global, '🌐', 'All languages', 'sro-global'))
   return b
 }
 
@@ -150,8 +173,9 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   if (!card.isConnected) return
   card.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
   const badge = makeBadge(summary)
-  card.dataset.sroTone = summary.tone
-  card.dataset.sroScore = String(summary.score)
+  const pick = chosen(summary)
+  card.dataset.sroTone = toneFor(pick?.score ?? 0)
+  card.dataset.sroScore = String(pick?.score ?? 0)
   applyFilter(card, summary)
 
   const price = findPriceEl(card)
@@ -189,7 +213,7 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement) {
 const hideTimers = new WeakMap<HTMLElement, number>()
 
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
-  const want = isFiltered(summary, settings) ? settings.mode : null
+  const want = isFiltered(chosen(summary), settings) ? settings.mode : null
   const cur = card.dataset.sroFiltered
   const t = hideTimers.get(card)
   if (t) {
@@ -216,10 +240,12 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   )
 }
 
-function reapplyFilters() {
+function reapplyFilters(rerender = false) {
   for (const [card, appid] of cardsByAppId) {
     const s = peekCached(appid)
-    if (s && card.isConnected) applyFilter(card, s)
+    if (!s || !card.isConnected) continue
+    if (rerender) placeBadge(card, s)
+    else applyFilter(card, s)
   }
 }
 
@@ -234,13 +260,18 @@ function release(card: HTMLElement) {
   cardsByAppId.delete(card)
 }
 
+function sameScore(a: Score | null, b: Score | null): boolean {
+  if (!a || !b) return a === b
+  return a.label === b.label && a.pct === b.pct && a.count === b.count
+}
+
 function attach(card: HTMLElement, appid: number) {
   if (hasNativeSummary(card)) return
   let last: ReviewSummary | undefined
   const unsub = subscribe(appid, (s) => {
     if (!card.isConnected) return
     // Re-render only if something visible changed
-    if (last && last.label === s.label && last.pct === s.pct && last.count === s.count) return
+    if (last && sameScore(last.global, s.global) && sameScore(last.local, s.local)) return
     last = s
     placeBadge(card, s)
   })
@@ -298,9 +329,12 @@ async function main() {
   injectStyles()
   settings = await loadSettings()
   onSettingsChange((s) => {
+    const sourceChanged = s.source !== settings.source
     settings = s
-    reapplyFilters()
+    reapplyFilters(sourceChanged)
   })
+  setLanguage(lang.steam)
+  void ext.storage.local.set({ [LANG_KEY]: lang }).catch(() => {})
   seedFromInlineJson()
   scan()
   const mo = new MutationObserver((muts) => {

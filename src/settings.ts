@@ -1,6 +1,7 @@
 /** User settings shared between the popup and the content script. */
 
 export type FilterMode = 'label' | 'dim' | 'hide'
+export type ScoreSource = 'global' | 'local'
 
 export interface Settings {
   /** What to do with games whose positive-review percentage is below `threshold`. */
@@ -9,12 +10,15 @@ export interface Settings {
   threshold: number
   /** Also filter games with no reviews at all. */
   includeUnreviewed: boolean
+  /** Which Steam score the filter looks at: all languages, or the user's language. */
+  source: ScoreSource
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   mode: 'label',
   threshold: 40, // Mixed
   includeUnreviewed: false,
+  source: 'global',
 }
 
 /**
@@ -90,9 +94,9 @@ export function onSettingsChange(cb: (s: Settings) => void): void {
  *    Steam's own "sort by reviews" does and accounts for its review-count requirements
  *  - threshold between notches: compare Steam's integer percent_positive
  */
-export function isFiltered(summary: { score: number; pct: number | null }, s: Settings): boolean {
+export function isFiltered(summary: { score: number; pct: number | null } | null, s: Settings): boolean {
   if (s.mode === 'label') return false
-  if (summary.score === 0) return s.includeUnreviewed
+  if (!summary || summary.score === 0) return s.includeUnreviewed
   const notch = SETPOINTS.find((p) => p.pct === s.threshold)
   if (notch) return summary.score < notch.minScore
   if (summary.pct === null) return summary.score < tierFor(s.threshold).minScore

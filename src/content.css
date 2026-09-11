@@ -21,9 +21,24 @@
 .sro-badge.sro-negative { color: var(--sro-negative); }
 .sro-badge.sro-none     { color: var(--sro-none); }
 
+/* Two stacked lines: user's language (flag) over all languages (globe) */
+.sro-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+.sro-line { display: inline-flex; align-items: center; gap: 4px; }
+.sro-line.sro-positive { color: var(--sro-positive); }
+.sro-line.sro-mixed    { color: var(--sro-mixed); }
+.sro-line.sro-negative { color: var(--sro-negative); }
+.sro-line.sro-none     { color: var(--sro-none); }
+.sro-ico { font-size: 10px; line-height: 1; opacity: 0.9; }
+
 /* Placed inline next to a price element */
 .sro-badge.sro-inline {
   margin-left: 8px;
+  vertical-align: middle;
 }
 
 /* Placed in the lower-right corner of the card when there's no price to sit next to */

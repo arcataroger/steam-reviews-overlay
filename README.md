@@ -30,10 +30,15 @@ cards across the Steam store, so you don't have to hover every capsule.
      `api.steampowered.com/IStoreBrowseService/GetItems` (no key needed, up to
      400 ids per call). We use Steam's `summary_filtered`: label, 0-9 score,
      integer percent positive, review count.
-  3. Cache is stale-while-revalidate: fresh for 120 s (Steam's own CDN
-     `max-age` on that endpoint, so anything shorter would just re-download the
-     same cached response), shown-but-revalidated up to 15 min, dropped after.
-     It only exists to survive reloads and back/forward navigation.
+  3. Two scores per game: Steam's language-specific summary for your Steam
+     language (flag icon, on top) and the all-languages summary (globe icon).
+     The popup's "judged by" toggle picks which one the filter uses.
+  4. Cache is stale-while-revalidate keyed to Steam's own freshness: each batch
+     response carries `Cache-Control: max-age=N` counting down the life of
+     Steam's CDN copy, and the entry expires at exactly that moment (+1 s), so
+     the next fetch is guaranteed a refreshed copy. Entries are shown while
+     revalidating for up to 15 min, then dropped. Persistence only exists to
+     survive reloads and back/forward navigation.
 - Filtering follows Steam's algorithm: on a named notch the comparison is by
   Steam's tier (`review_score`), which is what Steam's own "sort by reviews"
   does and respects its review-count rules (e.g. 96% with 300 reviews is

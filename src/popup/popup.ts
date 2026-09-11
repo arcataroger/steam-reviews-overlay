@@ -6,7 +6,11 @@ import {
   SETPOINTS,
   type Settings,
   type FilterMode,
+  type ScoreSource,
 } from '../settings'
+import { LANG_KEY, type LangInfo } from '../lang'
+
+const ext: typeof chrome = (globalThis as any).browser ?? chrome
 
 const $ = <T extends HTMLElement>(sel: string) => document.querySelector(sel) as T
 
@@ -20,6 +24,15 @@ const tierName = $<HTMLSpanElement>('#tierName')
 const modeGroup = $<HTMLDivElement>('#mode')
 const modeHelp = $<HTMLParagraphElement>('#modeHelp')
 const includeUnreviewed = $<HTMLInputElement>('#includeUnreviewed')
+const sourceGroup = $<HTMLDivElement>('#source')
+
+// Flag/language detected by the content script on the last store page visited
+ext.storage.local.get(LANG_KEY).then((r) => {
+  const l = r?.[LANG_KEY] as LangInfo | undefined
+  if (!l) return
+  $('#srcFlag').textContent = l.flag
+  $('#srcLang').textContent = l.name
+})
 
 const HELP: Record<FilterMode, string> = {
   label: 'Only show the review summary on each game. Nothing is filtered.',
@@ -59,6 +72,9 @@ function render() {
   }
   modeHelp.textContent = HELP[settings.mode]
   includeUnreviewed.checked = settings.includeUnreviewed
+  for (const b of sourceGroup.querySelectorAll<HTMLButtonElement>('button')) {
+    b.setAttribute('aria-checked', String(b.dataset.source === settings.source))
+  }
   const filtering = settings.mode !== 'label'
   includeUnreviewed.disabled = !filtering
   lever.tabIndex = filtering ? 0 : -1
@@ -133,6 +149,10 @@ lever.addEventListener('keydown', (e) => {
 modeGroup.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-mode]')
   if (b) update({ mode: b.dataset.mode as FilterMode })
+})
+sourceGroup.addEventListener('click', (e) => {
+  const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-source]')
+  if (b) update({ source: b.dataset.source as ScoreSource })
 })
 includeUnreviewed.addEventListener('change', () => update({ includeUnreviewed: includeUnreviewed.checked }))
 

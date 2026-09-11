@@ -1,23 +1,23 @@
 /**
- * Review summaries, Steam's own numbers only.
+ * Review summaries, Steam's own numbers only, two flavours per game:
+ *   global — Steam's `summary_filtered` (all languages, off-topic activity excluded)
+ *   local  — Steam's `summary_language_specific` for the user's Steam language
  *
- * Sources, in order of preference:
- *   1. Whatever the page already rendered (search rows, homepage JSON) — seeded, zero requests.
- *   2. One batched IStoreBrowseService/GetItems request per page (protobuf-encoded ids, up to
- *      MAX_BATCH per request). Returns Steam's `summary_filtered`: label, 0-9 score, integer
- *      percent, count.
+ * Sources: whatever the page already rendered (seeded, zero requests), then one batched
+ * protobuf-encoded IStoreBrowseService/GetItems request per page for the rest.
  *
- * Caching is stale-while-revalidate with a short window: entries are "fresh" for FRESH_MS (matched
- * to the max-age Steam itself puts on this endpoint), shown-but-revalidated until STALE_MS, and
- * ignored after that. The persisted copy only exists to survive reloads and back/forward navigation.
+ * Freshness: each batch response carries Steam's own `Cache-Control: max-age=N`, which counts
+ * down as Steam's CDN copy ages. We expire our entry at exactly that moment (+1s slack), so the
+ * next fetch is guaranteed to hit a refreshed copy rather than the same cached one. Entries are
+ * still shown while revalidating for up to STALE_MS, then dropped. Persistence exists only to
+ * survive reloads and back/forward navigation.
  */
 
 import { encodeGetItemsRequest } from './proto'
 
 export type ReviewTone = 'positive' | 'mixed' | 'negative' | 'none'
 
-export interface ReviewSummary {
-  appid: number
+export interface Score {
   /** Steam's label verbatim: "Very Positive", "Mixed", "No user reviews", "3 user reviews", ... */
   label: string
   /** Steam's 0-9 score. 0 = Steam shows no score (fewer than 10 reviews). */
@@ -25,42 +25,48 @@ export interface ReviewSummary {
   /** Steam's integer percent positive, or null when Steam gives none. */
   pct: number | null
   count: number
-  tone: ReviewTone
+}
+
+export interface ReviewSummary {
+  appid: number
+  global: Score | null
+  local: Score | null
+  /** when fetched/seeded */
   ts: number
+  /** when Steam's own cached copy expires; refetch after this */
+  expires: number
 }
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
 
-export const FRESH_MS = 120_000 // Steam serves GetItems with cache-control: max-age=120
+export const FALLBACK_FRESH_MS = 60_000 // only if Steam sends no usable max-age
 export const STALE_MS = 15 * 60_000
-const NEG_MS = 10 * 60_000 // remember "Steam has no such item" for a while
+const NEG_MS = 10 * 60_000
 const MAX_BATCH = 400
 const DEBOUNCE_MS = 300
-const CACHE_KEY = 'sro:cache:v2'
+const CACHE_KEY = 'sro:cache:v3'
+
+let language = 'english'
+export function setLanguage(l: string) {
+  language = l
+}
 
 export function toneFor(score: number): ReviewTone {
-  if (score >= 6) return 'positive' // Mostly Positive and up (Positive=7 sits between)
+  if (score >= 6) return 'positive'
   if (score === 5) return 'mixed'
   if (score >= 1) return 'negative'
   return 'none'
 }
 
 export const LABEL_TO_SCORE: Record<string, number> = {
-  'overwhelmingly positive': 9,
-  'very positive': 8,
-  positive: 7,
-  'mostly positive': 6,
-  mixed: 5,
-  'mostly negative': 4,
-  negative: 3,
-  'very negative': 2,
-  'overwhelmingly negative': 1,
+  'overwhelmingly positive': 9, 'very positive': 8, positive: 7, 'mostly positive': 6, mixed: 5,
+  'mostly negative': 4, negative: 3, 'very negative': 2, 'overwhelmingly negative': 1,
 }
 
 /* ---------------- cache ---------------- */
 
 const mem = new Map<number, ReviewSummary>()
-const negative = new Map<number, number>() // appid -> ts
+const negative = new Map<number, number>()
 let loaded: Promise<void> | null = null
 let persistTimer: number | undefined
 
@@ -109,11 +115,22 @@ export function peekCached(appid: number): ReviewSummary | undefined {
   return s && Date.now() - s.ts < STALE_MS ? s : undefined
 }
 
-/** Seed from data the page already rendered. Never overrides a fresher entry. */
-export function seed(s: Omit<ReviewSummary, 'ts' | 'tone'>, ts = Date.now()) {
-  const cur = mem.get(s.appid)
-  if (cur && cur.ts >= ts) return
-  put({ ...s, tone: toneFor(s.score), ts })
+/**
+ * Seed one side from data the page already rendered. Fills the missing side of an existing
+ * entry, never replaces a side that is still within Steam's own freshness window.
+ */
+export function seed(appid: number, side: 'global' | 'local', score: Score) {
+  const now = Date.now()
+  const cur = mem.get(appid)
+  if (cur && cur[side] && cur.expires > now) return
+  put({
+    appid,
+    global: side === 'global' ? score : (cur?.global ?? null),
+    local: side === 'local' ? score : (cur?.local ?? null),
+    ts: now,
+    // Page data was rendered from Steam's cache too; give it a short life so both sides get fetched.
+    expires: cur?.expires && cur.expires > now ? cur.expires : now + FALLBACK_FRESH_MS,
+  })
 }
 
 /* ---------------- subscriptions + batching ---------------- */
@@ -125,19 +142,17 @@ const inflight = new Set<number>()
 let flushTimer: number | undefined
 let draining = false
 
-/**
- * Ask for a summary. `cb` fires immediately with cached data (fresh or stale) if any, and again
- * whenever a newer summary arrives. Returns an unsubscribe function.
- */
+/** `cb` fires immediately with any cached data (fresh or stale), and again whenever newer data arrives. */
 export function subscribe(appid: number, cb: Listener): () => void {
   let set = listeners.get(appid)
   if (!set) listeners.set(appid, (set = new Set()))
   set.add(cb)
   void loadPersisted().then(() => {
     const cur = mem.get(appid)
-    const age = cur ? Date.now() - cur.ts : Infinity
-    if (cur && age < STALE_MS) cb(cur)
-    if (age >= FRESH_MS) enqueue(appid)
+    const now = Date.now()
+    if (cur && now - cur.ts < STALE_MS) cb(cur)
+    const complete = !!(cur && cur.global && cur.local)
+    if (!cur || !complete || cur.expires <= now) enqueue(appid)
   })
   return () => {
     set!.delete(cb)
@@ -179,34 +194,55 @@ async function drain() {
 
 let backoffUntil = 0
 
+interface RawSummary {
+  review_count?: number
+  percent_positive?: number
+  review_score?: number
+  review_score_label?: string
+}
+
+function toScore(sf: RawSummary): Score {
+  const score = sf.review_score ?? 0
+  const count = sf.review_count ?? 0
+  return {
+    label: sf.review_score_label || (count ? `${count} user reviews` : 'No user reviews'),
+    score,
+    pct: score > 0 ? (sf.percent_positive ?? null) : null,
+    count,
+  }
+}
+
+/** Remaining lifetime of Steam's cached copy, from its own Cache-Control header. */
+function freshnessFrom(res: Response): number {
+  const cc = res.headers.get('cache-control') ?? ''
+  const m = cc.match(/max-age=(\d+)/)
+  if (!m) return FALLBACK_FRESH_MS
+  const age = Number(res.headers.get('age') ?? 0)
+  return Math.max(0, Number(m[1]) - age) * 1000 + 1000
+}
+
 async function fetchBatch(appids: number[]) {
   const wait = backoffUntil - Date.now()
   if (wait > 0) await new Promise((r) => setTimeout(r, wait))
-  const enc = encodeGetItemsRequest(appids, { country: 'US' })
+  const enc = encodeGetItemsRequest(appids, { country: 'US', language })
   const url =
     'https://api.steampowered.com/IStoreBrowseService/GetItems/v1/?format=json&input_protobuf_encoded=' +
     encodeURIComponent(enc)
   const res = await fetch(url, { credentials: 'omit' })
   if (res.status === 429 || res.status >= 500) {
     backoffUntil = Date.now() + 10_000
-    for (const id of appids) pending.add(id) // retry on next drain
+    for (const id of appids) pending.add(id)
     if (!flushTimer) flushTimer = window.setTimeout(() => void drain(), 10_000)
     return
   }
   if (!res.ok) return
+  const fresh = freshnessFrom(res)
   const json = (await res.json()) as {
     response?: {
       store_items?: {
         id?: number
         success?: number
-        reviews?: {
-          summary_filtered?: {
-            review_count?: number
-            percent_positive?: number
-            review_score?: number
-            review_score_label?: string
-          }
-        }
+        reviews?: { summary_filtered?: RawSummary; summary_language_specific?: RawSummary }
       }[]
     }
   }
@@ -215,26 +251,24 @@ async function fetchBatch(appids: number[]) {
   for (const item of json.response?.store_items ?? []) {
     if (!item.id) continue
     seen.add(item.id)
-    const sf = item.reviews?.summary_filtered
-    if (item.success !== 1 || !sf) {
+    const g = item.reviews?.summary_filtered
+    if (item.success !== 1 || !g) {
       negative.set(item.id, now)
       continue
     }
-    const score = sf.review_score ?? 0
+    const l = item.reviews?.summary_language_specific
     put({
       appid: item.id,
-      label: sf.review_score_label || (sf.review_count ? `${sf.review_count} user reviews` : 'No user reviews'),
-      score,
-      pct: score > 0 ? (sf.percent_positive ?? null) : null,
-      count: sf.review_count ?? 0,
-      tone: toneFor(score),
+      global: toScore(g),
+      local: l ? toScore(l) : null,
       ts: now,
+      expires: now + fresh,
     })
   }
   for (const id of appids) if (!seen.has(id)) negative.set(id, now)
 }
 
-export function formatTooltip(s: ReviewSummary): string {
-  if (s.pct === null || !s.count) return s.label
-  return `${s.label} — ${s.pct}% of the ${s.count.toLocaleString()} user reviews are positive`
+export function formatTooltip(s: Score, scope: string): string {
+  if (s.pct === null || !s.count) return `${scope}: ${s.label}`
+  return `${scope}: ${s.label} — ${s.pct}% of the ${s.count.toLocaleString()} user reviews are positive`
 }

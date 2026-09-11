@@ -13,7 +13,7 @@ const ctx = await chromium.launchPersistentContext('', {
 const popup = await ctx.newPage()
 await popup.goto(`chrome-extension://${id}/src/popup/index.html`)
 await popup.waitForTimeout(500)
-await popup.setViewportSize({ width: 340, height: 600 })
+await popup.setViewportSize({ width: 340, height: 720 })
 await popup.screenshot({ path: `${out}/popup_default.png` })
 
 const store = await ctx.newPage()

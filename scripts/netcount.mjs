@@ -20,7 +20,7 @@ for (const url of urls) {
   const st = await page.evaluate(() => {
     const b = [...document.querySelectorAll('.sro-badge')]
     return { cards: document.querySelectorAll('[data-sro-card]').length, badges: b.length,
-      sample: b.slice(0, 5).map(x => `${x.textContent} pct=${x.dataset.sroPct ?? '-'} score=${x.dataset.sroScore}`) }
+      sample: b.slice(0, 5).map(x => `${[...x.querySelectorAll('.sro-line')].map(l => l.textContent).join(' | ')} pct=${x.dataset.sroPct ?? '-'} score=${x.dataset.sroScore}`) }
   })
   const ours = reqs.filter(u => u.includes('input_protobuf_encoded'))
   console.log(url, '\n  requests by extension (protobuf GetItems):', ours.length, ' other GetItems/appreviews (Steam itself):', reqs.length - ours.length,

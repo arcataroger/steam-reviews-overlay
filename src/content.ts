@@ -20,8 +20,12 @@ import { loadSettings, onSettingsChange, isFiltered, isHighlighted, DEFAULT_SETT
 
 let settings: Settings = DEFAULT_SETTINGS
 
-/** /app/N at the store root (or a news-hub /news/app/N link); NOT /points/shop/app/N and the like. */
-const APP_RE = /(?:^|steampowered\.com)\/(?:news\/)?app\/(\d+)/
+/** /app/N at the store root; on the news hub also /news/app/N (elsewhere a news link inside a page
+ *  is not a game card). NOT /points/shop/app/N, community links and the like. */
+const ON_NEWS_HUB = location.pathname.startsWith('/news')
+const APP_RE = ON_NEWS_HUB
+  ? /(?:^|store\.steampowered\.com)\/(?:news\/)?app\/(\d+)/
+  : /(?:^|store\.steampowered\.com)\/app\/(\d+)/
 const CARD_ATTR = 'data-sro-card'
 const BADGE_CLASS = 'sro-badge'
 
@@ -128,7 +132,10 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
     const ids = appIdsWithin(el, 2)
     if (ids.size !== 1 || !ids.has(appid)) break
     const rect = el.getBoundingClientRect()
-    if (rect.width > maxCardWidth() || rect.height > MAX_CARD_H) break
+    // Height is capped for every candidate (a 4000px reviews container is never a card); the width
+    // cap only applies when climbing, since a search row can be wider than a phone viewport.
+    if (rect.height > MAX_CARD_H) break
+    if (card && rect.width > maxCardWidth()) break
     card = el
     el = el.parentElement
     hops++
@@ -288,7 +295,14 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     if (!mismatch) return
     const badge = makeBadge(summary)
     badge.classList.add('sro-inline', 'sro-beside-native')
+    const before = card.getBoundingClientRect()
     native.insertAdjacentElement('afterend', badge)
+    const after = card.getBoundingClientRect()
+    if (Math.abs(after.width - before.width) > 1 || Math.abs(after.height - before.height) > 1 || obstaclesFor(card, badge).length) {
+      badge.remove()
+      badge.classList.remove('sro-inline', 'sro-beside-native')
+      placeInCorner(card, badge, before)
+    }
     return
   }
   const badge = makeBadge(summary)
@@ -346,16 +360,23 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   }
 }
 
-/** Rects of text/icon/button leaves inside the card that the badge overlaps. */
+/**
+ * Rects of things inside the card that the badge must not cover: text leaves, small icons and
+ * buttons. The card's own artwork and its clickable wrapper are NOT obstacles (a capsule label is
+ * meant to sit over the art), so images/buttons larger than a third of the card are ignored.
+ */
 function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   const br = badge.getBoundingClientRect()
+  const cr = card.getBoundingClientRect()
+  const cardArea = Math.max(1, cr.width * cr.height)
   const out: DOMRect[] = []
   for (const el of card.querySelectorAll<HTMLElement>('*')) {
     if (badge.contains(el) || el === badge || el.classList.contains(ORBIT_CLASS)) continue
-    const iconish = el.matches('img, svg, button, [role="button"]')
+    const iconish = el.matches('img, svg, video, button, [role="button"]')
     if (!iconish && (el.children.length || !(el.textContent ?? '').trim())) continue
     const er = el.getBoundingClientRect()
     if (!er.width || !er.height) continue
+    if (iconish && (er.width * er.height) / cardArea > 0.33) continue // artwork / whole-tile wrapper
     if (br.left < er.right - 1 && br.right > er.left + 1 && br.top < er.bottom - 1 && br.bottom > er.top + 1) out.push(er)
   }
   return out
@@ -457,17 +478,17 @@ const shapeWatcher = new ResizeObserver((entries) => {
     if (!s || !card.isConnected) continue
     // A lifted corner chip was measured against the old layout: re-place it. Otherwise re-derive the
     // shape and make sure the badge still matches (a slide that just became visible may need one).
-    const chip = card.querySelector<HTMLElement>(`:scope > .${BADGE_CLASS}.sro-corner`)
-    if (chip?.style.bottom) {
-      const price = findPriceEl(card)
-      const block = price?.closest<HTMLElement>('.discount_block, .discount_prices, .search_price_discount_combined') ?? price
-      if (block) {
-        const lift = Math.max(0, Math.round(card.getBoundingClientRect().bottom - block.getBoundingClientRect().top))
-        chip.style.bottom = lift > 0 ? `${lift + 4}px` : ''
-      }
-    }
+    // Only act on a real size change (the observer also fires on observe())
+    const r = card.getBoundingClientRect()
+    const size = `${Math.round(r.width)}x${Math.round(r.height)}`
+    if (card.dataset.sroSize === size) continue
+    const first = !card.dataset.sroSize
+    card.dataset.sroSize = size
     applyFilter(card, s)
-    if (appid) reconcileBadge(card, appid)
+    // A corner chip was placed against the old layout: re-run the full placement (with its
+    // candidates and guards) rather than adjusting it blindly.
+    if (!first && card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(card, s)
+    else if (appid) reconcileBadge(card, appid)
   }
 })
 
@@ -579,7 +600,7 @@ function attach(card: HTMLElement, appid: number) {
 /** Remove everything we put on a card (attributes, inline styles, badge, orbit). */
 function stripCard(card: HTMLElement) {
   card.removeAttribute(CARD_ATTR)
-  for (const k of ['sroTone', 'sroScore', 'sroFiltered', 'sroHighlight', 'sroOp', 'sroShape', 'sroAxis']) delete card.dataset[k]
+  for (const k of ['sroTone', 'sroScore', 'sroFiltered', 'sroHighlight', 'sroOp', 'sroShape', 'sroAxis', 'sroSize']) delete card.dataset[k]
   card.style.removeProperty('--sro-hl')
   if (card.dataset.sroPos) {
     card.style.removeProperty('position')
@@ -607,21 +628,17 @@ function revalidateCards() {
       continue
     }
     const ids = appIdsWithin(card, 2)
-    if (ids.size === 1 && ids.has(appid)) {
+    // A container that grew past card size after we claimed it (lazy-loaded sections) is not a card
+    const grown = card.getBoundingClientRect().height > MAX_CARD_H
+    if (!grown && ids.size === 1 && ids.has(appid)) {
       // Steam re-renders capsule contents (hover microtrailers, rotating carousels), which can
       // drop our badge while the card itself survives. Put it back from cache.
       reconcileBadge(card, appid)
       continue
     }
+    // The slot now shows a different game (recycled carousel node): drop everything we put on it
     release(card)
-    card.removeAttribute(CARD_ATTR)
-    delete card.dataset.sroTone
-    delete card.dataset.sroScore
-    delete card.dataset.sroFiltered
-    delete card.dataset.sroHighlight
-    delete card.dataset.sroOp
-    card.style.removeProperty('--sro-hl')
-    card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}[data-sro-appid="${appid}"]`).forEach((n) => n.remove())
+    stripCard(card)
   }
 }
 

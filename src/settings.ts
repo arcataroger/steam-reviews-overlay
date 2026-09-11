@@ -76,7 +76,8 @@ function normalize(raw: Partial<Settings> | undefined): Settings {
   s.highlightThreshold = s.highlightThreshold >= 10 ? OFF_HIGHLIGHT : snapPosition(s.highlightThreshold)
   if (s.mode !== 'hide') s.mode = 'dim'
   if (s.source !== 'local') s.source = 'global'
-  return s
+  // Whatever storage or a migration handed us, the levers must not collide (highlight strictly above filter)
+  return reconcile(s, 'filter')
 }
 
 /**

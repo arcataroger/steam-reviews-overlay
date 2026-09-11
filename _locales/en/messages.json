@@ -50,7 +50,7 @@
     }
   },
   "leverFilterAria": {
-    "message": "Filter bar: games under this are dimmed or hidden"
+    "message": "Filter bar: games at this tier or lower are dimmed or hidden"
   },
   "leverHighlightAria": {
     "message": "Highlight bar: games at or above this are outlined"

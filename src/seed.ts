@@ -2,8 +2,26 @@
 
 import { seed, LABEL_TO_SCORE, type Score } from './steam'
 
-const TOOLTIP_RE = /^(.*?)<br>(\d+)% of the ([\d,]+) user reviews/i
-const LANG_NOTE_RE = /written in your language/i
+const ext: typeof chrome | undefined = (globalThis as any).browser ?? (globalThis as any).chrome
+
+/** First line of the tooltip is Steam's localized label; then "NN% of the 1,234 user reviews ..." in any language. */
+const TOOLTIP_RE = /^(.*?)<br>[^<]*?(\d+)\s*%[^<\d]*?([\d][\d.,\s\u00a0]*)/i
+const LANG_NOTE_RE = /written in your language|in your language/i
+
+/** Map a Steam label to its 0-9 score: English wording, or the UI locale's tier names from the catalog. */
+let localTierNames: Map<string, number> | null = null
+function scoreForLabel(label: string): number | null {
+  const en = LABEL_TO_SCORE[label.toLowerCase()]
+  if (en) return en
+  if (!localTierNames) {
+    localTierNames = new Map()
+    for (let i = 1; i <= 9; i++) {
+      const name = ext?.i18n?.getMessage?.(`tier${i}`)
+      if (name) localTierNames.set(name.toLowerCase(), i)
+    }
+  }
+  return localTierNames.get(label.toLowerCase()) ?? null
+}
 
 /** Search rows: <span class="search_review_summary" data-tooltip-html="Very Positive<br>86% of the 2,655 user reviews ...[<br>...written in your language...]"> */
 export function seedFromSearchRows(root: ParentNode = document): number {
@@ -16,13 +34,11 @@ export function seedFromSearchRows(root: ParentNode = document): number {
     const m = html.match(TOOLTIP_RE)
     if (!m) continue
     const label = m[1].trim()
-    const score: Score = {
-      label,
-      score: LABEL_TO_SCORE[label.toLowerCase()] ?? 0,
-      pct: Number(m[2]),
-      count: Number(m[3].replace(/,/g, '')),
-    }
-    seed(Number(idAttr), LANG_NOTE_RE.test(html) ? 'local' : 'global', score)
+    const score = scoreForLabel(label)
+    if (!score) continue // can't map this language's wording to a tier: leave it to the batch fetch
+    const count = Number(m[3].replace(/[^\d]/g, ''))
+    if (!count) continue
+    seed(Number(idAttr), LANG_NOTE_RE.test(html) ? 'local' : 'global', { label, score, pct: Number(m[2]), count })
     n++
   }
   return n

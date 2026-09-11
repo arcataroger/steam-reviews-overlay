@@ -118,3 +118,16 @@ describe('settings migration from the percent-based versions', () => {
     expect(pctToPos(101, 'highlight')).toBe(OFF_HIGHLIGHT)
   })
 })
+
+describe('loaded settings never collide', () => {
+  it('normalize reconciles a colliding pair (e.g. from a percent-era migration)', async () => {
+    const { loadSettings } = await import('../../src/settings')
+    // simulate a v3 store with "under 96%" + "at/above 97%": both map to tier 9
+    const { storageStore } = await import('./setup')
+    storageStore['sro:settings:v3'] = { mode: 'dim', threshold: 96, source: 'global', highlightThreshold: 97 }
+    delete storageStore['sro:settings:v4']
+    const s = await loadSettings()
+    expect(s.threshold).toBe(9)
+    expect(s.highlightThreshold).toBe(OFF_HIGHLIGHT) // pushed off the top rather than colliding
+  })
+})

@@ -42,7 +42,7 @@ const CHECKS = () => {
       }
     }
     // Steam's own summary present but our badge is a plain single label → duplicate meaning
-    const native = [...card.querySelectorAll('[class*="review" i]:not(.sro-badge)')].some(e => /Positive|Negative|Mixed/.test(e.textContent || ''))
+    const native = [...card.querySelectorAll('[class*="review" i]:not(.sro-badge)')].some(e => (e.textContent || '').trim() && /Positive|Negative|Mixed/.test(e.textContent || ''))
     if (native && badges.some(b => b.querySelectorAll('.sro-line').length === 1 && !b.classList.contains('sro-beside-native'))) issues.push({ kind: 'plain-badge-beside-native', name })
     // highlight drawn without a shape (unsized at decision time and never re-derived)
     if (card.dataset.sroHighlight && !card.dataset.sroShape) issues.push({ kind: 'highlight-without-shape', name })
@@ -72,7 +72,7 @@ for (const url of urls) {
     const entry = { url, state: stateName, stops: [], errors }
     const seenIssues = new Set()
     for (let stop = 0; stop < (Number(process.env.SRO_STOPS) || 8); stop++) {
-      await page.waitForTimeout(stop === 0 ? 500 : 1400)
+      await page.waitForTimeout(stop === 0 ? 2000 : 1400)
       const r = await page.evaluate(CHECKS)
       const file = `${slug(url)}__${stateName}__${stop}.png`
       await page.screenshot({ path: path.join(out, file) })

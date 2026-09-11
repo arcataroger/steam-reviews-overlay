@@ -68,7 +68,8 @@ const MAX_CARD_H = 700
 /** Page-level containers are never a card, however small they measure while still loading. */
 const NEVER_CARD_SELECTOR =
   '.page_content, .page_content_ctn, #responsive_page_template_content, .responsive_page_content, main, [role="main"], ' +
-  '.app_reviews_area, .game_page_autocollapse_ctn, .leftcol, .rightcol, .block, #game_area_reviews' // app-page sections
+  '.app_reviews_area, .game_page_autocollapse_ctn, .leftcol, .rightcol, .block, #game_area_reviews, ' + // app-page sections
+  '.game_area_dlc_section, .game_area_dlc_list' // a DLC list with one row is still a list
 const maxCardWidth = () => Math.min(MAX_CARD_W, window.innerWidth - 80)
 
 function injectStyles() {
@@ -160,6 +161,17 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
   return card
 }
 
+/** Text content of `el` ignoring anything inside our badges. */
+function textOutsideBadges(el: HTMLElement): string {
+  if (!el.querySelector(`.${BADGE_CLASS}`)) return (el.textContent ?? '').trim()
+  let out = ''
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode: (n) => (n.parentElement?.closest(`.${BADGE_CLASS}`) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT),
+  })
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) out += n.textContent
+  return out.trim()
+}
+
 const SUMMARY_RE = /^\s*(Overwhelmingly |Very |Mostly )?(Positive|Negative|Mixed)\b/i
 
 /** Steam's own textual review summary on the card (expanded sale cards, featured capsules), if any. */
@@ -168,7 +180,9 @@ function nativeSummaryEl(card: HTMLElement): HTMLElement | null {
   // Match structurally (Steam tags its summary with a tone class in every language) with the English
   // wording as a fallback.
   for (const el of card.querySelectorAll<HTMLElement>('[class*="review" i]:not(.sro-badge)')) {
-    const text = (el.textContent ?? '').trim()
+    if (el.closest(`.${BADGE_CLASS}`)) continue
+    // Our own badge may sit inside Steam's slot (search rows): its wording must not count as Steam's
+    const text = textOutsideBadges(el)
     if (!text) continue // icon-only summaries (search rows' thumbs) show no text: not a native label
     if (el.matches('.positive, .mixed, .negative') || el.querySelector(':scope > .positive, :scope > .mixed, :scope > .negative')) return el
     if (SUMMARY_RE.test(text)) return el
@@ -384,12 +398,20 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
  * buttons. The card's own artwork and its clickable wrapper are NOT obstacles (a capsule label is
  * meant to sit over the art), so images/buttons larger than a third of the card are ignored.
  */
+/** Steam leaves some captions in the layout with a fully transparent color (tooltip sources). */
+function invisibleText(el: HTMLElement): boolean {
+  const cs = getComputedStyle(el)
+  return cs.visibility === 'hidden' || cs.opacity === '0' || /rgba\(\d+, \d+, \d+, 0\)$/.test(cs.color)
+}
+
 function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   const br = badge.getBoundingClientRect()
   const cr = card.getBoundingClientRect()
   const cardArea = Math.max(1, cr.width * cr.height)
   const out: DOMRect[] = []
-  const hits = (er: DOMRect) => br.left < er.right - 1 && br.right > er.left + 1 && br.top < er.bottom - 1 && br.bottom > er.top + 1
+  // Touching counts as a collision too: keep a few pixels of air around text and icons
+  const GAP = 4
+  const hits = (er: DOMRect) => br.left < er.right + GAP && br.right > er.left - GAP && br.top < er.bottom + 1 && br.bottom > er.top - 1
   // Icons, buttons and small artwork: whole-tile art and wrappers are what a chip sits on, not obstacles
   for (const el of card.querySelectorAll<HTMLElement>('img, svg, video, button, [role="button"]')) {
     if (badge.contains(el) || el.classList.contains(ORBIT_CLASS)) continue
@@ -402,6 +424,7 @@ function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT)
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
     if (!node.textContent?.trim() || badge.contains(node)) continue
+    if (node.parentElement && invisibleText(node.parentElement)) continue // laid out but not drawn
     const range = document.createRange()
     range.selectNodeContents(node)
     for (const er of range.getClientRects()) {
@@ -682,6 +705,35 @@ function revalidateCards() {
   }
 }
 
+const replaceQueue = new Set<HTMLElement>()
+let replaceTimer: number | undefined
+function onAssetLoad(e: Event) {
+  if (!alive() || !(e.target instanceof HTMLImageElement)) return
+  const card = e.target.closest<HTMLElement>(`[${CARD_ATTR}]`)
+  if (!card || !card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) return
+  replaceQueue.add(card)
+  if (replaceTimer) return
+  replaceTimer = window.setTimeout(() => {
+    replaceTimer = undefined
+    for (const c of replaceQueue) {
+      const appid = cardsByAppId.get(c)
+      const s = appid && c.isConnected ? peekCached(appid) : undefined
+      if (s && c.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
+    }
+    replaceQueue.clear()
+  }, 150)
+}
+
+/** Re-run placement for every corner chip (text metrics changed under them). */
+function replaceCornerChips() {
+  if (!alive()) return
+  for (const [card, appid] of cardsByAppId) {
+    if (!card.isConnected || !card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) continue
+    const s = peekCached(appid)
+    if (s) placeBadge(card, s)
+  }
+}
+
 let lastRevalidate = 0
 function scan(root: ParentNode = document) {
   // Revalidation walks every tracked card; do it for full scans, and at most once a second otherwise
@@ -755,6 +807,9 @@ function clearPreviousInstance() {
 function shutdown() {
   dead = true
   mo?.disconnect()
+  document.fonts?.removeEventListener('loadingdone', replaceCornerChips)
+  document.removeEventListener('load', onAssetLoad, true)
+  if (replaceTimer) clearTimeout(replaceTimer)
   shapeWatcher.disconnect()
   orbitVisibility.disconnect()
   if (scanTimer) clearTimeout(scanTimer)
@@ -804,6 +859,12 @@ async function main() {
     }
   })
   mo.observe(document.body, { childList: true, characterData: true, subtree: true })
+  // A web font arriving after placement reflows Steam's text without any DOM change or card
+  // resize: a chip measured against fallback-font metrics can end up on a date that grew wider.
+  document.fonts?.addEventListener('loadingdone', replaceCornerChips)
+  // Likewise an image finishing its load can push a capsule's bottom bar down under a chip that
+  // was placed while the image box was still empty (the card itself keeps its size).
+  document.addEventListener('load', onAssetLoad, true)
 }
 
 function start() {

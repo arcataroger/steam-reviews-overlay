@@ -234,3 +234,7 @@
 [data-sro-filtered="hide"] {
   display: none !important;
 }
+
+/* A card we made the containing block for a corner chip stays one even if Steam rewrites the
+   element's inline style on re-render (the inline position we set would go with it). */
+[data-sro-card][data-sro-pos] { position: relative; }

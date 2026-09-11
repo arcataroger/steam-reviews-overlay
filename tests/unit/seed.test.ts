@@ -28,9 +28,12 @@ describe('seeding from page data', () => {
 
   it('reads the homepage review_summary_filtered blobs', () => {
     const script = document.createElement('script')
-    script.textContent = `var x = {"appid":275850,"name":"NMS","review_summary_filtered":{"cReviews":184045,"cRecommendationsPositive":150893,"cRecommendationsNegative":33152,"reviewScore":8,"reviewSummaryDesc":"Very Positive","sReviewScoreTooltip":"81% of the 184,045 user reviews for this game are positive."}};`
+    // Real homepage shape: screenshots (with their own "appid") and an unfiltered "review_summary"
+    // object sit between the capsule's appid and its filtered summary; German puts a space before %.
+    script.textContent = `var x = [{"appid":275850,"name":"NMS","screenshots":[{"appid":275850,"id":3,"filename":"a.jpg"}],"review_summary":{"cReviews":313337,"reviewScore":8,"reviewSummaryDesc":"Very Positive","bLanguageOutlier":0},"review_summary_filtered":{"cReviews":184045,"cRecommendationsPositive":150893,"cRecommendationsNegative":33152,"reviewScore":8,"reviewSummaryDesc":"Very Positive","sReviewScoreTooltip":"81% of the 184,045 user reviews for this game are positive."}},{"appid":1030300,"name":"HK","review_summary":{"cReviews":5},"review_summary_filtered":{"cReviews":1525,"reviewScore":3,"reviewSummaryDesc":"Größtenteils negativ","sReviewScoreTooltip":"19 % der 1,525 Nutzerrezensionen für dieses Spiel sind positiv."}}];`
     document.body.appendChild(script)
-    expect(seedFromInlineJson()).toBe(1)
+    expect(seedFromInlineJson()).toBe(2)
     expect(peekCached(275850)?.global).toEqual({ label: 'Very Positive', score: 8, pct: 81, count: 184045 })
+    expect(peekCached(1030300)?.global).toEqual({ label: 'Größtenteils negativ', score: 3, pct: 19, count: 1525 })
   })
 })

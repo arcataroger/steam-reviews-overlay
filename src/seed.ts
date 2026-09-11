@@ -46,25 +46,38 @@ export function seedFromSearchRows(root: ParentNode = document): number {
   return n
 }
 
-/** Homepage inline JSON: "appid":N ... "review_summary_filtered":{"cReviews":..,"reviewScore":8,"reviewSummaryDesc":"Very Positive","sReviewScoreTooltip":"81% of the ..."} */
-const BLOB_RE = /"appid":(\d+)[^{}]{0,600}?"review_summary_filtered":\{([^{}]*)\}/g
+/** Homepage inline JSON: "appid":N ... "review_summary":{...unfiltered...},"review_summary_filtered":{"cReviews":..,"reviewScore":8,"reviewSummaryDesc":"Very Positive","sReviewScoreTooltip":"81% of the ..."}
+ *  Each filtered blob is paired with the nearest preceding "appid" (a sibling object with its own
+ *  braces sits between them, so the gap is not brace-free). */
+const BLOB_RE = /"appid":(\d+)|"review_summary_filtered":\{([^{}]*)\}/g
+const MAX_GAP = 4000 // characters between an appid and its filtered summary; beyond that they are unrelated
 
 export function seedFromInlineJson(): number {
   let n = 0
   for (const script of document.querySelectorAll<HTMLScriptElement>('script:not([src])')) {
     const text = script.textContent
     if (!text || !text.includes('review_summary_filtered')) continue
+    let appid = 0
+    let at = -1
     for (const m of text.matchAll(BLOB_RE)) {
+      if (m[1]) {
+        appid = Number(m[1])
+        at = m.index
+        continue
+      }
+      if (!appid || m.index - at > MAX_GAP) continue
       let obj: Record<string, unknown>
       try {
         obj = JSON.parse(`{${m[2]}}`)
       } catch {
         continue
       }
+      const id = appid
+      appid = 0 // one summary per appid
       const score = Number(obj.reviewScore ?? 0)
       const count = Number(obj.cReviews ?? 0)
-      const pm = String(obj.sReviewScoreTooltip ?? '').match(/^(\d+)%/)
-      seed(Number(m[1]), 'global', {
+      const pm = String(obj.sReviewScoreTooltip ?? '').match(/^(\d+)\s*%/) // "19 % der ..." in German
+      seed(id, 'global', {
         label: String(obj.reviewSummaryDesc ?? '') || (count ? `${count} user reviews` : 'No user reviews'),
         score,
         pct: score > 0 && pm ? Number(pm[1]) : null,

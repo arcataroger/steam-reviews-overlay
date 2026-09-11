@@ -1,5 +1,5 @@
 import css from './content.css?inline'
-import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, ingestSteamRequest, type ReviewSummary, type Score } from './steam'
+import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, ingestSteamRequest, type ReviewSummary, type Score, stopSteam } from './steam'
 import { seedFromSearchRows, seedFromInlineJson } from './seed'
 import { detectLang, LANG_KEY, type LangInfo } from './lang'
 import { toneColorAt } from './tonecolor'
@@ -180,7 +180,7 @@ function nativeSummaryEl(card: HTMLElement): HTMLElement | null {
   // Match structurally (Steam tags its summary with a tone class in every language) with the English
   // wording as a fallback.
   for (const el of card.querySelectorAll<HTMLElement>('[class*="review" i]:not(.sro-badge)')) {
-    if (el.closest(`.${BADGE_CLASS}`)) continue
+    if (el.closest(`.${BADGE_CLASS}`) || invisibleText(el)) continue
     // Our own badge may sit inside Steam's slot (search rows): its wording must not count as Steam's
     const text = textOutsideBadges(el)
     if (!text) continue // icon-only summaries (search rows' thumbs) show no text: not a native label
@@ -804,8 +804,20 @@ function clearPreviousInstance() {
   document.getElementById('sro-styles')?.remove()
 }
 
+function onRuntimeMessage(msg: { type?: string; url?: string }, sender: { id?: string; tab?: unknown }) {
+  if (!alive()) return
+  if (sender.id !== ext.runtime.id || sender.tab) return // only our background script
+  if (msg?.type === 'sro:steam-getitems' && typeof msg.url === 'string') void ingestSteamRequest(msg.url)
+}
+
 function shutdown() {
   dead = true
+  try {
+    ext.runtime.onMessage.removeListener(onRuntimeMessage)
+  } catch {
+    /* runtime already gone after an extension reload */
+  }
+  stopSteam()
   mo?.disconnect()
   document.fonts?.removeEventListener('loadingdone', replaceCornerChips)
   document.removeEventListener('load', onAssetLoad, true)
@@ -824,11 +836,7 @@ async function main() {
   clearPreviousInstance()
   document.addEventListener(TAKEOVER_EVENT, shutdown, { once: true })
   // Register early: Steam's own GetItems calls can complete before settings finish loading
-  ext.runtime.onMessage.addListener((msg: { type?: string; url?: string }, sender) => {
-    if (!alive()) return
-    if (sender.id !== ext.runtime.id || sender.tab) return // only our background script
-    if (msg?.type === 'sro:steam-getitems' && typeof msg.url === 'string') void ingestSteamRequest(msg.url)
-  })
+  ext.runtime.onMessage.addListener(onRuntimeMessage)
   injectStyles()
   settings = await loadSettings()
   onSettingsChange((s) => {
@@ -851,6 +859,12 @@ async function main() {
       }
       if (m.type !== 'childList' || !m.addedNodes.length) continue
       for (const n of m.addedNodes) {
+        if (n.nodeType === 3) {
+          // element.textContent = "..." adds a fresh text node rather than mutating one
+          const owner = n.parentElement?.closest<HTMLElement>(`[${CARD_ATTR}]`)
+          if (owner) scheduleScan(owner)
+          continue
+        }
         if (n.nodeType !== 1) continue
         const el = n as Element
         if (el.classList.contains(BADGE_CLASS) || el.classList.contains(ORBIT_CLASS)) continue // our own insertions

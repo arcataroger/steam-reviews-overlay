@@ -60,8 +60,9 @@ export function detectLang(): LangInfo {
   if (!steam || !STEAM_TO_COUNTRY[steam]) {
     steam = BCP47_TO_STEAM.find(([re]) => re.test(locale))?.[1] ?? 'english'
   }
-  // Prefer the browser's region for the flag when it plausibly belongs to this language
-  const region = regionOf(locale)
+  // Prefer the browser's region for the flag when it plausibly belongs to this language. Only an
+  // explicit region counts: maximize() would invent one ("zh" → CN, "pt" → BR).
+  const region = /[-_]/.test(locale) ? regionOf(locale) : undefined
   const localeLang = BCP47_TO_STEAM.find(([re]) => re.test(locale))?.[1]
   const country = region && localeLang === steam ? region : STEAM_TO_COUNTRY[steam]
   return { steam, name: STEAM_LANG_NAMES[steam] ?? steam, flag: flagFor(country) }

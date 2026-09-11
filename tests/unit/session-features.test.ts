@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import './setup'
 import { bandEndPct, tierAt, posToPct, isFiltered, isHighlighted, DEFAULT_SETTINGS, OFF_FILTER, OFF_HIGHLIGHT, type Settings } from '../../src/settings'
 import { toneColorAt, NEGATIVE, MIXED, POSITIVE } from '../../src/tonecolor'
-import { langForLocale, flagFor } from '../../src/lang'
+import { langForLocale, flagFor, detectLang } from '../../src/lang'
 
 const s = (over: Partial<Settings>): Settings => ({ ...DEFAULT_SETTINGS, ...over })
 
@@ -55,6 +55,23 @@ describe('locale → language/flag (popup QA override and My-language button)', 
     expect(langForLocale('zh_CN').steam).toBe('schinese')
     expect(langForLocale('es_419').steam).toBe('latam')
     expect(langForLocale('xx').steam).toBe('english')
+  })
+  it('does not invent a region for a bare browser locale', () => {
+    const g = globalThis as Record<string, unknown>
+    const hadDoc = 'document' in g
+    const orig = Object.getOwnPropertyDescriptor(globalThis, 'navigator')
+    const setNav = (language: string) => Object.defineProperty(globalThis, 'navigator', { value: { language }, configurable: true })
+    g.document = { cookie: 'Steam_Language=tchinese' }
+    try {
+      // Intl maximize() would turn "zh" into zh-Hans-CN; the language's own country wins
+      setNav('zh')
+      expect(detectLang()).toMatchObject({ steam: 'tchinese', flag: flagFor('TW') })
+      setNav('zh-HK')
+      expect(detectLang().flag).toBe(flagFor('HK')) // an explicit region still wins
+    } finally {
+      if (!hadDoc) delete g.document
+      if (orig) Object.defineProperty(globalThis, 'navigator', orig)
+    }
   })
   it('renders regional-indicator flags', () => {
     expect(flagFor('US')).toBe('🇺🇸')

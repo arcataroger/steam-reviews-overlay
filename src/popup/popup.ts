@@ -147,7 +147,9 @@ function renderSide(side: Side, value: number) {
   // (Mixed 40–69% → "≤ 69%"); highlight covers the tier and above, so its number is the band start
   // (Positive 80%+ → "≥ 80%").
   const pct = side === 'filter' ? bandEndPct(pos) : Math.round(posToPct(pos))
-  u.pct.textContent = off ? t('off') : `${side === 'filter' ? '≤' : '≥'} ${pct}%`
+  // The formula is wrapped in an LTR isolate (U+2066…U+2069) so RTL locales neither mirror ≤ into ≥
+  // nor reorder it, while the box itself still aligns logically with its title.
+  u.pct.textContent = off ? t('off') : `\u2066${side === 'filter' ? '≤' : '≥'} ${pct}%\u2069`
   u.pct.className = `digits ${off ? 'none' : ''}`
   u.tier.textContent = tierName(tier.score)
   u.tier.className = `tier ${off ? '' : tier.tone}`

@@ -70,6 +70,9 @@ const ext: typeof chrome = (globalThis as any).browser ?? chrome
 export const FALLBACK_FRESH_MS = 60_000 // only if Steam sends no usable max-age
 export const STALE_MS = 15 * 60_000
 const NEG_MS = 10 * 60_000
+/** Items Steam told us are not games (hardware, videos, its own news app) stay that way: keep them
+ *  out of the batch for a day rather than re-asking every ten minutes for as long as a tab lives. */
+const NON_GAME_MS = 24 * 60 * 60_000
 /** EStoreAppType values that are not something a review label belongs on: movie 3, video 7, series 8,
  *  episode 9, hardware 10, advertising 14 (Steam's own news/event app), config 15, shortcut 17,
  *  depot-only 18, comics 19/20. Games, demos, mods, DLC, software, music and tools keep their label. */
@@ -99,7 +102,7 @@ export const LABEL_TO_SCORE: Record<string, number> = {
 /* ---------------- cache ---------------- */
 
 const mem = new Map<number, ReviewSummary>()
-const negative = new Map<number, number>()
+const negative = new Map<number, number>() // appid → expiry time
 let loaded: Promise<void> | null = null
 let persistTimer: number | undefined
 
@@ -204,6 +207,16 @@ export function subscribe(appid: number, cb: Listener): () => void {
 
 /** Long-lived tabs: re-fetch ids that still have listeners once Steam's copy has expired. */
 let revalidateTimer: number | undefined
+/** Stop the background work (another instance of the content script took over the page). */
+export function stopSteam() {
+  if (revalidateTimer) clearInterval(revalidateTimer)
+  revalidateTimer = undefined
+  if (flushTimer) clearTimeout(flushTimer)
+  flushTimer = undefined
+  pending.clear()
+  listeners.clear()
+}
+
 function startRevalidation() {
   if (revalidateTimer) return
   revalidateTimer = window.setInterval(() => {
@@ -218,7 +231,7 @@ function startRevalidation() {
 function enqueue(appid: number) {
   if (inflight.has(appid)) return
   const neg = negative.get(appid)
-  if (neg && Date.now() - neg < NEG_MS) return
+  if (neg && Date.now() < neg) return
   pending.add(appid)
   if (!flushTimer) flushTimer = window.setTimeout(() => void drain(), DEBOUNCE_MS)
 }
@@ -258,7 +271,7 @@ const MAX_RETRIES = 8
 function retryLater(appids: number[], baseMs: number) {
   if (retries >= MAX_RETRIES) {
     const now = Date.now()
-    for (const id of appids) negative.set(id, now)
+    for (const id of appids) negative.set(id, now + NEG_MS)
     return
   }
   const delay = Math.min(10 * 60_000, baseMs * 2 ** retries) + Math.random() * 1000
@@ -317,7 +330,7 @@ async function fetchBatch(appids: number[]) {
     // 4xx (e.g. URL too long): don't keep asking for these ids this session
     reportStatus('steam')
     const now = Date.now()
-    for (const id of appids) negative.set(id, now)
+    for (const id of appids) negative.set(id, now + NEG_MS)
     return
   }
   const fresh = freshnessFrom(res)
@@ -347,7 +360,7 @@ async function fetchBatch(appids: number[]) {
     seen.add(item.id)
     const g = item.reviews?.summary_filtered
     if (item.success !== 1 || !g || isNonGameType(item.type)) {
-      negative.set(item.id, now)
+      negative.set(item.id, now + (isNonGameType(item.type) ? NON_GAME_MS : NEG_MS))
       continue
     }
     const l = item.reviews?.summary_language_specific
@@ -359,7 +372,7 @@ async function fetchBatch(appids: number[]) {
       expires: now + fresh,
     })
   }
-  for (const id of appids) if (!seen.has(id)) negative.set(id, now)
+  for (const id of appids) if (!seen.has(id)) negative.set(id, now + NEG_MS)
 }
 
 /* ---------------- piggyback on Steam's own calls ---------------- */
@@ -408,7 +421,7 @@ export async function ingestSteamRequest(url: string): Promise<number> {
   for (const it of items) {
     if (it.success !== 1 || it.item_type !== 0 || !it.appid || !it.summary_filtered) continue
     if (isNonGameType(it.type)) {
-      negative.set(it.appid, now) // hardware, Steam's own news app, videos: never a label
+      negative.set(it.appid, now + NON_GAME_MS) // hardware, Steam's own news app, videos: never a label
       continue
     }
     // Cancel any pending fetch of ours for this id: Steam just handed it to us.

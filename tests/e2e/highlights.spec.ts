@@ -90,8 +90,9 @@ test.describe('popup: this session’s controls', () => {
   test('readouts show ≤ band top for filter and ≥ band start for highlight; levers push', async ({ popup }) => {
     await popup.evaluate((o) => chrome.storage.sync.set(o), { [KEY]: { ...base, threshold: 5, highlightThreshold: 7 } })
     await popup.reload()
-    await expect(popup.locator('#pctFilter')).toHaveText('≤ 69%')
-    await expect(popup.locator('#pctHighlight')).toHaveText('≥ 80%')
+    // the formula is wrapped in invisible bidi isolate marks (U+2066/U+2069) for RTL locales
+    await expect(popup.locator('#pctFilter')).toHaveText(/^\u2066?≤ 69%\u2069?$/)
+    await expect(popup.locator('#pctHighlight')).toHaveText(/^\u2066?≥ 80%\u2069?$/)
     // push the filter up past the highlight: highlight moves one tier above it
     await popup.click('.notch[data-pos="8"] .tick.l', { force: true })
     await expect(popup.locator('#tierFilter')).toHaveText('Very Positive')

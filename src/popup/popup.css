@@ -122,13 +122,10 @@ body.has-notice .throttle { --track: 230px; }
 .switch button + button { border-left: 1px solid #2a475e; }
 .switch button[aria-checked="true"] { background: #2a475e; color: #fff; }
 .switch button:hover { color: #fff; }
-.readout.right { text-align: right; }
+.readout.right { text-align: end; } /* logical: the outer edge in RTL too */
 .digits {
   font-family: "SF Mono", Menlo, Consolas, "Roboto Mono", monospace;
   font-size: 18px; font-weight: 700; letter-spacing: 0.3px; font-variant-numeric: tabular-nums; white-space: nowrap;
-  /* "≤ 69%" is a formula, not prose: keep it left-to-right in RTL locales, where the bidi
-     algorithm would otherwise mirror ≤ into ≥ */
-  direction: ltr; unicode-bidi: isolate;
 }
 /* Readout digits take the gradient color at the lever's position (inline --c) */
 .digits { color: var(--c, #7bd7ff); text-shadow: 0 0 6px color-mix(in srgb, var(--c, #7bd7ff) 70%, transparent); }

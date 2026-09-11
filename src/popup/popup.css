@@ -77,14 +77,14 @@ body {
 .readouts { display: flex; gap: 8px; margin: 2px 0 18px; }
 .readout {
   flex: 1; min-width: 0;
-  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: baseline;
+  display: grid; grid-template-columns: 1fr; row-gap: 1px;
   padding: 5px 9px 6px;
   border-radius: 4px;
   background: #0b0f14;
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.06);
   transition: opacity 0.2s;
 }
-.readout .plate-row { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 4px; min-height: 16px; }
+.readout .plate-row { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 3px; min-height: 16px; }
 .readout.right .plate-row { justify-content: flex-end; }
 .switch { display: inline-flex; border: 1px solid #2a475e; border-radius: 3px; overflow: hidden; }
 .switch button {
@@ -95,8 +95,6 @@ body {
 .switch button[aria-checked="true"] { background: #2a475e; color: #fff; }
 .switch button:hover { color: #fff; }
 .readout.right { text-align: right; }
-.readout.right .digits { order: 2; }
-.readout.right .tier { order: 1; text-align: left; }
 .digits {
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 18px; font-weight: 700; letter-spacing: 0.5px;
@@ -106,11 +104,13 @@ body {
 /* Readout digits take the gradient color at the lever's position (inline --c) */
 .digits { color: var(--c, #7bd7ff); text-shadow: 0 0 6px color-mix(in srgb, var(--c, #7bd7ff) 70%, transparent); }
 .digits.none { --c: #7f8b99; text-shadow: none; }
-.tier { font-weight: 600; font-size: 11px; line-height: 1.15; }
+.tier { font-weight: 600; font-size: 11px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-height: 13px; }
+.readout.off .tier { color: #6f7b89; font-weight: 400; }
+.readout.off .digits { letter-spacing: 2px; }
 .tier.positive { color: var(--positive); text-shadow: 0 0 6px rgba(102,192,244,0.5); }
 .tier.mixed { color: var(--mixed); text-shadow: 0 0 6px rgba(185,160,116,0.5); }
 .tier.negative { color: var(--negative); text-shadow: 0 0 6px rgba(163,76,37,0.6); }
-.tier .sub { color: var(--muted); font-weight: 400; display: block; font-size: 10px; }
+.tier .sub { color: var(--muted); font-weight: 400; font-size: 10px; margin-left: 5px; }
 .readout.off { opacity: 0.4; }
 
 /* Throttle quadrant: left lever | shared notches | right lever */
@@ -190,15 +190,42 @@ body {
 
 .knob {
   position: absolute; width: 34px; height: 18px;
-  bottom: 0;
+  --pct: 0;
+  bottom: calc(var(--pad) + var(--track) * var(--pct) / 100);
   transform: translateY(50%);
   border-radius: 5px;
   background: linear-gradient(180deg, #8494a8, #56637a 45%, #3c4756 55%, #2a323d);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.6), 0 3px 6px rgba(0,0,0,0.7);
   display: flex; align-items: center; justify-content: center; gap: 3px;
-  transition: bottom 0.08s linear;
+  transition: bottom 0.08s linear, box-shadow 0.15s;
+  z-index: 2;
 }
-.lever.left .knob { left: 3px; }
+/* Parked in the detent: sits lower, indicator unlit */
+.knob.parked {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.7);
+  background: linear-gradient(180deg, #6e7c8e, #4a5566 45%, #343e4b 55%, #262d36);
+}
+.knob.parked::after { background: #3a4351; box-shadow: none; }
+
+/* Detent: a recessed gate at the end of the track that the lever clicks into */
+.detent {
+  position: absolute; width: 26px; height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #0a0e13, #141a22);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.95), inset 0 0 0 1px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1);
+  z-index: 1;
+}
+.detent span {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-size: 8px; letter-spacing: 1.5px; color: #6a7686;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.8);
+}
+.lever.left .detent { left: 7px; }
+.lever.right .detent { right: 7px; }
+.detent.bottom { bottom: calc(var(--pad) - 13px); }
+.detent.bottom span { top: 100%; margin-top: 2px; }
+.detent.top { top: calc(var(--pad) - 13px); }
+.detent.top span { bottom: 100%; margin-bottom: 2px; }
 .lever.right .knob { right: 3px; }
 .knob i { display: block; width: 2px; height: 8px; background: rgba(0,0,0,0.45); box-shadow: 1px 0 0 rgba(255,255,255,0.12); }
 .knob::after {

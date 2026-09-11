@@ -79,7 +79,8 @@ function renderSide(side: Side, pct: number) {
   const exact = tier.pct === pct
   // 0% on the left / 100% on the right = feature off
   const off = side === 'filter' ? pct === 0 : pct >= 100
-  u.pct.textContent = off ? 'off' : `${pct}%`
+  u.pct.textContent = off ? 'OFF' : `${pct}%`
+  u.readout.classList.toggle('off', off)
   u.pct.className = `digits ${off ? 'none' : ''}`
   const c = toneColorAt(pct)
   u.pct.style.setProperty('--c', c)
@@ -93,8 +94,8 @@ function renderSide(side: Side, pct: number) {
     u.tier.appendChild(sub)
   }
   u.fill.style.height = side === 'filter' ? `${pct}%` : `${100 - pct}%`
-  u.knob.style.bottom = `${pct}%`
-  u.knob.className = 'knob'
+  u.knob.style.setProperty('--pct', String(pct))
+  u.knob.className = off ? 'knob parked' : 'knob'
   u.lever.setAttribute('aria-valuenow', String(pct))
   u.lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
   const cls = side === 'filter' ? 'active-l' : 'active-r'
@@ -124,8 +125,14 @@ function update(patch: Partial<Settings>) {
 }
 
 function setPct(side: Side, raw: number, snap = true) {
-  const v = Math.round(Math.min(100, Math.max(0, raw)))
-  update({ [KEY[side]]: snap ? snapThreshold(v) : v } as Partial<Settings>)
+  let v = Math.round(Math.min(100, Math.max(0, raw)))
+  if (snap) {
+    // The OFF detent at the end of each track grabs harder than the tier notches
+    if (side === 'filter' && v <= 5) v = 0
+    else if (side === 'highlight' && v >= 95 + 3) v = 100
+    else v = snapThreshold(v)
+  }
+  update({ [KEY[side]]: v } as Partial<Settings>)
 }
 
 /* --- pointer: drag either lever along its track --- */

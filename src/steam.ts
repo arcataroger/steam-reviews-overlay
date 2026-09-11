@@ -103,6 +103,7 @@ export const LABEL_TO_SCORE: Record<string, number> = {
 
 const mem = new Map<number, ReviewSummary>()
 const negative = new Map<number, number>() // appid → expiry time
+const NEG_KEY = `${CACHE_KEY}:neg`
 let loaded: Promise<void> | null = null
 let persistTimer: number | undefined
 
@@ -110,11 +111,15 @@ function loadPersisted(): Promise<void> {
   if (loaded) return loaded
   loaded = (async () => {
     try {
-      const res = await ext.storage.local.get(CACHE_KEY)
+      const res = await ext.storage.local.get([CACHE_KEY, NEG_KEY])
       const stored = res?.[CACHE_KEY] as Record<string, ReviewSummary> | undefined
       const now = Date.now()
       for (const v of Object.values(stored ?? {})) {
         if (v && now - v.ts < STALE_MS && !mem.has(v.appid)) mem.set(v.appid, v)
+      }
+      // Long-lived skips (hardware, Steam's own apps) survive page navigations, which reload this script
+      for (const [k, exp] of Object.entries((res?.[NEG_KEY] as Record<string, number>) ?? {})) {
+        if (typeof exp === 'number' && exp > now && !negative.has(Number(k))) negative.set(Number(k), exp)
       }
     } catch (e) {
       console.warn('[SRO] cache load failed', e)
@@ -134,7 +139,11 @@ function schedulePersist() {
       const obj: Record<string, ReviewSummary> = {}
       for (const v of Object.values((res?.[CACHE_KEY] as Record<string, ReviewSummary>) ?? {})) if (v && now - v.ts < STALE_MS) obj[v.appid] = v
       for (const [k, v] of mem) if (now - v.ts < STALE_MS && !(obj[k] && obj[k].ts > v.ts)) obj[k] = v
-      await ext.storage.local.set({ [CACHE_KEY]: obj })
+      // Only the day-long non-game skips are worth keeping; transient failures stay per page
+      const neg: Record<string, number> = {}
+      for (const [k, exp] of Object.entries((res?.[NEG_KEY] as Record<string, number>) ?? {})) if (typeof exp === 'number' && exp > now) neg[k] = exp
+      for (const [k, exp] of negative) if (exp - now > NEG_MS) neg[k] = Math.max(neg[k] ?? 0, exp)
+      await ext.storage.local.set({ [CACHE_KEY]: obj, [NEG_KEY]: neg })
     } catch (e) {
       console.warn('[SRO] cache persist failed', e)
     }
@@ -365,6 +374,7 @@ async function fetchBatch(appids: number[]) {
     const g = item.reviews?.summary_filtered
     if (item.success !== 1 || !g || isNonGameType(item.type)) {
       negative.set(item.id, now + (isNonGameType(item.type) ? NON_GAME_MS : NEG_MS))
+      if (isNonGameType(item.type)) schedulePersist()
       continue
     }
     const l = item.reviews?.summary_language_specific
@@ -427,6 +437,7 @@ export async function ingestSteamRequest(url: string): Promise<number> {
     if (isNonGameType(it.type)) {
       negative.set(it.appid, now + NON_GAME_MS) // hardware, Steam's own news app, videos: never a label
       pending.delete(it.appid) // nothing left to ask Steam about
+      schedulePersist()
       continue
     }
     // Cancel any pending fetch of ours for this id: Steam just handed it to us.

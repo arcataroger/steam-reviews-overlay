@@ -39,12 +39,12 @@
 .search_result_row[data-sro-card] .responsive_search_name_combined {
   grid-template-columns: minmax(200px, 41%) minmax(85px, 30%) minmax(30px, max-content) minmax(100px, 25%);
 }
-.search_result_row .search_reviewscore {
+.search_result_row[data-sro-card] .search_reviewscore {
   width: auto; white-space: nowrap;
   display: flex; align-items: center; justify-content: flex-start; gap: 6px; /* icon, then label, on the date's centre line */
   overflow: visible;
 }
-.search_result_row .search_reviewscore .search_review_summary { flex: none; }
+.search_result_row[data-sro-card] .search_reviewscore .search_review_summary { flex: none; }
 .search_reviewscore .sro-badge.sro-slot {
   margin-left: 0; margin-right: 0;
   flex: 0 1 auto; min-width: 0;
@@ -57,14 +57,14 @@
 /* Steam's narrow layout moves reviews to a 24px column beside the platform icons */
 @media (max-width: 750px) {
   /* Keep desktop's order (OS icons, then the review label) instead of Steam's reviews-first swap */
-  html.responsive .search_result_row .responsive_search_name_combined {
+  html.responsive .search_result_row[data-sro-card] .responsive_search_name_combined {
     grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr) auto;
     grid-template-areas:
       "title title title price"
       "platforms reviews reviews price";
   }
   /* The label may be ellipsized rather than ever pushing into the price */
-  html.responsive .search_result_row .search_reviewscore {
+  html.responsive .search_result_row[data-sro-card] .search_reviewscore {
     margin-left: 10px; padding-right: 8px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   html.responsive .search_reviewscore .sro-badge.sro-slot,

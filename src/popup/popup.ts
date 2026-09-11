@@ -273,6 +273,7 @@ function showStatus(text: string | null, kind: 'info' | 'warn' = 'warn') {
   statusEl.hidden = !text
   statusEl.textContent = text ?? ''
   statusEl.className = `status ${kind}`
+  document.body.classList.toggle('has-notice', !!text)
 }
 async function refreshStatus() {
   try {

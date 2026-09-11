@@ -273,9 +273,17 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     return
   }
 
+  // Hidden cards (display:none after a hide) can't be measured; revalidate/reapply will place the
+  // badge once the card is visible again.
+  if (!card.getClientRects().length) return
+
   const price = findPriceEl(card)
   if (price) {
+    // Measure the whole price block, not just the final-price line, so a lifted chip clears the
+    // strikethrough/discount lines too.
+    const priceBlock = price.closest<HTMLElement>('.discount_block, .discount_prices, .search_price_discount_combined') ?? price
     const before = card.getBoundingClientRect()
+    const priceBefore = priceBlock.getBoundingClientRect()
     badge.classList.add('sro-inline')
     // If the price is the sole content of a flex/inline row, append inside it; else after it.
     const parent = price.parentElement
@@ -290,29 +298,34 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     // A badge must never change the card's size (capsules in carousels size themselves from the
     // price block, and an inline label there reflows the whole row). If it did, or got clipped,
     // take it out of the flow: an absolute chip just above the price bar instead.
-    const resized = Math.abs(cr.width - before.width) > 1 || Math.abs(cr.height - before.height) > 1
+    const pr = priceBlock.getBoundingClientRect()
+    const resized =
+      Math.abs(cr.width - before.width) > 1 ||
+      Math.abs(cr.height - before.height) > 1 ||
+      Math.abs(pr.width - priceBefore.width) > 1 ||
+      Math.abs(pr.height - priceBefore.height) > 1
     if (clipped || resized) {
       badge.remove()
       badge.classList.remove('sro-inline')
-      placeInCorner(card, badge, price)
+      // The card and price rects are back to their pre-insertion values: no need to re-measure.
+      placeInCorner(card, badge, before, priceBefore)
     }
   } else {
     placeInCorner(card, badge)
   }
 }
 
-/** Absolute chip in the card's lower-right corner, lifted above the price bar when there is one. */
-function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, price?: HTMLElement) {
+/** Absolute chip in the card's lower-right corner, lifted above the price block when there is one. */
+function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOMRect, priceRect?: DOMRect) {
   badge.classList.add('sro-corner')
   const cs = getComputedStyle(card)
   if (cs.position === 'static') card.style.position = 'relative'
-  if (price) {
-    const cr = card.getBoundingClientRect()
-    const pr = price.getBoundingClientRect()
-    const lift = Math.max(0, Math.round(cr.bottom - pr.top))
-    if (lift > 0 && lift < cr.height) badge.style.bottom = `${lift + 4}px`
-  }
   card.appendChild(badge)
+  if (cardRect && priceRect) {
+    const lift = Math.max(0, Math.round(cardRect.bottom - priceRect.top))
+    const room = cardRect.height - badge.offsetHeight - 4
+    if (lift > 0 && lift < room) badge.style.bottom = `${lift + 4}px`
+  }
 }
 
 /* ---------- filtering (dim / hide) ---------- */
@@ -325,7 +338,11 @@ const shapeWatcher = new ResizeObserver((entries) => {
     const card = e.target as HTMLElement
     const appid = cardsByAppId.get(card)
     const s = appid ? peekCached(appid) : undefined
-    if (s && card.isConnected) applyFilter(card, s)
+    if (!s || !card.isConnected) continue
+    // A lifted corner chip was measured against the old layout: re-place it. Otherwise just re-derive the shape.
+    const chip = card.querySelector<HTMLElement>(`:scope > .${BADGE_CLASS}.sro-corner`)
+    if (chip?.style.bottom) placeBadge(card, s)
+    else applyFilter(card, s)
   }
 })
 
@@ -391,8 +408,15 @@ function reapplyFilters(rerender = false) {
   for (const [card, appid] of cardsByAppId) {
     const s = peekCached(appid)
     if (!s || !card.isConnected) continue
-    if (rerender) placeBadge(card, s)
-    else applyFilter(card, s)
+    if (rerender) {
+      placeBadge(card, s)
+      continue
+    }
+    applyFilter(card, s)
+    // A card that was hidden when its data arrived has no badge yet; place it now that it can be measured
+    if (card.dataset.sroFiltered !== 'hide' && !card.querySelector(`.${BADGE_CLASS}`) && !hasNativeSummary(card) && card.getClientRects().length) {
+      placeBadge(card, s)
+    }
   }
 }
 

@@ -88,17 +88,17 @@ body {
 .screw.bl { bottom: 6px; left: 6px; } .screw.br { bottom: 6px; right: 6px; }
 
 .plate-title {
-  font-size: 9px; letter-spacing: 1.6px; color: #8391a1; font-weight: 600;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.7);
+  font-size: 9px; letter-spacing: 1.6px; color: #aeb9c6; font-weight: 700;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.9);
 }
 .readouts { display: flex; gap: 8px; margin: 2px 0 18px; }
 .readout {
   flex: 1; min-width: 0;
   display: flex; flex-direction: column; gap: 1px;
   padding: 5px 9px 6px;
-  border-radius: 4px;
-  background: #0b0f14;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.06);
+  border-radius: 6px;
+  background: linear-gradient(180deg, #05070a, #0c1016);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.95), inset 0 0 0 1px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.08);
   transition: opacity 0.2s;
 }
 .readout.right .plate-row { justify-content: flex-end; }

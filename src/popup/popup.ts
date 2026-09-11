@@ -1,9 +1,11 @@
 import {
   loadSettings,
   saveSettings,
-  snapThreshold,
+  snapPosition,
+  posToPct,
   tierFor,
-  SETPOINTS,
+  hasPercentGap,
+  TIERS,
   OFF_FILTER,
   OFF_HIGHLIGHT,
   type Settings,
@@ -45,6 +47,11 @@ const sourceGroup = $<HTMLDivElement>('#source')
 
 let settings: Settings
 
+/* Track geometry: tier 1..9 -> 0..100% of track; gates sit GATE units beyond each end. */
+const trackPct = (pos: number) => ((pos - 1) / 8) * 100
+const GATE_L = -12
+const GATE_R = 112
+
 // Flag/language: what the content script detected on the last store page (Steam_Language cookie),
 // falling back to the browser locale until a store page has been visited.
 function showLang(l: LangInfo) {
@@ -57,19 +64,19 @@ ext.storage.local.get(LANG_KEY).then((r) => {
   if (l) showLang(l)
 })
 
-// Shared notches: left tick zone drives the filter lever, right tick zone the highlight lever.
-for (const sp of SETPOINTS) {
+// One notch per Steam tier. Left tick zone drives the filter lever, right tick zone the highlight lever.
+for (const t of TIERS) {
   const n = document.createElement('div')
-  n.className = `notch ${sp.tone}`
-  n.dataset.pct = String(sp.pct)
-  n.style.bottom = `${sp.pct}%`
+  n.className = `notch ${t.tone}`
+  n.dataset.pos = String(t.score)
+  n.style.bottom = `${trackPct(t.score)}%`
   const tl = document.createElement('div')
   tl.className = 'tick l'
   tl.dataset.side = 'filter'
   const label = document.createElement('span')
-  label.textContent = sp.name
+  label.textContent = t.name
   const b = document.createElement('b')
-  b.textContent = `${sp.pct}%`
+  b.textContent = t.rule
   label.appendChild(b)
   const tr = document.createElement('div')
   tr.className = 'tick r'
@@ -78,39 +85,36 @@ for (const sp of SETPOINTS) {
   notches.appendChild(n)
 }
 
-/** Gate positions in track units: the handle parks 12% of track length beyond the end notch. */
-const GATE_L = -12
-const GATE_R = 112
-
 function renderSide(side: Side, value: number) {
   const u = ui[side]
-  const off = side === 'filter' ? value < 0 : value > 100
-  const pct = off ? (side === 'filter' ? 0 : 100) : value
-  const tier = tierFor(pct)
-  const exact = tier.pct === pct
-  u.pct.textContent = off ? 'OFF' : `${pct}%`
+  const off = side === 'filter' ? value <= OFF_FILTER : value >= OFF_HIGHLIGHT
+  const pos = off ? (side === 'filter' ? 1 : 9) : value
+  const tier = tierFor(pos)
+  const onTier = Number.isInteger(pos)
   u.readout.classList.toggle('off', off)
+  u.pct.textContent = off ? 'OFF' : `${Math.round(posToPct(pos))}%`
   u.pct.className = `digits ${off ? 'none' : ''}`
-  const c = toneColorAt(pct)
+  u.tier.textContent = onTier ? tier.name : `${tier.name} +`
+  u.tier.className = `tier ${off ? '' : tier.tone}`
+  if (!onTier && !off) {
+    const sub = document.createElement('span')
+    sub.className = 'sub'
+    sub.textContent = 'between tiers'
+    u.tier.appendChild(sub)
+  }
+  const c = toneColorAt(pos)
   if (off) u.pct.style.removeProperty('--c')
   else u.pct.style.setProperty('--c', c)
   u.knob.style.setProperty('--c', c)
-  u.tier.textContent = off ? (side === 'filter' ? 'nothing filtered' : 'nothing outlined') : tier.name
-  u.tier.className = `tier ${off ? '' : tier.tone}`
-  if (!exact && !off) {
-    const sub = document.createElement('span')
-    sub.className = 'sub'
-    sub.textContent = 'between notches'
-    u.tier.appendChild(sub)
-  }
-  u.fill.style.setProperty('--pct', String(off ? (side === 'filter' ? 0 : 100) : pct))
-  u.knob.style.setProperty('--pct', String(off ? (side === 'filter' ? GATE_L : GATE_R) : pct))
+  u.fill.style.setProperty('--pct', String(off ? (side === 'filter' ? 0 : 100) : trackPct(pos)))
+  u.fill.classList.toggle('off', off)
+  u.knob.style.setProperty('--pct', String(off ? (side === 'filter' ? GATE_L : GATE_R) : trackPct(pos)))
   u.knob.className = off ? 'knob parked' : 'knob'
-  u.lever.setAttribute('aria-valuenow', String(pct))
-  u.lever.setAttribute('aria-valuetext', `${pct}% positive, ${tier.name}`)
+  u.lever.setAttribute('aria-valuenow', String(off ? (side === 'filter' ? 0 : 10) : pos))
+  u.lever.setAttribute('aria-valuetext', off ? 'off' : onTier ? tier.name : `${Math.round(posToPct(pos))}% positive`)
   const cls = side === 'filter' ? 'active-l' : 'active-r'
   for (const n of notches.querySelectorAll<HTMLElement>('.notch')) {
-    n.classList.toggle(cls, !off && Number(n.dataset.pct) === pct)
+    n.classList.toggle(cls, !off && Number(n.dataset.pos) === pos)
   }
 }
 
@@ -133,15 +137,12 @@ function update(patch: Partial<Settings>) {
   saveTimer = window.setTimeout(() => void saveSettings(settings), 100)
 }
 
-/** `raw` is in track units and may run past the end notches into the gates. */
-function setPct(side: Side, raw: number, snap = true) {
+/** `raw` is a ladder position (1..9) that may run past the ends into the gates. */
+function setPos(side: Side, raw: number, snap = true) {
   let v: number
-  if (side === 'filter' && raw <= (snap ? -5 : -1)) v = OFF_FILTER
-  else if (side === 'highlight' && raw >= (snap ? 105 : 101)) v = OFF_HIGHLIGHT
-  else {
-    v = Math.round(Math.min(100, Math.max(0, raw)))
-    if (snap) v = snapThreshold(v)
-  }
+  if (side === 'filter' && raw <= (snap ? 0.6 : 0.99)) v = OFF_FILTER
+  else if (side === 'highlight' && raw >= (snap ? 9.4 : 9.01)) v = OFF_HIGHLIGHT
+  else v = snap ? snapPosition(raw) : Math.min(9, Math.max(1, Math.round(raw * 100) / 100))
   update({ [KEY[side]]: v } as Partial<Settings>)
 }
 
@@ -149,45 +150,61 @@ function setPct(side: Side, raw: number, snap = true) {
 function wireLever(side: Side) {
   const { lever } = ui[side]
   const rail = lever.querySelector<HTMLDivElement>('.rail')!
-  const pctFromPointer = (clientY: number) => {
+  const posFromPointer = (clientY: number) => {
+    // rail spans GATE_L..GATE_R in track units
     const r = rail.getBoundingClientRect()
-    return ((r.bottom - clientY) / r.height) * 100
+    const t = (r.bottom - clientY) / r.height // 0..1 across the whole rail
+    const pct = GATE_L + t * (GATE_R - GATE_L)
+    return 1 + (pct / 100) * 8
   }
   lever.addEventListener('pointerdown', (e) => {
     lever.setPointerCapture(e.pointerId)
-    setPct(side, pctFromPointer(e.clientY))
+    setPos(side, posFromPointer(e.clientY))
     lever.focus()
   })
   lever.addEventListener('pointermove', (e) => {
-    if (lever.hasPointerCapture(e.pointerId)) setPct(side, pctFromPointer(e.clientY))
+    if (lever.hasPointerCapture(e.pointerId)) setPos(side, posFromPointer(e.clientY))
   })
-  /* keyboard: arrows ±1, shift ±5, PageUp/Down = next notch, Home/End */
+  /* keyboard: arrows step by tier (or 1% within a percent gap with shift), PageUp/Down = next tier, Home/End = gates */
   lever.addEventListener('keydown', (e) => {
     const cur = settings[KEY[side]]
-    const step = e.shiftKey ? 5 : 1
-    const pts = SETPOINTS.map((s) => s.pct)
-    const lo = side === 'filter' ? OFF_FILTER : 0
-    const hi = side === 'highlight' ? OFF_HIGHLIGHT : 100
+    const lo = side === 'filter' ? OFF_FILTER : 1
+    const hi = side === 'highlight' ? OFF_HIGHLIGHT : 9
+    const fine = e.shiftKey
+    const stepUp = () => {
+      if (cur >= 9) return hi
+      const base = Math.floor(cur)
+      if (fine && hasPercentGap(base)) {
+        const span = posToPct(base + 1) - posToPct(base)
+        return Math.min(base + 1, cur + 1 / span)
+      }
+      return Math.floor(cur) + 1
+    }
+    const stepDown = () => {
+      if (cur <= 1) return lo
+      const base = Number.isInteger(cur) ? cur - 1 : Math.floor(cur)
+      if (fine && hasPercentGap(base)) {
+        const span = posToPct(base + 1) - posToPct(base)
+        return Math.max(base, cur - 1 / span)
+      }
+      return base
+    }
     switch (e.key) {
       case 'ArrowUp':
       case 'ArrowRight':
-        setPct(side, Math.min(hi, cur + step), false)
+      case 'PageUp':
+        setPos(side, stepUp(), false)
         break
       case 'ArrowDown':
       case 'ArrowLeft':
-        setPct(side, Math.max(lo, cur - step), false)
-        break
-      case 'PageUp':
-        setPct(side, pts.find((p) => p > cur) ?? hi, false)
-        break
       case 'PageDown':
-        setPct(side, [...pts].reverse().find((p) => p < cur) ?? lo, false)
+        setPos(side, stepDown(), false)
         break
       case 'Home':
-        setPct(side, lo, false)
+        setPos(side, lo, false)
         break
       case 'End':
-        setPct(side, hi, false)
+        setPos(side, hi, false)
         break
       default:
         return
@@ -201,7 +218,7 @@ wireLever('highlight')
 notches.addEventListener('click', (e) => {
   const tick = (e.target as HTMLElement).closest<HTMLElement>('.tick[data-side]')
   if (!tick) return
-  setPct(tick.dataset.side as Side, Number(tick.parentElement!.dataset.pct))
+  setPos(tick.dataset.side as Side, Number(tick.parentElement!.dataset.pos))
 })
 
 modeGroup.addEventListener('click', (e) => {

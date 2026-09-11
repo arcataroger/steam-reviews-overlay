@@ -23,12 +23,12 @@ await store.waitForTimeout(7000)
 async function setMode(mode, threshold) {
   await popup.bringToFront()
   if (mode !== 'label') await popup.click(`button[data-mode="${mode}"]`)
-  await popup.click(`.notch[data-pct="${threshold}"] .tick.l`, { force: true })
+  await popup.click(`.notch[data-pos="${threshold}"] .tick.l`, { force: true })
   await popup.waitForTimeout(400)
   await popup.screenshot({ path: `${out}/popup_${mode}.png` })
 }
 for (const mode of ['dim', 'hide']) {
-  await setMode(mode, 80)
+  await setMode(mode, 8)
   await store.bringToFront()
   await store.waitForTimeout(1200)
   const st = await store.evaluate(() => ({
@@ -42,7 +42,7 @@ for (const mode of ['dim', 'hide']) {
 }
 // highlight: outline games at/above Very Positive
 await popup.bringToFront()
-await popup.click('.notch[data-pct="80"] .tick.r', { force: true })
+await popup.click('.notch[data-pos="8"] .tick.r', { force: true })
 await popup.waitForTimeout(400)
 await popup.screenshot({ path: `${out}/popup_highlight.png` })
 await store.bringToFront(); await store.waitForTimeout(800)

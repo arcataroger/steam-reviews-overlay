@@ -24,11 +24,15 @@ cards across the Steam store, so you don't have to hover every capsule.
   which games are outlined. Each track runs past its end notch into a parking
   gate marked OFF; a parked lever does nothing. "Under Negative" is a real
   stop (it filters Very Negative and Overwhelmingly Negative), as is "above
-  Overwhelmingly Positive". Both levers run 0–100 %
-  and snap to Steam's named tiers (Mostly Negative 20 %, Mixed 40 %, Mostly
-  Positive 70 %, Very Positive 80 %, Overwhelmingly Positive 95 %); the shared
-  notch labels sit between them and the tick on each side is clickable for
-  that lever. The rails carry a gradient through Steam's three review colors
+  Overwhelmingly Positive". Both levers run along
+  Steam's full nine-tier ladder (Overwhelmingly Negative, Very Negative,
+  Negative, Mostly Negative, Mixed, Mostly Positive, Positive, Very Positive,
+  Overwhelmingly Positive), each notch labeled with Steam's rule for it. Where
+  two neighbouring tiers differ by percentage the lever can rest between them
+  and the bar becomes that exact percent; where they differ only by review
+  count (the three negatives; Positive vs Very Positive) it snaps to a tier.
+  The shared notch labels sit between the levers and the tick on each side is
+  clickable for that lever. The rails carry a gradient through Steam's three review colors
   (solid negative to 20 %, mixed at 55 %, solid positive from 85 %, blended
   between) and the outline, readout and knob light sample that gradient at
   the lever's position. Settings sync via `storage.sync` and apply live to open tabs.
@@ -57,15 +61,13 @@ cards across the Steam store, so you don't have to hover every capsule.
      the next fetch is guaranteed a refreshed copy. Entries are shown while
      revalidating for up to 15 min, then dropped. Persistence only exists to
      survive reloads and back/forward navigation.
-- Filtering follows Steam's algorithm: on a named notch the comparison is by
-  Steam's tier (`review_score`), which is what Steam's own "sort by reviews"
-  does and respects its review-count rules (e.g. 96% with 300 reviews is
-  "Very Positive", not "Overwhelmingly"). Between notches the comparison uses
-  Steam's integer percent. Games Steam gives no score to (under 10 reviews)
+- Filtering follows Steam's algorithm: on a tier the comparison is by
+  Steam's `review_score` (what Steam's own "sort by reviews" does, so its
+  review-count rules apply: 96% with 300 reviews is "Very Positive", not
+  "Overwhelmingly", and "Positive" ranks under "Very Positive"). Between tiers
+  the comparison uses Steam's integer percent. Games Steam gives no score to (under 10 reviews)
   are labeled with Steam's text ("3 user reviews", "No user reviews") and are
   never filtered, so new and small releases aren't penalized.
-  Steam's "Positive" (80%+ with 10–49 reviews) passes the "Very Positive" notch
-  because it is the same percentage band.
 
 ## Build
 

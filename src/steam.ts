@@ -272,6 +272,8 @@ function retryLater(appids: number[], baseMs: number) {
   if (retries >= MAX_RETRIES) {
     const now = Date.now()
     for (const id of appids) negative.set(id, now + NEG_MS)
+    retries = 0 // this batch gave up; the next outage gets its full ladder of attempts again
+    backoffUntil = 0
     return
   }
   const delay = Math.min(10 * 60_000, baseMs * 2 ** retries) + Math.random() * 1000

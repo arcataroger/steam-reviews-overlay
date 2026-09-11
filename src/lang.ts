@@ -40,7 +40,9 @@ export interface LangInfo {
 /** Region subtag of a BCP 47 tag ("zh-Hans-CN" → "CN"), or undefined. */
 export function regionOf(tag: string): string | undefined {
   try {
-    return new Intl.Locale(tag.replace('_', '-')).maximize().region ?? undefined
+    const region = new Intl.Locale(tag.replace('_', '-')).maximize().region
+    // UN M49 area codes ("es-419" → 419) have no flag; leave the language's own country to decide
+    return region && /^[A-Za-z]{2}$/.test(region) ? region : undefined
   } catch {
     return tag.split(/[-_]/).find((p, i) => i > 0 && /^[A-Za-z]{2}$/.test(p))
   }

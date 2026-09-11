@@ -85,6 +85,7 @@
 /* Placed in the lower-right corner of the card when there's no price to sit next to */
 .sro-badge.sro-corner {
   position: absolute;
+  z-index: 7; /* above the highlight ring/wings (z 6), still under the dim overlay (z 30) */
   right: 4px;
   bottom: 4px;
   padding: 2px 6px;

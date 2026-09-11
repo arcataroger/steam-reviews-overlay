@@ -53,7 +53,7 @@ describe('locale → language/flag (popup QA override and My-language button)', 
     expect(langForLocale('de')).toMatchObject({ steam: 'german', flag: flagFor('DE') })
     expect(langForLocale('pt_BR')).toMatchObject({ steam: 'brazilian', flag: flagFor('BR') })
     expect(langForLocale('zh_CN').steam).toBe('schinese')
-    expect(langForLocale('es_419').steam).toBe('latam')
+    expect(langForLocale('es_419')).toMatchObject({ steam: 'latam', flag: flagFor('MX') }) // 419 is not a country
     expect(langForLocale('xx').steam).toBe('english')
   })
   it('does not invent a region for a bare browser locale', () => {

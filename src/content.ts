@@ -600,8 +600,15 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     delete card.dataset.sroFiltered
     return
   }
+  // Never collapse the element the keyboard is inside (focus would silently drop to <body>):
+  // dim it for now; it hides on the next pass once focus has moved on.
   if (want === 'dim') {
     card.dataset.sroFiltered = 'dim'
+    return
+  }
+  if (card.matches(':focus-within')) {
+    card.dataset.sroFiltered = 'dim'
+    card.addEventListener('focusout', () => { if (alive() && cardsByAppId.has(card)) applyFilter(card, summary) }, { once: true })
     return
   }
   // hide: fade out first, then display:none so the layout reflows
@@ -669,6 +676,7 @@ function stripCard(card: HTMLElement) {
     card.style.removeProperty('position')
     delete card.dataset.sroPos
   }
+  card.querySelectorAll(`:scope > .${ORBIT_CLASS}`).forEach((n) => orbitVisibility.unobserve(n))
   card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}, :scope > .${ORBIT_CLASS}`).forEach((n) => n.remove())
 }
 

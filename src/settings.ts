@@ -9,10 +9,10 @@ export type ScoreSource = 'global' | 'local'
  */
 export interface Settings {
   mode: FilterMode
-  /** 1-9, or OFF_FILTER (0) = parked. Games under this are dimmed/hidden. */
+  /** 1-9, or OFF_FILTER (0) = parked. Games at this tier or lower are dimmed/hidden. */
   threshold: number
   source: ScoreSource
-  /** 1-9, or OFF_HIGHLIGHT (10) = parked. Games at/above this are outlined. */
+  /** 1-9, or OFF_HIGHLIGHT (10) = parked. Games at this tier or higher are outlined. */
   highlightThreshold: number
 }
 
@@ -151,27 +151,38 @@ export function meetsBar(summary: Judged, pos: number): boolean | null {
   return summary.pct >= posToPct(pos)
 }
 
-/** Below the filter bar? Parked lever filters nothing; unscored games are never filtered. */
+/** At the filter tier or lower? Parked lever filters nothing; unscored games are never filtered. */
 export function isFiltered(summary: Judged, s: Settings): boolean {
   if (s.threshold <= OFF_FILTER) return false
-  return meetsBar(summary, s.threshold) === false
+  if (!summary || summary.score === 0) return false
+  return summary.score <= s.threshold
 }
 
-/** At or above the highlight bar? Parked lever highlights nothing. */
+/** At the highlight tier or higher? Parked lever highlights nothing. */
 export function isHighlighted(summary: Judged, s: Settings): boolean {
   if (s.highlightThreshold >= OFF_HIGHLIGHT) return false
   return meetsBar(summary, s.highlightThreshold) === true
 }
 
+/** Top of the percent band a tier occupies (next tier with a higher band start, minus one). */
+export function bandEndPct(score: number): number {
+  const here = tierAt(score).pct
+  const next = TIERS.find((t) => t.pct > here)
+  return next ? next.pct - 1 : 100
+}
+
 /**
- * Keep the highlight bar at or above the filter bar (a highlight below the filter could never show,
- * since filtered games are never outlined). The lever the user moved wins and pushes the other.
+ * Keep the highlight tier strictly above the filter tier: both are inclusive, so a shared tier
+ * would be filtered and could never show its outline. The lever the user moved wins and pushes the
+ * other, into its parking gate if it runs out of ladder.
  */
 export function reconcile(s: Settings, moved: 'filter' | 'highlight'): Settings {
   const filterOn = s.threshold > OFF_FILTER
   const highlightOn = s.highlightThreshold < OFF_HIGHLIGHT
-  if (!filterOn || !highlightOn || s.highlightThreshold >= s.threshold) return s
-  return moved === 'filter' ? { ...s, highlightThreshold: s.threshold } : { ...s, threshold: s.highlightThreshold }
+  if (!filterOn || !highlightOn || s.highlightThreshold > s.threshold) return s
+  return moved === 'filter'
+    ? { ...s, highlightThreshold: Math.min(OFF_HIGHLIGHT, s.threshold + 1) }
+    : { ...s, threshold: Math.max(OFF_FILTER, s.highlightThreshold - 1) }
 }
 
 /** Tone at a position (for colors): the tier at or just below it. */

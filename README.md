@@ -18,10 +18,12 @@ cards across the Steam store, so you don't have to hover every capsule.
 - Badges read like "Very Positive (83%)": Steam's label plus Steam's exact
   integer percent.
 - Toolbar popup (click the icon) styled as a two-lever throttle. The **left
-  lever** sets the bar under which games are **dimmed** (black overlay, still
-  clickable) or **hidden** (fade out, then collapsed so lists reflow); a
-  Dim/Hide switch sits in its readout. The **right lever** sets the bar above
-  which games are outlined. Each track runs past its end notch into a parking
+  lever** picks a tier: games at that tier **or lower** are **dimmed** (black
+  overlay, still clickable) or **hidden** (fade out, then collapsed so lists
+  reflow); a Dim/Hide switch sits in its readout. The **right lever** picks a
+  tier: games at that tier **or higher** are outlined. Both are inclusive, so
+  the highlight lever always sits at least one tier above the filter lever and
+  pushes it along if you drag past. Each track runs past its end notch into a parking
   gate marked OFF; a parked lever does nothing. "Under Negative" is a real
   stop (it filters Very Negative and Overwhelmingly Negative), as is "above
   Overwhelmingly Positive". Both levers run along

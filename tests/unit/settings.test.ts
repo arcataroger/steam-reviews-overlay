@@ -85,26 +85,30 @@ describe('filter and highlight', () => {
   it('never filters unscored games (protects new releases)', () => {
     expect(isFiltered(game(0), s({ threshold: 9 }))).toBe(false)
   })
-  it('filters below and highlights at/above', () => {
+  it('filters at-or-below and highlights at-or-above (both inclusive)', () => {
     expect(isFiltered(game(4, 30), s({ threshold: 5 }))).toBe(true)
-    expect(isFiltered(game(5, 50), s({ threshold: 5 }))).toBe(false)
+    expect(isFiltered(game(5, 50), s({ threshold: 5 }))).toBe(true) // Mixed itself is filtered at "Mixed"
+    expect(isFiltered(game(6, 75), s({ threshold: 5 }))).toBe(false)
     expect(isHighlighted(game(8, 90), s({ highlightThreshold: 8 }))).toBe(true)
     expect(isHighlighted(game(7, 90), s({ highlightThreshold: 8 }))).toBe(false)
   })
 })
 
-describe('levers never invert', () => {
-  it('moving the filter above the highlight pushes the highlight up', () => {
-    const r = reconcile(s({ threshold: 8, highlightThreshold: 5 }), 'filter')
-    expect(r.highlightThreshold).toBe(8)
+describe('levers never invert or share a tier', () => {
+  it('moving the filter up to or past the highlight pushes the highlight one tier above it', () => {
+    expect(reconcile(s({ threshold: 8, highlightThreshold: 5 }), 'filter').highlightThreshold).toBe(9)
+    expect(reconcile(s({ threshold: 5, highlightThreshold: 5 }), 'filter').highlightThreshold).toBe(6)
   })
-  it('moving the highlight below the filter pushes the filter down', () => {
-    const r = reconcile(s({ threshold: 8, highlightThreshold: 5 }), 'highlight')
-    expect(r.threshold).toBe(5)
+  it('moving the highlight down to or past the filter pushes the filter one tier below it', () => {
+    expect(reconcile(s({ threshold: 8, highlightThreshold: 5 }), 'highlight').threshold).toBe(4)
+    expect(reconcile(s({ threshold: 5, highlightThreshold: 5 }), 'highlight').threshold).toBe(4)
+  })
+  it('pushes into the parking gate when out of ladder', () => {
+    expect(reconcile(s({ threshold: 9, highlightThreshold: 9 }), 'filter').highlightThreshold).toBe(OFF_HIGHLIGHT)
+    expect(reconcile(s({ threshold: 1, highlightThreshold: 1 }), 'highlight').threshold).toBe(OFF_FILTER)
   })
   it('leaves valid or parked states alone', () => {
     expect(reconcile(s({ threshold: 5, highlightThreshold: 8 }), 'filter')).toEqual(s({ threshold: 5, highlightThreshold: 8 }))
-    expect(reconcile(s({ threshold: 5, highlightThreshold: 5 }), 'filter').highlightThreshold).toBe(5)
     expect(reconcile(s({ threshold: OFF_FILTER, highlightThreshold: 2 }), 'highlight').threshold).toBe(OFF_FILTER)
     expect(reconcile(s({ threshold: 8, highlightThreshold: OFF_HIGHLIGHT }), 'filter').highlightThreshold).toBe(OFF_HIGHLIGHT)
   })

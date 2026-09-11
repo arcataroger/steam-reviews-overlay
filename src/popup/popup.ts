@@ -4,6 +4,7 @@ import {
   snapPosition,
   reconcile,
   posToPct,
+  bandEndPct,
   tierFor,
   TIERS,
   OFF_FILTER,
@@ -123,10 +124,8 @@ function renderSide(side: Side, value: number) {
   const pos = off ? (side === 'filter' ? 1 : 9) : value
   const tier = tierFor(pos)
   u.readout.classList.toggle('off', off)
-  // Filter acts on games under the tier (≤ band start − 1); highlight on games at/above it (≥ band start).
-  // The three negative tiers share the 0–19% band and differ by review count, so "under Negative" is ≤ 19%.
-  const pct = Math.round(posToPct(pos))
-  u.pct.textContent = off ? t('off') : side === 'filter' ? `≤ ${pct === 0 ? 19 : pct - 1}%` : `≥ ${pct}%`
+  // Both inclusive: filter = this tier or lower (≤ top of its band), highlight = this tier or higher (≥ band start).
+  u.pct.textContent = off ? t('off') : side === 'filter' ? `≤ ${bandEndPct(pos)}%` : `≥ ${Math.round(posToPct(pos))}%`
   u.pct.className = `digits ${off ? 'none' : ''}`
   u.tier.textContent = tierName(tier.score)
   u.tier.className = `tier ${off ? '' : tier.tone}`

@@ -55,7 +55,9 @@ const INVENTORY = () => {
     for (const n of parent.querySelectorAll('a[href*="/app/"], [data-ds-appid]')) {
       if (tile.contains(n) || appIdOf(n) !== appid) continue
       const r = n.getBoundingClientRect()
-      if (r.height >= 40 && r.width >= 60 && n.querySelector('img, picture, video, [style*="background-image"]')) return true
+      if (r.height < 40 || r.width < 60 || !n.querySelector('img, picture, video, [style*="background-image"]')) continue
+      // Repeated tiles look alike; a box-art capsule next to its own wide info panel does not
+      if (Math.abs(r.width - tr.width) <= 0.25 * Math.max(r.width, tr.width) && Math.abs(r.height - tr.height) <= 0.25 * Math.max(r.height, tr.height)) return true
     }
     return false
   }

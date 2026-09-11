@@ -232,6 +232,12 @@
   transform: scale(0.96);
   pointer-events: none;
 }
+/* Keyboard focus landing mid-fade: stay visible until the timer hands the card back to dim */
+[data-sro-filtered="hiding"]:focus-within {
+  opacity: 1 !important;
+  transform: none;
+  pointer-events: auto;
+}
 [data-sro-filtered="hide"] {
   display: none !important;
 }

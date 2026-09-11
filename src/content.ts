@@ -129,7 +129,9 @@ function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): 
   for (const n of parent.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')) {
     if (tile.contains(n) || appIdOf(n) !== appid) continue
     const r = n.getBoundingClientRect()
-    if (r.height >= 40 && r.width >= 60 && n.querySelector('img, picture, video, [style*="background-image"]')) return true
+    if (r.height < 40 || r.width < 60 || !n.querySelector('img, picture, video, [style*="background-image"]')) continue
+    // Repeated tiles look alike; a box-art capsule next to its own wide info panel does not
+    if (Math.abs(r.width - tr.width) <= 0.25 * Math.max(r.width, tr.width) && Math.abs(r.height - tr.height) <= 0.25 * Math.max(r.height, tr.height)) return true
   }
   return false
 }
@@ -528,6 +530,11 @@ function placeBesideTitle(card: HTMLElement, badge: HTMLSpanElement, cardRect: D
 /* ---------- filtering (dim / hide) ---------- */
 
 const hideTimers = new Map<HTMLElement, number>()
+/** The freshest summary for a card (review data may have arrived since a deferred handler was armed). */
+function latest(card: HTMLElement, fallback: ReviewSummary): ReviewSummary {
+  const appid = cardsByAppId.get(card)
+  return (appid && peekCached(appid)) || fallback
+}
 /** Cards kept dim (not hidden) because the keyboard is inside them; one focusout listener each. */
 const focusWatched = new WeakSet<HTMLElement>()
 
@@ -646,7 +653,7 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
       focusWatched.add(card)
       card.addEventListener('focusout', () => {
         focusWatched.delete(card)
-        if (alive() && cardsByAppId.has(card)) applyFilter(card, summary)
+        if (alive() && cardsByAppId.has(card)) applyFilter(card, latest(card, summary))
       }, { once: true })
     }
     return
@@ -660,7 +667,7 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
       if (card.dataset.sroFiltered !== 'hiding') return
       // Focus arrived during the fade: keep the card in the layout (dimmed) rather than pull it
       // out from under the keyboard; applyFilter re-arms the hide once focus leaves.
-      if (card.matches(':focus-within')) applyFilter(card, summary)
+      if (card.matches(':focus-within')) applyFilter(card, latest(card, summary))
       else card.dataset.sroFiltered = 'hide'
     }, 320),
   )
@@ -732,12 +739,15 @@ function stripCard(card: HTMLElement) {
 /** Make the card's badge match its current state: missing badge, or a plain label beside Steam's own text. */
 function reconcileBadge(card: HTMLElement, appid: number) {
   if (card.dataset.sroFiltered === 'hide' || !card.getClientRects().length) return
+  const cached = peekCached(appid)
+  if (!cached) return
   const badge = card.querySelector<HTMLElement>(`.${BADGE_CLASS}`)
   const native = hasNativeSummary(card)
-  const stale = (!badge && !native) || (badge && native && !badge.classList.contains('sro-beside-native'))
-  if (!stale) return
-  const cached = peekCached(appid)
-  if (cached) placeBadge(card, cached)
+  // Beside Steam's own text a label is only due when local and global disagree: a re-render that
+  // dropped that pair must bring it back too.
+  const pairDue = !!(cached.local && cached.global && cached.local.label !== cached.global.label)
+  const stale = (!badge && (!native || pairDue)) || (badge && native && !badge.classList.contains('sro-beside-native'))
+  if (stale) placeBadge(card, cached)
 }
 
 function revalidateCards() {

@@ -211,6 +211,8 @@ let revalidateTimer: number | undefined
 export function stopSteam() {
   if (revalidateTimer) clearInterval(revalidateTimer)
   revalidateTimer = undefined
+  if (persistTimer) clearTimeout(persistTimer)
+  persistTimer = undefined
   if (flushTimer) clearTimeout(flushTimer)
   flushTimer = undefined
   pending.clear()

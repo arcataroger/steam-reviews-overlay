@@ -664,7 +664,7 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     card,
     window.setTimeout(() => {
       hideTimers.delete(card)
-      if (card.dataset.sroFiltered !== 'hiding') return
+      if (card.dataset.sroFiltered !== 'hiding' || !cardsByAppId.has(card)) return // released meanwhile
       // Focus arrived during the fade: keep the card in the layout (dimmed) rather than pull it
       // out from under the keyboard; applyFilter re-arms the hide once focus leaves.
       if (card.matches(':focus-within')) applyFilter(card, latest(card, summary))
@@ -817,8 +817,16 @@ function scan(root: ParentNode = document) {
   const owner = root instanceof Element ? root.closest<HTMLElement>(`[${CARD_ATTR}]`) : null
   if (owner) {
     const appid = cardsByAppId.get(owner)
-    const s = appid ? peekCached(appid) : undefined
-    if (s && owner.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(owner, s)
+    // The mutated card may have been recycled to another game: check it now, not on the next sweep,
+    // so a hide fade armed for the old occupant cannot collapse the new one.
+    const ids = appid ? appIdsWithin(owner, 2) : new Set<number>()
+    if (appid && (ids.size !== 1 || !ids.has(appid))) {
+      release(owner)
+      stripCard(owner)
+    } else {
+      const s = appid ? peekCached(appid) : undefined
+      if (s && owner.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(owner, s)
+    }
   }
   seedFromSearchRows(root)
   // querySelectorAll never returns the root itself, and a mutation can hand us the card's own

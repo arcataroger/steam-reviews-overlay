@@ -139,8 +139,13 @@ export async function loadSettings(): Promise<Settings> {
   }
 }
 
+/** Newest save stamp seen by this context: an older save's slower sync write must not win later. */
+let newestStamp = 0
+
 export async function saveSettings(s: Settings): Promise<void> {
-  const payload = { [KEY]: s, [STAMP]: Date.now() }
+  const stamp = Math.max(Date.now(), newestStamp + 1)
+  newestStamp = stamp
+  const payload = { [KEY]: s, [STAMP]: stamp }
   // Local always (fast, never throttled); sync as well so other devices follow. Whichever is newer wins on load.
   await ext.storage.local.set(payload)
   if (ext.storage.sync) {
@@ -155,7 +160,13 @@ export async function saveSettings(s: Settings): Promise<void> {
 export function onSettingsChange(cb: (s: Settings) => void): void {
   ext.storage.onChanged.addListener((changes) => {
     const c = changes[KEY]
-    if (c) cb(normalize(c.newValue as Partial<Settings> | undefined))
+    if (!c) return
+    // Each save writes local then sync; when several saves race, a stale sync echo can arrive after
+    // a newer local write. The stamp travelling with the value tells them apart.
+    const stamp = Number(changes[STAMP]?.newValue ?? 0)
+    if (stamp && stamp < newestStamp) return
+    if (stamp) newestStamp = stamp
+    cb(normalize(c.newValue as Partial<Settings> | undefined))
   })
 }
 

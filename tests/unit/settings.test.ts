@@ -131,3 +131,21 @@ describe('loaded settings never collide', () => {
     expect(s.highlightThreshold).toBe(OFF_HIGHLIGHT) // pushed off the top rather than colliding
   })
 })
+
+describe('settings change events', () => {
+  it('ignores an older save echoed after a newer one', async () => {
+    const { onSettingsChange, saveSettings, DEFAULT_SETTINGS } = await import('../../src/settings')
+    const listeners: Array<(c: Record<string, { newValue?: unknown }>) => void> = []
+    ;(globalThis as any).chrome.storage.onChanged.addListener = (fn: (typeof listeners)[number]) => listeners.push(fn)
+    const seen: number[] = []
+    onSettingsChange((s) => seen.push(s.threshold))
+    await saveSettings({ ...DEFAULT_SETTINGS, threshold: 3 })
+    await saveSettings({ ...DEFAULT_SETTINGS, threshold: 5 })
+    const fire = (threshold: number, stamp: number) => listeners.forEach((fn) => fn({ 'sro:settings:v4': { newValue: { ...DEFAULT_SETTINGS, threshold } }, 'sro:settings:v4:t': { newValue: stamp } }))
+    const now = Date.now()
+    fire(5, now + 10) // the newer save's local write
+    fire(3, now - 10) // the older save's slower sync write landing late
+    fire(7, now + 20) // a genuinely newer change from another device
+    expect(seen).toEqual([5, 7])
+  })
+})

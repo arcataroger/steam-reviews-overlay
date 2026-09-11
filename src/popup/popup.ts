@@ -27,20 +27,25 @@ for (const el of document.querySelectorAll<HTMLElement>('[data-i18n]')) el.textC
 for (const el of document.querySelectorAll<HTMLElement>('[data-i18n-aria]')) el.setAttribute('aria-label', t(el.dataset.i18nAria!))
 document.title = t('extName')
 
+/** Shrink an element's font from `max` down to `min` until its text fits its box. */
+function fitText(el: HTMLElement, max: number, min: number, slack = 0) {
+  const textWidth = () => {
+    const r = document.createRange()
+    r.selectNodeContents(el)
+    return r.getBoundingClientRect().width
+  }
+  let size = max
+  el.style.fontSize = `${size}px`
+  while (textWidth() > el.clientWidth - slack && size > min) el.style.fontSize = `${--size}px`
+}
+
 // Fit the engraved OFF label inside the parking gate: as large as the locale's word allows
 // (English "OFF" gets big letters; Greek "ΑΝΕΝΕΡΓΟ" steps down until it fits).
 function fitGateLabels() {
   for (const span of document.querySelectorAll<HTMLElement>('.detent span')) {
     const long = span.textContent!.length > 4
     span.style.letterSpacing = long ? '0.5px' : '2px'
-    const textWidth = () => {
-      const r = document.createRange()
-      r.selectNodeContents(span)
-      return r.getBoundingClientRect().width
-    }
-    let size = long ? 10 : 13
-    span.style.fontSize = `${size}px`
-    while (textWidth() > span.clientWidth - 8 && size > 6) span.style.fontSize = `${--size}px`
+    fitText(span, long ? 10 : 13, 6, 8)
   }
 }
 fitGateLabels()
@@ -123,10 +128,11 @@ function renderSide(side: Side, value: number) {
   const pos = off ? (side === 'filter' ? 1 : 9) : value
   const tier = tierFor(pos)
   u.readout.classList.toggle('off', off)
-  // Readout quotes the ladder's own rule for the tier; direction sits on the tier name (both inclusive).
-  u.pct.textContent = off ? t('off') : tierRule(tier.score)
-  u.pct.className = `digits ${off ? 'none' : 'rule'}`
-  u.tier.textContent = off ? tierName(tier.score) : `${side === 'filter' ? '≤' : '≥'} ${tierName(tier.score)}`
+  // Big digits use the tier's band start, exactly as printed on the ladder ("80%+" → "≤ 80%" / "≥ 80%").
+  const pct = Math.round(posToPct(pos))
+  u.pct.textContent = off ? t('off') : `${side === 'filter' ? '≤' : '≥'} ${pct}%`
+  u.pct.className = `digits ${off ? 'none' : ''}`
+  u.tier.textContent = tierName(tier.score)
   u.tier.className = `tier ${off ? '' : tier.tone}`
   const c = toneColorAt(pos)
   if (off) u.pct.style.removeProperty('--c')

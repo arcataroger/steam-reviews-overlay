@@ -123,8 +123,6 @@ body {
   color: #7bd7ff;
   text-shadow: 0 0 6px rgba(102,192,244,0.7);
 }
-/* Rule text ("80%+, 50+ reviews") is longer than a bare percent */
-.digits.rule { font-family: Barlow, "Motiva Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 13px; letter-spacing: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Readout digits take the gradient color at the lever's position (inline --c) */
 .digits { color: var(--c, #7bd7ff); text-shadow: 0 0 6px color-mix(in srgb, var(--c, #7bd7ff) 70%, transparent); }
 .digits.none { --c: #7f8b99; text-shadow: none; }

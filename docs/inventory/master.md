@@ -22,7 +22,7 @@ Generated 2026-09-11 from 99 pages, 38 kinds, 2608 cards. Regenerate with `npm r
 | K16 | Community recommendation review card | `div#AppN.appeared.has_microtrailer.reviewed_app` | 1 | 15 | 1160x340 ×15 | price native | card ×15 · sro-corner ×15 | **covered** |
 | K17 | Home spotlight (Discounts & Events, 340×440; sale/event spotlights have no app link) | `div.+1h|.carousel_items|app,art,carousel,art≥50%` | 3 | 15 | 340x440 ×15 | price carousel | null ×9/card ×6 · null ×9/sro-corner ×6 | **partial** — 9/15 unclaimed |
 | K18 | Tag browse game tile | `div.browse_tag_game` | 1 | 9 | 300x180 ×9 | price? | card ×9 · sro-corner ×9 | **covered** |
-| K19 | Charts overview rank link (text only) | `a.S0OGjWAy4Co-` | 1 | 8 | 540x40 ×8 |  | null ×8 · null ×8 | **text-link** — 8/8 unclaimed |
+| K19 | Charts overview rank link (text only) | `a.S0OGjWAy4Co-` | 1 | 8 | 540x40 ×8 |  | row ×8 · sro-corner ×8 | **covered** |
 | K20 | Labs experiment capsule (not a game) | `div.capsule` | 1 | 7 | 680x460 ×2, 680x400 ×2 | news-link date? | null ×7 · none ×6/null | **partial** — 1/7 unclaimed; 6/7 without a label although Steam shows no summary |
 | K21 | Community recommendation review card (variant) | `div#AppN.appeared.has_microtrailer.reviewed_app+1h` | 1 | 5 | 1160x340 ×5 | price native | card ×5 · sro-corner ×5 | **covered** |
 | K22 | Home takeover banner (1380×460) | `a.+1h|.has_takeover.mobile_sizer_set.mobile_static_set|app,art` | 3 | 3 | 1380x460 ×3 |  | card ×3 · sro-corner ×3 | **covered** |
@@ -250,9 +250,9 @@ Generated 2026-09-11 from 99 pages, 38 kinds, 2608 cards. Regenerate with `npm r
 - Under headings: CHARTS OVERVIEW ×8; section: .NBN-f1mBrso-.Panel ×8
 - Ancestors: div.NBN-f1mBrso-.Panel < div.Panel < div.fm1dMrfMpDc- < div.Panel.uX4qL3T--O8-.wnzEl6A2mnI- ×8
 - Variants: img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false ×8
-- Our treatment: unclaimed|shape=null|badge=null ×8
-- Coverage: **text-link** 8/8 unclaimed
-- Example (charts, appid 730 "", 540x40): card {"position":"static","display":"flex","overflow":"visible","borderRadius":"0px","backgroundImage":"none"}; parent {"display":"block","flexDirection":"row","overflow":"visible","overflowX":"visible","gap":"normal"}
+- Our treatment: same|shape=row|badge=sro-badge sro-corner ×8
+- Coverage: **covered** 
+- Example (charts, appid 730 "", 540x40): card {"position":"relative","display":"flex","overflow":"visible","borderRadius":"0px","backgroundImage":"none"}; parent {"display":"block","flexDirection":"row","overflow":"visible","overflowX":"visible","gap":"normal"}
 
 ### K20 Labs experiment capsule (not a game)
 

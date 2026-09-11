@@ -26,7 +26,7 @@ Covered (label placed on every reviewed card, highlight shape as designed): sear
 home sale/daily-deal/store capsules, home hero broadcast capsules, tab rows, category hero
 spotlights, React grid capsule tiles (Popular Titles / Top Demos / Popular Discounted rails), React
 expanded capsules with info panel, React demo rows, event/news carousel tiles, news hub post rows,
-charts table rows, charts overview tiles, tag browse tiles, specials small capsules, New/Upcoming
+charts table rows, charts overview tiles and rank rows, tag browse tiles, specials small capsules, New/Upcoming
 Releases capsules, community recommendation cards, home takeover banners, app-page DLC rows.
 
 Notes on kinds that look "partial" in `master.md` but are by design:
@@ -41,12 +41,12 @@ Notes on kinds that look "partial" in `master.md` but are by design:
 | K23 home takeunder | no label | hidden fallback anchor with no art, width 1200 |
 | K25 cart form | 1 unclaimed | the "add to cart" form is not a card |
 | K34 Great on Deck "Ignored" banner | no label | promo panel |
-| text-link kinds | unclaimed | prose links (breadcrumbs, BBCode lists, chart rank text rows): under 60px tall with no art |
+| text-link kinds | unclaimed | prose links (breadcrumbs, BBCode lists): under 60px tall with no art |
 
 ## Known gaps (accepted for now)
 
-- **Charts overview text rows** (`a.S0OGjWAy4Co-`, the "Top 8" lists on /charts): 540×40 text-only
-  rows get no label. Treating text rows as cards would also label prose links elsewhere.
+- **Text-only rows** are claimed only when they are wide block-level rows with short text (the
+  ranking lists on /charts); a short inline link in prose is never a card.
 - **Off-screen carousel slides** choose their highlight shape before their lazy image loads; the shape
   is re-derived when the image loads, so it corrects itself as the slide scrolls into view.
 - **Sign-in and age-gated pages** (Discovery Queue, Your Personal Calendar, Popular Among Friends,

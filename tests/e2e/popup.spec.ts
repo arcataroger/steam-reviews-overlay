@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { test, expect, settle } from './fixtures'
 
 test.describe('popup levers drive the overlay live', () => {
@@ -48,6 +50,20 @@ test.describe('popup levers drive the overlay live', () => {
     await other.bringToFront()
     await popup.reload()
     await expect(popup.locator('#status')).toBeVisible()
+    // the catalog string itself, never a raw message key
+    const en = JSON.parse(fs.readFileSync(path.resolve(import.meta.dirname, '../../_locales/en/messages.json'), 'utf8'))
+    await expect(popup.locator('#status')).toHaveText(en.errNotStore.message)
+  })
+
+  test('mode and source radio groups move with the arrow keys', async ({ popup }) => {
+    await popup.focus('#mode button[aria-checked="true"]')
+    await popup.keyboard.press('ArrowRight')
+    await expect(popup.locator('#mode button[data-mode="hide"]')).toHaveAttribute('aria-checked', 'true')
+    await expect(popup.locator('#mode button[data-mode="hide"]')).toBeFocused()
+    await popup.keyboard.press('ArrowLeft')
+    await expect(popup.locator('#mode button[data-mode="dim"]')).toHaveAttribute('aria-checked', 'true')
+    // only the checked item is a tab stop
+    await expect(popup.locator('#mode button[data-mode="hide"]')).toHaveAttribute('tabindex', '-1')
   })
 
   test('is localized from the message catalog', async ({ popup }) => {

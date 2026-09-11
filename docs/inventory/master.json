@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-09-11T15:53:42.150Z",
+ "generatedAt": "2026-09-11T17:33:43.500Z",
  "pages": [
   {
    "slug": "app_1675200_Steam_Deck",
@@ -4600,7 +4600,7 @@
     "div.NBN-f1mBrso-.Panel < div.Panel < div.fm1dMrfMpDc- < div.Panel.uX4qL3T--O8-.wnzEl6A2mnI-": 8
    },
    "ours": {
-    "unclaimed|shape=null|badge=null": 8
+    "same|shape=row|badge=sro-badge sro-corner": 8
    },
    "features": {
     "link": {
@@ -4639,7 +4639,7 @@
      "sizeBucket": "540x40",
      "styles": {
       "card": {
-       "position": "static",
+       "position": "relative",
        "display": "flex",
        "overflow": "visible",
        "borderRadius": "0px",
@@ -4656,32 +4656,30 @@
       "native": null
      },
      "ours": {
-      "claimed": false,
-      "sameElement": false,
+      "claimed": true,
+      "sameElement": true,
       "ourCardSig": null,
-      "shape": null,
+      "shape": "row",
       "axis": null,
       "filtered": null,
-      "highlighted": false,
-      "badge": null,
-      "badgeParent": null
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.S0OGjWAy4Co-"
      },
-     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">2</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div></div><div></div></a>"
+     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\"><div class=\"_7zmpUGEGDTM-\">2</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div></div><div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
     }
    ],
    "name": "Charts overview rank link (text only)",
    "coverage": {
-    "status": "text-link",
-    "notes": [
-     "8/8 unclaimed"
-    ],
+    "status": "covered",
+    "notes": [],
     "shapes": {
-     "null": 8
+     "row": 8
     },
     "badges": {
-     "null": 8
+     "sro-corner": 8
     },
-    "unclaimed": 8,
+    "unclaimed": 0,
     "other": 0,
     "noBadge": 0,
     "missing": 0
@@ -5934,7 +5932,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div.xjiY68vUbWQ-"
      },
-     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>WARDOGS</div><div class=\"hv-Pl2EA7-c-\">TOP SELLING RIGHT NOW</div></div><div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"6\" data-sro-pct=\"76\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Mostly Positive</span><span class=\"sro-line sro-global sro-mixed\"><span class=\"sro-ico\">🌐</span>Mixed</span></span></div>"
+     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>WARDOGS</div><div class=\"hv-Pl2EA7-c-\">TOP SELLING RIGHT NOW</div></div><div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"6\" data-sro-pct=\"78\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Mostly Positive</span></span></div>"
     }
    ],
    "name": "Charts overview top-3 tile (art + stat)",

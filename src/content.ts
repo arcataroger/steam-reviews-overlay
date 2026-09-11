@@ -839,13 +839,24 @@ function scan(root: ParentNode = document) {
     // Ignore invisible / zero-size things (hidden templates etc.) and plain prose links
     const r = card.getBoundingClientRect()
     if (r.width < 40 || r.height < 16) continue
-    if (r.height < 60 && !card.querySelector('img, picture, video')) continue
+    // Short and image-less is usually a prose link; a block-level row of a ranking list
+    // (charts: "3  Halloween: The Game  1,251,033") is a card even so.
+    if (r.height < 60 && !card.querySelector('img, picture, video') && !isTextRow(card, r)) continue
     if (linksToNonGame(card)) continue
     card.setAttribute(CARD_ATTR, String(appid))
     cardsByAppId.set(card, appid)
     shapeWatcher.observe(card) // catches a container that grows past card size after being claimed
     attach(card, appid)
   }
+}
+
+/** A wide block-level line with a short text (a list row), as opposed to an inline link in prose. */
+function isTextRow(el: HTMLElement, r: DOMRect): boolean {
+  if (r.width < 300) return false
+  const text = (el.textContent ?? '').replace(/\s+/g, ' ').trim()
+  if (!text || text.length > 80) return false
+  const display = getComputedStyle(el).display
+  return display !== 'inline' && display !== 'inline-block'
 }
 
 let scanTimer: number | undefined

@@ -202,13 +202,37 @@ function renderSide(side: Side, value: number) {
 function render() {
   renderSide('filter', settings.threshold)
   renderSide('highlight', settings.highlightThreshold)
+  // Radio groups: the checked item is the group's single tab stop (roving tabindex)
   for (const b of modeGroup.querySelectorAll<HTMLButtonElement>('button')) {
-    b.setAttribute('aria-checked', String(b.dataset.mode === settings.mode))
+    const on = b.dataset.mode === settings.mode
+    b.setAttribute('aria-checked', String(on))
+    b.tabIndex = on ? 0 : -1
   }
   for (const b of sourceGroup.querySelectorAll<HTMLButtonElement>('button')) {
-    b.setAttribute('aria-checked', String(b.dataset.source === settings.source))
+    const on = b.dataset.source === settings.source
+    b.setAttribute('aria-checked', String(on))
+    b.tabIndex = on ? 0 : -1
   }
 }
+
+/** Arrow keys move the selection within a radio group, as the radiogroup role promises. */
+function radioKeys(group: HTMLElement, pick: (b: HTMLButtonElement) => void) {
+  group.addEventListener('keydown', (e) => {
+    if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(e.key)) return
+    const buttons = [...group.querySelectorAll<HTMLButtonElement>('button')]
+    const i = buttons.indexOf(document.activeElement as HTMLButtonElement)
+    if (i < 0) return
+    // In an RTL layout the visual left/right are swapped; DOM order follows the reading direction
+    const rtl = document.documentElement.dir === 'rtl'
+    const forward = e.key === 'ArrowDown' || e.key === (rtl ? 'ArrowLeft' : 'ArrowRight')
+    const next = e.key === 'Home' ? 0 : e.key === 'End' ? buttons.length - 1 : (i + (forward ? 1 : buttons.length - 1)) % buttons.length
+    e.preventDefault()
+    buttons[next].focus()
+    pick(buttons[next])
+  })
+}
+radioKeys(modeGroup, (b) => update({ mode: b.dataset.mode as FilterMode }))
+radioKeys(sourceGroup, (b) => update({ source: b.dataset.source as ScoreSource }))
 
 let saveTimer: number | undefined
 let pendingSave: Settings | null = null

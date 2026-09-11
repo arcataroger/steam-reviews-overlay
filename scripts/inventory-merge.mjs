@@ -94,7 +94,7 @@ const verdict = (m) => {
   if (unclaimed) notes.push(`${unclaimed}/${total} unclaimed`)
   if (other) notes.push(`${other}/${total} claimed on a different element`)
   if (missing) notes.push(`${missing}/${total} without a label although Steam shows no summary`)
-  const status = textLink ? 'text-link' : unclaimed === total ? 'gap' : unclaimed || other || missing ? 'partial' : 'covered'
+  const status = textLink && unclaimed === total ? 'text-link' : unclaimed === total ? 'gap' : unclaimed || other || missing ? 'partial' : 'covered'
   return { status, notes, shapes, badges, unclaimed, other, noBadge, missing }
 }
 

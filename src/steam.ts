@@ -424,6 +424,7 @@ export async function ingestSteamRequest(url: string): Promise<number> {
     if (it.success !== 1 || it.item_type !== 0 || !it.appid || !it.summary_filtered) continue
     if (isNonGameType(it.type)) {
       negative.set(it.appid, now + NON_GAME_MS) // hardware, Steam's own news app, videos: never a label
+      pending.delete(it.appid) // nothing left to ask Steam about
       continue
     }
     // Cancel any pending fetch of ours for this id: Steam just handed it to us.

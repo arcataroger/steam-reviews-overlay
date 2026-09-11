@@ -2,7 +2,7 @@
 .sro-badge {
   --sro-positive: #66c0f4;
   --sro-mixed: #b9a074;
-  --sro-negative: #a34c25;
+  --sro-negative: #c85e2d;
   --sro-none: #929396;
 
   display: inline-block;
@@ -69,7 +69,7 @@
 /* --sro-hl is set inline per card from the lever gradient; tone attrs are fallbacks */
 [data-sro-highlight="positive"] { --sro-hl: #66c0f4; }
 [data-sro-highlight="mixed"]    { --sro-hl: #b9a074; }
-[data-sro-highlight="negative"] { --sro-hl: #a34c25; }
+[data-sro-highlight="negative"] { --sro-hl: #c85e2d; }
 
 /* ---------- filter: dim ---------- */
 [data-sro-filtered="dim"] {

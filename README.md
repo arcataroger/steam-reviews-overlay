@@ -9,8 +9,10 @@ cards across the Steam store, so you don't have to hover every capsule.
   `/app/<id>`. Dynamically loaded content is picked up via a `MutationObserver`.
 - The badge sits inline right after the price when there is one, otherwise in
   the lower-right corner of the card.
-- Uses Steam's own review colors: positive `#66c0f4`, mixed `#b9a074`,
-  negative `#a34c25`. Each card also gets `data-sro-tone="positive|mixed|negative|none"`
+- Uses Steam's own review colors, taken from the store's stylesheet:
+  positive `#66c0f4`, mixed `#b9a074`, negative `#c85e2d` (Steam uses the same
+  color for every negative tier; there is no darker red for Very or
+  Overwhelmingly Negative), no-score gray `#929396`. Each card also gets `data-sro-tone="positive|mixed|negative|none"`
   and `data-sro-score="0-9"` so future overlays (dimming, hiding, etc.) can hook
   in with plain CSS.
 - Badges read like "Very Positive (83%)": Steam's label plus Steam's exact

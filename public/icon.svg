@@ -7,7 +7,7 @@
   <rect x="4" y="4" width="120" height="120" rx="26" fill="url(#bg)"/>
   <rect x="4" y="4" width="120" height="120" rx="26" fill="none" stroke="#0f151c" stroke-width="3"/>
   <!-- three rising bars: negative, mixed, positive -->
-  <rect x="24" y="72" width="22" height="32" rx="5" fill="#a34c25"/>
+  <rect x="24" y="72" width="22" height="32" rx="5" fill="#c85e2d"/>
   <rect x="53" y="52" width="22" height="52" rx="5" fill="#b9a074"/>
   <rect x="82" y="26" width="22" height="78" rx="5" fill="#66c0f4"/>
 </svg>

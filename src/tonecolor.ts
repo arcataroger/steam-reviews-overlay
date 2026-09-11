@@ -4,8 +4,8 @@
  *   negative solid up to 20%, mixed at 55% (center of Mixed 40-70), positive solid from 85%.
  */
 export const STOPS: [number, string][] = [
-  [0, '#a34c25'],
-  [20, '#a34c25'],
+  [0, '#c85e2d'],
+  [20, '#c85e2d'],
   [55, '#b9a074'],
   [85, '#66c0f4'],
   [100, '#66c0f4'],

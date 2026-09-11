@@ -148,4 +148,18 @@ describe('settings change events', () => {
     fire(7, now + 20) // a genuinely newer change from another device
     expect(seen).toEqual([5, 7])
   })
+
+  it('a context that only loads settings still ignores echoes older than what it loaded', async () => {
+    const { onSettingsChange, loadSettings, DEFAULT_SETTINGS } = await import('../../src/settings')
+    const listeners: Array<(c: Record<string, { newValue?: unknown }>) => void> = []
+    const store = (globalThis as any).chrome.storage
+    store.onChanged.addListener = (fn: (typeof listeners)[number]) => listeners.push(fn)
+    const stamp = Date.now() + 1000
+    await store.local.set({ 'sro:settings:v4': { ...DEFAULT_SETTINGS, threshold: 6 }, 'sro:settings:v4:t': stamp })
+    expect((await loadSettings()).threshold).toBe(6)
+    const seen: number[] = []
+    onSettingsChange((s) => seen.push(s.threshold))
+    listeners.forEach((fn) => fn({ 'sro:settings:v4': { newValue: { ...DEFAULT_SETTINGS, threshold: 2 } }, 'sro:settings:v4:t': { newValue: stamp - 500 } }))
+    expect(seen).toEqual([]) // the stale echo was dropped
+  })
 })

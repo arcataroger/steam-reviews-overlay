@@ -122,6 +122,10 @@ function appIdsWithin(root: Element, limit = 3): Set<number> {
   return ids
 }
 
+const ART_SEL = 'img, picture, video, [style*="background-image"]'
+/** Artwork on the element itself or inside it (event tiles paint their art as a background image). */
+const hasArt = (el: HTMLElement) => el.matches(ART_SEL) || !!el.querySelector(ART_SEL)
+
 /** Does `parent` hold, outside `tile`, another artwork-sized link to the same game? */
 function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): boolean {
   const tr = tile.getBoundingClientRect()
@@ -129,7 +133,7 @@ function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): 
   for (const n of parent.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')) {
     if (tile.contains(n) || appIdOf(n) !== appid) continue
     const r = n.getBoundingClientRect()
-    if (r.height < 40 || r.width < 60 || !n.querySelector('img, picture, video, [style*="background-image"]')) continue
+    if (r.height < 40 || r.width < 60 || !hasArt(n)) continue
     // Repeated tiles look alike; a box-art capsule next to its own wide info panel does not
     if (Math.abs(r.width - tr.width) <= 0.25 * Math.max(r.width, tr.width) && Math.abs(r.height - tr.height) <= 0.25 * Math.max(r.height, tr.height)) return true
   }
@@ -287,8 +291,11 @@ function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; a
     }
   }
   if (r.width >= 1100) return { shape: 'card' } // hero carousels: underglow
+  // The artwork's share of the card: <img>/<video>, or a background-image box (event tiles, some capsules)
   let imgArea = 0
-  for (const img of card.querySelectorAll<HTMLElement>('img, video')) {
+  const arts = [...card.querySelectorAll<HTMLElement>('img, video, [style*="background-image"]')]
+  if (card.matches('[style*="background-image"]')) arts.push(card)
+  for (const img of arts) {
     const ir = img.getBoundingClientRect()
     imgArea = Math.max(imgArea, ir.width * ir.height)
   }

@@ -101,6 +101,9 @@ export function pctToPos(pct: number, side: 'filter' | 'highlight'): number {
 
 const STAMP = `${KEY}:t`
 
+/** Newest save stamp seen by this context: an older save's slower sync write must not win later. */
+let newestStamp = 0
+
 /** Read the newest copy from sync and local (saves mirror to both; sync can be throttled or absent). */
 async function readNewest(): Promise<Record<string, unknown> | undefined> {
   const [syncRes, localRes] = await Promise.all([
@@ -117,6 +120,8 @@ async function readNewest(): Promise<Record<string, unknown> | undefined> {
 export async function loadSettings(): Promise<Settings> {
   try {
     const res = await readNewest()
+    // What we just loaded is the newest known state: a late echo of an older save must not undo it
+    newestStamp = Math.max(newestStamp, Number(res?.[STAMP] ?? 0))
     if (res?.[KEY]) return normalize(res[KEY] as Partial<Settings>)
     const old = (res?.[OLD_KEYS[0]] ?? res?.[OLD_KEYS[1]]) as
       | (Omit<Partial<Settings>, 'mode'> & { mode?: string; highlight?: string })
@@ -138,9 +143,6 @@ export async function loadSettings(): Promise<Settings> {
     return { ...DEFAULT_SETTINGS }
   }
 }
-
-/** Newest save stamp seen by this context: an older save's slower sync write must not win later. */
-let newestStamp = 0
 
 export async function saveSettings(s: Settings): Promise<void> {
   const stamp = Math.max(Date.now(), newestStamp + 1)

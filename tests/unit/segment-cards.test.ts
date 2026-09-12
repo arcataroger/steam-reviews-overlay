@@ -165,3 +165,22 @@ describe('cropRect', () => {
     expect(crop.h).toBeGreaterThanOrEqual(0)
   })
 })
+
+describe('manifest padding units', () => {
+  // The crop is cut in device pixels (pad * dpr), so the manifest must hand the pixel checker the
+  // same units it measured in. Recording only the CSS-px pad made every sampling band land short of
+  // the card box at dpr 2, failing every correct highlight.
+  it('crop padding is the CSS pad scaled by dpr on every side', () => {
+    const rect = { x: 100, y: 50, w: 200, h: 120 }
+    const c1 = cropRect(rect, 1, 12, 4000, 4000)
+    expect(c1.x).toBe(100 - 12)
+    expect(c1.w).toBe(200 + 24)
+    const c2 = cropRect(rect, 2, 12, 4000, 4000)
+    expect(c2.x).toBe(200 - 24)
+    expect(c2.y).toBe(100 - 24)
+    expect(c2.w).toBe(400 + 48)
+    expect(c2.h).toBe(240 + 48)
+    // what the checker must be told, in the crop's own units
+    expect(c2.w - rect.w * 2).toBe(12 * 2 * 2)
+  })
+})

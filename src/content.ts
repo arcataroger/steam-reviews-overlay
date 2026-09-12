@@ -755,6 +755,9 @@ function reconcileBadge(card: HTMLElement, appid: number) {
   const pairDue = !!(cached.local && cached.global && cached.local.label !== cached.global.label)
   const stale = (!badge && (!native || pairDue)) || (badge && native && !badge.classList.contains('sro-beside-native'))
   if (stale) placeBadge(card, cached)
+  // The orbit ring is a real child, not a pseudo-element, so Steam's re-render can drop it while
+  // the badge still looks right (or is deliberately absent beside Steam's own text). Put it back.
+  if (card.dataset.sroOp && !card.querySelector(`:scope > .${ORBIT_CLASS}`)) setOrbit(card, true)
 }
 
 function revalidateCards() {

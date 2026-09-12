@@ -75,7 +75,9 @@ for (const card of selected) {
         baseline = null
       }
     }
-    result = checkCard(image, card, { pad: manifest.pad, baseline, negativeNeedsBaseline: true })
+    // Crops are cut in device pixels, so the band geometry must use the device-pixel padding.
+    const padPx = manifest.padPx ?? Math.round((manifest.pad ?? 12) * (manifest.dpr ?? 1))
+    result = checkCard(image, card, { pad: padPx, baseline, negativeNeedsBaseline: true })
     result.twin = twin || null
   } catch (err) {
     result = { ok: false, edges: {}, notes: [`could not read/check ${file}: ${err.message}`] }

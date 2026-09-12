@@ -162,7 +162,14 @@ function main() {
     }
   }
 
-  fs.writeFileSync(path.join(out, 'manifest.json'), JSON.stringify({ pad, dpr: manifestDpr ?? 1, cards: manifestCards }, null, 1))
+  // `pad` is the CSS-px option; `padPx` is what was actually cut into the images (pad * dpr), which
+  // is the only one the pixel checker can use. Writing just `pad` made every band land short of the
+  // card box on any capture at dpr != 1 and failed every correct highlight.
+  const dprOut = manifestDpr ?? 1
+  fs.writeFileSync(
+    path.join(out, 'manifest.json'),
+    JSON.stringify({ pad, padPx: Math.round(pad * dprOut), dpr: dprOut, cards: manifestCards }, null, 1),
+  )
   console.log(`segment-cards: ${cropped} crops from ${sidecarFiles.length} screenshots, ${skipped} cards skipped (not fully visible)`)
 }
 

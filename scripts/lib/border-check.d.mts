@@ -40,6 +40,8 @@ export interface EdgeHitResult {
 }
 
 export interface CardLike {
+  /** Per-edge flag: a highlighted card is butted against that edge, so its ring bleeds into ours. */
+  neighbourHighlight?: Partial<Record<EdgeName, boolean>>
   /** Per-edge flag: the page paints over that edge, so its pixels are not judged. */
   occluded?: Partial<Record<EdgeName, boolean>>
   shape?: 'row' | 'panel' | 'card' | 'none' | null

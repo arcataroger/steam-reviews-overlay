@@ -272,6 +272,26 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
  *  panel – tall card either stacked vertically with others (wings on the sides) or packed
  *          edge-to-edge in a carousel (wings top and bottom): adjacent rectangles would fuse
  */
+/**
+ * Would an underglow drawn OUTSIDE this card's box be cut off? Steam's carousels are clipping
+ * strips whose slides sit flush against them, so a `card` glow there survives only in the gaps
+ * between slides and reads as stray slivers instead of a halo. Such cards take the inset ring.
+ */
+function glowWouldClip(card: HTMLElement, r: DOMRect): boolean {
+  let el = card.parentElement
+  for (let i = 0; i < 6 && el && el !== document.body; i++, el = el.parentElement) {
+    const cs = getComputedStyle(el)
+    const clipsX = cs.overflowX !== 'visible'
+    const clipsY = cs.overflowY !== 'visible'
+    if (!clipsX && !clipsY) continue
+    const q = el.getBoundingClientRect()
+    if (!q.width || !q.height) continue
+    if (clipsY && (r.top - q.top <= 4 || q.bottom - r.bottom <= 4)) return true
+    if (clipsX && (r.left - q.left <= 4 || q.right - r.right <= 4)) return true
+  }
+  return false
+}
+
 function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; axis?: 'x' | 'y' } {
   const r = card.getBoundingClientRect()
   if (!r.width || !r.height) return { shape: 'row' }
@@ -291,6 +311,8 @@ function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; a
     }
   }
   if (r.width >= 1100) return { shape: 'card' } // hero carousels: underglow
+  // An underglow that a clipping ancestor would shave off is worse than no underglow: use the ring.
+  if (glowWouldClip(card, r)) return { shape: 'row' }
   // The artwork's share of the card: <img>/<video>, or a background-image box (event tiles, some capsules)
   let imgArea = 0
   const arts = [...card.querySelectorAll<HTMLElement>('img, video, [style*="background-image"]')]

@@ -369,6 +369,12 @@ export function checkCard(image, card = {}, opts = {}) {
     } else if (isExpected) {
       // Present outright, and (when we can tell) actually gained versus the un-highlighted state.
       pass = hit.fraction >= minHit && (gained === null || gained >= minGain)
+    } else if (card.neighbourHighlight && card.neighbourHighlight[name]) {
+      // A highlighted card is butted against this edge, so its ring lands in our band — and it is
+      // absent from the un-highlighted twin too, so even the difference is not ours. Not judged.
+      pass = true
+      unverified = true
+      notes.push(`edge ${name}: a highlighted neighbour touches this edge, not judged`)
     } else if (gained !== null) {
       pass = gained < maxStray
     } else if (negativeNeedsBaseline) {

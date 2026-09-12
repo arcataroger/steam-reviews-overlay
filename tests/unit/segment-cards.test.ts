@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 // @ts-expect-error - plain JS script, no declaration file
-import { tierWord, tierSegment, treatmentString, slugify, titleSegment, colourSegment, buildFileName, cropRect } from '../../scripts/segment-cards.mjs'
+import { tierWord, tierSegment, treatmentString, slugify, titleSegment, colourSegment, buildFileName, cropRect, neighbourHighlights } from '../../scripts/segment-cards.mjs'
 
 const baseCard = (over: Record<string, unknown> = {}) => ({
   appid: 620,
@@ -182,5 +182,34 @@ describe('manifest padding units', () => {
     expect(c2.h).toBe(240 + 48)
     // what the checker must be told, in the crop's own units
     expect(c2.w - rect.w * 2).toBe(12 * 2 * 2)
+  })
+})
+
+describe('neighbourHighlights', () => {
+  // Steam stacks rank rows and capsules flush, so a highlighted neighbour's ring lands inside this
+  // card's crop. Those edges must be reported so the checker does not blame this card for it.
+  const me = { appid: 1, rect: { x: 100, y: 100, w: 200, h: 50 }, shape: null }
+  const at = (appid: number, x: number, y: number, shape: string | null = 'row') => ({ appid, rect: { x, y, w: 200, h: 50 }, shape })
+
+  it('flags an edge a highlighted card is butted against', () => {
+    const all = [me, at(2, 100, 50), at(3, 100, 150)] // directly above and below, flush
+    expect(neighbourHighlights(me, all, 12)).toEqual({ top: true, right: false, bottom: true, left: false })
+  })
+
+  it('ignores a neighbour that is not highlighted', () => {
+    expect(neighbourHighlights(me, [me, at(2, 100, 50, null)], 12).top).toBe(false)
+  })
+
+  it('ignores a highlighted card that is further away than the crop padding', () => {
+    expect(neighbourHighlights(me, [me, at(2, 100, 20)], 12).top).toBe(false) // 30px gap, pad 12
+  })
+
+  it('ignores a highlighted card that does not overlap along the shared axis', () => {
+    expect(neighbourHighlights(me, [me, at(2, 400, 50)], 12).top).toBe(false) // above, but off to the side
+  })
+
+  it('flags left and right neighbours in a flush row of capsules', () => {
+    const all = [me, at(2, -100, 100), at(3, 300, 100)]
+    expect(neighbourHighlights(me, all, 12)).toEqual({ top: false, right: true, bottom: false, left: true })
   })
 })

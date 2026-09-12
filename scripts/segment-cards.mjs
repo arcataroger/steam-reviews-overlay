@@ -87,6 +87,39 @@ export function buildFileName({ slug, state, stop, card }, usedNames) {
 }
 
 /**
+ * Which of a card's edges have a HIGHLIGHTED card butted against them, within `pad` px (the crop's
+ * own margin) and overlapping along the shared axis.
+ *
+ * Steam stacks rank rows and capsules flush, so a neighbour's ring lands inside this card's crop and
+ * inside the band we sample. Judging "this card must have no highlight" on such an edge would blame
+ * this card for its neighbour's correct ring, so the checker leaves those edges unjudged.
+ * @param {{rect:{x:number,y:number,w:number,h:number}, appid:number}} card
+ * @param {Array<{rect:{x:number,y:number,w:number,h:number}, appid:number, shape?:string|null}>} all
+ * @param {number} pad
+ * @returns {{top:boolean, right:boolean, bottom:boolean, left:boolean}}
+ */
+export function neighbourHighlights(card, all, pad) {
+  const me = card.rect
+  const out = { top: false, right: false, bottom: false, left: false }
+  const overlapsX = (o) => o.x < me.x + me.w && me.x < o.x + o.w
+  const overlapsY = (o) => o.y < me.y + me.h && me.y < o.y + o.h
+  for (const other of all) {
+    if (other === card || !other.shape) continue // only a highlighted neighbour can bleed colour
+    const o = other.rect
+    if (!o || (other.appid === card.appid && o.x === me.x && o.y === me.y)) continue
+    const gapTop = me.y - (o.y + o.h)
+    const gapBottom = o.y - (me.y + me.h)
+    const gapLeft = me.x - (o.x + o.w)
+    const gapRight = o.x - (me.x + me.w)
+    if (overlapsX(o) && gapTop >= -pad && gapTop <= pad) out.top = true
+    if (overlapsX(o) && gapBottom >= -pad && gapBottom <= pad) out.bottom = true
+    if (overlapsY(o) && gapLeft >= -pad && gapLeft <= pad) out.left = true
+    if (overlapsY(o) && gapRight >= -pad && gapRight <= pad) out.right = true
+  }
+  return out
+}
+
+/**
  * Pixel-space crop rectangle for a card: `rect` (CSS px) scaled by `dpr`, padded by `pad` CSS px
  * (also scaled by `dpr`) on every side, then clamped to the image bounds.
  */
@@ -157,7 +190,16 @@ function main() {
       PNG.bitblt(png, dst, crop.x, crop.y, crop.w, crop.h, 0, 0)
       const file = buildFileName({ slug: sidecar.slug, state: sidecar.state, stop: sidecar.stop, card }, usedNames)
       fs.writeFileSync(path.join(out, file), PNG.sync.write(dst))
-      manifestCards.push({ file, ...card, slug: sidecar.slug, state: sidecar.state, stop: sidecar.stop, source: pngName, crop })
+      manifestCards.push({
+        file,
+        ...card,
+        neighbourHighlight: neighbourHighlights(card, sidecar.cards ?? [], pad),
+        slug: sidecar.slug,
+        state: sidecar.state,
+        stop: sidecar.stop,
+        source: pngName,
+        crop,
+      })
       cropped++
     }
   }

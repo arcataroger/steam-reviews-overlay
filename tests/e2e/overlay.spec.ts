@@ -1,4 +1,4 @@
-import { test, expect, settle } from './fixtures'
+import { test, expect, settle, extensionId } from './fixtures'
 
 test.describe('badges on Steam store pages', () => {
   // Category pages are React-rendered section by section, so fewer cards exist early on.
@@ -129,6 +129,11 @@ test.describe('badges on Steam store pages', () => {
     await expect
       .poll(() => page.evaluate(() => document.getElementById('sro-test-slot')?.getAttribute('data-sro-card')), { timeout: 20_000 })
       .toBe('620')
+    // The claim lands before the score arrives, so wait for the label rather than reading once.
+    await expect
+      .poll(() => page.evaluate(() => (document.getElementById('sro-test-slot')!.querySelector('.sro-badge')?.textContent || '').trim().length), { timeout: 20_000 })
+      .toBeGreaterThan(0)
+    const before = await page.evaluate(() => (document.getElementById('sro-test-slot')!.querySelector('.sro-badge')?.textContent || '').trim())
 
     // Swap the game in place, then make the slot resize so the deferred repaint runs.
     await page.evaluate(() => {
@@ -142,6 +147,52 @@ test.describe('badges on Steam store pages', () => {
       return { claimed: slot.getAttribute('data-sro-card'), badge: (slot.querySelector('.sro-badge')?.textContent || '').trim() }
     })
     expect(after.claimed).not.toBe('620')
+    // The visible symptom is the wrong game's label, so check that too: clearing the claim while
+    // leaving the old badge on screen would be no better for the reader.
+    expect(after.badge).not.toBe(before)
+    await page.close()
+  })
+
+  test('a settings change does not repaint a recycled slot with its old game', async ({ context }) => {
+    // Changing a setting repaints every card at once, which is exactly when a slot that has quietly
+    // changed hands shows the wrong game's tone and label. This path was missed when the other
+    // deferred repaints were put behind one ownership check.
+    const page = await context.newPage()
+    await page.goto('https://store.steampowered.com/', { waitUntil: 'domcontentloaded' })
+    await settle(page)
+    await page.evaluate(() => {
+      const px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
+      const slot = document.createElement('a')
+      slot.id = 'sro-test-slot2'
+      slot.href = 'https://store.steampowered.com/app/620/Portal_2/'
+      slot.style.cssText = 'display:block;position:relative;width:300px;height:180px'
+      slot.innerHTML = `<img src="${px}" style="width:300px;height:180px">`
+      document.body.appendChild(slot)
+    })
+    await expect
+      .poll(() => page.evaluate(() => document.getElementById('sro-test-slot2')?.getAttribute('data-sro-card')), { timeout: 20_000 })
+      .toBe('620')
+    // The claim lands before the score arrives, so wait for the label rather than reading once.
+    await expect
+      .poll(() => page.evaluate(() => (document.getElementById('sro-test-slot2')!.querySelector('.sro-badge')?.textContent || '').trim().length), { timeout: 20_000 })
+      .toBeGreaterThan(0)
+    const before = await page.evaluate(() => (document.getElementById('sro-test-slot2')!.querySelector('.sro-badge')?.textContent || '').trim())
+
+    // Swap the game in place (an attribute change the scanner never sees), then move a lever.
+    await page.evaluate(() => {
+      ;(document.getElementById('sro-test-slot2') as HTMLAnchorElement).href = 'https://store.steampowered.com/app/730/CounterStrike_2/'
+    })
+    const popup = await context.newPage()
+    await popup.goto(`chrome-extension://${extensionId}/src/popup/index.html`)
+    await popup.evaluate((o) => chrome.storage.sync.set(o), { 'sro:settings:v4': { mode: 'dim', threshold: 5, source: 'local', highlightThreshold: 7 } })
+    await page.bringToFront()
+    await page.waitForTimeout(4000)
+    const after = await page.evaluate(() => {
+      const slot = document.getElementById('sro-test-slot2')!
+      return { claimed: slot.getAttribute('data-sro-card'), badge: (slot.querySelector('.sro-badge')?.textContent || '').trim() }
+    })
+    expect(after.claimed).not.toBe('620')
+    expect(after.badge).not.toBe(before)
     await page.close()
   })
 

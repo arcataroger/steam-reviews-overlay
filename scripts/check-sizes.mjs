@@ -32,6 +32,10 @@ const MEASURE = () => {
   const out = []
   const seen = new Map()
   for (const el of document.querySelectorAll('a[href*="/app/"], a[href*="/sub/"], a[href*="/bundle/"], [data-ds-appid]')) {
+    // The content-hub carousel rotates a different game through its slot every few seconds, so the
+    // same game turns up as the big slide in one run and a small tile in the other. Comparing those
+    // reports a size change nobody made.
+    if (el.closest('.contenthubmaincarousel')) continue
     const href = el.getAttribute('href') || ''
     const target = href.match(/\/(app|sub|bundle)\/(\d+)/)?.slice(1).join('/') || `ds/${el.getAttribute('data-ds-appid')}`
     if (!target || target === 'ds/null') continue

@@ -781,9 +781,19 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
 }
 
 function reapplyFilters(rerender = false) {
-  for (const [card, appid] of cardsByAppId) {
+  for (const [card] of [...cardsByAppId]) {
+    if (!card.isConnected) continue
+    // Same rule as every other deferred repaint: a slot that has changed hands since we claimed it
+    // must not be painted with the game it used to hold. A settings change is exactly when this
+    // shows, because it repaints every card at once.
+    const appid = ownedAppId(card)
+    if (!appid) {
+      stripCard(card)
+      scheduleScan(card)
+      continue
+    }
     const s = peekCached(appid)
-    if (!s || !card.isConnected) continue
+    if (!s) continue
     if (rerender) {
       placeBadge(card, s)
       continue

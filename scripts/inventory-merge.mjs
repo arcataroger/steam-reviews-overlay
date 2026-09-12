@@ -12,6 +12,13 @@ if (!outDir || !runDirs.length) {
 }
 const namesFile = path.resolve(import.meta.dirname, '..', 'docs', 'inventory', 'kind-names.json')
 const names = fs.existsSync(namesFile) ? JSON.parse(fs.readFileSync(namesFile, 'utf8')) : {}
+// Some items in a kind carry no label on purpose: a package or bundle capsule sitting on a shelf of
+// games, an app page's own game, a banner that is not a game at all. Without somewhere to record
+// that, every crawl re-reports them and a real gap has to be picked out of the noise by hand.
+// Each entry is { reason, unclaimed } where `unclaimed` is how many were deliberately skipped when
+// the kind was last reviewed. Going over that budget flags the kind again.
+const expectFile = path.resolve(import.meta.dirname, '..', 'docs', 'inventory', 'kind-expectations.json')
+const expectations = fs.existsSync(expectFile) ? JSON.parse(fs.readFileSync(expectFile, 'utf8')) : {}
 
 // Signature normalisation for the master key: hashed CSS-module classes change whenever Steam
 // rebuilds, so the key keeps only stable tokens plus a count of hashed ones; the exact hashes are
@@ -94,7 +101,19 @@ const verdict = (m) => {
   if (unclaimed) notes.push(`${unclaimed}/${total} unclaimed`)
   if (other) notes.push(`${other}/${total} claimed on a different element`)
   if (missing) notes.push(`${missing}/${total} without a label although Steam shows no summary`)
-  const status = textLink && unclaimed === total ? 'text-link' : unclaimed === total ? 'gap' : unclaimed || other || missing ? 'partial' : 'covered'
+  let status = textLink && unclaimed === total ? 'text-link' : unclaimed === total ? 'gap' : unclaimed || other || missing ? 'partial' : 'covered'
+  const expected = expectations[m.key]
+  if (expected && status !== 'covered') {
+    const budget = expected.unclaimed ?? 0
+    const missingBudget = expected.missing ?? 0
+    if (unclaimed <= budget && missing <= missingBudget && !other) {
+      status = 'by-design'
+      notes.length = 0
+      notes.push(`${unclaimed + missing}/${total} unlabelled on purpose: ${expected.reason}`)
+    } else {
+      notes.push(`expected at most ${budget} unclaimed and ${missingBudget} unlabelled (${expected.reason})`)
+    }
+  }
   return { status, notes, shapes, badges, unclaimed, other, noBadge, missing }
 }
 
@@ -136,4 +155,4 @@ for (const m of list) {
   md.push('')
 }
 fs.writeFileSync(path.join(outDir, 'master.md'), md.join('\n'))
-console.log(`${list.length} kinds from ${pages.length} pages → ${outDir}/master.{json,md}; ${unnamed.length} unnamed; coverage: ${['covered', 'partial', 'gap', 'text-link'].map((s) => `${s} ${list.filter((m) => m.coverage.status === s).length}`).join(', ')}`)
+console.log(`${list.length} kinds from ${pages.length} pages → ${outDir}/master.{json,md}; ${unnamed.length} unnamed; coverage: ${['covered', 'by-design', 'partial', 'gap', 'text-link'].map((s) => `${s} ${list.filter((m) => m.coverage.status === s).length}`).join(', ')}`)

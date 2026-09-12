@@ -2,7 +2,7 @@
  "url": "https://store.steampowered.com/news/",
  "finalUrl": "https://store.steampowered.com/news/",
  "title": "Your Personalized Game News - Steam News Hub",
- "cards": 104,
+ "cards": 103,
  "kinds": [
   {
    "key": "div._398u23KF15gxmeH741ZSyL|link=news,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
@@ -23,26 +23,26 @@
     "parentDisplay": "flex/column",
     "siblings": 21
    },
-   "count": 65,
+   "count": 64,
    "sizes": {
-    "1080x280": 63,
+    "1080x280": 62,
     "1080x300": 2
    },
    "sections": {
-    ".Panel": 65
+    ".Panel": 64
    },
    "headings": {
     "Yesterday": 17,
     "Thursday": 23,
     "Wednesday": 15,
-    "Tuesday": 10
+    "Tuesday": 9
    },
    "chains": {
-    "div._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 32,
-    "div._1U2BW9tpHKOVi_TG0XvjT._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 33
+    "div._1U2BW9tpHKOVi_TG0XvjT._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 32,
+    "div._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 32
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-corner": 61,
+    "same|shape=row|badge=sro-badge sro-corner": 60,
     "same|shape=null|badge=sro-badge sro-corner": 4
    },
    "examples": [
@@ -79,7 +79,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._398u23KF15gxmeH741ZSyL"
      },
-     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"2139460\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _2mVdtaB_oY5b1fladlbBaM _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"gGujG17QdIx5Nn89DjTl8 _9rv9PL7ZWe4vZofYqYl3M\" style=\"…\"></div><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht _9rv9PL7ZWe4vZofYqYl3M\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">Once Human </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Dev Blog | Beast Riding, Gardener Combat, and Ranching Updates</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _2mVdtaB_oY5b1fladlbBaM\">Major Update</div><div class=\"Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">5 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Dear Metas, In the September 16(PT) version update, we will roll out a major overhaul to the Class system: the Beastmaster class will be fully revamped with the new Beast Riding...</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhq"
+     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"2139460\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _2mVdtaB_oY5b1fladlbBaM _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"gGujG17QdIx5Nn89DjTl8 _9rv9PL7ZWe4vZofYqYl3M\" style=\"…\"></div><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht _9rv9PL7ZWe4vZofYqYl3M\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">Once Human </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Dev Blog | Beast Riding, Gardener Combat, and Ranching Updates</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _2mVdtaB_oY5b1fladlbBaM\">Major Update</div><div class=\"Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">6 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Dear Metas, In the September 16(PT) version update, we will roll out a major overhaul to the Class system: the Beastmaster class will be fully revamped with the new Beast Riding...</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhq"
     },
     {
      "appid": 216150,
@@ -114,7 +114,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._398u23KF15gxmeH741ZSyL"
      },
-     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"216150\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" data-sro-shape=\"row\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">MapleStory </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Maple Memo: Notice Regarding Unauthorized MapleStory Servers</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">8 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Click here for more details regarding unauthorized MapleStory servers.</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>0</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\"PR8xM_Lig1kieA79gLjOB\" target=\"_blank\"><svg/><span>22</span><"
+     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"216150\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" data-sro-shape=\"row\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">MapleStory </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Maple Memo: Notice Regarding Unauthorized MapleStory Servers</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">9 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Click here for more details regarding unauthorized MapleStory servers.</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>0</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\"PR8xM_Lig1kieA79gLjOB\" target=\"_blank\"><svg/><span>22</span><"
     }
    ]
   },
@@ -139,8 +139,8 @@
    },
    "count": 25,
    "sizes": {
-    "360x340": 14,
-    "360x320": 11
+    "360x340": 17,
+    "360x320": 8
    },
    "sections": {
     ".carousel__slider.vt-scrollable": 25
@@ -192,7 +192,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"236390\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm _144ghSsl2jkmXzzHxgtQtX\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">MiG-35: The Last MiG</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"_3djUmSsXnHX2qN5HdooYJz Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">16 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Meet the multi-role MiG-35, which combines the entire combat experience of the legendary MiG design bureau into one formidable aircraft.</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>560</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\"PR8xM_Lig1kieA79gLjOB\" target=\"_blank"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"236390\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"351x337\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm _144ghSsl2jkmXzzHxgtQtX\"><span style=\"…\"></span><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">MiG-35: The Last MiG</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"_3djUmSsXnHX2qN5HdooYJz Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">16 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Meet the multi-role MiG-35, which combines the entire combat experience of the legendary MiG design bureau into one formidable aircraft.</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>573</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\""
     },
     {
      "appid": 236390,
@@ -227,7 +227,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"236390\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm _144ghSsl2jkmXzzHxgtQtX\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">H145M: Angry Dragonfly</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"_3djUmSsXnHX2qN5HdooYJz Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">19 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Germany’s light multirole helicopter, the H145M, is armed with the SPIKE-ER ATGM and the new FZ275 small guided missiles! This helicopter is for daring and skilled pilots!</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>388</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\""
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"236390\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"351x337\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm _144ghSsl2jkmXzzHxgtQtX\"><span style=\"…\"></span><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">H145M: Angry Dragonfly</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"_3djUmSsXnHX2qN5HdooYJz Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">19 hours ago</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Germany’s light multirole helicopter, the H145M, is armed with the SPIKE-ER ATGM and the new FZ275 small guided missiles! This helicopter is for daring and skilled pilots!</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>393</span></div><div clas"
     }
    ]
   },
@@ -263,8 +263,8 @@
     "Tuesday": 1
    },
    "chains": {
-    "div._1U2BW9tpHKOVi_TG0XvjT._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 4,
-    "div._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 3
+    "div._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 4,
+    "div._1U2BW9tpHKOVi_TG0XvjT._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 3
    },
    "ours": {
     "same|shape=row|badge=sro-badge sro-corner": 7
@@ -379,8 +379,8 @@
     "Wednesday": 2
    },
    "chains": {
-    "div._1U2BW9tpHKOVi_TG0XvjT._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 1,
-    "div._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 2
+    "div._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 1,
+    "div._1U2BW9tpHKOVi_TG0XvjT._3FpvGiwJqnukNOcrsKd_sN < div.Panel._1_BP6N2tGh4484bcmYnZeX < div.r3Dia2Yw2X-goqFn-_UPT < div._3yqpPRFLwr6ETVDgLGT37s": 2
    },
    "ours": {
     "same|shape=row|badge=sro-badge sro-corner": 3
@@ -419,7 +419,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._398u23KF15gxmeH741ZSyL"
      },
-     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"440\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"1086x273\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _2Gv13-3mXe6Q4QJmTs3mNX _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">Team Fortress 2 </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">ÜBERFEST 2026</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _2Gv13-3mXe6Q4QJmTs3mNX\">Live-Stream / Broadcast</div><div class=\"RNDf0d63hDSUu28sIkteH\"><div class=\"Focusable\"><div class=\"EVDkYKG_ikfyfH16lmQ-1\">Live now</div></div><div class=\"Focusable\">Ends in 1 day and 10 hours</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">(Image credit: SFM - BloodiestBanana, Illustrator - Max Shortt) For the third consecutive year, KritzKast presents ÜBERFEST LAN!</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAH"
+     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"440\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"1086x273\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _2Gv13-3mXe6Q4QJmTs3mNX _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">Team Fortress 2 </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">ÜBERFEST 2026</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _2Gv13-3mXe6Q4QJmTs3mNX\">Live-Stream / Broadcast</div><div class=\"RNDf0d63hDSUu28sIkteH\"><div class=\"Focusable\"><div class=\"EVDkYKG_ikfyfH16lmQ-1\">Live now</div></div><div class=\"Focusable\">Ends in 1 day and 9 hours</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">(Image credit: SFM - BloodiestBanana, Illustrator - Max Shortt) For the third consecutive year, KritzKast presents ÜBERFEST LAN!</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHL"
     },
     {
      "appid": 578080,
@@ -454,7 +454,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._398u23KF15gxmeH741ZSyL"
      },
-     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"578080\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"1086x273\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">PUBG: BATTLEGROUNDS </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Special Drops - September 2026</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">Sep 9</div></div></div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>1,562</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\"PR8xM_Lig1kieA79gLjOB\" target=\"_blank\"><svg/><span>192</span></a></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _3nZg0h8xaxxZeW0g870Htl\"><svg/></div></div></div></div><span clas"
+     "html": "<div class=\"_398u23KF15gxmeH741ZSyL\" data-sro-card=\"578080\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"1086x273\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _1qGfEmcWJdG1dp2gDhH7oP _2BniJe0boLDKV9lwtWTCtm\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"vfv1QjSe1vEobRaHWlf3\"><div class=\"_3-0KOhYVQX2zIP3z-jCAdu\"><div class=\"WHJ_WMTSDKqO4yn_MLrau _2BniJe0boLDKV9lwtWTCtm\"><img class=\"_3gwk6hFh7bUc2K174mzjyQ\"><div class=\"_71phFKOzg8aQlBU1rCA2T\">PUBG: BATTLEGROUNDS </div></div></div><div class=\"_3BIx7glwN6Q0_mUUMyFyHu\"></div></div><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Special Drops - September 2026</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _1qGfEmcWJdG1dp2gDhH7oP\">News</div><div class=\"Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">Sep 9</div></div></div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>1,566</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\"PR8xM_Lig1kieA79gLjOB\" target=\"_blank\"><svg/><span>192</span></a></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _3nZg0h8xaxxZeW0g870Htl\"><svg/></div></div></div></div><span clas"
     }
    ]
   },
@@ -637,7 +637,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1285190\" data-sro-tone=\"mixed\" data-sro-score=\"5\" style=\"…\" data-sro-highlight=\"mixed\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"351x337\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _2mVdtaB_oY5b1fladlbBaM _2BniJe0boLDKV9lwtWTCtm _144ghSsl2jkmXzzHxgtQtX\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"gGujG17QdIx5Nn89DjTl8\" style=\"…\"></div><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Version 1.10 - September 10, 2026</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _2mVdtaB_oY5b1fladlbBaM\">Major Update</div><div class=\"_3djUmSsXnHX2qN5HdooYJz Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">Sep 10</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Version 1.10 - September 10, 2026</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>263</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\"PR8xM_Lig1kieA79gLjOB\" target=\"_blank\"><svg/><span>38</"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1285190\" data-sro-tone=\"mixed\" data-sro-score=\"5\" style=\"…\" data-sro-highlight=\"mixed\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"351x337\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_1E3Anhs34BXsWWWqH4RNPL _2mVdtaB_oY5b1fladlbBaM _2BniJe0boLDKV9lwtWTCtm _144ghSsl2jkmXzzHxgtQtX\"><a href=\"…\" class=\"Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_3xvUZtQ1j-pu-l2xy-lFAq\"><div class=\"gGujG17QdIx5Nn89DjTl8\" style=\"…\"></div><div class=\"_2pq2vP5kJ_wI2nw-igwJXF\"><div class=\"_3HF9tOy_soo1B_odf1XArk\"><div class=\"_27kWH1D3y2WfR8D-sD8Rw2\"><div class=\"d8bPiEt0DUII_mRqek_ht\" style=\"…\"></div></div></div><div class=\"_3IQK4rcEU5IYtZuW-Ogsgu\"><div class=\"_1h5cJPC1IYFGDEMbRAWSNy\"><div class=\"_1M8-Pa3b3WboayCgd5VBJT\">Version 1.10 - September 10, 2026</div><div class=\"sUBHF-Qdb_RUPYOBkgO1a\"><div class=\"_1LkWXJVxWYdKiKf2Mxq3zs _2mVdtaB_oY5b1fladlbBaM\">Major Update</div><div class=\"_3djUmSsXnHX2qN5HdooYJz Focusable\"><div class=\"_4-fqVd8yRSHEAjj7Hkx_V\">Sep 10</div></div></div><div class=\"_2g3JjlrRkzgUWXF57w3leW\">Version 1.10 - September 10, 2026</div></div></div></div></div></a><div class=\"_1tdf14bc7ZlvhWfiLIlpEf\"><div class=\"_1Hhqg7g-POjV0ysalDN4YM\"><div class=\"_3_86JJo-1O_KkOZwRl2uZ6 _17oqR-EnZiAHLri2CKnxmC\"><svg/><span>266</span></div><div class=\"_3_86JJo-1O_KkOZwRl2uZ6\"><a href=\"…\" class=\"PR8xM_Lig1kieA79gLjOB\" target=\"_blank\"><svg/><span>38</"
     },
     {
      "appid": 578080,
@@ -678,5 +678,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T07:56:37.049Z"
+ "capturedAt": "2026-09-12T08:40:25.803Z"
 }

@@ -1,0 +1,49 @@
+{
+  "_comment": "Items in these kinds carry no label on purpose. `unclaimed` is how many were deliberately skipped when the kind was last reviewed; going over that budget flags the kind again so a real regression is not hidden behind a known exception. Keys match docs/inventory/kind-names.json.",
+  "a.sale_capsule": {
+    "reason": "package capsules share the Discounts & Events shelves with game capsules; a package has its own store page and its own score, so it gets no game label",
+    "unclaimed": 6
+  },
+  "a.daily_deal.sale_capsule.store_capsule": {
+    "reason": "the day's deal is sometimes a package rather than a game",
+    "unclaimed": 5
+  },
+  "div.capsule-banner": {
+    "reason": "a Labs experiment banner, not a game",
+    "unclaimed": 2
+  },
+  "div.+1h|.Panel|news,art,art≥50%": {
+    "reason": "an app page's own Recent Events & Announcements tiles link to the game whose page you are already on, which is never labelled",
+    "unclaimed": 8
+  },
+  "div.+1h|.carousel_items|app,art,carousel,art≥50%": {
+    "reason": "franchise and publisher sale spotlights carry a representative game's data-ds-appid for Steam's hover panel but link to a /sale/ page, so the tile is the sale, not that game (verified: Sniper Elite, Blizzard and 505 Games sale tiles on explore/next)",
+    "unclaimed": 12
+  },
+  "div.capsule": {
+    "reason": "a Labs experiment capsule, not a game",
+    "unclaimed": 3,
+    "missing": 8
+  },
+  "div.home_page_content.takeunder": {
+    "reason": "the hidden fallback anchor behind the home takeunder banner, with no art and no game",
+    "missing": 4
+  },
+  "a.": {
+    "reason": "a plain prose link on a package page, not a card",
+    "unclaimed": 2
+  },
+  "div.Panel+4h": {
+    "reason": "the Great on Deck 'Ignored' banner panel, not a game",
+    "missing": 2
+  },
+  "div.exp_text_ctn": {
+    "reason": "a Labs experiment text blurb, not a game",
+    "missing": 2
+  },
+  "div.": {
+    "reason": "an app page's own game gets no label (verified: the 780x380 tile left unclaimed on each app page carries that page's own appid)",
+    "unclaimed": 4,
+    "missing": 2
+  }
+}

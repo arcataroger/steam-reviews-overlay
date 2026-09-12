@@ -23,21 +23,21 @@
     "parentDisplay": "table-row-group",
     "siblings": 100
    },
-   "count": 66,
+   "count": 65,
    "sizes": {
-    "1140x60": 66
+    "1140x60": 65
    },
    "sections": {
-    ".cCE5WXLdwQ4-": 66
+    ".cCE5WXLdwQ4-": 65
    },
    "headings": {
-    "Top Sellers": 66
+    "Top Sellers": 65
    },
    "chains": {
-    "tbody. < table.cCE5WXLdwQ4- < div.Panel.y8ScxjY4mi8- < div.Panel.Y4tvTqCXrtc-": 66
+    "tbody. < table.cCE5WXLdwQ4- < div.Panel.y8ScxjY4mi8- < div.Panel.Y4tvTqCXrtc-": 65
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 63,
+    "same|shape=card|badge=sro-badge sro-corner": 62,
     "same|shape=null|badge=sro-badge sro-corner": 3
    },
    "examples": [
@@ -453,7 +453,126 @@
       "badge": "sro-badge sro-inline sro-beside-title",
       "badgeParent": "td.Down.VVPCVBQFI2k-"
      },
-     "html": "<tr class=\"_6-rISlJoUe0-\" data-sro-card=\"2357570\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1139x64\"><td class=\"PJXSVZxaIEI-\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"hAT7-qU1HuU- HHfkg1UJUQw-\"><a href=\"…\"><div class=\"UCStFKHRE5I-\"></div></a></div></td><td class=\"f43kwggd5Os-\">23</td><td class=\"iV08nNqP--8-\"><a href=\"…\" class=\"OPsTpFowVcA- Focusable\" tabindex=\"0\"><img class=\"R5kUVghjNM0-\"><div class=\"vGOJiIhBnNo-\">Overwatch®</div></a></td><td class=\"owxxTzCprsc-\"><div class=\"_9HaRk8FtAYQ-\"><div class=\"RzIG00X1Jf8- StoreSalePriceWidgetContainer\"><div class=\"Lp2mDeWrIYE-\">Free To Play</div></div></div></td><td class=\"VVPCVBQFI2k- Down\"><div class=\"PRt-CUL-YZk- Focusable\">▼ 1</div><span class=\"sro-badge sro-mixed sro-inline sro-beside-title\" data-sro-appid=\"2357570\" data-sro-score=\"5\" data-sro-pct=\"40\" style=\"…\"><span class=\"sro-line sro-local sro-mixed\"><span class=\"sro-ico\">🇺🇸</span>Mixed</span><span class=\"sro-line sro-global sro-negative\"><span class=\"sro-ico\">🌐</span>Mostly Negative</span></span></td><td class=\"_0UyVznhx0AQ-\"><div class=\"PRt-CUL-YZk- Focusable\">35</div></td></tr>"
+     "html": "<tr class=\"_6-rISlJoUe0-\" data-sro-card=\"2357570\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1139x64\"><td class=\"PJXSVZxaIEI-\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"hAT7-qU1HuU- HHfkg1UJUQw-\"><a href=\"…\"><div class=\"UCStFKHRE5I-\"></div></a></div></td><td class=\"f43kwggd5Os-\">24</td><td class=\"iV08nNqP--8-\"><a href=\"…\" class=\"OPsTpFowVcA- Focusable\" tabindex=\"0\"><img class=\"R5kUVghjNM0-\"><div class=\"vGOJiIhBnNo-\">Overwatch®</div></a></td><td class=\"owxxTzCprsc-\"><div class=\"_9HaRk8FtAYQ-\"><div class=\"RzIG00X1Jf8- StoreSalePriceWidgetContainer\"><div class=\"Lp2mDeWrIYE-\">Free To Play</div></div></div></td><td class=\"VVPCVBQFI2k- Down\"><div class=\"PRt-CUL-YZk- Focusable\">▼ 2</div><span class=\"sro-badge sro-mixed sro-inline sro-beside-title\" data-sro-appid=\"2357570\" data-sro-score=\"5\" data-sro-pct=\"40\" style=\"…\"><span class=\"sro-line sro-local sro-mixed\"><span class=\"sro-ico\">🇺🇸</span>Mixed</span><span class=\"sro-line sro-global sro-negative\"><span class=\"sro-ico\">🌐</span>Mostly Negative</span></span></td><td class=\"_0UyVznhx0AQ-\"><div class=\"PRt-CUL-YZk- Focusable\">35</div></td></tr>"
+    }
+   ]
+  },
+  {
+   "key": "tr._6-rISlJoUe0-|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "signature": "tr._6-rISlJoUe0-",
+   "hashedClasses": false,
+   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.1,
+    "price": true,
+    "date": true,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "table-row-group",
+    "siblings": 100
+   },
+   "count": 2,
+   "sizes": {
+    "1140x60": 2
+   },
+   "sections": {
+    ".cCE5WXLdwQ4-": 2
+   },
+   "headings": {
+    "Top Sellers": 2
+   },
+   "chains": {
+    "tbody. < table.cCE5WXLdwQ4- < div.Panel.y8ScxjY4mi8- < div.Panel.Y4tvTqCXrtc-": 2
+   },
+   "ours": {
+    "same|shape=card|badge=sro-badge sro-corner": 1,
+    "same|shape=null|badge=sro-badge sro-corner": 1
+   },
+   "examples": [
+    {
+     "appid": 1091500,
+     "title": "",
+     "sizeBucket": "1140x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "table-row",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "linear-gradient(90deg, rgba(86, 92, 103, 0.3), rgba(90, 98, 108, 0.3))"
+      },
+      "parent": {
+       "display": "table-row-group",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "RzIG00X1Jf8- StoreSalePriceWidgetContainer",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "tr._6-rISlJoUe0-"
+     },
+     "html": "<tr class=\"_6-rISlJoUe0-\" data-sro-card=\"1091500\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1139x64\"><td class=\"PJXSVZxaIEI-\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"hAT7-qU1HuU- HHfkg1UJUQw-\"><a href=\"…\"><div class=\"UCStFKHRE5I-\"></div></a></div></td><td class=\"f43kwggd5Os-\">95</td><td class=\"iV08nNqP--8-\"><a href=\"…\" class=\"OPsTpFowVcA- Focusable\" tabindex=\"0\"><img class=\"R5kUVghjNM0-\"><div class=\"vGOJiIhBnNo-\">Cyberpunk 2077</div></a></td><td class=\"owxxTzCprsc-\"><div class=\"_9HaRk8FtAYQ-\"><div class=\"RzIG00X1Jf8- StoreSalePriceWidgetContainer\"><div class=\"Lp2mDeWrIYE-\">$59.99</div></div></div></td><td class=\"VVPCVBQFI2k- Down\"><div class=\"PRt-CUL-YZk- Focusable\">▼ 11</div></td><td class=\"_0UyVznhx0AQ-\"><div class=\"PRt-CUL-YZk- Focusable\">3</div></td><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1091500\" data-sro-score=\"8\" data-sro-pct=\"89\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></tr>"
+    },
+    {
+     "appid": 3393110,
+     "title": "",
+     "sizeBucket": "1140x60",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "table-row",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "linear-gradient(90deg, rgba(86, 92, 103, 0.3), rgba(90, 98, 108, 0.3))"
+      },
+      "parent": {
+       "display": "table-row-group",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "RzIG00X1Jf8- StoreSalePriceWidgetContainer",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "right"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "tr._6-rISlJoUe0-"
+     },
+     "html": "<tr class=\"_6-rISlJoUe0-\" data-sro-card=\"3393110\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"1139x64\"><td class=\"PJXSVZxaIEI-\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"hAT7-qU1HuU- HHfkg1UJUQw-\"><a href=\"…\"><div class=\"UCStFKHRE5I-\"></div></a></div></td><td class=\"f43kwggd5Os-\">100</td><td class=\"iV08nNqP--8-\"><a href=\"…\" class=\"OPsTpFowVcA- Focusable\" tabindex=\"0\"><img class=\"R5kUVghjNM0-\"><div class=\"vGOJiIhBnNo-\">AION 2</div></a></td><td class=\"owxxTzCprsc-\"><div class=\"_9HaRk8FtAYQ-\"><div class=\"RzIG00X1Jf8- StoreSalePriceWidgetContainer\"><div class=\"Lp2mDeWrIYE-\">Available: Oct 5, 2026</div></div></div></td><td class=\"VVPCVBQFI2k- Down\"><div class=\"PRt-CUL-YZk- Focusable\"><span class=\"FXMJgCmo-ew-\">New</span></div></td><td class=\"_0UyVznhx0AQ-\"><div class=\"PRt-CUL-YZk- Focusable\">1</div></td><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"3393110\" data-sro-score=\"0\" style=\"…\"><span class=\"sro-line sro-both sro-none\">No user reviews</span></span></tr>"
     }
    ]
   },
@@ -534,88 +653,10 @@
      "html": "<tr class=\"_6-rISlJoUe0-\" data-sro-card=\"4739660\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-op=\"1\" style=\"…\" data-sro-size=\"1139x56\"><td class=\"PJXSVZxaIEI-\"></td><td class=\"f43kwggd5Os-\">15</td><td class=\"iV08nNqP--8-\"><a href=\"…\" class=\"OPsTpFowVcA- Focusable\" tabindex=\"0\"><div class=\"vGOJiIhBnNo-\">Drag'n Wash<span class=\"zsaHTbjfLGQ-\">(hidden by your preferences)</span></div></a></td><td class=\"owxxTzCprsc-\"><div class=\"_9HaRk8FtAYQ-\"><div class=\"RzIG00X1Jf8- StoreSalePriceWidgetContainer k2Py4c2bpaA- Discounted\"><div class=\"hEBxX391U4o-\">-10%</div><span class=\"sro-badge sro-positive sro-inline sro-beside-title\" data-sro-appid=\"4739660\" data-sro-score=\"9\" data-sro-pct=\"95\" style=\"…\"><span class=\"sro-line sro-global sro-positive\">Overwhelmingly Positive</span></span><div class=\"vpJsY3f6Xww-\"><div class=\"-uxGh55lj6s-\">$14.99</div><div class=\"Lp2mDeWrIYE-\">$13.49</div></div></div></div></td><td class=\"VVPCVBQFI2k- Down\"><div class=\"PRt-CUL-YZk- Focusable\"><span class=\"FXMJgCmo-ew-\">New</span></div></td><td class=\"_0UyVznhx0AQ-\"><div class=\"PRt-CUL-YZk- Focusable\">1</div></td><i class=\"sro-orbit sro-orbit-paused\" aria-hidden=\"true\"><i></i></i></tr>"
     }
    ]
-  },
-  {
-   "key": "tr._6-rISlJoUe0-|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
-   "signature": "tr._6-rISlJoUe0-",
-   "hashedClasses": false,
-   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=false",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.1,
-    "price": true,
-    "date": true,
-    "nativeSummary": false,
-    "title": false,
-    "platforms": false,
-    "discount": false,
-    "carousel": false,
-    "parentDisplay": "table-row-group",
-    "siblings": 100
-   },
-   "count": 1,
-   "sizes": {
-    "1140x60": 1
-   },
-   "sections": {
-    ".cCE5WXLdwQ4-": 1
-   },
-   "headings": {
-    "Top Sellers": 1
-   },
-   "chains": {
-    "tbody. < table.cCE5WXLdwQ4- < div.Panel.y8ScxjY4mi8- < div.Panel.Y4tvTqCXrtc-": 1
-   },
-   "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 1
-   },
-   "examples": [
-    {
-     "appid": 1091500,
-     "title": "",
-     "sizeBucket": "1140x60",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "table-row",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "linear-gradient(90deg, rgba(86, 92, 103, 0.3), rgba(90, 98, 108, 0.3))"
-      },
-      "parent": {
-       "display": "table-row-group",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "RzIG00X1Jf8- StoreSalePriceWidgetContainer",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "right"
-      },
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "tr._6-rISlJoUe0-"
-     },
-     "html": "<tr class=\"_6-rISlJoUe0-\" data-sro-card=\"1091500\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1139x64\"><td class=\"PJXSVZxaIEI-\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"hAT7-qU1HuU- HHfkg1UJUQw-\"><a href=\"…\"><div class=\"UCStFKHRE5I-\"></div></a></div></td><td class=\"f43kwggd5Os-\">91</td><td class=\"iV08nNqP--8-\"><a href=\"…\" class=\"OPsTpFowVcA- Focusable\" tabindex=\"0\"><img class=\"R5kUVghjNM0-\"><div class=\"vGOJiIhBnNo-\">Cyberpunk 2077</div></a></td><td class=\"owxxTzCprsc-\"><div class=\"_9HaRk8FtAYQ-\"><div class=\"RzIG00X1Jf8- StoreSalePriceWidgetContainer\"><div class=\"Lp2mDeWrIYE-\">$59.99</div></div></div></td><td class=\"VVPCVBQFI2k- Down\"><div class=\"PRt-CUL-YZk- Focusable\">▼ 7</div></td><td class=\"_0UyVznhx0AQ-\"><div class=\"PRt-CUL-YZk- Focusable\">3</div></td><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1091500\" data-sro-score=\"8\" data-sro-pct=\"89\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></tr>"
-    }
-   ]
   }
  ],
  "errors": [
   "Error: Minified React error #418; visit https://react.dev/errors/418?args[]= for the full message or use the non-minified dev environment for full errors and ad"
  ],
- "capturedAt": "2026-09-12T07:55:25.598Z"
+ "capturedAt": "2026-09-12T08:39:14.306Z"
 }

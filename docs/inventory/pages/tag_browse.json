@@ -25,21 +25,19 @@
    },
    "count": 8,
    "sizes": {
-    "300x180": 3,
-    "300x200": 5
+    "300x180": 8
    },
    "sections": {
     ".game_grid": 8
    },
    "headings": {
-    "Indie Browse all 112,938": 8
+    "Indie Browse all 112,943": 8
    },
    "chains": {
     "div.game_grid < div.browse_tag_games < div.tag_browse_games_results < div#tag_browse_games_ctn.tag_browse_games_ctn": 8
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 3,
-    "same|shape=card|badge=sro-badge sro-inline": 5
+    "same|shape=card|badge=sro-badge sro-corner": 8
    },
    "examples": [
     {
@@ -132,7 +130,7 @@
    "features": {
     "link": "app",
     "img": true,
-    "artFraction": 0.68,
+    "artFraction": 0.79,
     "price": false,
     "date": false,
     "nativeSummary": false,
@@ -145,25 +143,25 @@
    },
    "count": 1,
    "sizes": {
-    "300x200": 1
+    "300x180": 1
    },
    "sections": {
     ".game_grid": 1
    },
    "headings": {
-    "Indie Browse all 112,938": 1
+    "Indie Browse all 112,943": 1
    },
    "chains": {
     "div.game_grid < div.browse_tag_games < div.tag_browse_games_results < div#tag_browse_games_ctn.tag_browse_games_ctn": 1
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-inline": 1
+    "same|shape=card|badge=sro-badge sro-corner": 1
    },
    "examples": [
     {
      "appid": 1325860,
      "title": "VTube Studio",
-     "sizeBucket": "300x200",
+     "sizeBucket": "300x180",
      "styles": {
       "card": {
        "position": "relative",
@@ -190,14 +188,14 @@
       "axis": null,
       "filtered": null,
       "highlighted": true,
-      "badge": "sro-badge sro-inline",
+      "badge": "sro-badge sro-corner",
       "badgeParent": "div.browse_tag_game"
      },
-     "html": "<div class=\"browse_tag_game\" data-sro-card=\"1325860\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"298x205\"><div class=\"browse_tag_game_cap app_impression_tracked\" data-ds-appid=\"1325860\" data-ds-itemkey=\"App_1325860\" data-ds-tagids=\"[492,4085,113,872,8013,4747,4726]\" data-ds-crtrids=\"[40656018]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1325860,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\"><a href=\"…\"><img></a></div><div class=\"browse_tag_game_name\">VTube Studio</div><div class=\"browse_tag_game_price\">Free&nbsp;</div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"1325860\" data-sro-score=\"8\" data-sro-pct=\"92\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
+     "html": "<div class=\"browse_tag_game\" data-sro-card=\"1325860\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\"><div class=\"browse_tag_game_cap app_impression_tracked\" data-ds-appid=\"1325860\" data-ds-itemkey=\"App_1325860\" data-ds-tagids=\"[492,4085,113,872,8013,4747,4726]\" data-ds-crtrids=\"[40656018]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1325860,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\"><a href=\"…\"><img></a></div><div class=\"browse_tag_game_name\">VTube Studio</div><div class=\"browse_tag_game_price\">Free&nbsp;</div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1325860\" data-sro-score=\"8\" data-sro-pct=\"92\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T08:03:55.287Z"
+ "capturedAt": "2026-09-12T08:47:43.395Z"
 }

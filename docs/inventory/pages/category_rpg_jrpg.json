@@ -379,7 +379,7 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "flex/row",
-    "siblings": 11
+    "siblings": 8
    },
    "count": 4,
    "sizes": {
@@ -589,15 +589,15 @@
    ]
   },
   {
-   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
    "signature": "div._3olpRSXr66ohyQFxmzqokI",
    "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
    "features": {
     "link": "app",
     "img": true,
     "artFraction": 0.58,
-    "price": true,
+    "price": false,
     "date": true,
     "nativeSummary": false,
     "title": false,
@@ -625,7 +625,7 @@
    },
    "examples": [
     {
-     "appid": 4013510,
+     "appid": 4282500,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -643,12 +643,7 @@
        "overflowX": "hidden",
        "gap": "normal"
       },
-      "price": {
-       "cls": "_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer _1g0B-RjwkUV0_MDURgy3Bi Discounted _2xCT1pUf2c9TICHoMcQE0d",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
+      "price": null,
       "native": null
      },
      "ours": {
@@ -662,7 +657,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "div._3OVjwYGR60R4K6d5S_bIG3"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\" data-sro-card=\"4013510\" data-sro-size=\"1200x541\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-tone=\"positive\" data-sro-score=\"7\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Monster Alchemy</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" play"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\" data-sro-card=\"4282500\" data-sro-size=\"1200x541\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" style=\"…\" data-sro-tone=\"mixed\" data-sro-score=\"5\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm _3afqMxr7HnEfdxJwBg6GRd\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Teaser</span> | hololive Dreams</div><div class=\"OsRdwk7Q3-sApCo2CDxtN Panel Focusable\" tabindex=\"0\"><svg/></div><video class=\"_2YG6k4"
     }
    ]
   },
@@ -703,7 +698,7 @@
    },
    "examples": [
     {
-     "appid": 3195680,
+     "appid": 4226970,
      "title": "",
      "sizeBucket": "1200x560",
      "styles": {
@@ -740,7 +735,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "div._3OVjwYGR60R4K6d5S_bIG3"
      },
-     "html": "<div class=\"_1cOoCFwafBlSkwllIMf3XM _39HWXhhjsbML7K9sme9ItV _30Yfh62g3YeDgzOL-z9BnJ Panel Focusable\" data-sro-card=\"3195680\" style=\"…\" data-sro-size=\"1200x561\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-op=\"1\" data-sro-tone=\"positive\" data-sro-score=\"9\"><div class=\"v7Xo47-E5cR6b-rvcmp-H SaleSectionLabelCtn\"><div class=\"_2s_hQYvfnrZrKaBO-URg89\"><div class=\"_2WMiQ5MbP_ReyaX5DOpoUD SaleSectionHeader\">New Releases</div></div><div class=\"_3Vww38pO7uZXdih9MxhSkH\"></div></div><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\" disabled=\"\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\""
+     "html": "<div class=\"_1cOoCFwafBlSkwllIMf3XM _39HWXhhjsbML7K9sme9ItV _30Yfh62g3YeDgzOL-z9BnJ Panel Focusable\" data-sro-card=\"4226970\" style=\"…\" data-sro-size=\"1200x561\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"v7Xo47-E5cR6b-rvcmp-H SaleSectionLabelCtn\"><div class=\"_2s_hQYvfnrZrKaBO-URg89\"><div class=\"_2WMiQ5MbP_ReyaX5DOpoUD SaleSectionHeader\">New Releases</div></div><div class=\"_3Vww38pO7uZXdih9MxhSkH\"></div></div><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\" disabled=\"\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay "
     }
    ]
   },
@@ -822,5 +817,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T08:07:37.132Z"
+ "capturedAt": "2026-09-12T08:51:26.132Z"
 }

@@ -40,8 +40,8 @@
     "div.home_specials_grid < div.home_specials_ctn.underfive.underten < div.home_rightcol < div.page_content": 12
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-corner": 18,
-    "same|shape=null|badge=sro-badge sro-corner": 6
+    "same|shape=row|badge=sro-badge sro-corner": 17,
+    "same|shape=null|badge=sro-badge sro-corner": 7
    },
    "examples": [
     {
@@ -240,7 +240,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.tab_item"
      },
-     "html": "<a href=\"…\" class=\"tab_item app_impression_tracked\" data-ds-appid=\"4150860\" data-ds-itemkey=\"App_4150860\" data-ds-tagids=\"[1091588,3959,9,597,32322,5154,1716]\" data-ds-crtrids=\"[46122337,46122237]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4150860,&quot;params&quot;:{&quot;bDisableHover&quot;:false},&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"4150860\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"792x69\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"discount_block tab_item_discount\" data-price-final=\"899\" data-bundlediscount=\"0\" data-discount=\"10\" role=\"link\"><div class=\"discount_pct\">-10%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$9.99</div><div class=\"discount_final_price\">$8.99</div></div></div><div class=\"tab_item_content\"><div class=\"tab_item_name\">The Loopler</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><span class=\"platform_img mac\"></span><span class=\"platform_img linux\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Roguelike Deckbuilder</span><span class=\"top_tag\">, Roguelite</span><span class=\"top_tag\">, Strategy</span><span class=\"top_tag\">, Casual</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"4150860\" data-sro-score=\"8\" data-sro-pct=\"95\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Posi"
+     "html": "<a href=\"…\" class=\"tab_item app_impression_tracked\" data-ds-appid=\"4150860\" data-ds-itemkey=\"App_4150860\" data-ds-tagids=\"[1091588,3959,9,597,32322,5154,1716]\" data-ds-crtrids=\"[46122337,46122237]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4150860,&quot;params&quot;:{&quot;bDisableHover&quot;:false},&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"4150860\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"792x69\"><div class=\"tab_item_cap\"><img class=\"tab_item_cap_img\"></div><div class=\"discount_block tab_item_discount\" data-price-final=\"899\" data-bundlediscount=\"0\" data-discount=\"10\" role=\"link\"><div class=\"discount_pct\">-10%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$9.99</div><div class=\"discount_final_price\">$8.99</div></div></div><div class=\"tab_item_content\"><div class=\"tab_item_name\">The Loopler</div><div class=\"tab_item_details\"><span class=\"platform_img win\"></span><span class=\"platform_img mac\"></span><span class=\"platform_img linux\"></span><div class=\"tab_item_top_tags\"><span class=\"top_tag\">Roguelike Deckbuilder</span><span class=\"top_tag\">, Roguelite</span><span class=\"top_tag\">, Strategy</span><span class=\"top_tag\">, Casual</span></div></div></div><div style=\"…\"></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"4150860\" data-sro-score=\"8\" data-sro-pct=\"94\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Posi"
     }
    ]
   },
@@ -318,7 +318,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.store_capsule"
      },
-     "html": "<a data-ds-appid=\"1867240\" data-ds-itemkey=\"App_1867240\" data-ds-tagids=\"[493,1663,19,3859,4168,1708,1775]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[42656369,32941731]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1867240,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"230x135\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"3999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"8\" data-sro-pct=\"82\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Very Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Mostly Positive</span></span></a>"
+     "html": "<a data-ds-appid=\"1867240\" data-ds-itemkey=\"App_1867240\" data-ds-tagids=\"[493,1663,19,3859,4168,1708,1775]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[42656369,32941731]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1867240,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"store_capsule  app_impression_tracked\" href=\"…\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"230x135\"><div class=\"capsule capsule_image_ctn headerv5\"><img></div><div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"3999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"8\" data-sro-pct=\"83\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Very Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Mostly Positive</span></span></a>"
     },
     {
      "appid": 3219630,
@@ -399,7 +399,7 @@
    },
    "examples": [
     {
-     "appid": 3219630,
+     "appid": 892970,
      "title": "",
      "sizeBucket": "600x340",
      "styles": {
@@ -436,10 +436,10 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.newonsteam_headercap"
      },
-     "html": "<a data-ds-appid=\"3219630\" data-ds-itemkey=\"App_3219630\" data-ds-tagids=\"[1667,3859,1662,4667,1687,4182,3978]\" data-ds-descids=\"[1,2,5]\" data-ds-crtrids=\"[2113939]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3219630,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"newonsteam_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"3219630\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"590x340\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tPopular this month\t\t\t\t\t\t\t\t<div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"3999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"3219630\" data-sro-score=\"6\" data-sro-pct=\"70\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Mostly Positive</span><span class=\"sro-line sro-global sro-mixed\"><span class=\"sro-ico\">🌐</span>Mixed</span></span></a>"
+     "html": "<a data-ds-appid=\"892970\" data-ds-itemkey=\"App_892970\" data-ds-tagids=\"[1100689,1662,3843,1695,3859,1643,1702]\" data-ds-crtrids=\"[45971607,32965813]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:892970,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"newonsteam_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"892970\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"590x340\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tPopular this month\t\t\t\t\t\t\t\t<div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"2999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$29.99</div></div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"892970\" data-sro-score=\"8\" data-sro-pct=\"94\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
     },
     {
-     "appid": 1867240,
+     "appid": 4001890,
      "title": "",
      "sizeBucket": "600x340",
      "styles": {
@@ -476,11 +476,11 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.newonsteam_headercap"
      },
-     "html": "<a data-ds-appid=\"1867240\" data-ds-itemkey=\"App_1867240\" data-ds-tagids=\"[493,1663,19,3859,4168,1708,1775]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[42656369,32941731]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1867240,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"newonsteam_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"590x340\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tPopular this month\t\t\t\t\t\t\t\t<div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"3999\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"8\" data-sro-pct=\"82\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Very Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Mostly Positive</span></span></a>"
+     "html": "<a data-ds-appid=\"4001890\" data-ds-itemkey=\"App_4001890\" data-ds-tagids=\"[3859,3843,15564,1685,492,1774,3839]\" data-ds-descids=\"[5]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4001890,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" class=\"newonsteam_headercap app_impression_tracked\" href=\"…\" data-sro-card=\"4001890\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-op=\"1\" style=\"…\" data-sro-size=\"590x340\"><img><div class=\"info\">\n\t\t\t\t\t\t\t\tPopular this month\t\t\t\t\t\t\t\t<div class=\"discount_block discount_block_inline no_discount\" data-price-final=\"799\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$7.99</div></div></div></div><i class=\"sro-orbit\" aria-hidden=\"true\"><i></i></i><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"4001890\" data-sro-score=\"9\" data-sro-pct=\"95\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Overwhelmingly Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Very Positive</span></span></a>"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T07:54:30.941Z"
+ "capturedAt": "2026-09-12T08:38:19.719Z"
 }

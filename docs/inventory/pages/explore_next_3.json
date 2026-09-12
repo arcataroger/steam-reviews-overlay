@@ -42,8 +42,8 @@
     "div. < div.carousel_items.store_capsule_container < div.carousel_container.paging_capsules < div#sale_underN_area.home_pagecontent_ctn.sale_capsule_carousel": 25
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 30,
-    "other:div.capsules_col.spotlight_col|shape=row|badge=none": 2,
+    "same|shape=card|badge=sro-badge sro-corner": 31,
+    "unclaimed|shape=null|badge=null": 1,
     "same|shape=null|badge=sro-badge sro-corner": 3
    },
    "examples": [
@@ -125,7 +125,134 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.sale_capsule"
      },
-     "html": "<a class=\"sale_capsule\" data-ds-appid=\"3892270\" href=\"…\" data-sro-card=\"3892270\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"341x193\"><div class=\"capsule_image_ctn\"><img class=\"sale_capsule_image\" data-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/395e6d7972474333a698b26f8aa5597bf38109a1/header.jpg?t=1788800889\"><div class=\"capsule_hover_screenshots\"><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/e3514d1723232a988324d08834e8784e6ad355c2/ss_e3514d1723232a988324d08834e8784e6ad355c2.600x338.jpg)\"></div><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/cfb1d0bb25fe2af094eec6b5fb32726c684e423e/ss_cfb1d0bb25fe2af094eec6b5fb32726c684e423e.600x338.jpg)\"></div><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/a4c4607121c84eef4914a3a0cdf2a564dff8947d/ss_a4c4607121c84eef4914a3a0cdf2a564dff8947d.600x338.jpg)\"></div><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/feeb63575e000a1a2127c4440f11bf8e0c4e428b/ss_feeb63575e000a1a2127c4440f11bf8e0c4e428b.600x338.jpg)\"></div></div></div><div class=\"discount_block  daily_deal_discount discount_block_large\" data-price-final=\"495\" data-bundlediscount=\"0\" data-"
+     "html": "<a class=\"sale_capsule\" data-ds-appid=\"3892270\" href=\"…\" data-sro-card=\"3892270\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"341x193\"><div class=\"capsule_image_ctn\"><img class=\"sale_capsule_image\" data-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/395e6d7972474333a698b26f8aa5597bf38109a1/header.jpg?t=1788800889\"><div class=\"capsule_hover_screenshots\"><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/a4c4607121c84eef4914a3a0cdf2a564dff8947d/ss_a4c4607121c84eef4914a3a0cdf2a564dff8947d.600x338.jpg)\"></div><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/e3514d1723232a988324d08834e8784e6ad355c2/ss_e3514d1723232a988324d08834e8784e6ad355c2.600x338.jpg)\"></div><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/feeb63575e000a1a2127c4440f11bf8e0c4e428b/ss_feeb63575e000a1a2127c4440f11bf8e0c4e428b.600x338.jpg)\"></div><div class=\"screenshot capsule_screenshot_load\" data-background=\"url(https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3892270/cfb1d0bb25fe2af094eec6b5fb32726c684e423e/ss_cfb1d0bb25fe2af094eec6b5fb32726c684e423e.600x338.jpg)\"></div></div></div><div class=\"discount_block  daily_deal_discount discount_block_large\" data-price-final=\"495\" data-bundlediscount=\"0\" data-"
+    }
+   ]
+  },
+  {
+   "key": "a.broadcast_capsule.store_main_capsule|link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
+   "signature": "a.broadcast_capsule.store_main_capsule",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 1,
+    "price": true,
+    "date": false,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": true,
+    "carousel": true,
+    "parentDisplay": "block",
+    "siblings": 12
+   },
+   "count": 10,
+   "sizes": {
+    "760x440": 1,
+    "1200x480": 9
+   },
+   "sections": {
+    ".carousel_items": 10
+   },
+   "headings": {
+    "Featured & Recommended": 10
+   },
+   "chains": {
+    "div.carousel_items.store_capsule_container < div.carousel_container.maincap < div.home_cluster_ctn.home_pagecontent_ctn.v2 < div#home_maincap_vN.carousel_wide_mode": 10
+   },
+   "ours": {
+    "same|shape=row|badge=none": 1,
+    "same|shape=card|badge=none": 6,
+    "same|shape=card|badge=sro-badge sro-inline sro-beside-native": 3
+   },
+   "examples": [
+    {
+     "appid": 275850,
+     "title": "No Man's Sky",
+     "sizeBucket": "760x440",
+     "styles": {
+      "card": {
+       "position": "absolute",
+       "display": "grid",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_pct",
+       "position": "static",
+       "display": "flex",
+       "textAlign": "right"
+      },
+      "native": {
+       "cls": "review_summary",
+       "text": "Very Positive (184,380 Reviews)"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule with_microtrailer prev\" data-manual-tracking=\"1\" data-ds-appid=\"275850\" href=\"…\" data-ds-tagids=\"[1695,1755,1100689,3834,3942,1662,3859,5125,21,3810,3839,4182,4166,1702,16598,492,19,599,21978,1663]\" data-sro-card=\"275850\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"756x433\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/fa7722a7f8ae7edca879c4c7f969c15e8f47c8b1/capsule_616x353_alt_assets_25_2x.jpg?t=1789027039\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/fa7722a7f8ae7edca879c4c7f969c15e8f47c8b1/capsule_616x353_alt_assets_25.jpg?t=1789027039\" style=\"…\"><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/6c2ddcffe192b0e155a69aa2a1dd3f33b863033d/ss_6c2ddcffe192b0e155a69aa2a1dd3f33b863033d.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/cad26f1dc67d28327ccdabeecb68d5006ad5639b/ss_cad26f1dc67d28327ccdabeecb68d5006ad5639b.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/275850/6db1fa75dba6d47fa8484c1565fc544023c300d0/ss_6db1fa75dba6d47fa8484c1565fc544023c300d0.1"
+    },
+    {
+     "appid": 892970,
+     "title": "Valheim",
+     "sizeBucket": "1200x480",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "grid",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "discount_final_price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "right"
+      },
+      "native": {
+       "cls": "review_summary",
+       "text": "Very Positive (260,123 Reviews)"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule with_microtrailer focus\" data-manual-tracking=\"1\" data-ds-appid=\"892970\" href=\"…\" data-ds-tagids=\"[1100689,1662,3843,1695,3859,1643,1702,7332,3834,1685,21,4026,16094,3810,6730,1697,19,4182,492,493]\" data-sro-card=\"892970\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x481\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/22457bf860fd3e08b5aff23eef3afc7c97e2b9e7/capsule_616x353_alt_assets_6_2x.jpg?t=1789121975\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/22457bf860fd3e08b5aff23eef3afc7c97e2b9e7/capsule_616x353_alt_assets_6.jpg?t=1789121975\" style=\"…\"><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/5a31353178f635b67f0c8720ebb8a1a95b637276/ss_5a31353178f635b67f0c8720ebb8a1a95b637276.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/f7a47b4bd150ce1a2c6ec88f7d79fd57e7c538c8/ss_f7a47b4bd150ce1a2c6ec88f7d79fd57e7c538c8.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/f84c97e07548b1c2a0c38944d80c6967c0928625/ss_f84c97e07548b1c2a0c38944d80c6967c0928625.1"
     }
    ]
   },
@@ -248,132 +375,6 @@
    ]
   },
   {
-   "key": "a.broadcast_capsule.store_main_capsule|link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
-   "signature": "a.broadcast_capsule.store_main_capsule",
-   "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 1,
-    "price": true,
-    "date": false,
-    "nativeSummary": true,
-    "title": true,
-    "platforms": false,
-    "discount": false,
-    "carousel": true,
-    "parentDisplay": "block",
-    "siblings": 12
-   },
-   "count": 8,
-   "sizes": {
-    "760x440": 2,
-    "1200x480": 6
-   },
-   "sections": {
-    ".carousel_items": 8
-   },
-   "headings": {
-    "Featured & Recommended": 8
-   },
-   "chains": {
-    "div.carousel_items.store_capsule_container < div.carousel_container.maincap < div.home_cluster_ctn.home_pagecontent_ctn.v2 < div#home_maincap_vN.carousel_wide_mode": 8
-   },
-   "ours": {
-    "same|shape=row|badge=sro-badge sro-inline sro-beside-native": 2,
-    "same|shape=card|badge=none": 6
-   },
-   "examples": [
-    {
-     "appid": 1867240,
-     "title": "WARDOGS",
-     "sizeBucket": "760x440",
-     "styles": {
-      "card": {
-       "position": "absolute",
-       "display": "grid",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "discount_final_price",
-       "position": "static",
-       "display": "block",
-       "textAlign": "right"
-      },
-      "native": {
-       "cls": "review_summary",
-       "text": "Very Positive (22,918 Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "row",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-inline sro-beside-native",
-      "badgeParent": "div.info_ctn"
-     },
-     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule prev\" data-manual-tracking=\"1\" data-ds-appid=\"1867240\" href=\"…\" data-ds-tagids=\"[493,1663,19,3859,4168,1708,1775,4175,3993,4684,599,5673,5711,1774,4155,128,5363,11104,7423,1695]\" data-ds-descids=\"[5]\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"756x433\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1867240/24c0b6c0621560e922fbed18545921e7eaa9036e/capsule_616x353_2x.jpg?t=1789059636\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1867240/24c0b6c0621560e922fbed18545921e7eaa9036e/capsule_616x353.jpg?t=1789059636\" style=\"…\"><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1867240/13fbc7cb084ec25c20ad031c7e888a9459cd8e77/ss_13fbc7cb084ec25c20ad031c7e888a9459cd8e77.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1867240/6246278cc981346b645bb9638e3d5c3674a3d69f/ss_6246278cc981346b645bb9638e3d5c3674a3d69f.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1867240/672d7ce9debe7a3bcfa5feee5fccc3d8b482b13e/ss_672d7ce9debe7a3bcfa5feee5fccc3d8b482b13e.1024x768.jpg\" style=\""
-    },
-    {
-     "appid": 1144200,
-     "title": "Ready or Not",
-     "sizeBucket": "1200x480",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "grid",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "discount_pct",
-       "position": "static",
-       "display": "flex",
-       "textAlign": "right"
-      },
-      "native": {
-       "cls": "review_summary",
-       "text": "Mostly Positive (150,939 Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
-     },
-     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule with_microtrailer focus\" data-manual-tracking=\"1\" data-ds-appid=\"1144200\" href=\"…\" data-ds-tagids=\"[1708,4175,1663,1774,3859,4182,1685,1667,3839,19,1721,4667,5765,3993,6378,4345,5673,4166,4508,21978]\" data-ds-descids=\"[1,2,5]\" data-sro-card=\"1144200\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x481\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1144200/f202837c9238c8f115a72395f76022c18e247b78/capsule_616x353_2x.jpg?t=1789019569\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1144200/f202837c9238c8f115a72395f76022c18e247b78/capsule_616x353.jpg?t=1789019569\" style=\"…\"><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1144200/29c4fc0ed7925fb34a32cbc95c4519311420f439/ss_29c4fc0ed7925fb34a32cbc95c4519311420f439.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1144200/8003fd0791fbaaef24bb3da768603eca92449a4d/ss_8003fd0791fbaaef24bb3da768603eca92449a4d.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1144200/88aec4ee3fba8860070370032495e0c9ff87a607/ss_88aec4ee3fba8860070370032495e0c9ff"
-    }
-   ]
-  },
-  {
    "key": "a.sale_capsule|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
    "signature": "a.sale_capsule",
    "hashedClasses": false,
@@ -392,25 +393,25 @@
     "parentDisplay": "flex/row",
     "siblings": 4
    },
-   "count": 7,
+   "count": 8,
    "sizes": {
-    "260x180": 7
+    "260x180": 8
    },
    "sections": {
-    "#home_tags_section": 7
+    "#home_tags_section": 8
    },
    "headings": {
-    "Featured tag": 7
+    "Featured tag": 8
    },
    "chains": {
-    "div.home_discount_games_ctn < div.home_discounts_block < div#home_tags_section.home_discounts_ctn < div#home_accountblocks_section.home_pagecontent_ctn": 7
+    "div.home_discount_games_ctn < div.home_discounts_block < div#home_tags_section.home_discounts_ctn < div#home_accountblocks_section.home_pagecontent_ctn": 8
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 7
+    "same|shape=card|badge=sro-badge sro-corner": 8
    },
    "examples": [
     {
-     "appid": 2183900,
+     "appid": 1971870,
      "title": "",
      "sizeBucket": "260x180",
      "styles": {
@@ -447,10 +448,10 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.sale_capsule"
      },
-     "html": "<a class=\"sale_capsule with_microtrailer app_impression_tracked\" data-ds-appid=\"2183900\" href=\"…\" data-ds-descids=\"[2,5]\" data-sro-card=\"2183900\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"269x182\"><div class=\"capsule_image_ctn\"><img class=\"sale_capsule_image autosize\" data-src-maincap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2183900/db611b4424c2b7799c943c0424ca82227300fd69/capsule_616x353.jpg?t=1787837240\" data-src-smallcap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2183900/capsule_231x87.jpg?t=1787837240\"></div><div class=\"discount_block  discount_block_inline\" data-price-final=\"1499\" data-bundlediscount=\"0\" data-discount=\"75\" role=\"link\"><div class=\"discount_pct\">-75%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$59.99</div><div class=\"discount_final_price\">$14.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"2183900\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
+     "html": "<a class=\"sale_capsule with_microtrailer app_impression_tracked\" data-ds-appid=\"1971870\" href=\"…\" data-ds-descids=\"[2,5]\" data-sro-card=\"1971870\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"269x182\"><div class=\"capsule_image_ctn\"><img class=\"sale_capsule_image autosize\" data-src-maincap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1971870/capsule_616x353.jpg?t=1778795130\" data-src-smallcap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1971870/capsule_231x87.jpg?t=1778795130\"></div><div class=\"discount_block  discount_block_inline\" data-price-final=\"999\" data-bundlediscount=\"0\" data-discount=\"80\" role=\"link\"><div class=\"discount_pct\">-80%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$49.99</div><div class=\"discount_final_price\">$9.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1971870\" data-sro-score=\"6\" data-sro-pct=\"73\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Mostly Positive</span></span></a>"
     },
     {
-     "appid": 3240220,
+     "appid": 976310,
      "title": "",
      "sizeBucket": "260x180",
      "styles": {
@@ -487,7 +488,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.sale_capsule"
      },
-     "html": "<a class=\"sale_capsule with_microtrailer app_impression_tracked\" data-ds-appid=\"3240220\" href=\"…\" data-ds-descids=\"[1,2,5]\" data-sro-card=\"3240220\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"269x182\"><div class=\"capsule_image_ctn\"><img class=\"sale_capsule_image autosize\" data-src-maincap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3240220/4c8d7ce5142a528bdac68c093bd1bcc720e2baee/capsule_616x353.jpg?t=1781187782\" data-src-smallcap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3240220/a318bd9affe8eee32984b18794b273c256e9b2d6/capsule_231x87.jpg?t=1781187782\"></div><div class=\"discount_block  discount_block_inline\" data-price-final=\"1499\" data-bundlediscount=\"0\" data-discount=\"50\" role=\"link\"><div class=\"discount_pct\">-50%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$29.99</div><div class=\"discount_final_price\">$14.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"3240220\" data-sro-score=\"8\" data-sro-pct=\"80\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
+     "html": "<a class=\"sale_capsule with_microtrailer app_impression_tracked\" data-ds-appid=\"976310\" href=\"…\" data-ds-descids=\"[2,5]\" data-sro-card=\"976310\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"269x182\"><div class=\"capsule_image_ctn\"><img class=\"sale_capsule_image autosize\" data-src-maincap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/976310/capsule_616x353.jpg?t=1780429525\" data-src-smallcap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/976310/capsule_231x87.jpg?t=1780429525\"></div><div class=\"discount_block  discount_block_inline\" data-price-final=\"499\" data-bundlediscount=\"0\" data-discount=\"90\" role=\"link\"><div class=\"discount_pct\">-90%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$49.99</div><div class=\"discount_final_price\">$4.99</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"976310\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
     }
    ]
   },
@@ -526,9 +527,49 @@
    },
    "ours": {
     "unclaimed|shape=null|badge=null": 3,
-    "same|shape=card|badge=sro-badge sro-corner": 2
+    "same|shape=row|badge=sro-badge sro-corner": 2
    },
    "examples": [
+    {
+     "appid": 4999590,
+     "title": "",
+     "sizeBucket": "340x440",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "grid",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "18px"
+      },
+      "price": {
+       "cls": "spotlight_body spotlight_price price",
+       "position": "static",
+       "display": "block",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": false,
+      "sameElement": false,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": null,
+      "badgeParent": null
+     },
+     "html": "<div class=\"home_area_spotlight responsive_scroll_snap_start\" role=\"link\" data-ds-appid=\"4999590\" data-ds-itemkey=\"App_4999590\" data-panel=\"{&quot;clickOnActivate&quot;:&quot;firstChild&quot;,&quot;flow-children&quot;:&quot;column&quot;}\"><div class=\"spotlight_img\"><a href=\"…\"><img data-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/dc22805867d4e2992fef9ca0/2b9e5f33526d4d8f8b6330b287e2905f68b99e45/vertical_capsule_english.jpg?t=1788907746\" border=\"0\"><div class=\"home_capsule_banner\">Publisher Sale</div></a></div><div class=\"spotlight_bottom_ctn\"><div class=\"spotlight_body spotlight_price price\"><div class=\"discount_block discount_block_spotlight discount_block_large\"><div class=\"discount_pct\">Up to -75%</div></div></div></div></div>"
+    },
     {
      "appid": 379470,
      "title": "",
@@ -568,161 +609,6 @@
       "badgeParent": null
      },
      "html": "<div class=\"home_area_spotlight responsive_scroll_snap_start\" role=\"link\" data-ds-appid=\"379470\" data-ds-itemkey=\"App_379470\" data-panel=\"{&quot;clickOnActivate&quot;:&quot;firstChild&quot;,&quot;flow-children&quot;:&quot;column&quot;}\"><div class=\"spotlight_img\"><a href=\"…\"><img data-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/spotlights/431a9c1590bcbcfeacc7f569/51c5c515bb61bb961250b62c53986e6cb21c9a51/vertical_capsule_english.jpg?t=1788888614\" border=\"0\"><div class=\"home_capsule_banner\">FRANCHISE SALE</div></a></div><div class=\"spotlight_bottom_ctn\"><div class=\"spotlight_body spotlight_price price\"><div class=\"discount_block discount_block_spotlight discount_block_large\"><div class=\"discount_pct\">Up to -90%</div></div></div></div></div>"
-    },
-    {
-     "appid": 2852190,
-     "title": "",
-     "sizeBucket": "340x440",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "grid",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "18px"
-      },
-      "price": {
-       "cls": "discount_pct",
-       "position": "static",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "div.home_area_spotlight"
-     },
-     "html": "<div class=\"home_area_spotlight responsive_scroll_snap_start\" role=\"link\" data-ds-appid=\"2852190\" data-ds-itemkey=\"App_2852190\" data-ds-tagids=\"[122,916648,4434,4325,3834,21,4195]\" data-ds-crtrids=\"[33273264,34827959]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:2852190,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-panel=\"{&quot;clickOnActivate&quot;:&quot;firstChild&quot;,&quot;flow-children&quot;:&quot;column&quot;}\" data-sro-card=\"2852190\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"341x439\"><div class=\"spotlight_img\"><a href=\"…\"><img data-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2852190/b055553515875e39d38aaf718f6c8b08348c4960/hero_capsule_2x.jpg?t=1782425255\" border=\"0\"><div class=\"home_capsule_banner\">WEEKEND DEAL</div></a></div><div class=\"spotlight_bottom_ctn\"><div class=\"spotlight_body spotlight_price price\"><div class=\"discount_block discount_block_spotlight discount_block_large\" data-price-final=\"4899\" data-bundlediscount=\"0\" data-discount=\"30\" role=\"link\"><div class=\"discount_pct\">-30%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$69.99</div><div class=\"discount_final_price\">$48.99</div></div></div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"2852190\" data-sro-score=\"8\" data-sro-pct=\"80\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Ver"
-    }
-   ]
-  },
-  {
-   "key": "a.broadcast_capsule.store_main_capsule|link=app,img=true,price=false,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
-   "signature": "a.broadcast_capsule.store_main_capsule",
-   "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0,
-    "price": false,
-    "date": false,
-    "nativeSummary": true,
-    "title": true,
-    "platforms": false,
-    "discount": false,
-    "carousel": true,
-    "parentDisplay": "block",
-    "siblings": 12
-   },
-   "count": 4,
-   "sizes": {
-    "1200x480": 4
-   },
-   "sections": {
-    ".carousel_items": 4
-   },
-   "headings": {
-    "Featured & Recommended": 4
-   },
-   "chains": {
-    "div.carousel_items.store_capsule_container < div.carousel_container.maincap < div.home_cluster_ctn.home_pagecontent_ctn.v2 < div#home_maincap_vN.carousel_wide_mode": 4
-   },
-   "ours": {
-    "same|shape=card|badge=none": 3,
-    "same|shape=card|badge=sro-badge sro-inline sro-beside-native": 1
-   },
-   "examples": [
-    {
-     "appid": 359550,
-     "title": "Tom Clancy's Rainbow Six Siege",
-     "sizeBucket": "1200x480",
-     "styles": {
-      "card": {
-       "position": "absolute",
-       "display": "grid",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": {
-       "cls": "review_summary",
-       "text": "Very Positive (811,273 Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
-     },
-     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule with_microtrailer\" data-manual-tracking=\"1\" data-ds-appid=\"359550\" href=\"…\" data-ds-tagids=\"[1663,1775,3859,1774,1708,5055,3878,3843,19,620519,5711,4168,9,3839,1685,4175,5363,1678,4026,4191]\" data-ds-descids=\"[5]\" data-sro-card=\"359550\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x481\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/23c96cc9d75ebfefc6a8b394910d2586e02af65b/capsule_616x353_alt_assets_24_2x.jpg?t=1789075401\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/23c96cc9d75ebfefc6a8b394910d2586e02af65b/capsule_616x353_alt_assets_24.jpg?t=1789075401\"><div class=\"broadcast_live_stream_icon\">Live</div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/2efed3587d876f560cbf3f25d9a72fbd387b74e6/ss_2efed3587d876f560cbf3f25d9a72fbd387b74e6.1024x768.jpg\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/00fb4ac1f236cfd2e364ebfecb599a30b72560fe/ss_00fb4ac1f236cfd2e364ebfecb599a30b72560fe.1024x768.jpg\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/ee34a63203916d39dc50d96c14aefc24dc3ff34e/ss_ee34a"
-    },
-    {
-     "appid": 3513350,
-     "title": "Wuthering Waves",
-     "sizeBucket": "1200x480",
-     "styles": {
-      "card": {
-       "position": "absolute",
-       "display": "grid",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": {
-       "cls": "review_summary",
-       "text": "Very Positive (29,769 Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
-     },
-     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule with_microtrailer\" data-manual-tracking=\"1\" data-ds-appid=\"3513350\" href=\"…\" data-ds-tagids=\"[1695,4085,113,19,1742,122,21,3993,3834,4191,1697,29482,4182,3835,1685,3859,1756,16250,1646,42804]\" data-sro-card=\"3513350\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x481\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3513350/dd1bfd403173b32367807e955ef33da7682bfee1/capsule_616x353_2x.jpg?t=1787182292\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3513350/dd1bfd403173b32367807e955ef33da7682bfee1/capsule_616x353.jpg?t=1787182292\"><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3513350/e303e0094da7fa466133be71ac7b76274739bc83/ss_e303e0094da7fa466133be71ac7b76274739bc83.1024x768.jpg\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3513350/e0cdae6c1db7b0ba908507454567f5935954d8f7/ss_e0cdae6c1db7b0ba908507454567f5935954d8f7.1024x768.jpg\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3513350/e1b33ff7320e3fbe3bad8ae3fe4ab0d852bee7f3/ss_e1b33ff7320e3fbe3bad8ae3fe4ab0d852bee7f3.1024x768.jpg\"></div><div class=\"large_screenshot\" data-ba"
     }
    ]
   },
@@ -847,6 +733,122 @@
    ]
   },
   {
+   "key": "a.broadcast_capsule.store_main_capsule|link=app,img=true,price=false,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
+   "signature": "a.broadcast_capsule.store_main_capsule",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=true,title=true,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 1,
+    "price": false,
+    "date": false,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "block",
+    "siblings": 12
+   },
+   "count": 2,
+   "sizes": {
+    "760x440": 1,
+    "1200x480": 1
+   },
+   "sections": {
+    ".carousel_items": 2
+   },
+   "headings": {
+    "Featured & Recommended": 2
+   },
+   "chains": {
+    "div.carousel_items.store_capsule_container < div.carousel_container.maincap < div.home_cluster_ctn.home_pagecontent_ctn.v2 < div#home_maincap_vN.carousel_wide_mode": 2
+   },
+   "ours": {
+    "same|shape=row|badge=sro-badge sro-inline sro-beside-native": 1,
+    "same|shape=card|badge=none": 1
+   },
+   "examples": [
+    {
+     "appid": 1172470,
+     "title": "Apex Legends™",
+     "sizeBucket": "760x440",
+     "styles": {
+      "card": {
+       "position": "absolute",
+       "display": "grid",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": {
+       "cls": "review_summary",
+       "text": "Mostly Positive (450,305 Reviews)"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-inline sro-beside-native",
+      "badgeParent": "div.info_ctn"
+     },
+     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule with_microtrailer next\" data-manual-tracking=\"1\" data-ds-appid=\"1172470\" href=\"…\" data-ds-tagids=\"[113,3859,176981,1663,1774,3839,1775,19,620519,5711,1708,3942,1685,4236,1662,4747,4136,4115,3854,1667]\" data-sro-card=\"1172470\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"756x433\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1172470/7af9e3ed05b0e08ef94f3f04c99b62e0900f4ea7/capsule_616x353_2x.jpg?t=1786031871\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1172470/7af9e3ed05b0e08ef94f3f04c99b62e0900f4ea7/capsule_616x353.jpg?t=1786031871\" style=\"…\"><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1172470/d64ce54903a3ba6429c6e3189ad746a7db70ee3e/ss_d64ce54903a3ba6429c6e3189ad746a7db70ee3e.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1172470/3fc2dfcf0e8d7d7202a3ca32ae26c7afaec723e2/ss_3fc2dfcf0e8d7d7202a3ca32ae26c7afaec723e2.1024x768.jpg\" style=\"…\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1172470/6593905f527d4b1bf01b0bb148b9c9a39616a2e4/ss_6593905f527d4b1bf01b0bb148b9c9a39616a2e4.1024x768.jpg\" style="
+    },
+    {
+     "appid": 730,
+     "title": "Counter-Strike 2",
+     "sizeBucket": "1200x480",
+     "styles": {
+      "card": {
+       "position": "absolute",
+       "display": "grid",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": {
+       "cls": "review_summary",
+       "text": "Very Positive (2,613,854 Reviews)"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<a class=\"store_main_capsule responsive_scroll_snap_start add_microtrailer broadcast_capsule with_microtrailer\" data-manual-tracking=\"1\" data-ds-appid=\"730\" href=\"…\" data-ds-tagids=\"[1663,1774,3859,3878,19,5711,5055,1708,3839,1775,3843,1685,9,4168,1678,4202,4026,4175,1734,1669]\" data-ds-descids=\"[2,5]\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x481\"><div class=\"capsule capsule_image_ctn main_capsule\" data-background-image2x-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/6328493f4cc4a8fb83e1149be1cac5a7823fe588/capsule_616x353_2x.jpg?t=1788998864\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/6328493f4cc4a8fb83e1149be1cac5a7823fe588/capsule_616x353.jpg?t=1788998864\"><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/ss_d830cfd0550fbb64d80e803e93c929c3abb02056.1024x768.jpg\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/ss_796601d9d67faf53486eeb26d0724347cea67ddc.1024x768.jpg\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/ss_0f8cf82d019c614760fd20801f2bb4001da7ea77.1024x768.jpg\"></div><div class=\"large_screenshot\" data-background-image-url=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/ss_13bb35638c0267759276f511ee97064773b"
+    }
+   ]
+  },
+  {
    "key": "a.home_page_takeover_sizer|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
    "signature": "a.home_page_takeover_sizer",
    "hashedClasses": true,
@@ -881,7 +883,7 @@
    },
    "examples": [
     {
-     "appid": 275850,
+     "appid": 1867240,
      "title": "",
      "sizeBucket": "1380x460",
      "styles": {
@@ -913,7 +915,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.home_page_takeover_sizer"
      },
-     "html": "<a class=\"home_page_takeover_sizer ds_no_flags app_impression_tracked\" data-ds-appid=\"275850\" href=\"…\" data-panel=\"{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" style=\"…\" data-sro-card=\"275850\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-size=\"1386x450\"><img><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"275850\" data-sro-score=\"8\" data-sro-pct=\"82\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
+     "html": "<a class=\"home_page_takeover_sizer ds_no_flags app_impression_tracked\" data-ds-appid=\"1867240\" href=\"…\" data-panel=\"{&quot;autoFocus&quot;:true,&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" style=\"…\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-size=\"1386x450\"><img><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"8\" data-sro-pct=\"83\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Very Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Mostly Positive</span></span></a>"
     }
    ]
   },
@@ -989,81 +991,8 @@
      "html": "<div class=\"home_page_content takeunder\" data-sro-card=\"4197860\"><a href=\"…\" data-ds-appid=\"4197860\" class=\"home_page_takeunder ds_no_flags app_impression_tracked\"></a></div>"
     }
    ]
-  },
-  {
-   "key": "a.sale_capsule|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
-   "signature": "a.sale_capsule",
-   "hashedClasses": false,
-   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.85,
-    "price": false,
-    "date": false,
-    "nativeSummary": false,
-    "title": false,
-    "platforms": false,
-    "discount": false,
-    "carousel": false,
-    "parentDisplay": "flex/row",
-    "siblings": 4
-   },
-   "count": 1,
-   "sizes": {
-    "260x180": 1
-   },
-   "sections": {
-    "#home_tags_section": 1
-   },
-   "headings": {
-    "Featured tag": 1
-   },
-   "chains": {
-    "div.home_discount_games_ctn < div.home_discounts_block < div#home_tags_section.home_discounts_ctn < div#home_accountblocks_section.home_pagecontent_ctn": 1
-   },
-   "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 1
-   },
-   "examples": [
-    {
-     "appid": 518790,
-     "title": "",
-     "sizeBucket": "260x180",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "block",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "flex",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "16px"
-      },
-      "price": null,
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "a.sale_capsule"
-     },
-     "html": "<a class=\"sale_capsule with_microtrailer app_impression_tracked\" data-ds-appid=\"518790\" href=\"…\" data-sro-card=\"518790\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"269x182\"><div class=\"capsule_image_ctn\"><img class=\"sale_capsule_image autosize\" data-src-maincap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/518790/159dbea04e321439fb1e6c94f31db17417157942/capsule_616x353_alt_assets_28.jpg?t=1788876075\" data-src-smallcap=\"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/518790/235bcf716fda3136374efa56f557f024ebe0af41/capsule_231x87_alt_assets_28.jpg?t=1788876075\"></div><div class=\"discount_block  no_discount discount_block_inline\" data-price-final=\"299\" data-bundlediscount=\"0\" data-discount=\"0\"><div class=\"discount_prices\"><div class=\"discount_final_price\">Free</div></div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"518790\" data-sro-score=\"8\" data-sro-pct=\"90\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
-    }
-   ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T07:58:33.482Z"
+ "capturedAt": "2026-09-12T08:42:21.938Z"
 }

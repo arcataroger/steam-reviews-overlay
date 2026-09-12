@@ -1,7 +1,7 @@
 # Steam card inventory: how the overlay maps onto Steam's game displays
 
 `master.md` is the machine-built source of truth: every kind of game display found on every page
-reachable from the store's top menu (99 pages, ~2,900 cards on the last crawl), with the exact
+reachable from the store's top menu (102 pages, ~3,000 cards on the last crawl), with the exact
 markup signature, sizes, features, and what the extension did to each. This file is the curated
 reading of it: which of our treatments each kind gets, and the gaps we know about and accept.
 Regenerate both with the `steam-inventory` skill (`.claude/skills/steam-inventory/SKILL.md`).
@@ -29,32 +29,29 @@ expanded capsules with info panel, React demo rows, event/news carousel tiles, n
 charts table rows, charts overview tiles and rank rows, tag browse tiles, specials small capsules, New/Upcoming
 Releases capsules, community recommendation cards, home takeover banners, app-page DLC rows.
 
-Notes on kinds that look "partial" in `master.md` but are by design:
+Kinds where some items carry no label on purpose are recorded in `kind-expectations.json`, so each
+crawl marks them **by-design** instead of re-reporting them as gaps. Each entry gives the reason and
+a budget: how many items were deliberately skipped when the kind was last reviewed. Going over that
+budget flags the kind again, so a real regression cannot hide behind a known exception.
 
 | Kind | What the report shows | Why it is fine |
 |---|---|---|
 | K01 React expanded capsule | most cards `badge=none` | Steam prints its own summary there; we add a label only as the 🇺🇸/🌐 pair when the two differ |
 | K03 event/news tile | a few tiles `badge=none` | two-line title plus date leave no clear spot; the label is omitted rather than overlapping |
-| K09 classless React tile | 2 unclaimed on app pages | they are the page's own game (never labelled) |
-| K17 home spotlight | 9/15 unclaimed | those spotlights are sale/event promos with no app link |
-| K20 / K35 / K36 Labs capsules | claimed, no label | Steam Labs experiments; GetItems reports them as non-game types, so no label by design |
-| K23 home takeunder | no label | hidden fallback anchor with no art, width 1200 |
-| K25 cart form | 1 unclaimed | the "add to cart" form is not a card |
-| K34 Great on Deck "Ignored" banner | no label | promo panel |
-| text-link kinds | unclaimed | prose links (breadcrumbs, BBCode lists): under 60px tall with no art |
+| K07 news post row with large art | app-page tiles unclaimed | an app page's own Recent Events tiles link to the game whose page you are already on |
+| K09 classless React tile | unclaimed on app pages | the 780×380 tile left unclaimed on each app page carries that page's own appid |
+| K16 home spotlight | 9/15 unclaimed | franchise and publisher sale spotlights carry a representative game's `data-ds-appid` for Steam's hover panel but link to a `/sale/` page: the tile is the sale, not the game |
+| K04 sale capsule, K17 daily deal | a few unclaimed | package capsules share those shelves with game capsules, and a package has its own page and its own score |
+| K22 / K36 / K37 Labs fragments | claimed, no label | Steam Labs experiments and banners, not games |
+| K27 home takeunder, K35 Great on Deck banner | no label | a hidden fallback anchor and a banner panel, neither of them a game |
+| K31 plain text link | 1 of 2 unclaimed | prose on a package page, not a card |
 
-## Known gaps (accepted for now)
+## Open coverage items
 
-- **Text-only rows** are claimed only when they are wide block-level rows with short text (the
-  ranking lists on /charts); a short inline link in prose is never a card.
-- **Off-screen carousel slides** choose their highlight shape before their lazy image loads; the shape
-  is re-derived when the image loads, so it corrects itself as the slide scrolls into view.
-- **Sign-in and age-gated pages** (Discovery Queue, Your Personal Calendar, Popular Among Friends,
-  Steam Replay, mature app pages) are not crawled; their card kinds are the same React families.
+One kind is still unexplained and is deliberately left flagged rather than excused:
 
-## When Steam changes its site
-
-Run the skill. `inventory-diff` reports: new kinds (name them in `kind-names.json`, then check
-`master.md` for their coverage), kinds whose hashed classes changed (our selectors never depend on
-hashed classes, so this is informational), and kinds whose coverage regressed (fix in
-`src/content.ts`, re-crawl the affected pages, re-run the visual harness on them).
+- **K03 event/news carousel tile** — on one crawl of the news hub, 3 of 333 tiles had the overlay's
+  card on the carousel *container* (`div.EventTileCarouselCtn`) rather than on the tile, with no
+  badge. That would put a highlight around a whole carousel. It did not reproduce on a later live
+  check of the same page, so the shape that triggers it is transient (most likely a carousel showing
+  a single slide). Check this kind's `other:` count on every crawl until it is understood.

@@ -446,7 +446,7 @@
    },
    "examples": [
     {
-     "appid": 1172470,
+     "appid": 570,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -478,7 +478,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "div._3OVjwYGR60R4K6d5S_bIG3"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\" data-sro-card=\"1172470\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x541\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Apex Legends™</div><div class=\"OsRdwk7Q3-sApCo2CDxtN Panel Focusable\" tabindex=\"0\"><svg/></div><video class=\"_2YG6k4pQ2z4jwoRGr"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\" data-sro-card=\"570\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x541\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Dota 2</div><div class=\"OsRdwk7Q3-sApCo2CDxtN Panel Focusable\" tabindex=\"0\"><svg/></div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47"
     }
    ]
   },
@@ -557,5 +557,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T07:55:56.115Z"
+ "capturedAt": "2026-09-12T08:39:44.811Z"
 }

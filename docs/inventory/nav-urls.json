@@ -100,28 +100,13 @@
   "group": "Recommendations"
  },
  {
-  "url": "https://store.steampowered.com/category/exploration_open_world",
-  "label": "Open World",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/sports",
-  "label": "All Sports",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/story_rich",
-  "label": "Story-Rich",
+  "url": "https://store.steampowered.com/category/science_fiction",
+  "label": "Sci-Fi & Cyberpunk",
   "group": "Categories"
  },
  {
   "url": "https://store.steampowered.com/category/racing",
   "label": "Racing",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/adventure",
-  "label": "Adventure",
   "group": "Categories"
  },
  {
@@ -140,23 +125,13 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/fighting_martial_arts",
-  "label": "Fighting",
+  "url": "https://store.steampowered.com/category/story_rich",
+  "label": "Story-Rich",
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/strategy",
-  "label": "Strategy",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/survival",
-  "label": "Survival",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/rogue_like_rogue_lite",
-  "label": "Rogue-Like",
+  "url": "https://store.steampowered.com/category/adventure",
+  "label": "Adventure",
   "group": "Categories"
  },
  {
@@ -165,8 +140,23 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/science_fiction",
-  "label": "Sci-Fi & Cyberpunk",
+  "url": "https://store.steampowered.com/category/anime",
+  "label": "Anime",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/exploration_open_world",
+  "label": "Open World",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/puzzle_matching/",
+  "label": "Puzzle",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/rogue_like_rogue_lite",
+  "label": "Rogue-Like",
   "group": "Categories"
  },
  {
@@ -175,13 +165,23 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/anime",
-  "label": "Anime",
+  "url": "https://store.steampowered.com/category/strategy_cities_settlements",
+  "label": "City & Settlement",
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/puzzle_matching/",
-  "label": "Puzzle",
+  "url": "https://store.steampowered.com/category/survival",
+  "label": "Survival",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/simulation",
+  "label": "Simulation",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/visual_novel",
+  "label": "Visual Novel",
   "group": "Categories"
  },
  {
@@ -220,6 +220,11 @@
   "group": "Categories"
  },
  {
+  "url": "https://store.steampowered.com/category/fighting_martial_arts",
+  "label": "Fighting & Martial Arts",
+  "group": "Categories"
+ },
+ {
   "url": "https://store.steampowered.com/category/hidden_object",
   "label": "Hidden Object",
   "group": "Categories"
@@ -237,11 +242,6 @@
  {
   "url": "https://store.steampowered.com/category/adventure_rpg",
   "label": "Adventure RPG",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/visual_novel",
-  "label": "Visual Novels",
   "group": "Categories"
  },
  {
@@ -325,11 +325,6 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/strategy_cities_settlements",
-  "label": "City & Settlement Builders",
-  "group": "Categories"
- },
- {
   "url": "https://store.steampowered.com/category/strategy_grand_4x",
   "label": "Grand Strategy & 4X",
   "group": "Categories"
@@ -357,6 +352,11 @@
  {
   "url": "https://store.steampowered.com/category/sports_individual",
   "label": "Individual Sports",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sports",
+  "label": "Sports",
   "group": "Categories"
  },
  {

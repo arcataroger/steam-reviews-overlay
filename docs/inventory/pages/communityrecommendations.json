@@ -23,21 +23,21 @@
     "parentDisplay": "flex/column",
     "siblings": 30
    },
-   "count": 22,
+   "count": 21,
    "sizes": {
-    "1160x340": 22
+    "1160x340": 21
    },
    "sections": {
-    "#reviewed_apps": 22
+    "#reviewed_apps": 21
    },
    "headings": {
-    "There are no reviews that match the filters set above": 22
+    "There are no reviews that match the filters set above": 21
    },
    "chains": {
-    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 22
+    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 21
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 22
+    "same|shape=card|badge=sro-badge sro-corner": 21
    },
    "examples": [
     {
@@ -124,7 +124,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div#AppN.appeared.has_microtrailer.reviewed_app"
      },
-     "html": "<div id=\"App1313140\" class=\"reviewed_app visible appeared has_microtrailer\" data-appid=\"1313140\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"1313140\" data-ds-itemkey=\"App_1313140\" data-ds-tagids=\"[7332,42804,4726,52406,4182,1720,3959]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[35388092,6638525]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1313140,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"1313140\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-op=\"1\" style=\"…\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/1313140/739299/44677940efbc210f65d05893125c9fbdb4d31fbe/1750671650/microtrailer.webm?t=1723478272&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/1313140/739299/44677940efbc210f65d05893125c9fbdb4d31fbe/1750671650/microtrailer.mp4?t=1723478272&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$24.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review234997987\" data-recommenda"
+     "html": "<div id=\"App1313140\" class=\"reviewed_app visible appeared app_impression_tracked has_microtrailer\" data-appid=\"1313140\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"1313140\" data-ds-itemkey=\"App_1313140\" data-ds-tagids=\"[7332,42804,4726,52406,4182,1720,3959]\" data-ds-descids=\"[5]\" data-ds-crtrids=\"[35388092,6638525]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1313140,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"1313140\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-op=\"1\" style=\"…\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/1313140/739299/44677940efbc210f65d05893125c9fbdb4d31fbe/1750671650/microtrailer.webm?t=1723478272&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/1313140/739299/44677940efbc210f65d05893125c9fbdb4d31fbe/1750671650/microtrailer.mp4?t=1723478272&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$24.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review234"
     }
    ]
   },
@@ -147,21 +147,21 @@
     "parentDisplay": "flex/column",
     "siblings": 30
    },
-   "count": 5,
+   "count": 7,
    "sizes": {
-    "1160x340": 5
+    "1160x340": 7
    },
    "sections": {
-    "#reviewed_apps": 5
+    "#reviewed_apps": 7
    },
    "headings": {
-    "There are no reviews that match the filters set above": 5
+    "There are no reviews that match the filters set above": 7
    },
    "chains": {
-    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 5
+    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 7
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 5
+    "same|shape=card|badge=sro-badge sro-corner": 7
    },
    "examples": [
     {
@@ -205,7 +205,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div#AppN.appeared.has_microtrailer.has_multiple_reviews.reviewed_app"
      },
-     "html": "<div id=\"App3195440\" class=\"reviewed_app has_multiple_reviews visible appeared has_microtrailer\" data-appid=\"3195440\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"3195440\" data-ds-itemkey=\"App_3195440\" data-ds-tagids=\"[1667,122,87918,21,3964,7432,3810]\" data-ds-crtrids=\"[39269540]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3195440,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"3195440\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.akamai.steamstatic.com/store_trailers/3195440/20953532/b874bce6c91105e7b363ac88ac03aba01962bffb/1789037202/microtrailer.webm?t=1789051815&amp;v=2\" data-mpeg4=\"https://video.akamai.steamstatic.com/store_trailers/3195440/20953532/b874bce6c91105e7b363ac88ac03aba01962bffb/1789037202/microtrailer.mp4?t=1789051815&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large main_cap_discount\" data-price-final=\"1619\" data-bundlediscount=\"0\" data-discount=\"10\" role=\"link\"><div class=\"discount_pct\">-10%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$17.99</div><div class=\"discount_f"
+     "html": "<div id=\"App3195440\" class=\"reviewed_app has_multiple_reviews visible appeared has_microtrailer\" data-appid=\"3195440\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"3195440\" data-ds-itemkey=\"App_3195440\" data-ds-tagids=\"[1667,122,87918,21,3964,7432,3810]\" data-ds-crtrids=\"[39269540]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3195440,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"3195440\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/3195440/20953532/b874bce6c91105e7b363ac88ac03aba01962bffb/1789037202/microtrailer.webm?t=1789051815&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/3195440/20953532/b874bce6c91105e7b363ac88ac03aba01962bffb/1789037202/microtrailer.mp4?t=1789051815&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large main_cap_discount\" data-price-final=\"1619\" data-bundlediscount=\"0\" data-discount=\"10\" role=\"link\"><div class=\"discount_pct\">-10%</div><div class=\"discount_prices\"><div class=\"discount_original_price\">$17.99</div><div class=\"discount_f"
     },
     {
      "appid": 3219630,
@@ -248,7 +248,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div#AppN.appeared.has_microtrailer.has_multiple_reviews.reviewed_app"
      },
-     "html": "<div id=\"App3219630\" class=\"reviewed_app has_multiple_reviews visible appeared app_impression_tracked has_microtrailer\" data-appid=\"3219630\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"3219630\" data-ds-itemkey=\"App_3219630\" data-ds-tagids=\"[1667,3859,1662,4667,1687,4182,3978]\" data-ds-descids=\"[1,2,5]\" data-ds-crtrids=\"[2113939]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3219630,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"3219630\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/3219630/717207747/9638556860f7e1e1a7ff0c67c070af7f7c3dc0dd/1788485764/microtrailer.webm?t=1788531516&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/3219630/717207747/9638556860f7e1e1a7ff0c67c070af7f7c3dc0dd/1788485764/microtrailer.mp4?t=1788531516&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"re"
+     "html": "<div id=\"App3219630\" class=\"reviewed_app has_multiple_reviews visible appeared app_impression_tracked has_microtrailer\" data-appid=\"3219630\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"3219630\" data-ds-itemkey=\"App_3219630\" data-ds-tagids=\"[1667,3859,1662,4667,1687,4182,3978]\" data-ds-descids=\"[1,2,5]\" data-ds-crtrids=\"[2113939]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:3219630,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"3219630\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.akamai.steamstatic.com/store_trailers/3219630/717207747/9638556860f7e1e1a7ff0c67c070af7f7c3dc0dd/1788485764/microtrailer.webm?t=1788531516&amp;v=2\" data-mpeg4=\"https://video.akamai.steamstatic.com/store_trailers/3219630/717207747/9638556860f7e1e1a7ff0c67c070af7f7c3dc0dd/1788485764/microtrailer.mp4?t=1788531516&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">$39.99</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"re"
     }
    ]
   },
@@ -405,87 +405,11 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div#AppN.appeared.has_microtrailer.has_multiple_reviews.reviewed_app"
      },
-     "html": "<div id=\"App4659620\" class=\"reviewed_app has_multiple_reviews visible appeared has_microtrailer\" data-appid=\"4659620\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"4659620\" data-ds-itemkey=\"App_4659620\" data-ds-tagids=\"[4885,4255,7208,19,180368,4026,4182]\" data-ds-crtrids=\"[44365766]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4659620,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"4659620\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-op=\"1\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/4659620/512535670/a30aea1dea528cc3f8eeb06465e9629e12ca118e/1788963101/microtrailer.webm?t=1788964892&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/4659620/512535670/a30aea1dea528cc3f8eeb06465e9629e12ca118e/1788963101/microtrailer.mp4?t=1788964892&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\"></div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review235040227\" d"
-    }
-   ]
-  },
-  {
-   "key": "div#AppN.appeared.has_microtrailer.reviewed_app|link=app,img=true,price=false,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
-   "signature": "div#AppN.appeared.has_microtrailer.reviewed_app",
-   "hashedClasses": false,
-   "featureKey": "link=app,img=true,price=false,date=false,nativeSummary=true,title=true,platforms=false,carousel=false",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.5,
-    "price": false,
-    "date": false,
-    "nativeSummary": true,
-    "title": true,
-    "platforms": false,
-    "discount": false,
-    "carousel": false,
-    "parentDisplay": "flex/column",
-    "siblings": 30
-   },
-   "count": 1,
-   "sizes": {
-    "1160x340": 1
-   },
-   "sections": {
-    "#reviewed_apps": 1
-   },
-   "headings": {
-    "There are no reviews that match the filters set above": 1
-   },
-   "chains": {
-    "div#reviewed_apps.trending_reviews_content < div.page_content < div.page_content_ctn < div#responsive_page_template_content.responsive_page_template_content": 1
-   },
-   "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 1
-   },
-   "examples": [
-    {
-     "appid": 440,
-     "title": "MENTO",
-     "sizeBucket": "1160x340",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "hidden",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "flex",
-       "flexDirection": "column",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": {
-       "cls": "reviews",
-       "text": "TF2 is chaotic hilarious and insanely fu"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "div#AppN.appeared.has_microtrailer.reviewed_app"
-     },
-     "html": "<div id=\"App440\" class=\"reviewed_app visible appeared app_impression_tracked has_microtrailer\" data-appid=\"440\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"440\" data-ds-itemkey=\"App_440\" data-ds-tagids=\"[113,620519,3859,1663,1774,19,4155]\" data-ds-crtrids=\"[4]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:440,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"440\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/440/129304/a9d97ffaf28cac468369400c12abe442a7b688b2/1749861261/microtrailer.webm?t=1682961253&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/440/129304/a9d97ffaf28cac468369400c12abe442a7b688b2/1749861261/microtrailer.mp4?t=1682961253&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\">Free To Play</div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\" id=\"Review234992366\" data-recommendationid=\"234992366\" data-appid=\"440"
+     "html": "<div id=\"App4659620\" class=\"reviewed_app has_multiple_reviews visible appeared app_impression_tracked has_microtrailer\" data-appid=\"4659620\" data-numreviews=\"0\" data-currentreviewidx=\"0\" data-ds-appid=\"4659620\" data-ds-itemkey=\"App_4659620\" data-ds-tagids=\"[4885,4255,7208,19,180368,4026,4182]\" data-ds-crtrids=\"[44365766]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4659620,&quot;public&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-sro-card=\"4659620\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-op=\"1\" style=\"…\" data-sro-size=\"1164x336\"><div class=\"details\"><a data-panel=\"{&quot;focusable&quot;:true,&quot;clickOnActivate&quot;:true}\" role=\"button\" href=\"…\"><div class=\"reviewed_app_media\"><img class=\"reviewed_app_image\"><video class=\"microtrailer_video\" loop=\"\" muted=\"\" data-webm=\"https://video.fastly.steamstatic.com/store_trailers/4659620/512535670/a30aea1dea528cc3f8eeb06465e9629e12ca118e/1788963101/microtrailer.webm?t=1788964892&amp;v=2\" data-mpeg4=\"https://video.fastly.steamstatic.com/store_trailers/4659620/512535670/a30aea1dea528cc3f8eeb06465e9629e12ca118e/1788963101/microtrailer.mp4?t=1788964892&amp;v=2\"><source><source></video><img class=\"reviewed_app_small_image\"></div></a><div class=\"discount_block discount_block_large no_discount main_cap_discount\"><div class=\"discount_prices\"><div class=\"discount_final_price\"></div></div></div></div><div class=\"right_col\"><div class=\"reviews\"><div class=\"review_box focus\""
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T07:58:20.694Z"
+ "capturedAt": "2026-09-12T08:42:09.130Z"
 }

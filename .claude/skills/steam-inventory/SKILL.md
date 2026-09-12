@@ -49,3 +49,22 @@ Files:
   ancestor/descendant instead (check whether the highlight then outlines the wrong box);
   `unclaimed` = no treatment at all. `badge=none` is expected when Steam already prints its summary
   and local/global agree, or the card is narrower than 120px.
+
+## Deliberate non-coverage
+
+Not every item in a kind should carry a label: a package capsule on a shelf of games, a sale
+spotlight that borrows a game's `data-ds-appid` for Steam's hover panel, an app page's own game, a
+Labs banner. Record those in `docs/inventory/kind-expectations.json`, keyed by the same master key
+as `kind-names.json`:
+
+```json
+"a.sale_capsule": { "reason": "package capsules share these shelves with games", "unclaimed": 6 }
+```
+
+`unclaimed` and `missing` are budgets, not assertions: how many items were deliberately skipped when
+the kind was last reviewed. Within budget the merge marks the kind **by-design** and stops reporting
+it; over budget it is flagged again with the expectation quoted, so a real regression cannot hide
+behind a known exception. Verify before adding an entry — the sale-spotlight case was only settled by
+opening the tiles and finding they link to `/sale/` pages. Anything you cannot explain stays
+**partial**, and belongs in the "Open coverage items" list in `docs/inventory/README.md`.
+

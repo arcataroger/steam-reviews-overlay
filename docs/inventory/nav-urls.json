@@ -55,13 +55,13 @@
   "group": "Recommendations"
  },
  {
-  "url": "https://store.steampowered.com/app/730/CounterStrike_2",
-  "label": "Counter-Strike 2Free",
+  "url": "https://store.steampowered.com/app/2767030/Marvel_Rivals",
+  "label": "Marvel RivalsFree",
   "group": "Recommendations"
  },
  {
-  "url": "https://store.steampowered.com/app/3219630/Halloween_The_Game",
-  "label": "Halloween: The Game$39.99",
+  "url": "https://store.steampowered.com/app/730/CounterStrike_2",
+  "label": "Counter-Strike 2Free",
   "group": "Recommendations"
  },
  {
@@ -100,8 +100,28 @@
   "group": "Recommendations"
  },
  {
-  "url": "https://store.steampowered.com/category/strategy",
-  "label": "Strategy",
+  "url": "https://store.steampowered.com/category/exploration_open_world",
+  "label": "Open World",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/sports",
+  "label": "All Sports",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/story_rich",
+  "label": "Story-Rich",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/racing",
+  "label": "Racing",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/adventure",
+  "label": "Adventure",
   "group": "Categories"
  },
  {
@@ -115,38 +135,8 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/sports",
-  "label": "All Sports",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/racing",
-  "label": "Racing",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/puzzle_matching/",
-  "label": "Puzzle",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/action",
-  "label": "Action",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/strategy_cities_settlements",
-  "label": "City & Settlement",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/anime",
-  "label": "Anime",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/simulation",
-  "label": "Simulation",
+  "url": "https://store.steampowered.com/genre/Early%20Access",
+  "label": "Early Access",
   "group": "Categories"
  },
  {
@@ -155,28 +145,28 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/adventure",
-  "label": "Adventure",
+  "url": "https://store.steampowered.com/category/strategy",
+  "label": "Strategy",
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/story_rich",
-  "label": "Story-Rich",
+  "url": "https://store.steampowered.com/category/survival",
+  "label": "Survival",
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/exploration_open_world",
-  "label": "Open World",
+  "url": "https://store.steampowered.com/category/rogue_like_rogue_lite",
+  "label": "Rogue-Like",
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/rpg",
-  "label": "Role-Playing",
+  "url": "https://store.steampowered.com/category/action",
+  "label": "Action",
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/genre/Early%20Access",
-  "label": "Early Access",
+  "url": "https://store.steampowered.com/category/science_fiction",
+  "label": "Sci-Fi & Cyberpunk",
   "group": "Categories"
  },
  {
@@ -185,8 +175,13 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/rogue_like_rogue_lite",
-  "label": "Rogue-Like",
+  "url": "https://store.steampowered.com/category/anime",
+  "label": "Anime",
+  "group": "Categories"
+ },
+ {
+  "url": "https://store.steampowered.com/category/puzzle_matching/",
+  "label": "Puzzle",
   "group": "Categories"
  },
  {
@@ -330,6 +325,11 @@
   "group": "Categories"
  },
  {
+  "url": "https://store.steampowered.com/category/strategy_cities_settlements",
+  "label": "City & Settlement Builders",
+  "group": "Categories"
+ },
+ {
   "url": "https://store.steampowered.com/category/strategy_grand_4x",
   "label": "Grand Strategy & 4X",
   "group": "Categories"
@@ -360,18 +360,8 @@
   "group": "Categories"
  },
  {
-  "url": "https://store.steampowered.com/category/science_fiction",
-  "label": "Sci-Fi & Cyberpunk",
-  "group": "Categories"
- },
- {
   "url": "https://store.steampowered.com/category/space",
   "label": "Space",
-  "group": "Categories"
- },
- {
-  "url": "https://store.steampowered.com/category/survival",
-  "label": "Survival",
   "group": "Categories"
  },
  {

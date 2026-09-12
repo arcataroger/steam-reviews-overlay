@@ -80,3 +80,23 @@ got <fraction>`. Open that crop: the file name says what it should have been. An
 when it has no baseline twin, when the page paints over it, when a highlighted neighbour is butted
 against it, or when it is shorter than the corner skip at both ends. Rising `U` means captures are
 drifting (more rotating content); raise `SRO_STOPS` or capture calmer pages if it matters.
+
+## Accepted behaviour, do not report as defects
+
+Each of these was investigated from the pixels and the DOM and found correct. They recur every
+round, so check them against this list before writing them up.
+
+- **A badge over lettering baked into a tile's artwork.** The "Recent & Upcoming Events" tiles often
+  use key art whose own logo text fills the frame. The badge has to sit on the art somewhere and
+  nothing in the DOM says where the painted lettering is. Only DOM text counts as an obstacle.
+- **A badge lifted above a tile's date line instead of sitting in the bottom-right corner.** The
+  corner is tried first and given up only when the date's text rect leaves less than the badge's
+  width plus a 4px gap. Measured on the VR page's VTOL VR tile: a 303px tile, a 147px date starting
+  28px in, and a 125px badge, so the badge misses fitting beside the date by one pixel and is lifted
+  into the clear gap above it. Neighbouring tiles with shorter dates keep the corner, which makes
+  the row look inconsistent; the alternative is a badge that touches the date.
+- **A highlighted card whose badge's second line reads Mostly Positive.** The two-line badge is
+  🇺🇸 your-language over 🌐 all-languages, shown only when the two differ. The harness's `active`
+  state judges by the your-language score (`source: 'local'`), so the treatment follows the FIRST
+  line. Read both lines before concluding a card is wrongly highlighted.
+

@@ -23,21 +23,21 @@
     "parentDisplay": "block",
     "siblings": 13
    },
-   "count": 7,
+   "count": 9,
    "sizes": {
-    "920x340": 7
+    "920x340": 9
    },
    "sections": {
-    ".Panel": 7
+    ".Panel": 9
    },
    "headings": {
-    "Popular Titles": 7
+    "Popular Titles": 9
    },
    "chains": {
-    "div._1ujNYGRQ8beCcurOxXJxGS < div._21kblrCh3VR0BAgfqxyMRA < div. < div._18byEIHFiivSklOwKqIx2b": 7
+    "div._1ujNYGRQ8beCcurOxXJxGS < div._21kblrCh3VR0BAgfqxyMRA < div. < div._18byEIHFiivSklOwKqIx2b": 9
    },
    "ours": {
-    "same|shape=card|badge=none": 6,
+    "same|shape=card|badge=none": 8,
     "same|shape=card|badge=sro-badge sro-inline sro-beside-native": 1
    },
    "examples": [
@@ -68,7 +68,7 @@
       },
       "native": {
        "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Mixed(1,447 User Reviews)"
+       "text": "Mixed(1,463 User Reviews)"
       }
      },
      "ours": {
@@ -82,7 +82,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"_2hhNOdcC6yLwL_rugP3YLf PZY_7wH_NY7OgzH9MBiB8 LibraryAssetExpandedDisplay\" data-sro-card=\"4356430\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_1uLNByMlXsYSmrGPWyDNhE\"><div class=\"_3DkfNrtTOLjNYd3yZliMzy\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"yvqq8z2k4i7-Mzx-JHeNC\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"vnhlb8EFU45PU6qG2GBDW HeroCapsuleImageContainer\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\"></div></div></a></div></div><div class=\"oW0H1sBVE8K8u0qbq_Tm5\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS NLpQmAPIbG71U6eWdaOa1 WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"AgwfelHhJjcEq6ZQ9ohVr\"><div class=\"_2asUTzZuAkj9cDRKsLvwRE\"><div class=\"_3AsE5JhqLAiICKUYvZLpap StoreSaleWidgetShortDesc\">The hustle doesn’t stop and the run never ends in NBA 2K27. Chase greatness around the clock in MyCAREER, MyTEAM, and MyNBA, and make your hoop dreams a reality.\r\n</div><div class=\"_1ZqQL1ugqx5VZZK7e7nZuc SaleTagBlockCtn\"><div class=\"v1i4WK3tk4FpXSJ5wC60U WidgetTagTitle\">Tags</div><div class=\"_1lqaDGTzuprpWRYk4_2JrN TagBox\"><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Sports</a><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener nor"
+     "html": "<div class=\"_2hhNOdcC6yLwL_rugP3YLf PZY_7wH_NY7OgzH9MBiB8 LibraryAssetExpandedDisplay\" data-sro-card=\"4356430\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_1uLNByMlXsYSmrGPWyDNhE\"><div class=\"_3DkfNrtTOLjNYd3yZliMzy\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"yvqq8z2k4i7-Mzx-JHeNC\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"vnhlb8EFU45PU6qG2GBDW HeroCapsuleImageContainer\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\"></div></div></a></div></div><div class=\"oW0H1sBVE8K8u0qbq_Tm5\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS NLpQmAPIbG71U6eWdaOa1 WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"AgwfelHhJjcEq6ZQ9ohVr\"><div class=\"_2asUTzZuAkj9cDRKsLvwRE\"><div class=\"_3AsE5JhqLAiICKUYvZLpap StoreSaleWidgetShortDesc\">The hustle doesn’t stop and the run never ends in NBA 2K27. Chase greatness around the clock in MyCAREER, MyTEAM, and MyNBA, and make your hoop dreams a reality.\r\n</div><div class=\"_1ZqQL1ugqx5VZZK7e7nZuc SaleTagBlockCtn\"><div class=\"v1i4WK3tk4FpXSJ5wC60U WidgetTagTitle\">Tags</div><div class=\"_1lqaDGTzuprpWRYk4_2JrN TagBox\"><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Sports</a><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" "
     },
     {
      "appid": 3940610,
@@ -111,7 +111,7 @@
       },
       "native": {
        "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Mostly Negative(713 User Reviews)"
+       "text": "Mostly Negative(724 User Reviews)"
       }
      },
      "ours": {
@@ -125,7 +125,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"_2hhNOdcC6yLwL_rugP3YLf PZY_7wH_NY7OgzH9MBiB8 LibraryAssetExpandedDisplay\" data-sro-card=\"3940610\" data-sro-tone=\"negative\" data-sro-score=\"4\" data-sro-highlight=\"negative\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_1uLNByMlXsYSmrGPWyDNhE\"><div class=\"_3DkfNrtTOLjNYd3yZliMzy\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"yvqq8z2k4i7-Mzx-JHeNC\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"vnhlb8EFU45PU6qG2GBDW HeroCapsuleImageContainer\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\"></div></div></a></div></div><div class=\"oW0H1sBVE8K8u0qbq_Tm5\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS NLpQmAPIbG71U6eWdaOa1 WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"AgwfelHhJjcEq6ZQ9ohVr\"><div class=\"_2asUTzZuAkj9cDRKsLvwRE\"><div class=\"_3AsE5JhqLAiICKUYvZLpap StoreSaleWidgetShortDesc\">Run the league one decision at a time. EA SPORTS™ Madden NFL 27, powered by the all-new Persona Engine.\r\n</div><div class=\"_1ZqQL1ugqx5VZZK7e7nZuc SaleTagBlockCtn\"><div class=\"v1i4WK3tk4FpXSJ5wC60U WidgetTagTitle\">Tags</div><div class=\"_1lqaDGTzuprpWRYk4_2JrN TagBox\"><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Simulation</a><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Strategy</a><a href=\"…\" ta"
+     "html": "<div class=\"_2hhNOdcC6yLwL_rugP3YLf PZY_7wH_NY7OgzH9MBiB8 LibraryAssetExpandedDisplay\" data-sro-card=\"3940610\" data-sro-tone=\"negative\" data-sro-score=\"4\" data-sro-pos=\"1\" data-sro-highlight=\"negative\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_1uLNByMlXsYSmrGPWyDNhE\"><div class=\"_3DkfNrtTOLjNYd3yZliMzy\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"yvqq8z2k4i7-Mzx-JHeNC\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"vnhlb8EFU45PU6qG2GBDW HeroCapsuleImageContainer\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\"></div></div></a></div></div><div class=\"oW0H1sBVE8K8u0qbq_Tm5\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS NLpQmAPIbG71U6eWdaOa1 WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"AgwfelHhJjcEq6ZQ9ohVr\"><div class=\"_2asUTzZuAkj9cDRKsLvwRE\"><div class=\"_3AsE5JhqLAiICKUYvZLpap StoreSaleWidgetShortDesc\">Run the league one decision at a time. EA SPORTS™ Madden NFL 27, powered by the all-new Persona Engine.\r\n</div><div class=\"_1ZqQL1ugqx5VZZK7e7nZuc SaleTagBlockCtn\"><div class=\"v1i4WK3tk4FpXSJ5wC60U WidgetTagTitle\">Tags</div><div class=\"_1lqaDGTzuprpWRYk4_2JrN TagBox\"><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Simulation</a><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Strategy<"
     }
    ]
   },
@@ -166,9 +166,8 @@
     "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 2
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-inline": 1,
-    "same|shape=null|badge=sro-badge sro-inline": 3,
-    "same|shape=card|badge=sro-badge sro-inline": 2
+    "same|shape=card|badge=sro-badge sro-inline": 3,
+    "same|shape=null|badge=sro-badge sro-inline": 3
    },
    "examples": [
     {
@@ -197,14 +196,14 @@
       "claimed": true,
       "sameElement": true,
       "ourCardSig": null,
-      "shape": "row",
+      "shape": "card",
       "axis": null,
       "filtered": null,
       "highlighted": true,
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._1X3j2g29SBtsrFMgNiKi_Y"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"1665460\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-highlight=\"mixed\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"389x220\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_2bCf9u4rlC8De687HY6wnh\"></span><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer\"><div class=\"_3j4dI1yA7cRfCvK8h406OB\">Free To Play</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"1665460\" data-sro-score=\"5\" data-sro-pct=\"49\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"1665460\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"389x220\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_2bCf9u4rlC8De687HY6wnh\"></span><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer\"><div class=\"_3j4dI1yA7cRfCvK8h406OB\">Free To Play</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"1665460\" data-sro-score=\"5\" data-sro-pct=\"49\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div>"
     },
     {
      "appid": 3551360,
@@ -279,7 +278,7 @@
     "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 2
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-inline": 3,
+    "same|shape=card|badge=sro-badge sro-inline": 3,
     "same|shape=null|badge=sro-badge sro-inline": 1
    },
    "examples": [
@@ -314,14 +313,14 @@
       "claimed": true,
       "sameElement": true,
       "ourCardSig": null,
-      "shape": "row",
+      "shape": "card",
       "axis": null,
       "filtered": null,
       "highlighted": true,
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._1X3j2g29SBtsrFMgNiKi_Y"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"4356430\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-highlight=\"mixed\" data-sro-shape=\"row\" style=\"…\" data-sro-size=\"591x314\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_2bCf9u4rlC8De687HY6wnh\"></span><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer\"><div class=\"_3j4dI1yA7cRfCvK8h406OB\">$69.99</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"4356430\" data-sro-score=\"5\" data-sro-pct=\"51\"><span class=\"sro-line sro-global sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"4356430\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"591x314\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_2bCf9u4rlC8De687HY6wnh\"></span><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer\"><div class=\"_3j4dI1yA7cRfCvK8h406OB\">$69.99</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"4356430\" data-sro-score=\"5\" data-sro-pct=\"52\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div>"
     },
     {
      "appid": 4080220,
@@ -361,7 +360,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._1X3j2g29SBtsrFMgNiKi_Y"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"4080220\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"591x314\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_2bCf9u4rlC8De687HY6wnh\"></span><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer _2f7BMv_bJMTrHmaOF8B3Ws\"><div class=\"_1Fru-E7WQMr8G_aR2sMg5F\"><span>Prepurchase</span></div><div class=\"_3j4dI1yA7cRfCvK8h406OB\">$69.99</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"4080220\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"4080220\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"591x314\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_2bCf9u4rlC8De687HY6wnh\"></span><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer _2f7BMv_bJMTrHmaOF8B3Ws\"><div class=\"_1Fru-E7WQMr8G_aR2sMg5F\"><span>Prepurchase</span></div><div class=\"_3j4dI1yA7cRfCvK8h406OB\">$69.99</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"4080220\" data-sro-score=\"0\"><span class=\"sro-line sro-both sro-none\">No user reviews</span></span></span></div></a></div></div></div></div>"
     }
    ]
   },
@@ -382,7 +381,7 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "flex/row",
-    "siblings": 16
+    "siblings": 15
    },
    "count": 4,
    "sizes": {
@@ -434,7 +433,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"766570\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" style=\"…\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Dear Players, We would like to invite you to our Kuori Lake competition on: 20/09/2026 at 16.00 MSK/15.00 CET Players from all regions can take part in the competition.</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Kuori Lake competition</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, September 11, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Dear Players, We would "
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"766570\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Dear Players, We would like to invite you to our Kuori Lake competition on: 20/09/2026 at 16.00 MSK/15.00 CET Players from all regions can take part in the competition.</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Kuori Lake competition</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, September 11, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Dear Players, We would "
     },
     {
      "appid": 1952920,
@@ -469,121 +468,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1952920\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" style=\"…\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Regular Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Paving the road for ranked, we've introduced career stats, player levels, and more</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">v0.86.0: Career stats, player levels, match website</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Regular Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, September 11, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Paving the road for ranked, we've introduced career stats, "
-    }
-   ]
-  },
-  {
-   "key": "div.LibraryAssetExpandedDisplay.PZY_7wH_NY7OgzH9MBiB8._2hhNOdcC6yLwL_rugP3YLf|link=app,img=true,price=false,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
-   "signature": "div.LibraryAssetExpandedDisplay.PZY_7wH_NY7OgzH9MBiB8._2hhNOdcC6yLwL_rugP3YLf",
-   "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.32,
-    "price": false,
-    "date": true,
-    "nativeSummary": true,
-    "title": true,
-    "platforms": false,
-    "discount": false,
-    "carousel": false,
-    "parentDisplay": "block",
-    "siblings": 13
-   },
-   "count": 3,
-   "sizes": {
-    "920x340": 3
-   },
-   "sections": {
-    ".Panel": 3
-   },
-   "headings": {
-    "Popular Titles": 3
-   },
-   "chains": {
-    "div._1ujNYGRQ8beCcurOxXJxGS < div._21kblrCh3VR0BAgfqxyMRA < div. < div._18byEIHFiivSklOwKqIx2b": 3
-   },
-   "ours": {
-    "same|shape=card|badge=none": 3
-   },
-   "examples": [
-    {
-     "appid": 3354750,
-     "title": "Tags",
-     "sizeBucket": "920x340",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px 5px 0px 0px",
-       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": {
-       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Mixed(61,559 English Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
-     },
-     "html": "<div class=\"_2hhNOdcC6yLwL_rugP3YLf PZY_7wH_NY7OgzH9MBiB8 LibraryAssetExpandedDisplay\" data-sro-card=\"3354750\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_1uLNByMlXsYSmrGPWyDNhE\"><div class=\"_3DkfNrtTOLjNYd3yZliMzy\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"yvqq8z2k4i7-Mzx-JHeNC\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"vnhlb8EFU45PU6qG2GBDW HeroCapsuleImageContainer\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\"></div></div></a></div></div><div class=\"oW0H1sBVE8K8u0qbq_Tm5\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS NLpQmAPIbG71U6eWdaOa1 WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"AgwfelHhJjcEq6ZQ9ohVr\"><div class=\"_2asUTzZuAkj9cDRKsLvwRE\"><div class=\"_3AsE5JhqLAiICKUYvZLpap StoreSaleWidgetShortDesc\">Experience improved Flick-It controls, the rich physics based skateboarding gameplay that provides those “only in skate.™“ moments and off-board exploration for full freedom in the online multiplayer world of San Vansterdam.\r\n</div><div class=\"_1ZqQL1ugqx5VZZK7e7nZuc SaleTagBlockCtn\"><div class=\"v1i4WK3tk4FpXSJ5wC60U WidgetTagTitle\">Tags</div><div class=\"_1lqaDGTzuprpWRYk4_2JrN TagBox\"><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Multiplayer</a><a href=\"…\" target=\"_blank\" c"
-    },
-    {
-     "appid": 2569510,
-     "title": "Tags",
-     "sizeBucket": "920x340",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px 5px 0px 0px",
-       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": {
-       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Mostly Positive(1,751 User Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
-     },
-     "html": "<div class=\"_2hhNOdcC6yLwL_rugP3YLf PZY_7wH_NY7OgzH9MBiB8 LibraryAssetExpandedDisplay\" data-sro-card=\"2569510\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_1uLNByMlXsYSmrGPWyDNhE\"><div class=\"_3DkfNrtTOLjNYd3yZliMzy\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"yvqq8z2k4i7-Mzx-JHeNC\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"vnhlb8EFU45PU6qG2GBDW HeroCapsuleImageContainer\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\"></div></div></a></div></div><div class=\"oW0H1sBVE8K8u0qbq_Tm5\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS NLpQmAPIbG71U6eWdaOa1 WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"AgwfelHhJjcEq6ZQ9ohVr\"><div class=\"_2asUTzZuAkj9cDRKsLvwRE\"><div class=\"_3AsE5JhqLAiICKUYvZLpap StoreSaleWidgetShortDesc\">Take your rivalries to the next level in MLB 9 Innings Rivals 26!</div><div class=\"_1ZqQL1ugqx5VZZK7e7nZuc SaleTagBlockCtn\"><div class=\"v1i4WK3tk4FpXSJ5wC60U WidgetTagTitle\">Tags</div><div class=\"_1lqaDGTzuprpWRYk4_2JrN TagBox\"><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Sports</a><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Free to Play</a><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhL"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1952920\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Regular Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Paving the road for ranked, we've introduced career stats, player levels, and more</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">v0.86.0: Career stats, player levels, match website</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Regular Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, September 11, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Paving the road for ranked, we've introduced career stats, "
     }
    ]
   },
@@ -706,15 +591,15 @@
    ]
   },
   {
-   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
    "signature": "div._3olpRSXr66ohyQFxmzqokI",
    "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
    "features": {
     "link": "app",
     "img": true,
     "artFraction": 0.58,
-    "price": false,
+    "price": true,
     "date": true,
     "nativeSummary": false,
     "title": false,
@@ -738,11 +623,11 @@
     "div#SaleSection_N.Panel.SaleSectionCtn.contenthubmaincarousel.expanded.i2PTzRNXOK1OXvXb9-wzd < div.SaleSectionTabListContainer._2VZtqrDRVSIicZZHPUY9SY < div.Panel < div.Panel.SaleOuterContainer._150kddWk8JgylTvh_eC20b": 1
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-corner": 1
+    "same|shape=card|badge=sro-badge sro-inline": 1
    },
    "examples": [
     {
-     "appid": 2669320,
+     "appid": 760630,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -760,7 +645,12 @@
        "overflowX": "hidden",
        "gap": "normal"
       },
-      "price": null,
+      "price": {
+       "cls": "_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer _1g0B-RjwkUV0_MDURgy3Bi Discounted",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
       "native": null
      },
      "ours": {
@@ -771,14 +661,90 @@
       "axis": null,
       "filtered": null,
       "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "div._3olpRSXr66ohyQFxmzqokI"
+      "badge": "sro-badge sro-inline",
+      "badgeParent": "div._3OVjwYGR60R4K6d5S_bIG3"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\" data-sro-card=\"2669320\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x541\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | EA SPORTS FC™ 25</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source typ"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\" data-sro-card=\"760630\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\" data-sro-size=\"1200x541\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"zje61fgPER-HdQgXObOdD VideoRow\"><button class=\"_21MFgj1haszC9qIPTg-xWD _2u9X1O7l1cYkZzA9mX5iNr\"><svg/></button><div class=\"f8yx9l20TjHQcxhdbRlpy\"><div class=\"Rre0ZHlSDU94N7xAYTYPx\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Tennis Elbow Manager 2</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto"
+    }
+   ]
+  },
+  {
+   "key": "div.LibraryAssetExpandedDisplay.PZY_7wH_NY7OgzH9MBiB8._2hhNOdcC6yLwL_rugP3YLf|link=app,img=true,price=false,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "signature": "div.LibraryAssetExpandedDisplay.PZY_7wH_NY7OgzH9MBiB8._2hhNOdcC6yLwL_rugP3YLf",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.32,
+    "price": false,
+    "date": true,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 13
+   },
+   "count": 1,
+   "sizes": {
+    "920x340": 1
+   },
+   "sections": {
+    ".Panel": 1
+   },
+   "headings": {
+    "Popular Titles": 1
+   },
+   "chains": {
+    "div._1ujNYGRQ8beCcurOxXJxGS < div._21kblrCh3VR0BAgfqxyMRA < div. < div._18byEIHFiivSklOwKqIx2b": 1
+   },
+   "ours": {
+    "same|shape=card|badge=none": 1
+   },
+   "examples": [
+    {
+     "appid": 3354750,
+     "title": "Tags",
+     "sizeBucket": "920x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px 5px 0px 0px",
+       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": {
+       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
+       "text": "Mixed(61,567 English Reviews)"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"_2hhNOdcC6yLwL_rugP3YLf PZY_7wH_NY7OgzH9MBiB8 LibraryAssetExpandedDisplay\" data-sro-card=\"3354750\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_1uLNByMlXsYSmrGPWyDNhE\"><div class=\"_3DkfNrtTOLjNYd3yZliMzy\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"yvqq8z2k4i7-Mzx-JHeNC\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"vnhlb8EFU45PU6qG2GBDW HeroCapsuleImageContainer\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\"></div></div></a></div></div><div class=\"oW0H1sBVE8K8u0qbq_Tm5\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS NLpQmAPIbG71U6eWdaOa1 WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"AgwfelHhJjcEq6ZQ9ohVr\"><div class=\"_2asUTzZuAkj9cDRKsLvwRE\"><div class=\"_3AsE5JhqLAiICKUYvZLpap StoreSaleWidgetShortDesc\">Experience improved Flick-It controls, the rich physics based skateboarding gameplay that provides those “only in skate.™“ moments and off-board exploration for full freedom in the online multiplayer world of San Vansterdam.\r\n</div><div class=\"_1ZqQL1ugqx5VZZK7e7nZuc SaleTagBlockCtn\"><div class=\"v1i4WK3tk4FpXSJ5wC60U WidgetTagTitle\">Tags</div><div class=\"_1lqaDGTzuprpWRYk4_2JrN TagBox\"><a href=\"…\" target=\"_blank\" class=\"_33yqka47vWurNqhnhLJb_m WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Multiplayer</a><a href=\"…\" "
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-11T15:26:36.257Z"
+ "capturedAt": "2026-09-12T07:59:40.468Z"
 }

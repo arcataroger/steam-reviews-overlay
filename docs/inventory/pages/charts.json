@@ -41,6 +41,41 @@
    },
    "examples": [
     {
+     "appid": 2767030,
+     "title": "",
+     "sizeBucket": "540x40",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.S0OGjWAy4Co-"
+     },
+     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\" data-sro-card=\"2767030\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"row\" data-sro-size=\"542x40\"><div class=\"_7zmpUGEGDTM-\">2</div><div class=\"eT-MIEVrsB8-\"><div>Marvel Rivals</div></div><div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"2767030\" data-sro-score=\"6\" data-sro-pct=\"76\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Mostly Positive</span></span></a>"
+    },
+    {
      "appid": 730,
      "title": "",
      "sizeBucket": "540x40",
@@ -73,42 +108,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.S0OGjWAy4Co-"
      },
-     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\"><div class=\"_7zmpUGEGDTM-\">2</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div></div><div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
-    },
-    {
-     "appid": 3219630,
-     "title": "",
-     "sizeBucket": "540x40",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "row",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "a.S0OGjWAy4Co-"
-     },
-     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\" data-sro-card=\"3219630\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\"><div class=\"_7zmpUGEGDTM-\">3</div><div class=\"eT-MIEVrsB8-\"><div>Halloween: The Game</div></div><div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"3219630\" data-sro-score=\"6\" data-sro-pct=\"70\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Mostly Positive</span><span class=\"sro-line sro-global sro-mixed\"><span class=\"sro-ico\">🌐</span>Mixed</span></span></a>"
+     "html": "<a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"row\" data-sro-size=\"542x40\"><div class=\"_7zmpUGEGDTM-\">3</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div></div><div></div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></a>"
     }
    ]
   },
@@ -181,7 +181,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div.xjiY68vUbWQ-"
      },
-     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>WARDOGS</div><div class=\"hv-Pl2EA7-c-\">TOP SELLING RIGHT NOW</div></div><div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"6\" data-sro-pct=\"78\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Mostly Positive</span></span></div>"
+     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"1867240\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"542x375\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>WARDOGS</div><div class=\"hv-Pl2EA7-c-\">TOP SELLING RIGHT NOW</div></div><div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1867240\" data-sro-score=\"8\" data-sro-pct=\"82\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Very Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Mostly Positive</span></span></div>"
     },
     {
      "appid": 730,
@@ -216,11 +216,13 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div.xjiY68vUbWQ-"
      },
-     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" style=\"…\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div><div class=\"hv-Pl2EA7-c-\">MOST PLAYED RIGHT NOW</div></div><div><div>1,119,297</div><div class=\"kY5DWfq2Oe0-\">IN GAME</div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
+     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"542x375\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div><div class=\"hv-Pl2EA7-c-\">MOST PLAYED RIGHT NOW</div></div><div><div>803,432</div><div class=\"kY5DWfq2Oe0-\">IN GAME</div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"86\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
     }
    ]
   }
  ],
- "errors": [],
- "capturedAt": "2026-09-11T17:33:24.012Z"
+ "errors": [
+  "Error: Minified React error #418; visit https://react.dev/errors/418?args[]= for the full message or use the non-minified dev environment for full errors and ad"
+ ],
+ "capturedAt": "2026-09-12T07:55:09.886Z"
 }

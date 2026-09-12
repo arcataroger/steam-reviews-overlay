@@ -81,6 +81,22 @@ when it has no baseline twin, when the page paints over it, when a highlighted n
 against it, or when it is shorter than the corner skip at both ends. Rising `U` means captures are
 drifting (more rotating content); raise `SRO_STOPS` or capture calmer pages if it matters.
 
+## Checking that a label never changes a card's size
+
+`npm run visual:sizes -- <url...>` loads each page twice in one run, once with the extension and once
+without, and compares every box Steam draws. Boxes are keyed by the product they link to plus the
+kind of element holding it, because a store page can feature the same game as a big header capsule on
+one load and a small tile on the next; comparing those two would report a size change nobody made.
+Hashed CSS-module class names are dropped from the key since they change whenever Steam rebuilds.
+Exit 1 if any box differs by more than a pixel.
+
+`SRO_SIZE_SELFTEST=1` is its positive control: after the badges are placed it forces each one to a
+block of its own, which genuinely does grow its card, and the check must then report it.
+
+This replaced a check inside the harness that compared sibling capsules to each other. That could
+never tell our effect from Steam's own layout — its hero carousel has uneven slides by design — so it
+flagged the same pages every round and never found anything.
+
 ## Trusting the mechanical checks
 
 `npm run visual:harness-selftest` loads a live page and runs four controls over the checks in

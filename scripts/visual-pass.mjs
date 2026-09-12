@@ -96,14 +96,11 @@ export const CHECKS = () => {
     // highlight drawn without a shape (unsized at decision time and never re-derived)
     if (card.dataset.sroHighlight && !card.dataset.sroShape) issues.push({ kind: 'highlight-without-shape', name })
   }
-  // capsule rows must stay uniform in size
-  const rows = new Map()
-  for (const c of cards) { const p = c.parentElement; if (!p) continue; if (!rows.has(p)) rows.set(p, []); rows.get(p).push(c) }
-  for (const [p, cs] of rows) {
-    if (cs.length < 3) continue
-    const sizes = new Set(cs.map(c => { const r = c.getBoundingClientRect(); return r.width && r.height ? `${Math.round(r.width)}x${Math.round(r.height)}` : null }).filter(Boolean))
-    if (sizes.size > 1 && cs.some(c => /capsule/.test(c.className.toString()))) issues.push({ kind: 'uneven-capsule-row', sizes: [...sizes], where: p.id || p.className.toString().slice(0, 40) })
-  }
+  // "A label must never change a card's size" used to be checked here by comparing sibling capsules
+  // to each other, which cannot tell our effect from Steam's own layout: its hero carousel has
+  // uneven slides by design, so this flagged the same pages every round and never found anything.
+  // scripts/check-sizes.mjs answers the real question by loading the page with and without the
+  // extension and comparing every box Steam draws.
   // Stage 1 sidecar: one record per card with non-zero area (independent of the on-screen filter
   // above — Stage 2 decides what to crop via `fullyVisible`, so off-screen cards are kept too).
   const sroCards = []

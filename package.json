@@ -24,7 +24,8 @@
     "visual:segment": "node scripts/segment-cards.mjs",
     "visual:borders": "node scripts/check-borders.mjs",
     "visual:selftest": "node scripts/gate-selftest.mjs",
-    "visual:harness-selftest": "node scripts/harness-selftest.mjs"
+    "visual:harness-selftest": "node scripts/harness-selftest.mjs",
+    "visual:sizes": "node scripts/check-sizes.mjs"
   },
   "keywords": [],
   "author": "arcataroger",

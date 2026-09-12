@@ -24,6 +24,57 @@ test.describe('badges on Steam store pages', () => {
     })
   }
 
+  test('no card wraps two different products', async ({ context }) => {
+    // The homepage pairs a game capsule with a package capsule in one column. Only /app/ links
+    // counted towards "how many games are in here", so the column looked like a single game and
+    // became the card: Death Stranding's ring wrapped the unrelated package's capsule below it.
+    const page = await context.newPage()
+    await page.goto('https://store.steampowered.com/', { waitUntil: 'domcontentloaded' })
+    await settle(page)
+    // Cards are claimed as they come into view, and the offending column sits well down the page.
+    for (let i = 0; i < 8; i++) {
+      await page.evaluate((n) => scrollTo(0, n * innerHeight * 0.8), i)
+      await page.waitForTimeout(700)
+    }
+    const spanning = await page.evaluate(() => {
+      const out: string[] = []
+      for (const card of document.querySelectorAll('[data-sro-card]')) {
+        const links = [...card.querySelectorAll('a[href*="/app/"], a[href*="/sub/"], a[href*="/bundle/"]')]
+        const targets = new Set(
+          links.map((a) => (a.getAttribute('href') || '').match(/\/(app|sub|bundle)\/(\d+)/)?.slice(1).join('/')).filter(Boolean) as string[],
+        )
+        if (targets.size > 1) out.push(`${card.className.slice(0, 40)} -> ${[...targets].join(', ')}`)
+      }
+      return out
+    })
+    expect(spanning).toEqual([])
+
+    // The live shelf only appears in some sessions, so also build the shape and let the real
+    // detector claim it: a game capsule stacked with a package capsule of the same size.
+    await page.evaluate(() => {
+      const px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
+      const wrap = document.createElement('div')
+      wrap.id = 'sro-test-shelf'
+      wrap.style.cssText = 'position:relative;width:341px'
+      wrap.innerHTML =
+        `<a href="https://store.steampowered.com/app/620/Portal_2/" style="display:block;width:341px;height:193px"><img src="${px}" style="width:341px;height:193px"></a>` +
+        `<a href="https://store.steampowered.com/sub/1390270/" style="display:block;width:341px;height:193px"><img src="${px}" style="width:341px;height:193px"></a>`
+      document.body.appendChild(wrap)
+      wrap.scrollIntoView()
+    })
+    await page.waitForTimeout(4000)
+    const shelf = await page.evaluate(() => {
+      const wrap = document.getElementById('sro-test-shelf')!
+      return {
+        wrapClaimed: wrap.hasAttribute('data-sro-card'),
+        gameClaimed: wrap.querySelector('a[href*="/app/"]')!.hasAttribute('data-sro-card'),
+        packageClaimed: wrap.querySelector('a[href*="/sub/"]')!.hasAttribute('data-sro-card'),
+      }
+    })
+    expect(shelf).toEqual({ wrapClaimed: false, gameClaimed: true, packageClaimed: false })
+    await page.close()
+  })
+
   test('search rows reuse on-page data and stay in one batch', async ({ context }) => {
     const page = await context.newPage()
     const own: string[] = []

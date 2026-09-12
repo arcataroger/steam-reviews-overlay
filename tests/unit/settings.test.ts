@@ -170,43 +170,53 @@ describe('an external settings change arriving mid-drag', () => {
   // Another popup window or a sync from another device can land while a lever is still being
   // dragged. Dropping it outright meant the drag's own save then wrote back the pre-change value
   // and silently undid the other edit; taking it outright would have yanked the lever from under
-  // the user's cursor. Keep only the keys this window is actively changing.
+  // the user's cursor. Keep only the keys this window says it is changing.
   const base: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
 
   it('keeps the dragged key and takes every other key from the incoming change', () => {
     const local = { ...base, threshold: 5 } // user has dragged the filter lever to 5, not yet saved
     const incoming = { ...base, threshold: 1, mode: 'hide' as const, source: 'local' as const }
-    expect(mergeIncoming(incoming, local, base).settings).toEqual({ mode: 'hide', threshold: 5, source: 'local', highlightThreshold: 8 })
+    expect(mergeIncoming(incoming, local, ['threshold'], 'filter')).toEqual({ mode: 'hide', threshold: 5, source: 'local', highlightThreshold: 8 })
   })
 
   it('takes the incoming change whole when nothing local is unsaved', () => {
     const incoming = { ...base, threshold: 1 }
-    expect(mergeIncoming(incoming, base, null).settings).toEqual(incoming)
+    expect(mergeIncoming(incoming, base, [], null)).toEqual(incoming)
   })
 
   it('keeps both keys when a lever push has moved two of them', () => {
-    // Dragging the filter up to 8 pushes the highlight to 9, so both differ from the drag's start.
     const local = { ...base, threshold: 8, highlightThreshold: 9 }
     const incoming = { ...base, mode: 'hide' as const }
-    expect(mergeIncoming(incoming, local, base).settings).toEqual({ mode: 'hide', threshold: 8, source: 'global', highlightThreshold: 9 })
+    expect(mergeIncoming(incoming, local, ['threshold', 'highlightThreshold'], 'filter')).toEqual({ mode: 'hide', threshold: 8, source: 'global', highlightThreshold: 9 })
   })
 })
 
 describe('a second external change during the same drag', () => {
-  // The merge base has to move with each accepted change. Diffing against the frozen drag-start
-  // snapshot left every already-merged key looking like a local edit, so the next external change
-  // to that key was dropped and the drag's own flush then wrote the stale value back to storage.
+  // The dirty keys are stated by the caller, so folding one change in does not make every key it
+  // touched look edited. Inferring them by diffing against a drag-start snapshot did exactly that,
+  // and the next external change to such a key was dropped, then overwritten by the drag's flush.
   const start: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
 
   it('lands, while the dragged key still holds', () => {
     const dragging = { ...start, threshold: 5 }
-    const first = mergeIncoming({ ...start, mode: 'hide' }, dragging, start)
-    expect(first.settings.mode).toBe('hide')
-    const stillDragging = { ...first.settings, threshold: 6 }
-    const second = mergeIncoming({ ...start, mode: 'dim', source: 'local' }, stillDragging, first.base)
-    expect(second.settings.mode).toBe('dim') // not stuck on the first change's value
-    expect(second.settings.source).toBe('local')
-    expect(second.settings.threshold).toBe(6) // the lever the user is holding is still theirs
+    const first = mergeIncoming({ ...start, mode: 'hide' }, dragging, ['threshold'], 'filter')
+    expect(first.mode).toBe('hide')
+    const stillDragging = { ...first, threshold: 6 }
+    const second = mergeIncoming({ ...start, mode: 'dim', source: 'local' }, stillDragging, ['threshold'], 'filter')
+    expect(second.mode).toBe('dim') // not stuck on the first change's value
+    expect(second.source).toBe('local')
+    expect(second.threshold).toBe(6) // the lever the user is holding is still theirs
+  })
+
+  it('holds the lever the user is dragging even after an overshoot pushed and released its sibling', () => {
+    // Drag the filter up past the highlight (pushing it to 9), then correct back down to 4. The
+    // highlight stays at 9 because the push is sticky, so the filter now matches where the drag
+    // started and only the untouched lever looks different. Inferring dirtiness from that snapshot
+    // handed the filter to the remote value and held the highlight the user never touched.
+    const dragging = { ...start, threshold: 3, highlightThreshold: 9 }
+    const merged = mergeIncoming({ ...start, threshold: 7, highlightThreshold: 8 }, dragging, ['threshold', 'highlightThreshold'], 'filter')
+    expect(merged.threshold).toBe(3)
+    expect(merged.highlightThreshold).toBe(9)
   })
 })
 
@@ -220,7 +230,7 @@ describe('merging a drag with an external change to the other lever', () => {
   it('pushes the untouched lever out of the way instead of crossing them', () => {
     const dragging = { ...base, threshold: 5 } // still valid here: 6 > 5
     const incoming = { ...base, highlightThreshold: 4 } // valid there: 4 > 3
-    const merged = mergeIncoming(incoming, dragging, base).settings
+    const merged = mergeIncoming(incoming, dragging, ['threshold'], 'filter')
     expect(merged.threshold).toBe(5) // the lever under the user's cursor is theirs
     expect(merged.highlightThreshold).toBeGreaterThan(merged.threshold)
   })
@@ -228,7 +238,7 @@ describe('merging a drag with an external change to the other lever', () => {
   it('pushes the filter down when the highlight is the lever being dragged', () => {
     const dragging = { ...base, highlightThreshold: 4 }
     const incoming = { ...base, threshold: 5 }
-    const merged = mergeIncoming(incoming, dragging, base).settings
+    const merged = mergeIncoming(incoming, dragging, ['highlightThreshold'], 'highlight')
     expect(merged.highlightThreshold).toBe(4)
     expect(merged.threshold).toBeLessThan(merged.highlightThreshold)
   })

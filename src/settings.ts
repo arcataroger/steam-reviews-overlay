@@ -159,32 +159,38 @@ export async function saveSettings(s: Settings): Promise<void> {
   }
 }
 
-/** Fold an external change into an edit still in flight. The keys the user is dragging stay as they
- *  have them, everything else takes the incoming value. Dropping the whole update instead let the
- *  drag's own flush write back the pre-change values and silently undo the other window's edit.
+/** Fold an external change into an edit still in flight.
  *
- *  `base` is the last state this window agreed with the world on; a key differing from it is one the
- *  user is editing. The caller must keep the returned `base`, not its original snapshot: once an
- *  incoming value has been accepted it is no longer a local edit, and diffing against the frozen
- *  drag-start snapshot made every already-merged key look dirty forever, so a second external change
- *  to that same key during the same drag was dropped and then overwritten by the drag's flush. */
+ *  `dirty` names the keys this window is actively editing; those keep their local value and every
+ *  other key takes the incoming one. Dropping the whole update instead let the drag's own flush
+ *  write back the pre-change values and silently undo the other window's edit.
+ *
+ *  The dirty keys are passed in rather than inferred by diffing against a drag-start snapshot. A
+ *  snapshot goes stale the moment one incoming change is folded in, and a lever's push of its
+ *  sibling is sticky, so an overshoot-then-correct on one lever could leave only the *other*,
+ *  pushed lever looking edited — and the merge would then hand the user's own lever to the remote
+ *  value while holding the one they never touched.
+ *
+ *  `moved` is the lever under the user's pointer, or null when no lever is being dragged. Each side
+ *  was valid on its own, but taking one lever from each can still cross them, so the result is
+ *  reconciled in favour of the lever the user is holding: the other one gets pushed out of the way.
+ */
 export function mergeIncoming(
   incoming: Settings,
   local: Settings,
-  base: Settings | null,
-): { settings: Settings; base: Settings } {
-  if (!base) return { settings: incoming, base: incoming }
+  dirty: Iterable<keyof Settings>,
+  moved: 'filter' | 'highlight' | null = null,
+): Settings {
   const merged = { ...incoming }
-  for (const key of Object.keys(local) as (keyof Settings)[]) {
-    if (local[key] !== base[key]) (merged as Record<string, unknown>)[key] = local[key]
+  let edited = false
+  for (const key of dirty) {
+    ;(merged as Record<string, unknown>)[key] = local[key]
+    edited = true
   }
-  // Each side was valid on its own, but picking one lever from each can still cross them: taking a
-  // dragged filter tier from here and a lowered highlight tier from there leaves the highlight
-  // below the filter, which reconcile() makes impossible everywhere else. The lever the user is
-  // holding is the one that moved, so push the other out of its way rather than the reverse.
-  const moved = local.threshold !== base.threshold ? 'filter' : local.highlightThreshold !== base.highlightThreshold ? 'highlight' : null
-  return { settings: moved ? reconcile(merged, moved) : merged, base: incoming }
+  if (!edited) return incoming
+  return moved ? reconcile(merged, moved) : merged
 }
+
 export function onSettingsChange(cb: (s: Settings) => void): void {
   ext.storage.onChanged.addListener((changes) => {
     const c = changes[KEY]

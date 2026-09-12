@@ -140,6 +140,22 @@ function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): 
   return false
 }
 
+/** Links to a product that is not an app: a package or a bundle has its own store page and its own
+ *  review score, so a box holding one of those alongside our game is a shelf, not that game's card. */
+const OTHER_PRODUCT_SEL = 'a[href*="/sub/"], a[href*="/bundle/"]'
+
+/** Does `parent` hold, outside `tile`, an artwork-sized link to a package or bundle? */
+function hasOtherProductTile(parent: HTMLElement, tile: HTMLElement): boolean {
+  for (const n of parent.querySelectorAll<HTMLElement>(OTHER_PRODUCT_SEL)) {
+    if (tile.contains(n)) continue
+    const r = n.getBoundingClientRect()
+    // Same bar as a sibling game tile: a small "add to cart" link is not another product's capsule
+    if (r.height < 40 || r.width < 60 || !hasArt(n)) continue
+    return true
+  }
+  return false
+}
+
 /**
  * Walk up from a game link to the largest ancestor that still references only this
  * one game and isn't absurdly large. That ancestor is the "card".
@@ -160,6 +176,10 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
     // A row of tiles that all belong to the same game (three news posts about one title) is a group,
     // not a card: stop at the tile when the parent holds another artwork-bearing link to it.
     if (card && hasSiblingTile(el, card, appid)) break
+    // Only `/app/` links count towards `appIdsWithin`, so a column pairing a game capsule with a
+    // package capsule looked like one game and the whole column became the card: on the homepage
+    // the Death Stranding capsule's ring wrapped an unrelated package's capsule below it.
+    if (card && hasOtherProductTile(el, card)) break
     card = el
     el = el.parentElement
     hops++

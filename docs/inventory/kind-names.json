@@ -37,5 +37,6 @@
   "a.": "Plain text link on a package page (not a card)",
   "ul.bb_ul": "BBCode list on a package page (not a card)",
   "div#AppN.appeared.reviewed_app": "Community recommendation review card (no microtrailer, no hashed class)",
-  "div.+4h|.Panel|news,art": "News hub post tile (row style, Warframe-type single posts)"
+  "div.+4h|.Panel|news,art": "News hub post tile (row style, Warframe-type single posts)",
+  "div.+1h|.Panel|news,art,art≥50%": "News hub post row with large art, and an app page's own Recent Events & Announcements tiles (those link to the page's own game, so they carry no label by design)"
 }

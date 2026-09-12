@@ -237,22 +237,31 @@ radioKeys(sourceGroup, (b) => update({ source: b.dataset.source as ScoreSource }
 
 let saveTimer: number | undefined
 let pendingSave: Settings | null = null
-/** What the settings were before the unsaved edit began, so we know which keys the user has touched. */
-let dirtyBase: Settings | null = null
+/** Which settings this window is editing right now, and which lever (if any) is under the pointer.
+ *  Recorded as the edits happen rather than worked out later by diffing: see mergeIncoming. */
+let dirtyKeys = new Set<keyof Settings>()
+let dirtySide: Side | null = null
 function flush() {
   clearTimeout(saveTimer)
   saveTimer = undefined
   if (!pendingSave) return
   const s = pendingSave
   pendingSave = null
-  dirtyBase = null
+  dirtyKeys = new Set()
+  dirtySide = null
   void saveSettings(s)
 }
-/** Discrete changes save immediately; drags (`defer`) coalesce and flush on release or popup close. */
-function update(patch: Partial<Settings>, { defer = false } = {}) {
+/** Discrete changes save immediately; drags (`defer`) coalesce and flush on release or popup close.
+ *  `keys` names what the user is changing when the patch is a whole settings object; `side` names
+ *  the lever they are holding. */
+function update(
+  patch: Partial<Settings>,
+  { defer = false, keys, side }: { defer?: boolean; keys?: (keyof Settings)[]; side?: Side } = {},
+) {
   if (!loaded) return
-  if (!dirtyBase) dirtyBase = settings
   settings = { ...settings, ...patch }
+  for (const k of keys ?? (Object.keys(patch) as (keyof Settings)[])) dirtyKeys.add(k)
+  if (side) dirtySide = side
   render()
   pendingSave = settings
   clearTimeout(saveTimer)
@@ -268,10 +277,8 @@ document.addEventListener('visibilitychange', () => {
 // still in flight keeps the keys it is moving; everything else takes the incoming value.
 onSettingsChange((s) => {
   if (pendingSave) {
-    const folded = mergeIncoming(s, settings, dirtyBase)
-    settings = folded.settings
-    pendingSave = folded.settings
-    dirtyBase = folded.base
+    settings = mergeIncoming(s, settings, dirtyKeys, dirtySide)
+    pendingSave = settings
   } else {
     settings = s
   }
@@ -288,7 +295,9 @@ function setPos(side: Side, raw: number, opts: { defer?: boolean } = {}) {
   else v = snapPosition(raw)
   const next = reconcile({ ...settings, [KEY[side]]: v }, side)
   const pushed = side === 'filter' ? next.highlightThreshold !== settings.highlightThreshold : next.threshold !== settings.threshold
-  update(next, opts)
+  // `next` is a whole settings object, so say which keys the user is actually moving: the lever
+  // under the pointer, and its sibling only while this move is pushing it along.
+  update(next, { ...opts, side, keys: pushed ? ['threshold', 'highlightThreshold'] : [KEY[side]] })
   if (pushed) {
     const other = ui[side === 'filter' ? 'highlight' : 'filter'].knob
     other.classList.add('pushed')

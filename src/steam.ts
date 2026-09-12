@@ -115,7 +115,21 @@ function loadPersisted(): Promise<void> {
       const stored = res?.[CACHE_KEY] as Record<string, ReviewSummary> | undefined
       const now = Date.now()
       for (const v of Object.values(stored ?? {})) {
-        if (v && now - v.ts < STALE_MS && !mem.has(v.appid)) mem.set(v.appid, v)
+        if (!v || now - v.ts >= STALE_MS) continue
+        const cur = mem.get(v.appid)
+        if (!cur) {
+          mem.set(v.appid, v)
+          continue
+        }
+        // Page seeding runs before this load and fills only the side the page showed, so the entry
+        // already in memory can be half empty. Take the missing side from the cache rather than
+        // skipping the whole record, which used to strand that side at null until a refetch.
+        const merged = { ...cur, global: cur.global ?? v.global, local: cur.local ?? v.local }
+        if (merged.global !== cur.global || merged.local !== cur.local) {
+          mem.set(v.appid, merged)
+          const subs = listeners.get(v.appid)
+          if (subs) for (const cb of subs) cb(merged)
+        }
       }
       // Long-lived skips (hardware, Steam's own apps) survive page navigations, which reload this script
       for (const [k, exp] of Object.entries((res?.[NEG_KEY] as Record<string, number>) ?? {})) {

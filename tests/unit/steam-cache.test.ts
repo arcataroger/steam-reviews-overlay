@@ -32,3 +32,33 @@ describe('persisted cache', () => {
     expect(storageStore[NEG_KEY]).toEqual({})
   })
 })
+
+describe('cache load merges with page-seeded entries', () => {
+  beforeEach(() => {
+    for (const k of Object.keys(storageStore)) delete storageStore[k]
+    vi.resetModules() // a fresh steam.ts, so `mem` starts empty like a new page load
+  })
+
+  it('fills the side the page could not seed from the stored cache', async () => {
+    // The page shows only one side (a search row's own-language summary); the other side is known
+    // from a previous visit. Loading must not drop it just because the appid is already in memory.
+    const now = Date.now()
+    storageStore[CACHE_KEY] = {
+      '620': {
+        appid: 620,
+        global: { label: 'Overwhelmingly Positive', score: 9, pct: 98, count: 100000 },
+        local: { label: 'Very Positive', score: 8, pct: 92, count: 900 },
+        ts: now,
+        expires: now + 60_000,
+      },
+    }
+    const { seed, subscribe, peekCached } = await import('../../src/steam')
+    seed(620, 'local', { label: 'Very Positive', score: 8, pct: 92, count: 900 })
+    expect(peekCached(620)?.global).toBeNull() // only the page's side so far
+    const seen: unknown[] = []
+    subscribe(620, (s) => seen.push(s)) // subscribing is what triggers the persisted load
+    await vi.waitFor(() => expect(peekCached(620)?.global?.label).toBe('Overwhelmingly Positive'))
+    expect(peekCached(620)?.local?.label).toBe('Very Positive') // the page's side is untouched
+    expect(seen.length).toBeGreaterThan(0) // subscribers are told about the restored side
+  })
+})

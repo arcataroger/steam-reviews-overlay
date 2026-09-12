@@ -71,19 +71,29 @@ for (const url of urls) {
     await page.waitForTimeout(6000)
     const entry = { url, state: stateName, stops: [], errors }
     const seenIssues = new Set()
-    for (let stop = 0; stop < (Number(process.env.SRO_STOPS) || 8); stop++) {
-      await page.waitForTimeout(stop === 0 ? 2000 : 1400)
-      const r = await page.evaluate(CHECKS)
-      const file = `${slug(url)}__${stateName}__${stop}.png`
-      await page.screenshot({ path: path.join(out, file) })
-      const fresh = r.issues.filter(i => { const k = JSON.stringify(i); if (seenIssues.has(k)) return false; seenIssues.add(k); return true })
-      entry.stops.push({ stop, file, cards: r.cards, badges: r.badges, highlighted: r.highlighted, filtered: r.filtered, issues: fresh })
-      const atEnd = await page.evaluate(() => scrollY + innerHeight >= document.documentElement.scrollHeight - 5)
-      if (atEnd) break
-      await page.mouse.wheel(0, 900)
+    // One flaky stop (a screenshot timing out under load) must not lose the whole run's report
+    try {
+      for (let stop = 0; stop < (Number(process.env.SRO_STOPS) || 8); stop++) {
+        await page.waitForTimeout(stop === 0 ? 2000 : 1400)
+        const r = await page.evaluate(CHECKS)
+        const file = `${slug(url)}__${stateName}__${stop}.png`
+        try {
+          await page.screenshot({ path: path.join(out, file), timeout: 30000 })
+        } catch (e) {
+          entry.stops.push({ stop, file: null, shotError: String(e).slice(0, 100), issues: [] })
+          continue
+        }
+        const fresh = r.issues.filter(i => { const k = JSON.stringify(i); if (seenIssues.has(k)) return false; seenIssues.add(k); return true })
+        entry.stops.push({ stop, file, cards: r.cards, badges: r.badges, highlighted: r.highlighted, filtered: r.filtered, issues: fresh })
+        const atEnd = await page.evaluate(() => scrollY + innerHeight >= document.documentElement.scrollHeight - 5)
+        if (atEnd) break
+        await page.mouse.wheel(0, 900)
+      }
+    } catch (e) {
+      entry.error = String(e).slice(0, 160)
     }
     report.push(entry)
-    console.log(`${slug(url)} [${stateName}]: ${entry.stops.length} stops, ${entry.stops.reduce((n, s) => n + s.issues.length, 0)} issues, ${errors.length} console errors`)
+    console.log(`${slug(url)} [${stateName}]: ${entry.stops.length} stops, ${entry.stops.reduce((n, s) => n + s.issues.length, 0)} issues, ${errors.length} console errors${entry.error ? `, ERROR ${entry.error}` : ''}`)
     await ctx.close()
   }
 }

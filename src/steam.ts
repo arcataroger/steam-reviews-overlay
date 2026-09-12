@@ -135,7 +135,7 @@ function schedulePersist() {
     const now = Date.now()
     try {
       // Merge with what other tabs wrote so tabs don't clobber each other's entries
-      const res = await ext.storage.local.get(CACHE_KEY)
+      const res = await ext.storage.local.get([CACHE_KEY, NEG_KEY])
       const obj: Record<string, ReviewSummary> = {}
       for (const v of Object.values((res?.[CACHE_KEY] as Record<string, ReviewSummary>) ?? {})) if (v && now - v.ts < STALE_MS) obj[v.appid] = v
       for (const [k, v] of mem) if (now - v.ts < STALE_MS && !(obj[k] && obj[k].ts > v.ts)) obj[k] = v

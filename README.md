@@ -15,8 +15,10 @@ cards across the Steam store, so you don't have to hover every capsule.
   Overwhelmingly Negative), no-score gray `#929396`. Each card also gets `data-sro-tone="positive|mixed|negative|none"`
   and `data-sro-score="0-9"` so future overlays (dimming, hiding, etc.) can hook
   in with plain CSS.
-- Badges read like "Very Positive (83%)": Steam's label plus Steam's exact
-  integer percent.
+- Badges show Steam's label only ("Very Positive"), to stay short enough to sit
+  beside a price without covering anything. Steam's exact integer percent and
+  review count are in the badge's hover tooltip and on `data-sro-pct`; the
+  popup's levers show the percent bands.
 - Toolbar popup (click the icon) styled as a two-lever throttle. The **left
   lever** picks a tier: games at that tier **or lower** are **dimmed** (black
   overlay, still clickable) or **hidden** (fade out, then collapsed so lists

@@ -341,6 +341,21 @@ export function checkCard(image, card = {}, opts = {}) {
     offset: opts.offset ?? geometry.offset,
   }
   const bands = edgeBands(image.width, image.height, pad, bandOpts)
+  // An edge that should carry NOTHING has to be swept in every geometry the overlay can draw in,
+  // not just this card's own. The `card` treatment's glow sits OUTSIDE the box, so a parked card
+  // that wrongly gained one was invisible to the inside-the-box bands a parked card is measured
+  // with: the gate's own self-test caught only 38% of dropped `card` highlights until this swept
+  // both. The extra geometry costs nothing on expected edges, which are never checked against it.
+  const strayGeometries = Object.values(TREATMENT_GEOMETRY).filter(
+    (g, i, all) => all.findIndex((o) => o.offset === g.offset && o.band === g.band && o.corner === g.corner) === i,
+  )
+  const strayBands = strayGeometries.map((g) =>
+    edgeBands(image.width, image.height, pad, {
+      band: opts.band ?? g.band,
+      corner: opts.corner ?? g.corner,
+      offset: opts.offset ?? g.offset,
+    }),
+  )
 
   let colour = null
   let colourMissing = false
@@ -377,10 +392,13 @@ export function checkCard(image, card = {}, opts = {}) {
     // Pick the tone by what the overlay ADDED over the un-highlighted twin, not by raw presence:
     // Steam's own blue chrome sits at a high fraction in both states, so scoring on presence alone
     // would let it win the loop and hide a wrong-tone ring the overlay really did draw here.
+    const sweeps = isExpected ? [bands] : strayBands
     let hit = null
     for (const tone of probeColours) {
-      const probe = edgeGain(image, baseline, bands[name], tone, { tolerance, chroma, minBrightness })
-      if (!hit || probe.gain > hit.gain) hit = probe
+      for (const sweep of sweeps) {
+        const probe = edgeGain(image, baseline, sweep[name], tone, { tolerance, chroma, minBrightness })
+        if (!hit || probe.gain > hit.gain) hit = probe
+      }
     }
     if (!hit) hit = { fraction: 0, matched: 0, baseFraction: 0, gain: 0, total: sampled }
     const gained = baseline ? Math.max(0, hit.gain) : null

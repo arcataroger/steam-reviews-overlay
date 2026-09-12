@@ -534,3 +534,23 @@ describe('the measured fraction is reported even when the overlay added nothing'
     expect(result.edges.top.pass).toBe(false) // no gain: we cannot claim the ring as ours
   })
 })
+
+describe('an edge that must stay clean is swept in every geometry', () => {
+  // The `card` treatment's glow sits OUTSIDE the box. A parked card is measured with the inside-the
+  // box bands, so a glow it should never have had went unseen: the gate's self-test caught only 38%
+  // of dropped `card` highlights until edges expected to be clean swept both geometries.
+  it('catches an outside glow on a card claimed to be parked', () => {
+    const image = makeImage(W, H, gray)
+    // Paint the glow where the `card` treatment draws it: straddling the box edge, 3px out.
+    paintRect(image, PAD - 3, PAD - 3, W - PAD + 3, PAD - 1, [0x66, 0xc0, 0xf4])
+    const baseline = makeImage(W, H, gray)
+    const result = checkCard(image, { shape: null, color: null }, { pad: PAD, baseline })
+    expect(result.edges.top.pass).toBe(false)
+  })
+
+  it('still passes a genuinely parked card', () => {
+    const image = makeImage(W, H, gray)
+    const baseline = makeImage(W, H, gray)
+    expect(checkCard(image, { shape: null, color: null }, { pad: PAD, baseline }).ok).toBe(true)
+  })
+})

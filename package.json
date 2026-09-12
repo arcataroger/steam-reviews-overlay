@@ -22,7 +22,8 @@
     "inventory": "npm run inventory:nav && npm run inventory:crawl && npm run inventory:merge",
     "visual:capture": "node scripts/visual-pass.mjs",
     "visual:segment": "node scripts/segment-cards.mjs",
-    "visual:borders": "node scripts/check-borders.mjs"
+    "visual:borders": "node scripts/check-borders.mjs",
+    "visual:selftest": "node scripts/gate-selftest.mjs"
   },
   "keywords": [],
   "author": "arcataroger",

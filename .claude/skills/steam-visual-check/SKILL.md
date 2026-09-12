@@ -36,7 +36,15 @@ restatement of our own CSS.
   Cards with no twin report those edges as *unjudged* rather than guessing; the summary line counts
   them.
 - **Occlusion**: edges covered by Steam's sticky category bar or a hover panel are recorded at
-  capture time and skipped.
+  capture time and skipped. Five points are probed along each edge, not just its midpoint, because
+  a hover panel can cover one end of a card and leave the centre clear.
+- **Gain, per line**: a tone counts only by how much more of it the active crop holds than the same
+  *line* of the twin. Comparing the band's best line in one against the band's best line in the
+  other compared two different rows, and a ring drawn two rows out scored zero against Steam's own
+  panel fill three rows in.
+- **Neighbours**: a highlighted card butted against an edge bleeds its ring into our crop, so that
+  edge is unjudged — but only when the neighbour's treatment actually paints the side facing us. Two
+  stacked `panel`/`axis: y` cards paint nothing along the edge they share.
 
 ## Reading the result
 
@@ -48,7 +56,27 @@ content); raise `SRO_STOPS` or capture calmer pages if it matters.
 
 ## Trusting the checker itself
 
-`tests/unit/border-check.test.ts` and `tests/unit/segment-cards.test.ts` cover the pure logic on
-synthetic images (141 tests). To re-prove it end to end, take a real crop dir and rewrite its
-manifest into deliberate lies — claim every card has a `row` ring, claim none is highlighted, claim
-the wrong tone colour — and confirm each control produces failures where the truth produces none.
+`tests/unit/border-check.test.ts`, `tests/unit/segment-cards.test.ts` and `tests/unit/falsify.test.ts`
+cover the pure logic on synthetic images. To re-prove the gate end to end on real pixels, run
+`npm run visual:selftest -- <cropDir>`: it rewrites the manifest into five deliberate lies (wrong
+tone, a ring invented on a parked card, a panel's wings flipped to the other axis, a panel claimed
+as an all-four-edges ring, and a real highlight claimed absent), re-runs the gate over the *same*
+pixels, and requires each lie to be caught on at least 90% of the cards it was told about. Exit 1
+otherwise. A truthful manifest reporting zero failures only means something when this passes.
+
+Run it after any change to the matcher, the band geometry or the treatments. It found two real
+blind spots on its first run: edges expected to be clean were only swept in the card's own geometry,
+so a parked card that wrongly gained the outside glow went unseen (38% caught), and the tone loop
+could throw away its only measurement and report a ring that was plainly there as missing.
+
+## Reading the result
+
+`checked N cards, F failures (P paired with an un-highlighted twin, U edges unjudged for want of
+one; B labels-state crops read as baselines)`
+
+The labels-state crops exist only to be the baseline for their active twin, so they are counted
+separately and not as checked cards. A failure prints `FAIL <file>: edge <name> expected <colour>
+got <fraction>`. Open that crop: the file name says what it should have been. An edge goes unjudged
+when it has no baseline twin, when the page paints over it, when a highlighted neighbour is butted
+against it, or when it is shorter than the corner skip at both ends. Rising `U` means captures are
+drifting (more rotating content); raise `SRO_STOPS` or capture calmer pages if it matters.

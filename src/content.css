@@ -139,9 +139,11 @@
 /* Capsules (mostly artwork): almost a rectangle, sitting just behind the card with a hint of fuzz.
    Tolerates Steam's overhanging tags ("TODAY'S DEAL") and the thumbnail growing on hover. */
 [data-sro-highlight][data-sro-shape="card"] {
+  /* !important: some capsules ship their own box-shadow (newonsteam_headercap) that would win
+     the cascade and hide the glow */
   box-shadow:
     0 0 0 2px color-mix(in srgb, var(--sro-hl) 85%, transparent),
-    0 0 4px 2px color-mix(in srgb, var(--sro-hl) 45%, transparent);
+    0 0 4px 2px color-mix(in srgb, var(--sro-hl) 45%, transparent) !important;
 }
 
 /* --sro-hl is set inline per card to the game's OWN review color; tone attrs are fallbacks */

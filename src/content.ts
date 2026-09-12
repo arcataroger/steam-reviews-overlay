@@ -893,7 +893,7 @@ function scan(root: ParentNode = document) {
     if (r.width < 40 || r.height < 16) continue
     // Short and image-less is usually a prose link; a block-level row of a ranking list
     // (charts: "3  Halloween: The Game  1,251,033") is a card even so.
-    if (r.height < 60 && !card.querySelector('img, picture, video') && !isTextRow(card, r)) continue
+    if (r.height < 60 && !hasArt(card) && !isTextRow(card, r)) continue // art may be a background image
     if (linksToNonGame(card)) continue
     card.setAttribute(CARD_ATTR, String(appid))
     cardsByAppId.set(card, appid)

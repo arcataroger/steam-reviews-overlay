@@ -250,3 +250,17 @@
 
 /* Beside a row's title (dense tables): a small gap, never wrapping the title */
 .sro-badge.sro-beside-title { margin-inline-start: 8px; vertical-align: baseline; }
+
+/* Hiding a filtered list can animate dozens of cards at once, and the dim overlay fades on hover.
+   For a reader who asked for less motion both should just switch state. This block sits last on
+   purpose: these selectors tie with the base rules above, so it has to come after them to win. */
+@media (prefers-reduced-motion: reduce) {
+  [data-sro-filtered="hiding"] {
+    transition: none;
+    transform: none;
+  }
+  [data-sro-filtered="dim"]::after,
+  [data-sro-filtered="dim"]:hover::after {
+    transition: none;
+  }
+}

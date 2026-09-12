@@ -369,15 +369,17 @@ export function checkCard(image, card = {}, opts = {}) {
     if (covered) {
       pass = true
       notes.push(`edge ${name}: occluded by the page, not judged`)
-    } else if (isExpected) {
-      // Present outright, and (when we can tell) actually gained versus the un-highlighted state.
-      pass = hit.fraction >= minHit && (gained === null || gained >= minGain)
     } else if (card.neighbourHighlight && card.neighbourHighlight[name]) {
-      // A highlighted card is butted against this edge, so its ring lands in our band — and it is
-      // absent from the un-highlighted twin too, so even the difference is not ours. Not judged.
+      // A highlighted card is butted against this edge. Its ring lands in our band, and it is absent
+      // from the un-highlighted twin too, so the difference is not ours either. That cuts both ways:
+      // it could mask this card's MISSING ring just as easily as it could fake a stray one. Neither
+      // direction is knowable here, so the edge is not judged.
       pass = true
       unverified = true
       notes.push(`edge ${name}: a highlighted neighbour touches this edge, not judged`)
+    } else if (isExpected) {
+      // Present outright, and (when we can tell) actually gained versus the un-highlighted state.
+      pass = hit.fraction >= minHit && (gained === null || gained >= minGain)
     } else if (gained !== null) {
       pass = gained < maxStray
     } else if (negativeNeedsBaseline) {

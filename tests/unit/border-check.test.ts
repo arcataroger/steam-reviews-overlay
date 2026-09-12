@@ -462,3 +462,26 @@ describe('unexpected edges are policed against every tone', () => {
     expect(res.ok).toBe(false)
   })
 })
+
+describe('edges touching a highlighted neighbour', () => {
+  // A neighbour's ring lands in our band and is absent from the un-highlighted twin too, so it can
+  // fake a stray ring OR mask a missing one. Neither direction is knowable: leave the edge unjudged.
+  const blue: [number, number, number] = [0x66, 0xc0, 0xf4]
+
+  it('does not pass a card whose own expected ring is missing on an unaffected edge', () => {
+    const img = makeImage(W, H, gray)
+    paintInwardRing(img, PAD, 2, blue, ['right', 'bottom', 'left']) // top ring missing
+    const card = { shape: 'row' as const, color: POSITIVE }
+    expect(checkCard(img, card, { pad: PAD }).ok).toBe(false)
+  })
+
+  it('leaves an expected edge unjudged when a highlighted neighbour touches it', () => {
+    const img = makeImage(W, H, gray)
+    paintInwardRing(img, PAD, 2, blue, ['right', 'bottom', 'left'])
+    const card = { shape: 'row' as const, color: POSITIVE, neighbourHighlight: { top: true } }
+    const res = checkCard(img, card, { pad: PAD })
+    expect(res.edges.top.unverified).toBe(true)
+    expect(res.ok).toBe(true) // not judged rather than failed...
+    expect(res.edges.right.pass).toBe(true) // ...while the edges we can judge still are
+  })
+})

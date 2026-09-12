@@ -123,6 +123,9 @@ export function neighbourHighlights(card, all, pad) {
  * Pixel-space crop rectangle for a card: `rect` (CSS px) scaled by `dpr`, padded by `pad` CSS px
  * (also scaled by `dpr`) on every side, then clamped to the image bounds.
  */
+/** The capture marks a card fullyVisible only with this much room on every side (visual-pass.mjs). */
+export const MAX_PAD = 16
+
 export function cropRect(rect, dpr, pad, imageWidth, imageHeight) {
   const x0 = rect.x * dpr - pad * dpr
   const y0 = rect.y * dpr - pad * dpr
@@ -147,7 +150,14 @@ function parseArgs(argv) {
 }
 
 function main() {
-  const { captureDir, out, pad } = parseArgs(process.argv.slice(2))
+  let { captureDir, out, pad } = parseArgs(process.argv.slice(2))
+  // visual-pass only marks a card fullyVisible when it has 16px to spare on every side, so a bigger
+  // pad would be silently clamped on one side and the checker (which assumes uniform padding) would
+  // sample the wrong rows.
+  if (!(pad >= 0) || pad > MAX_PAD) {
+    console.warn(`pad ${pad} is outside 0..${MAX_PAD} (the capture's visibility margin); using ${MAX_PAD}`)
+    pad = MAX_PAD
+  }
   if (!captureDir) {
     console.error('Usage: node scripts/segment-cards.mjs <captureDir> [--out <dir>] [--pad N]')
     process.exit(1)

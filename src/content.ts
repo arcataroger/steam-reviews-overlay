@@ -326,6 +326,10 @@ function glowWouldClip(card: HTMLElement, r: DOMRect): boolean {
 function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; axis?: 'x' | 'y' } {
   const r = card.getBoundingClientRect()
   if (!r.width || !r.height) return { shape: 'row' }
+  // A slide inside the rotating content-hub carousel sits flush against the widget's own furniture:
+  // the video on one side, the info panel on the other, the clipping viewport around all of it. The
+  // outside glow lost two or three of its edges there, so draw the ring inside the slide instead.
+  if (card.closest(ROTATING_CAROUSEL)) return { shape: 'row' }
   const tall = r.height >= 160
   // Neighbours beside this card: edge-to-edge tiles (events carousels) get wings top/bottom whatever
   // the art; overlapping slides (hero carousels, peeking neighbours) are hero cards → underglow.

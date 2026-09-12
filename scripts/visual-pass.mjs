@@ -6,13 +6,22 @@ import path from 'node:path'
 import fs from 'node:fs'
 import crypto from 'node:crypto'
 import { pathToFileURL } from 'node:url'
-const ext = process.env.SRO_EXT_DIR ? path.resolve(process.env.SRO_EXT_DIR) : path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
-const id = [...crypto.createHash('sha256').update(ext).digest('hex').slice(0, 32)].map(c => String.fromCharCode(97 + parseInt(c, 16))).join('')
+const srcExt = process.env.SRO_EXT_DIR ? path.resolve(process.env.SRO_EXT_DIR) : path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
 // Importing this file (the mechanical checks are exercised against a live page by their own
 // positive control) must not start a capture run.
 const isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href
 const [out, ...urls] = isMain ? process.argv.slice(2) : []
 if (isMain) fs.mkdirSync(out, { recursive: true })
+// Run against our own copy of the extension. A capture takes the better part of an hour, and a
+// rebuild in the same checkout meanwhile replaces the content script's content-hashed filename:
+// pages loaded after that fail to inject with ERR_FILE_NOT_FOUND and the run is quietly worthless.
+const ext = isMain ? path.join(path.resolve(out), '.ext') : srcExt
+if (isMain) {
+  fs.rmSync(ext, { recursive: true, force: true })
+  fs.cpSync(srcExt, ext, { recursive: true })
+}
+// Chrome derives an unpacked extension's id from the SHA-256 of its path, so this follows the copy.
+const id = [...crypto.createHash('sha256').update(ext).digest('hex').slice(0, 32)].map((c) => String.fromCharCode(97 + parseInt(c, 16))).join('')
 const KEY = 'sro:settings:v4'
 const STATES = {
   labels: { mode: 'dim', threshold: 0, source: 'global', highlightThreshold: 10 },

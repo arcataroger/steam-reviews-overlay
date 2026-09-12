@@ -67,7 +67,10 @@ await page.waitForTimeout(8000)
 // to a native summary by withdrawing its own plain label, so a real card can never hold this state.
 // With no app link and no data-ds-appid inside, the content script never claims this element.
 const planted = await page.evaluate(() => {
-  const real = document.querySelector('.sro-badge')
+  // A badge with exactly one line: the two-line 🇺🇸/🌐 pair is a different case, and which of them
+  // comes first in the DOM depends on whichever games the page happens to be showing. Taking the
+  // first badge made this control fail on any page whose first card carries the pair.
+  const real = [...document.querySelectorAll('.sro-badge')].find((b) => b.querySelectorAll('.sro-line').length === 1)
   if (!real) return null
   const card = document.createElement('div')
   card.setAttribute('data-sro-card', '620')

@@ -109,6 +109,42 @@ test.describe('badges on Steam store pages', () => {
     await page.close()
   })
 
+  test('a recycled slot is not repainted with the game it used to hold', async ({ context }) => {
+    // Steam recycles a carousel node by swapping what is inside it. A deferred repaint (a resize, a
+    // late image, a font swap) could fire before the scanner notices and paint the previous game's
+    // label and tone onto the game now in that slot. An href swapped in place never reaches the
+    // scanner on its own: the mutation observer watches childList and characterData, not attributes.
+    const page = await context.newPage()
+    await page.goto('https://store.steampowered.com/', { waitUntil: 'domcontentloaded' })
+    await settle(page)
+    await page.evaluate(() => {
+      const px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
+      const slot = document.createElement('a')
+      slot.id = 'sro-test-slot'
+      slot.href = 'https://store.steampowered.com/app/620/Portal_2/'
+      slot.style.cssText = 'display:block;position:relative;width:300px;height:180px'
+      slot.innerHTML = `<img src="${px}" style="width:300px;height:180px">`
+      document.body.appendChild(slot)
+    })
+    await expect
+      .poll(() => page.evaluate(() => document.getElementById('sro-test-slot')?.getAttribute('data-sro-card')), { timeout: 20_000 })
+      .toBe('620')
+
+    // Swap the game in place, then make the slot resize so the deferred repaint runs.
+    await page.evaluate(() => {
+      const slot = document.getElementById('sro-test-slot') as HTMLAnchorElement
+      slot.href = 'https://store.steampowered.com/app/730/CounterStrike_2/'
+      slot.style.width = '340px'
+    })
+    await page.waitForTimeout(5000)
+    const after = await page.evaluate(() => {
+      const slot = document.getElementById('sro-test-slot')!
+      return { claimed: slot.getAttribute('data-sro-card'), badge: (slot.querySelector('.sro-badge')?.textContent || '').trim() }
+    })
+    expect(after.claimed).not.toBe('620')
+    await page.close()
+  })
+
   test('search rows reuse on-page data and stay in one batch', async ({ context }) => {
     const page = await context.newPage()
     const own: string[] = []

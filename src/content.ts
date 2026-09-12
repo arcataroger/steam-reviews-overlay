@@ -603,8 +603,24 @@ const hideTimers = new Map<HTMLElement, number>()
 /** Read live, not cached: a reader can flip the OS setting while the page is open. */
 const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 /** The freshest summary for a card (review data may have arrived since a deferred handler was armed). */
-function latest(card: HTMLElement, fallback: ReviewSummary): ReviewSummary {
+/**
+ * The appid this card is claimed for, but only while the card still points at that game.
+ *
+ * Steam recycles a carousel node by swapping what is inside it, and a deferred repaint (a resize, a
+ * late image, a font swap) could fire in the gap before the scanner notices, painting the previous
+ * game's label, tone and highlight onto the game now in that slot. An href swapped in place never
+ * reaches the scanner at all: the mutation observer watches childList and characterData, not
+ * attributes.
+ */
+function ownedAppId(card: HTMLElement): number | undefined {
   const appid = cardsByAppId.get(card)
+  if (!appid) return undefined
+  const ids = appIdsWithin(card, 2)
+  return ids.size === 1 && ids.has(appid) ? appid : undefined
+}
+
+function latest(card: HTMLElement, fallback: ReviewSummary): ReviewSummary {
+  const appid = ownedAppId(card)
   return (appid && peekCached(appid)) || fallback
 }
 /** Cards kept dim (not hidden) because the keyboard is inside them; one focusout listener each. */
@@ -641,13 +657,20 @@ const shapeWatcher = new ResizeObserver((entries) => {
   if (!alive()) return
   for (const e of entries) {
     const card = e.target as HTMLElement
-    const appid = cardsByAppId.get(card)
-    if (!appid || !card.isConnected) continue
+    if (!card.isConnected) continue
+    const appid = ownedAppId(card)
+    if (!appid) {
+      // The slot now holds a different game: let the scanner re-claim it rather than repaint it.
+      if (cardsByAppId.has(card)) {
+        stripCard(card)
+        scheduleScan(card)
+      }
+      continue
+    }
     const r = card.getBoundingClientRect()
     // A container that grew past card size (a section filled in after we claimed it) is not a card;
     // growth without a DOM mutation never reaches the scanner, so release it here.
     if (r.height > MAX_CARD_H) {
-      release(card)
       stripCard(card)
       scheduleScan(card)
       continue
@@ -805,6 +828,11 @@ function attach(card: HTMLElement, appid: number) {
 
 /** Remove everything we put on a card (attributes, inline styles, badge, orbit). */
 function stripCard(card: HTMLElement) {
+  // Always let go of the live state first. Every caller that repurposes an element needs this, and
+  // one that forgot left the old game's cache subscription in place: the revalidation timer kept
+  // re-fetching that appid every minute for the life of the tab, and when one of those fetches
+  // resolved the orphaned listener repainted the element with the previous game's badge.
+  release(card)
   card.removeAttribute(CARD_ATTR)
   for (const k of ['sroTone', 'sroScore', 'sroFiltered', 'sroHighlight', 'sroOp', 'sroShape', 'sroAxis', 'sroSize']) delete card.dataset[k]
   card.style.removeProperty('--sro-hl')
@@ -836,7 +864,6 @@ function reconcileBadge(card: HTMLElement, appid: number) {
 function revalidateCards() {
   for (const [card, appid] of cardsByAppId) {
     if (!card.isConnected) {
-      release(card)
       stripCard(card) // a re-attached node must be claimable again
       continue
     }
@@ -850,7 +877,6 @@ function revalidateCards() {
       continue
     }
     // The slot now shows a different game (recycled carousel node): drop everything we put on it
-    release(card)
     stripCard(card)
   }
 }
@@ -866,8 +892,8 @@ function onAssetLoad(e: Event) {
   replaceTimer = window.setTimeout(() => {
     replaceTimer = undefined
     for (const c of replaceQueue) {
-      const appid = cardsByAppId.get(c)
-      const s = appid && c.isConnected ? peekCached(appid) : undefined
+      const appid = c.isConnected ? ownedAppId(c) : undefined
+      const s = appid ? peekCached(appid) : undefined
       if (!s) continue
       if (c.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
       // The highlight shape weighs the artwork's share of the card; an image that was still empty
@@ -881,8 +907,10 @@ function onAssetLoad(e: Event) {
 /** Re-run placement for every corner chip (text metrics changed under them). */
 function replaceCornerChips() {
   if (!alive()) return
-  for (const [card, appid] of cardsByAppId) {
+  for (const [card] of cardsByAppId) {
     if (!card.isConnected || !card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) continue
+    const appid = ownedAppId(card)
+    if (!appid) continue
     const s = peekCached(appid)
     if (s) placeBadge(card, s)
   }
@@ -904,7 +932,6 @@ function scan(root: ParentNode = document) {
     // so a hide fade armed for the old occupant cannot collapse the new one.
     const ids = appid ? appIdsWithin(owner, 2) : new Set<number>()
     if (appid && (ids.size !== 1 || !ids.has(appid))) {
-      release(owner)
       stripCard(owner)
     } else {
       const s = appid ? peekCached(appid) : undefined

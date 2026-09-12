@@ -470,13 +470,23 @@ function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
 
 const within = (br: DOMRect, cr: DOMRect) => br.left >= cr.left - 2 && br.right <= cr.right + 2 && br.top >= cr.top - 2 && br.bottom <= cr.bottom + 2
 
+/**
+ * Our ring, wings and dim overlay are absolutely positioned pseudo-elements, and a corner chip is an
+ * absolutely positioned child, so the card has to be a containing block. Only a statically
+ * positioned card needs help: forcing `relative` on a card Steam made sticky/absolute/fixed would
+ * move it. The flag is remembered so stripCard can undo exactly what we did.
+ */
+function ensureContainingBlock(card: HTMLElement) {
+  if (card.dataset.sroPos) return
+  if (getComputedStyle(card).position !== 'static') return
+  card.style.position = 'relative'
+  card.dataset.sroPos = '1'
+}
+
 /** Absolute chip in the card's lower-right corner, lifted above the price block when there is one. */
 function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOMRect, priceRect?: DOMRect) {
   badge.classList.add('sro-corner')
-  if (getComputedStyle(card).position === 'static') {
-    card.style.position = 'relative'
-    card.dataset.sroPos = '1' // remembered so stripCard can undo it
-  }
+  ensureContainingBlock(card)
   card.appendChild(badge)
   const cr = cardRect ?? card.getBoundingClientRect()
   const bh = badge.offsetHeight
@@ -629,6 +639,8 @@ const shapeWatcher = new ResizeObserver((entries) => {
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   const pick = chosen(summary)
   const filtered = isFiltered(pick, settings)
+  // The highlight and dim decorations are absolutely positioned against the card.
+  if (filtered || (pick && isHighlighted(pick, settings))) ensureContainingBlock(card)
   // Highlight in the game's OWN review color (Steam's tone for its tier), not the lever's.
   // Overwhelmingly Positive gets an extra, slow orbiting light.
   if (!filtered && pick && isHighlighted(pick, settings)) {
@@ -937,6 +949,9 @@ function onRuntimeMessage(msg: { type?: string; url?: string }, sender: { id?: s
 
 function shutdown() {
   dead = true
+  replaceQueue.clear()
+  pendingRoots.clear()
+  fullScanPending = false
   try {
     ext.runtime.onMessage.removeListener(onRuntimeMessage)
   } catch {

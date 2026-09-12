@@ -97,8 +97,10 @@
 /* Cards also carry data-sro-tone="positive|mixed|negative|none" and data-sro-score for custom user styles */
 
 /* ---------- highlight ---------- */
-/* Row listings (search results, tab rows): a crisp inset ring, drawn above positioned children */
-[data-sro-highlight] { position: relative; }
+/* Row listings (search results, tab rows): a crisp inset ring, drawn above positioned children.
+   The containing block is established from JS (ensureContainingBlock) and only for cards Steam
+   left statically positioned — a blanket `position: relative` here would move a sticky or
+   absolutely positioned card the moment it was highlighted. */
 [data-sro-highlight][data-sro-shape="row"]::before {
   content: "";
   position: absolute;
@@ -197,9 +199,7 @@
 }
 
 /* ---------- filter: dim ---------- */
-[data-sro-filtered="dim"] {
-  position: relative;
-}
+/* (containing block: see ensureContainingBlock in content.ts, as above) */
 [data-sro-filtered="dim"]::after {
   content: "";
   position: absolute;

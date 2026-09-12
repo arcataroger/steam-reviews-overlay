@@ -5,8 +5,12 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const [outDir, ...runDirs] = process.argv.slice(2)
-if (!outDir || !runDirs.length) {
+import { pathToFileURL } from 'node:url'
+
+// Importing this file (the coverage tests do) must not run the CLI.
+const isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href
+const [outDir, ...runDirs] = isMain ? process.argv.slice(2) : []
+if (isMain && (!outDir || !runDirs.length)) {
   console.error('usage: node scripts/inventory-merge.mjs <outdir> <run dir> [run dir...]')
   process.exit(1)
 }
@@ -78,7 +82,7 @@ for (const pg of pages) {
 }
 
 // Coverage verdict from the recorded treatment
-const verdict = (m) => {
+export const verdict = (m, expect = expectations) => {
   const total = m.count
   let unclaimed = 0
   let other = 0
@@ -102,7 +106,7 @@ const verdict = (m) => {
   if (other) notes.push(`${other}/${total} claimed on a different element`)
   if (missing) notes.push(`${missing}/${total} without a label although Steam shows no summary`)
   let status = textLink && unclaimed === total ? 'text-link' : unclaimed === total ? 'gap' : unclaimed || other || missing ? 'partial' : 'covered'
-  const expected = expectations[m.key]
+  const expected = expect[m.key]
   if (expected && status !== 'covered') {
     const budget = expected.unclaimed ?? 0
     const missingBudget = expected.missing ?? 0
@@ -123,36 +127,38 @@ list.forEach((m, i) => {
   m.name = names[m.key] || null
   m.coverage = verdict(m)
 })
-fs.mkdirSync(outDir, { recursive: true })
-fs.writeFileSync(path.join(outDir, 'master.json'), JSON.stringify({ generatedAt: new Date().toISOString(), pages: pages.map((p) => ({ slug: p.slug, url: p.url, finalUrl: p.finalUrl, cards: p.cards, kinds: p.kinds.length })), kinds: list }, null, 1))
+if (isMain) {
+  fs.mkdirSync(outDir, { recursive: true })
+  fs.writeFileSync(path.join(outDir, 'master.json'), JSON.stringify({ generatedAt: new Date().toISOString(), pages: pages.map((p) => ({ slug: p.slug, url: p.url, finalUrl: p.finalUrl, cards: p.cards, kinds: p.kinds.length })), kinds: list }, null, 1))
 
-const top = (obj, n = 3) => Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, v]) => (v > 1 ? `${k} ×${v}` : k))
-const md = []
-md.push(`# Steam game-card inventory (master set)\n`)
-md.push(`Generated ${new Date().toISOString().slice(0, 10)} from ${pages.length} pages, ${list.length} kinds, ${list.reduce((n, m) => n + m.count, 0)} cards. Regenerate with \`npm run inventory\` (see .claude/skills/steam-inventory).\n`)
-const unnamed = list.filter((m) => !m.name)
-if (unnamed.length) md.push(`> ${unnamed.length} kind(s) have no curated name yet: add them to docs/inventory/kind-names.json (key = master key).\n`)
-md.push(`| id | name | master key | pages | cards | sizes | features | our treatment | coverage |`)
-md.push(`|---|---|---|---|---|---|---|---|---|`)
-for (const m of list) {
-  const f = m.features
-  const feat = [f.link?.news ? 'news-link' : '', f.price?.true ? `price${f.price.false ? '?' : ''}` : '', f.date?.true ? `date${f.date.false ? '?' : ''}` : '', f.nativeSummary?.true ? `native${f.nativeSummary.false ? '?' : ''}` : '', f.carousel?.true ? 'carousel' : '', f.platforms?.true ? 'platforms' : ''].filter(Boolean).join(' ')
-  const ours = `${top(m.coverage.shapes, 2).join('/')} · ${top(m.coverage.badges, 2).join('/')}`
-  md.push(`| ${m.id} | ${m.name || '_unnamed_'} | \`${m.key}\` | ${Object.keys(m.pages).length} | ${m.count} | ${top(m.sizes, 2).join(', ')} | ${feat} | ${ours} | **${m.coverage.status}**${m.coverage.notes.length ? ' — ' + m.coverage.notes.join('; ') : ''} |`)
+  const top = (obj, n = 3) => Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, n).map(([k, v]) => (v > 1 ? `${k} ×${v}` : k))
+  const md = []
+  md.push(`# Steam game-card inventory (master set)\n`)
+  md.push(`Generated ${new Date().toISOString().slice(0, 10)} from ${pages.length} pages, ${list.length} kinds, ${list.reduce((n, m) => n + m.count, 0)} cards. Regenerate with \`npm run inventory\` (see .claude/skills/steam-inventory).\n`)
+  const unnamed = list.filter((m) => !m.name)
+  if (unnamed.length) md.push(`> ${unnamed.length} kind(s) have no curated name yet: add them to docs/inventory/kind-names.json (key = master key).\n`)
+  md.push(`| id | name | master key | pages | cards | sizes | features | our treatment | coverage |`)
+  md.push(`|---|---|---|---|---|---|---|---|---|`)
+  for (const m of list) {
+    const f = m.features
+    const feat = [f.link?.news ? 'news-link' : '', f.price?.true ? `price${f.price.false ? '?' : ''}` : '', f.date?.true ? `date${f.date.false ? '?' : ''}` : '', f.nativeSummary?.true ? `native${f.nativeSummary.false ? '?' : ''}` : '', f.carousel?.true ? 'carousel' : '', f.platforms?.true ? 'platforms' : ''].filter(Boolean).join(' ')
+    const ours = `${top(m.coverage.shapes, 2).join('/')} · ${top(m.coverage.badges, 2).join('/')}`
+    md.push(`| ${m.id} | ${m.name || '_unnamed_'} | \`${m.key}\` | ${Object.keys(m.pages).length} | ${m.count} | ${top(m.sizes, 2).join(', ')} | ${feat} | ${ours} | **${m.coverage.status}**${m.coverage.notes.length ? ' — ' + m.coverage.notes.join('; ') : ''} |`)
+  }
+  md.push(`\n## Kinds in detail\n`)
+  for (const m of list) {
+    md.push(`### ${m.id} ${m.name || '_unnamed_'}\n`)
+    md.push(`- Master key: \`${m.key}\`; exact signatures: ${Object.keys(m.signatures).map((s) => `\`${s}\``).join(', ')}`)
+    md.push(`- Seen on: ${top(m.pages, 6).join(', ')}${Object.keys(m.pages).length > 6 ? ` (+${Object.keys(m.pages).length - 6})` : ''}`)
+    md.push(`- Under headings: ${top(m.headings, 4).join(' / ') || '-'}; section: ${top(m.sections, 2).join(' / ') || '-'}`)
+    md.push(`- Ancestors: ${top(m.chains, 1)[0] || '-'}`)
+    md.push(`- Variants: ${Object.entries(m.variants).map(([k, n]) => `${k.replace(/link=app,?/, '')} ×${n}`).join('; ')}`)
+    md.push(`- Our treatment: ${top(m.ours, 4).join(' ; ')}`)
+    md.push(`- Coverage: **${m.coverage.status}** ${m.coverage.notes.join('; ')}`)
+    const ex = m.examples[0]
+    if (ex) md.push(`- Example (${ex.page}, appid ${ex.appid} "${ex.title}", ${ex.sizeBucket}): card ${JSON.stringify(ex.styles.card)}; parent ${JSON.stringify(ex.styles.parent)}${ex.styles.price ? `; price ${JSON.stringify(ex.styles.price)}` : ''}${ex.styles.native ? `; native ${JSON.stringify(ex.styles.native)}` : ''}`)
+    md.push('')
+  }
+  fs.writeFileSync(path.join(outDir, 'master.md'), md.join('\n'))
+  console.log(`${list.length} kinds from ${pages.length} pages → ${outDir}/master.{json,md}; ${unnamed.length} unnamed; coverage: ${['covered', 'by-design', 'partial', 'gap', 'text-link'].map((s) => `${s} ${list.filter((m) => m.coverage.status === s).length}`).join(', ')}`)
 }
-md.push(`\n## Kinds in detail\n`)
-for (const m of list) {
-  md.push(`### ${m.id} ${m.name || '_unnamed_'}\n`)
-  md.push(`- Master key: \`${m.key}\`; exact signatures: ${Object.keys(m.signatures).map((s) => `\`${s}\``).join(', ')}`)
-  md.push(`- Seen on: ${top(m.pages, 6).join(', ')}${Object.keys(m.pages).length > 6 ? ` (+${Object.keys(m.pages).length - 6})` : ''}`)
-  md.push(`- Under headings: ${top(m.headings, 4).join(' / ') || '-'}; section: ${top(m.sections, 2).join(' / ') || '-'}`)
-  md.push(`- Ancestors: ${top(m.chains, 1)[0] || '-'}`)
-  md.push(`- Variants: ${Object.entries(m.variants).map(([k, n]) => `${k.replace(/link=app,?/, '')} ×${n}`).join('; ')}`)
-  md.push(`- Our treatment: ${top(m.ours, 4).join(' ; ')}`)
-  md.push(`- Coverage: **${m.coverage.status}** ${m.coverage.notes.join('; ')}`)
-  const ex = m.examples[0]
-  if (ex) md.push(`- Example (${ex.page}, appid ${ex.appid} "${ex.title}", ${ex.sizeBucket}): card ${JSON.stringify(ex.styles.card)}; parent ${JSON.stringify(ex.styles.parent)}${ex.styles.price ? `; price ${JSON.stringify(ex.styles.price)}` : ''}${ex.styles.native ? `; native ${JSON.stringify(ex.styles.native)}` : ''}`)
-  md.push('')
-}
-fs.writeFileSync(path.join(outDir, 'master.md'), md.join('\n'))
-console.log(`${list.length} kinds from ${pages.length} pages → ${outDir}/master.{json,md}; ${unnamed.length} unnamed; coverage: ${['covered', 'by-design', 'partial', 'gap', 'text-link'].map((s) => `${s} ${list.filter((m) => m.coverage.status === s).length}`).join(', ')}`)

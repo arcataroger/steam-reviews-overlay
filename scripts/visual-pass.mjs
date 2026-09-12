@@ -18,6 +18,29 @@ const slug = (u) => u.replace(/^https?:\/\/store\.steampowered\.com\/?/, '').rep
 
 const CHECKS = () => {
   const inter = (a, b) => a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1
+  // Stage 1 sidecar: normalise --sro-hl (almost always already a literal #hex, but be defensive
+  // about rgb()/color(srgb ...) forms a browser could hand back from getComputedStyle).
+  const normalizeHexColor = (raw) => {
+    const s = (raw || '').trim()
+    if (!s) return null
+    let m = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.exec(s)
+    if (m) {
+      let hex = m[1].toLowerCase()
+      if (hex.length === 3) hex = hex.split('').map((c) => c + c).join('')
+      return '#' + hex
+    }
+    m = /^rgba?\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/i.exec(s)
+    if (m) {
+      const [r, g, b] = [m[1], m[2], m[3]].map((v) => Math.max(0, Math.min(255, Math.round(parseFloat(v)))))
+      return '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')
+    }
+    m = /^color\(\s*srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)/i.exec(s)
+    if (m) {
+      const [r, g, b] = [m[1], m[2], m[3]].map((v) => Math.max(0, Math.min(255, Math.round(parseFloat(v) * 255))))
+      return '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')
+    }
+    return null
+  }
   const issues = []
   const cards = [...document.querySelectorAll('[data-sro-card]')]
   for (const card of cards) {
@@ -55,7 +78,45 @@ const CHECKS = () => {
     const sizes = new Set(cs.map(c => { const r = c.getBoundingClientRect(); return r.width && r.height ? `${Math.round(r.width)}x${Math.round(r.height)}` : null }).filter(Boolean))
     if (sizes.size > 1 && cs.some(c => /capsule/.test(c.className.toString()))) issues.push({ kind: 'uneven-capsule-row', sizes: [...sizes], where: p.id || p.className.toString().slice(0, 40) })
   }
-  return { cards: cards.length, badges: document.querySelectorAll('.sro-badge').length, highlighted: document.querySelectorAll('[data-sro-highlight]').length, filtered: document.querySelectorAll('[data-sro-filtered]').length, issues }
+  // Stage 1 sidecar: one record per card with non-zero area (independent of the on-screen filter
+  // above — Stage 2 decides what to crop via `fullyVisible`, so off-screen cards are kept too).
+  const sroCards = []
+  for (const card of cards) {
+    const cr = card.getBoundingClientRect()
+    if (!cr.width || !cr.height) continue
+    const appid = Number(card.getAttribute('data-sro-card'))
+    const title = (card.querySelector('.title, .tab_item_name, [class*="title" i]')?.textContent || '').trim()
+    const score = Number(card.dataset.sroScore || 0)
+    const tone = card.dataset.sroTone || null
+    const label = (card.querySelector('.sro-badge')?.textContent || '').trim()
+    const filtered = card.dataset.sroFiltered || null
+    const highlight = card.dataset.sroHighlight || null
+    const shape = card.dataset.sroShape || null
+    const axis = card.dataset.sroAxis || null
+    const op = !!card.dataset.sroOp
+    const color = highlight ? normalizeHexColor(getComputedStyle(card).getPropertyValue('--sro-hl')) : null
+    const rect = { x: Math.round(cr.left), y: Math.round(cr.top), w: Math.round(cr.width), h: Math.round(cr.height) }
+    const fullyVisible = rect.x >= 16 && rect.y >= 16 && rect.x + rect.w <= innerWidth - 16 && rect.y + rect.h <= innerHeight - 16
+    // Steam's sticky category bar and its hover panels cover parts of cards that are still "visible"
+    // by geometry. Probe just inside each edge: if the topmost element there isn't this card or one
+    // of its descendants, something is painted over that edge and its pixels can't be judged.
+    const covered = (x, y) => {
+      const el = document.elementFromPoint(x, y)
+      return !el || !(el === card || card.contains(el))
+    }
+    const mx = cr.left + cr.width / 2
+    const my = cr.top + cr.height / 2
+    const occluded = fullyVisible
+      ? {
+          top: covered(mx, cr.top + 2),
+          right: covered(cr.right - 2, my),
+          bottom: covered(mx, cr.bottom - 2),
+          left: covered(cr.left + 2, my),
+        }
+      : { top: true, right: true, bottom: true, left: true }
+    sroCards.push({ appid, title, rect, score, tone, label, filtered, highlight, shape, axis, color, op, fullyVisible, occluded })
+  }
+  return { cards: cards.length, badges: document.querySelectorAll('.sro-badge').length, highlighted: document.querySelectorAll('[data-sro-highlight]').length, filtered: document.querySelectorAll('[data-sro-filtered]').length, issues, sroCards, sroDpr: devicePixelRatio, sroViewport: { width: innerWidth, height: innerHeight } }
 }
 
 const report = []
@@ -83,6 +144,19 @@ for (const url of urls) {
           entry.stops.push({ stop, file: null, shotError: String(e).slice(0, 100), issues: [] })
           continue
         }
+        // Stage 1 sidecar: metadata for scripts/segment-cards.mjs, one per screenshot. Carousels
+        // rotate and Steam recycles capsule nodes, so a record captured before the screenshot can
+        // describe a different game than the pixels. Re-read after the shot and keep only cards
+        // that are byte-identical in both reads: those provably did not move while it was taken.
+        const after = await page.evaluate(CHECKS)
+        const settled = new Map(after.sroCards.map((c) => [`${c.appid}@${c.rect.x},${c.rect.y}`, JSON.stringify(c)]))
+        const stableCards = r.sroCards.filter((c) => settled.get(`${c.appid}@${c.rect.x},${c.rect.y}`) === JSON.stringify(c))
+        fs.writeFileSync(path.join(out, file.replace(/\.png$/, '.cards.json')), JSON.stringify({
+          url, slug: slug(url), state: stateName, stop,
+          dpr: r.sroDpr, viewport: r.sroViewport,
+          capturedCards: r.sroCards.length, stableCards: stableCards.length,
+          cards: stableCards,
+        }, null, 1))
         const fresh = r.issues.filter(i => { const k = JSON.stringify(i); if (seenIssues.has(k)) return false; seenIssues.add(k); return true })
         entry.stops.push({ stop, file, cards: r.cards, badges: r.badges, highlighted: r.highlighted, filtered: r.filtered, issues: fresh })
         const atEnd = await page.evaluate(() => scrollY + innerHeight >= document.documentElement.scrollHeight - 5)

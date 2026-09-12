@@ -19,7 +19,10 @@
     "inventory:nav": "node scripts/nav-urls.mjs docs/inventory/nav-urls.json",
     "inventory:crawl": "node scripts/inventory.mjs docs/inventory/pages $(node -e \"for (const e of require('./docs/inventory/nav-urls.json')) console.log(e.url)\")",
     "inventory:merge": "node scripts/inventory-merge.mjs docs/inventory docs/inventory/pages",
-    "inventory": "npm run inventory:nav && npm run inventory:crawl && npm run inventory:merge"
+    "inventory": "npm run inventory:nav && npm run inventory:crawl && npm run inventory:merge",
+    "visual:capture": "node scripts/visual-pass.mjs",
+    "visual:segment": "node scripts/segment-cards.mjs",
+    "visual:borders": "node scripts/check-borders.mjs"
   },
   "keywords": [],
   "author": "arcataroger",
@@ -32,6 +35,7 @@
     "@types/node": "^22.20.2",
     "jsdom": "^29.1.1",
     "playwright": "^1.63.0",
+    "pngjs": "^7.0.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.0",

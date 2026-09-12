@@ -133,6 +133,12 @@ round, so check them against this list before writing them up.
   28px in, and a 125px badge, so the badge misses fitting beside the date by one pixel and is lifted
   into the clear gap above it. Neighbouring tiles with shorter dates keep the corner, which makes
   the row look inconsistent; the alternative is a badge that touches the date.
+- **A bundle row with no label whose neighbours all have one.** A bundle page lists packages
+  alongside games. A package row carries several appids in `data-ds-appid` and a `Sub_N` item key,
+  and has no single review score to show: on `/bundle/232/` the Counter-Strike: Condition Zero and
+  Half-Life 1: Source rows are packages (`Sub_7`, `Sub_38`, appids `10,80` and `280,360`) while the
+  other fourteen rows are single apps. Guessing one of the two appids would put another game's score
+  on the row.
 - **A highlighted card whose badge's second line reads Mostly Positive.** The two-line badge is
   🇺🇸 your-language over 🌐 all-languages, shown only when the two differ. The harness's `active`
   state judges by the your-language score (`source: 'local'`), so the treatment follows the FIRST

@@ -81,6 +81,28 @@ when it has no baseline twin, when the page paints over it, when a highlighted n
 against it, or when it is shorter than the corner skip at both ends. Rising `U` means captures are
 drifting (more rotating content); raise `SRO_STOPS` or capture calmer pages if it matters.
 
+## Trusting the mechanical checks
+
+`npm run visual:harness-selftest` loads a live page and runs four controls over the checks in
+`scripts/visual-pass.mjs`: both must be silent on an untouched page, a badge dragged onto a title's
+glyphs must raise `badge-overlaps-text`, and a plain single-line badge beside a genuine Steam summary
+must raise `plain-badge-beside-native`. Exit 1 on any failure. Run it after touching those checks.
+
+Both checks spent several rounds crying wolf, and every flag had to be verified by hand:
+
+- `badge-overlaps-text` measured each text element's whole box. A block element is routinely far
+  wider than the words in it, so boxes touched where nothing visibly overlapped. It now measures the
+  glyph rectangles from each text node's range, the same thing the extension's placement logic
+  measures, and ignores text painted in a fully transparent colour. On a category page, all ten
+  flags proved false before the change and none remained after.
+- `plain-badge-beside-native` read the card's own review column to decide whether Steam was already
+  showing a summary. On search rows our badge sits *inside* that column, so the check was reading our
+  own label back and flagging every row: 26 of 26 on a search page, none genuine. It now strips our
+  badges before reading that text.
+
+The checks stay independent evidence: they measure the rendered page rather than reading our CSS.
+The fix was to measure the right thing, not to trust the extension.
+
 ## Accepted behaviour, do not report as defects
 
 Each of these was investigated from the pixels and the DOM and found correct. They recur every

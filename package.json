@@ -23,7 +23,8 @@
     "visual:capture": "node scripts/visual-pass.mjs",
     "visual:segment": "node scripts/segment-cards.mjs",
     "visual:borders": "node scripts/check-borders.mjs",
-    "visual:selftest": "node scripts/gate-selftest.mjs"
+    "visual:selftest": "node scripts/gate-selftest.mjs",
+    "visual:harness-selftest": "node scripts/harness-selftest.mjs"
   },
   "keywords": [],
   "author": "arcataroger",

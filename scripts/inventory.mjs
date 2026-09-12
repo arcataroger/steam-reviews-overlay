@@ -8,15 +8,25 @@ import { chromium } from 'playwright'
 import path from 'node:path'
 import fs from 'node:fs'
 import crypto from 'node:crypto'
+import os from 'node:os'
 
-const ext = process.env.SRO_EXT_DIR ? path.resolve(process.env.SRO_EXT_DIR) : path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
-const id = [...crypto.createHash('sha256').update(ext).digest('hex').slice(0, 32)].map((c) => String.fromCharCode(97 + parseInt(c, 16))).join('')
+const srcExt = process.env.SRO_EXT_DIR ? path.resolve(process.env.SRO_EXT_DIR) : path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
 const [out, ...urls] = process.argv.slice(2)
 if (!out || !urls.length) {
   console.error('usage: node scripts/inventory.mjs <outdir> <url> [url...]')
   process.exit(1)
 }
+// Crawl against our own copy. A full crawl runs for most of an hour, and a rebuild in the same
+// checkout meanwhile replaces the content script's content-hashed filename: every page loaded after
+// that fails to inject and is recorded as having no overlay at all, which reads as a coverage gap.
 fs.mkdirSync(out, { recursive: true })
+// realpath: macOS hands back /var/folders/..., a symlink, and Chrome derives the id from the
+// real path, so hashing the symlink gives an id that does not exist.
+const ext = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'sro-ext-')))
+fs.cpSync(srcExt, ext, { recursive: true })
+process.on('exit', () => fs.rmSync(ext, { recursive: true, force: true }))
+// Chrome derives an unpacked extension's id from the SHA-256 of its path, so this follows the copy.
+const id = [...crypto.createHash('sha256').update(ext).digest('hex').slice(0, 32)].map((c) => String.fromCharCode(97 + parseInt(c, 16))).join('')
 const slug = (u) => u.replace(/^https?:\/\/store\.steampowered\.com\/?/, '').replace(/[^a-z0-9]+/gi, '_').replace(/^_|_$/g, '') || 'home'
 // Active state so the inventory also records highlight shapes and dim decisions
 const SETTINGS = { mode: 'dim', threshold: 0, source: 'local', highlightThreshold: 1 } // filter parked, highlight everything reviewed

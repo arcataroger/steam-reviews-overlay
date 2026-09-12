@@ -386,6 +386,10 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   // Cards that already show Steam's own review text (featured capsules, expanded sale cards)
   // still get filtered/highlighted. They only get our label when the local and global labels
   // disagree: Steam shows one of them, and the other is what makes the filter make sense.
+  // Hidden cards (display:none after a hide) cannot be measured, and every placement below decides
+  // from measurements: against an all-zero rect the bounds and collision checks pass trivially and
+  // a badge is left wherever it lands. Revalidate/reapply places it once the card is visible again.
+  if (!card.getClientRects().length) return
   const native = nativeSummaryEl(card)
   if (native) {
     const mismatch = summary.local && summary.global && summary.local.label !== summary.global.label
@@ -413,9 +417,6 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     return
   }
 
-  // Hidden cards (display:none after a hide) can't be measured; revalidate/reapply will place the
-  // badge once the card is visible again.
-  if (!card.getClientRects().length) return
   // Tiny capsules (bundle-contents strips) have no room for text
   if (card.getBoundingClientRect().width < MIN_LABEL_WIDTH) return
 

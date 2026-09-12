@@ -5,6 +5,7 @@ import { chromium } from 'playwright'
 import path from 'node:path'
 import fs from 'node:fs'
 import crypto from 'node:crypto'
+import os from 'node:os'
 import { pathToFileURL } from 'node:url'
 const srcExt = process.env.SRO_EXT_DIR ? path.resolve(process.env.SRO_EXT_DIR) : path.resolve(import.meta.dirname, '..', 'dist', 'chrome')
 // Importing this file (the mechanical checks are exercised against a live page by their own
@@ -15,10 +16,12 @@ if (isMain) fs.mkdirSync(out, { recursive: true })
 // Run against our own copy of the extension. A capture takes the better part of an hour, and a
 // rebuild in the same checkout meanwhile replaces the content script's content-hashed filename:
 // pages loaded after that fail to inject with ERR_FILE_NOT_FOUND and the run is quietly worthless.
-const ext = isMain ? path.join(path.resolve(out), '.ext') : srcExt
+// realpath: macOS hands back /var/folders/..., a symlink, and Chrome derives the id from the
+// real path, so hashing the symlink gives an id that does not exist.
+const ext = isMain ? fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'sro-ext-'))) : srcExt
 if (isMain) {
-  fs.rmSync(ext, { recursive: true, force: true })
   fs.cpSync(srcExt, ext, { recursive: true })
+  process.on('exit', () => fs.rmSync(ext, { recursive: true, force: true }))
 }
 // Chrome derives an unpacked extension's id from the SHA-256 of its path, so this follows the copy.
 const id = [...crypto.createHash('sha256').update(ext).digest('hex').slice(0, 32)].map((c) => String.fromCharCode(97 + parseInt(c, 16))).join('')

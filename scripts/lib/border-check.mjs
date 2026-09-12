@@ -347,7 +347,10 @@ export function checkCard(image, card = {}, opts = {}) {
     // ANY of our colours makes it fail — with no expected colour there would be nothing to look for.
     let hit = { fraction: 0, matched: 0, total: 0 }
     let base = { fraction: 0, matched: 0, total: 0 }
-    const probeColours = isExpected && colour ? [colour] : colour ? [colour] : TONE_PALETTE
+    // An expected edge is checked against the colour this card should be drawn in; an edge that
+    // should carry NOTHING is checked against every tone we can draw, or a wrong-toned ring there
+    // (a panel's unexpected edges are the only place this can happen) would slip through.
+    const probeColours = isExpected ? (colour ? [colour] : TONE_PALETTE) : TONE_PALETTE
     for (const tone of probeColours) {
       const probe = edgeHit(image, bands[name], tone, { tolerance, chroma, minBrightness })
       if (probe.fraction <= hit.fraction) continue

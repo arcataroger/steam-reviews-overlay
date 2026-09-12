@@ -443,3 +443,22 @@ describe('alpha-composited rings (pixelMatches)', () => {
     expect(pixelMatches({ r: 157, g: 136, b: 99 }, hexToRgb(MIXED))).toBe(true)
   })
 })
+
+describe('unexpected edges are policed against every tone', () => {
+  // A panel card is the one shape with both a colour and edges that must stay bare. Checking those
+  // edges only against the card's own tone let a ring in a DIFFERENT tone pass unnoticed.
+  it('fails a panel-y card with a wrong-tone ring on its bare top and bottom', () => {
+    const img = makeImage(W, H, gray)
+    const blue: [number, number, number] = [0x66, 0xc0, 0xf4]
+    const orange: [number, number, number] = [0xc8, 0x5e, 0x2d]
+    paintInwardRing(img, PAD, 3, blue, ['left', 'right']) // correct wings
+    paintInwardRing(img, PAD, 3, orange, ['top', 'bottom']) // must not be there, and is not our tone
+    const card = { shape: 'panel' as const, axis: 'y' as const, color: POSITIVE }
+    const res = checkCard(img, card, { pad: PAD })
+    expect(res.edges.left.pass).toBe(true)
+    expect(res.edges.right.pass).toBe(true)
+    expect(res.edges.top.pass).toBe(false)
+    expect(res.edges.bottom.pass).toBe(false)
+    expect(res.ok).toBe(false)
+  })
+})

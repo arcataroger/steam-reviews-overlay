@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import './setup'
 import { bandEndPct, tierAt, posToPct, isFiltered, isHighlighted, DEFAULT_SETTINGS, OFF_FILTER, OFF_HIGHLIGHT, type Settings } from '../../src/settings'
 import { toneColorAt, NEGATIVE, MIXED, POSITIVE } from '../../src/tonecolor'
-import { langForLocale, flagFor, detectLang } from '../../src/lang'
+import { langForLocale, flagFor, detectLang, regionOf } from '../../src/lang'
 
 const s = (over: Partial<Settings>): Settings => ({ ...DEFAULT_SETTINGS, ...over })
 
@@ -72,6 +72,16 @@ describe('locale → language/flag (popup QA override and My-language button)', 
       if (!hadDoc) delete g.document
       if (orig) Object.defineProperty(globalThis, 'navigator', orig)
     }
+  })
+  it('never invents a region for a script-only or bare tag', () => {
+    // maximize() turns "pt-Latn" into pt-Latn-BR; a European-Portuguese reader must not get a
+    // Brazilian flag, so only a region the tag itself carries counts.
+    expect(regionOf('pt-Latn')).toBeUndefined()
+    expect(regionOf('zh-Hant')).toBeUndefined()
+    expect(regionOf('pt')).toBeUndefined()
+    expect(regionOf('pt-BR')).toBe('BR')
+    expect(regionOf('zh-Hant-TW')).toBe('TW')
+    expect(regionOf('es-419')).toBeUndefined() // a UN area code, not a country
   })
   it('renders regional-indicator flags', () => {
     expect(flagFor('US')).toBe('🇺🇸')

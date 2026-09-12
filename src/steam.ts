@@ -186,7 +186,10 @@ export function seed(appid: number, side: 'global' | 'local', score: Score) {
   const cur = mem.get(appid)
   if (cur && cur[side] && cur.expires > now) return
   const have = cur?.[side]
-  if (have && have.label === score.label && have.pct === score.pct && have.count === score.count) return // nothing new
+  const unchanged = have && have.label === score.label && have.pct === score.pct && have.count === score.count
+  // An unchanged score still counts as the page reconfirming it: refresh a stale entry's timestamp
+  // so a card re-attaching later still gets the instant paint instead of waiting on the network.
+  if (unchanged && cur && now - cur.ts < STALE_MS) return
   put({
     appid,
     global: side === 'global' ? score : (cur?.global ?? null),

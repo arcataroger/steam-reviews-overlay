@@ -40,8 +40,10 @@ export interface LangInfo {
 /** Region subtag of a BCP 47 tag ("zh-Hans-CN" → "CN"), or undefined. */
 export function regionOf(tag: string): string | undefined {
   try {
-    const region = new Intl.Locale(tag.replace('_', '-')).maximize().region
-    // UN M49 area codes ("es-419" → 419) have no flag; leave the language's own country to decide
+    // The tag's OWN region only: maximize() would invent one ("zh" → CN, "pt-Latn" → BR), which is
+    // how a European-Portuguese reader ended up with a Brazilian flag. UN M49 area codes
+    // ("es-419") are not countries and have no flag, so the language's own default decides.
+    const region = new Intl.Locale(tag.replace('_', '-')).region
     return region && /^[A-Za-z]{2}$/.test(region) ? region : undefined
   } catch {
     return tag.split(/[-_]/).find((p, i) => i > 0 && /^[A-Za-z]{2}$/.test(p))

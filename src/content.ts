@@ -569,6 +569,8 @@ function placeBesideTitle(card: HTMLElement, badge: HTMLSpanElement, cardRect: D
 /* ---------- filtering (dim / hide) ---------- */
 
 const hideTimers = new Map<HTMLElement, number>()
+/** Read live, not cached: a reader can flip the OS setting while the page is open. */
+const reducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
 /** The freshest summary for a card (review data may have arrived since a deferred handler was armed). */
 function latest(card: HTMLElement, fallback: ReviewSummary): ReviewSummary {
   const appid = cardsByAppId.get(card)
@@ -699,7 +701,13 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
     }
     return
   }
-  // hide: fade out first, then display:none so the layout reflows
+  // hide: fade out first, then display:none so the layout reflows. A reader who asked for less
+  // motion gets neither the fade (CSS) nor the wait: holding the card in the layout, invisible and
+  // inert, only to snap the list closed a third of a second later is the jump they wanted avoided.
+  if (reducedMotion()) {
+    card.dataset.sroFiltered = 'hide'
+    return
+  }
   card.dataset.sroFiltered = 'hiding'
   hideTimers.set(
     card,

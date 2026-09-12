@@ -54,4 +54,11 @@ One kind is still unexplained and is deliberately left flagged rather than excus
   card on the carousel *container* (`div.EventTileCarouselCtn`) rather than on the tile, with no
   badge. That would put a highlight around a whole carousel. It did not reproduce on a later live
   check of the same page, so the shape that triggers it is transient (most likely a carousel showing
-  a single slide). Check this kind's `other:` count on every crawl until it is understood.
+  a single slide). A visual round since then swept every stop of the news hub's event and article
+  carousels looking for a ring spanning more than one product and found none. Check this kind's
+  `other:` count on every crawl until it is understood.
+
+A related defect of the same shape WAS found and fixed on Steam's main content-hub carousel: the
+rotating viewport held only the current slide, so it looked like one game's card and took a ring
+around the whole widget. The card is now the slide's own art, with an inset ring rather than the
+outside glow the widget was shaving off. See `src/content.ts`'s `ROTATING_CAROUSEL`.

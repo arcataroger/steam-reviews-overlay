@@ -226,6 +226,7 @@ export function stopSteam() {
   flushTimer = undefined
   pending.clear()
   listeners.clear()
+  attempts.clear()
 }
 
 function startRevalidation() {
@@ -274,23 +275,35 @@ async function drain() {
 let backoffUntil = 0
 let retries = 0
 const MAX_RETRIES = 8
+/** Failed attempts per id: an id that joined the queue mid-outage gets its own full ladder. */
+const attempts = new Map<number, number>()
 
 /**
  * Put a failed batch back on the queue with exponential backoff (jittered, capped at 10 min).
- * After MAX_RETRIES the ids are negative-cached so a broken Steam doesn't get hammered forever.
+ * After MAX_RETRIES an id is negative-cached so a broken Steam doesn't get hammered forever.
  */
 function retryLater(appids: number[], baseMs: number) {
-  if (retries >= MAX_RETRIES) {
-    const now = Date.now()
-    for (const id of appids) negative.set(id, now + NEG_MS)
-    retries = 0 // this batch gave up; the next outage gets its full ladder of attempts again
+  const now = Date.now()
+  let anyLeft = false
+  for (const id of appids) {
+    const n = (attempts.get(id) ?? 0) + 1
+    if (n > MAX_RETRIES) {
+      negative.set(id, now + NEG_MS)
+      attempts.delete(id)
+    } else {
+      attempts.set(id, n)
+      pending.add(id) // drain() is still looping; fetchBatch waits out backoffUntil
+      anyLeft = true
+    }
+  }
+  if (!anyLeft) {
+    retries = 0 // everything gave up; the next outage gets its full ladder of attempts again
     backoffUntil = 0
     return
   }
-  const delay = Math.min(10 * 60_000, baseMs * 2 ** retries) + Math.random() * 1000
+  const delay = Math.min(10 * 60_000, baseMs * 2 ** Math.min(retries, MAX_RETRIES)) + Math.random() * 1000
   retries++
-  backoffUntil = Date.now() + delay
-  for (const id of appids) pending.add(id) // drain() is still looping; fetchBatch waits out backoffUntil
+  backoffUntil = now + delay
 }
 
 function toScore(sf: RawSummary): Score {
@@ -366,6 +379,7 @@ async function fetchBatch(appids: number[]) {
   }
   reportStatus('ok')
   retries = 0
+  for (const id of appids) attempts.delete(id) // answered: their ladders start over next time
   const now = Date.now()
   const seen = new Set<number>()
   for (const item of json.response?.store_items ?? []) {
@@ -435,7 +449,7 @@ export async function ingestSteamRequest(url: string): Promise<number> {
   for (const it of items) {
     // Steam echoes the requested id even when it cannot resolve it (appid comes back 0)
     const id = it.id || it.appid
-    if (id && (it.success !== 1 || !it.summary_filtered)) {
+    if (id && it.item_type === 0 && (it.success !== 1 || !it.summary_filtered)) { // apps only: bundles share the id space
       // Unknown or reviewless item: remember it briefly so it does not fall through to a batch fetch
       if (!negative.has(id)) negative.set(id, now + NEG_MS)
       pending.delete(id)

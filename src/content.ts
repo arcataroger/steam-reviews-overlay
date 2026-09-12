@@ -939,7 +939,9 @@ async function main() {
   ext.runtime.onMessage.addListener(onRuntimeMessage)
   injectStyles()
   settings = await loadSettings()
+  if (!alive()) return // a newer instance took over while settings were loading
   onSettingsChange((s) => {
+    if (!alive()) return
     const sourceChanged = s.source !== settings.source
     settings = s
     reapplyFilters(sourceChanged)

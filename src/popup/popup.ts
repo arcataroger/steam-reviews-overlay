@@ -267,8 +267,14 @@ document.addEventListener('visibilitychange', () => {
 // Changes from elsewhere (another popup window, sync from another device) while we're open. A drag
 // still in flight keeps the keys it is moving; everything else takes the incoming value.
 onSettingsChange((s) => {
-  settings = pendingSave ? mergeIncoming(s, settings, dirtyBase) : s
-  if (pendingSave) pendingSave = settings
+  if (pendingSave) {
+    const folded = mergeIncoming(s, settings, dirtyBase)
+    settings = folded.settings
+    pendingSave = folded.settings
+    dirtyBase = folded.base
+  } else {
+    settings = s
+  }
   render()
 })
 

@@ -224,34 +224,50 @@ export function pixelMatches(pixel, colour, opts = {}) {
   return peak > 0 && lit / peak >= minBrightness
 }
 
-export function edgeHit(image, band, colour, opts = {}) {
-  const tolerance = opts.tolerance ?? DEFAULT_OPTIONS.tolerance
-  let bestFraction = 0
-  let bestMatched = 0
-  // `total` reports how many pixels were actually sampled, independent of whether any line
-  // "won" — every non-empty line in a band shares the same length, so any of them will do. Do
-  // not derive this from the winning line alone: when nothing matches anywhere, every line ties
-  // the initial (0/0) best and none would ever update a `bestTotal`, wrongly reporting 0 samples
-  // for a band that in fact had plenty (a real bug caught by the check-borders.mjs CLI smoke test).
+function matchesOnLine(image, line, colour, opts) {
+  let matched = 0
+  for (const { x, y } of line) {
+    if (x < 0 || y < 0 || x >= image.width || y >= image.height) continue
+    const idx = (y * image.width + x) * 4
+    const pixel = { r: image.data[idx], g: image.data[idx + 1], b: image.data[idx + 2] }
+    if (pixelMatches(pixel, colour, opts)) matched++
+  }
+  return matched
+}
+
+/**
+ * Best line of a band, scored by how much MORE of `colour` it holds than the same line of
+ * `baseline` (the un-highlighted capture). Pass `baseline` as null to score on presence alone.
+ *
+ * Per-line is the whole point. Scoring the band's best line against the baseline's best line
+ * compared two different rows: on Steam's "Popular this month" panel the baseline's winner was the
+ * panel's own blue fill three rows in, while ours was the ring two rows out, so a ring that was
+ * plainly there scored zero gain and the gate called it missing.
+ */
+export function edgeGain(image, baseline, band, colour, opts = {}) {
+  let best = null
+  // Sampled width is a property of the band, not of whichever line wins, so record it either way:
+  // an edge where nothing matches anywhere must not look like an edge that was never sampled.
   let sampledTotal = 0
   for (const line of band) {
     const total = line.length
     if (total === 0) continue
     sampledTotal = total
-    let matched = 0
-    for (const { x, y } of line) {
-      if (x < 0 || y < 0 || x >= image.width || y >= image.height) continue
-      const idx = (y * image.width + x) * 4
-      const pixel = { r: image.data[idx], g: image.data[idx + 1], b: image.data[idx + 2] }
-      if (pixelMatches(pixel, colour, { ...opts, tolerance })) matched++
-    }
+    const matched = matchesOnLine(image, line, colour, opts)
     const fraction = matched / total
-    if (fraction > bestFraction || (fraction === bestFraction && matched > bestMatched)) {
-      bestFraction = fraction
-      bestMatched = matched
+    const baseFraction = baseline ? matchesOnLine(baseline, line, colour, opts) / total : 0
+    const gain = baseline ? fraction - baseFraction : fraction
+    if (!best || gain > best.gain || (gain === best.gain && fraction > best.fraction)) {
+      best = { fraction, matched, baseFraction, gain, total }
     }
   }
-  return { fraction: bestFraction, matched: bestMatched, total: sampledTotal }
+  return best ? { ...best, total: sampledTotal } : { fraction: 0, matched: 0, baseFraction: 0, gain: 0, total: sampledTotal }
+}
+
+/** Fraction of the band's best line that shows `colour`, ignoring any baseline. */
+export function edgeHit(image, band, colour, opts = {}) {
+  const { fraction, matched, total } = edgeGain(image, null, band, colour, opts)
+  return { fraction, matched, total }
 }
 
 /**
@@ -351,28 +367,23 @@ export function checkCard(image, card = {}, opts = {}) {
     // should carry none is measured against every tone we could ever draw, because "this card must
     // stay untouched" (Mostly Positive sits between the levers) is only a real check if a ring in
     // ANY of our colours makes it fail — with no expected colour there would be nothing to look for.
-    let hit = { fraction: 0, matched: 0, total: 0 }
-    let base = { fraction: 0, matched: 0, total: 0 }
+    // How many pixels this edge offers, read from the band itself rather than from whichever probe
+    // wins: an edge where nothing matches must not look like an edge that was never sampled.
+    const sampled = bands[name].reduce((n, line) => (line.length > n ? line.length : n), 0)
     // An expected edge is checked against the colour this card should be drawn in; an edge that
     // should carry NOTHING is checked against every tone we can draw, or a wrong-toned ring there
     // (a panel's unexpected edges are the only place this can happen) would slip through.
     const probeColours = isExpected ? (colour ? [colour] : TONE_PALETTE) : TONE_PALETTE
+    // Pick the tone by what the overlay ADDED over the un-highlighted twin, not by raw presence:
+    // Steam's own blue chrome sits at a high fraction in both states, so scoring on presence alone
+    // would let it win the loop and hide a wrong-tone ring the overlay really did draw here.
+    let hit = null
     for (const tone of probeColours) {
-      const probe = edgeHit(image, bands[name], tone, { tolerance, chroma, minBrightness })
-      // The same edge in the labels state, where the overlay draws no highlight at all. Steam's own
-      // accent blue is the very colour we highlight in, so only the DIFFERENCE between the two
-      // states is ours; without a baseline the "no highlight here" case cannot be judged at all.
-      const probeBase = baseline ? edgeHit(baseline, bands[name], tone, { tolerance, chroma, minBrightness }) : null
-      // Pick the tone by what the overlay ADDED, not by raw presence: Steam's own blue chrome sits
-      // at a high fraction in both states, so scoring on presence alone would let it win the loop
-      // and hide a wrong-tone ring that the overlay really did draw here.
-      const score = probeBase ? probe.fraction - probeBase.fraction : probe.fraction
-      const best = baseline ? hit.fraction - base.fraction : hit.fraction
-      if (score <= best) continue
-      hit = probe
-      if (probeBase) base = probeBase
+      const probe = edgeGain(image, baseline, bands[name], tone, { tolerance, chroma, minBrightness })
+      if (!hit || probe.gain > hit.gain) hit = probe
     }
-    const gained = baseline ? Math.max(0, hit.fraction - base.fraction) : null
+    if (!hit) hit = { fraction: 0, matched: 0, baseFraction: 0, gain: 0, total: sampled }
+    const gained = baseline ? Math.max(0, hit.gain) : null
     // The page can paint over an edge (Steam's sticky category bar, a hover panel). The capture
     // records that per edge; those pixels are not ours to judge, so the edge is skipped.
     const covered = !!(card.occluded && card.occluded[name])
@@ -380,7 +391,15 @@ export function checkCard(image, card = {}, opts = {}) {
     let unverified = false
     if (covered) {
       pass = true
+      unverified = true
       notes.push(`edge ${name}: occluded by the page, not judged`)
+    } else if (sampled === 0) {
+      // The band skips `corner` px at each end, so an edge shorter than 2*corner has nothing left to
+      // sample. Nothing was measured, so nothing can be concluded — failing here cried wolf on a
+      // sliver of a capsule whose ring we simply never looked at.
+      pass = true
+      unverified = true
+      notes.push(`edge ${name}: no pixels sampled (edge shorter than corner=${bandOpts.corner} at both ends), not judged`)
     } else if (card.neighbourHighlight && card.neighbourHighlight[name]) {
       // A highlighted card is butted against this edge. Its ring lands in our band, and it is absent
       // from the un-highlighted twin too, so the difference is not ours either. That cuts both ways:
@@ -404,16 +423,14 @@ export function checkCard(image, card = {}, opts = {}) {
       pass = hit.fraction < maxStray
     }
     if (!pass) ok = false
-    if (!covered && isExpected && hit.total === 0) {
-      notes.push(`edge ${name}: no pixels sampled (card too small for corner=${bandOpts.corner}/band=${bandOpts.band})`)
-    }
     edges[name] = {
       expected: isExpected,
       fraction: hit.fraction,
       matched: hit.matched,
+      sampled,
       pass,
       occluded: covered,
-      baseline: baseline ? base.fraction : null,
+      baseline: baseline ? hit.baseFraction : null,
       gained,
       unverified,
     }

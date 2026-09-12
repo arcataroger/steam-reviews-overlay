@@ -41,9 +41,10 @@ export interface EdgeHitResult {
 
 export interface CardLike {
   /** Per-edge flag: a highlighted card is butted against that edge, so its ring bleeds into ours. */
-  neighbourHighlight?: Partial<Record<EdgeName, boolean>>
+  neighbourHighlight?: Partial<Record<EdgeName, boolean>> | null
   /** Per-edge flag: the page paints over that edge, so its pixels are not judged. */
   occluded?: Partial<Record<EdgeName, boolean>>
+  highlight?: string | null
   shape?: 'row' | 'panel' | 'card' | 'none' | null
   axis?: 'x' | 'y' | null
   color?: string | null
@@ -79,7 +80,7 @@ export interface CheckCardOpts {
 
 export interface CheckCardResult {
   ok: boolean
-  edges: Record<EdgeName, { expected: boolean; fraction: number; matched: number; pass: boolean; occluded: boolean; baseline: number | null; gained: number | null; unverified: boolean }>
+  edges: Record<EdgeName, { expected: boolean; fraction: number; matched: number; sampled: number; pass: boolean; occluded: boolean; baseline: number | null; gained: number | null; unverified: boolean }>
   notes: string[]
 }
 
@@ -106,6 +107,23 @@ export declare function hexToRgb(hex: string): RgbColour
 export declare function colourDistance(a: RgbColour, b: RgbColour): number
 export declare function edgeBands(width: number, height: number, pad: number, opts?: EdgeBandOpts): EdgeBands
 export declare function edgeHit(image: RgbaImage, band: Band, colour: RgbColour, opts?: EdgeHitOpts): EdgeHitResult
+export interface EdgeGainResult {
+  fraction: number
+  matched: number
+  baseFraction: number
+  gain: number
+  total: number
+}
+
+/** Best line of a band scored by how much more of `colour` it holds than the same line of `baseline`. */
+export declare function edgeGain(
+  image: RgbaImage,
+  baseline: RgbaImage | null,
+  band: Point[][],
+  colour: RgbColour,
+  opts?: EdgeHitOpts,
+): EdgeGainResult
+
 export declare function expectedEdges(card?: CardLike): EdgeBooleans
 export declare function checkCard(image: RgbaImage, card?: CardLike, opts?: CheckCardOpts): CheckCardResult
 

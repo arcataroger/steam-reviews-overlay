@@ -176,17 +176,60 @@ describe('an external settings change arriving mid-drag', () => {
   it('keeps the dragged key and takes every other key from the incoming change', () => {
     const local = { ...base, threshold: 5 } // user has dragged the filter lever to 5, not yet saved
     const incoming = { ...base, threshold: 1, mode: 'hide' as const, source: 'local' as const }
-    expect(mergeIncoming(incoming, local, base)).toEqual({ mode: 'hide', threshold: 5, source: 'local', highlightThreshold: 8 })
+    expect(mergeIncoming(incoming, local, base).settings).toEqual({ mode: 'hide', threshold: 5, source: 'local', highlightThreshold: 8 })
   })
 
   it('takes the incoming change whole when nothing local is unsaved', () => {
     const incoming = { ...base, threshold: 1 }
-    expect(mergeIncoming(incoming, base, null)).toEqual(incoming)
+    expect(mergeIncoming(incoming, base, null).settings).toEqual(incoming)
   })
 
   it('keeps both keys when a lever push has moved two of them', () => {
-    const local = { ...base, threshold: 9, highlightThreshold: 9 } // filter pushed highlight along
+    // Dragging the filter up to 8 pushes the highlight to 9, so both differ from the drag's start.
+    const local = { ...base, threshold: 8, highlightThreshold: 9 }
     const incoming = { ...base, mode: 'hide' as const }
-    expect(mergeIncoming(incoming, local, base)).toEqual({ mode: 'hide', threshold: 9, source: 'global', highlightThreshold: 9 })
+    expect(mergeIncoming(incoming, local, base).settings).toEqual({ mode: 'hide', threshold: 8, source: 'global', highlightThreshold: 9 })
+  })
+})
+
+describe('a second external change during the same drag', () => {
+  // The merge base has to move with each accepted change. Diffing against the frozen drag-start
+  // snapshot left every already-merged key looking like a local edit, so the next external change
+  // to that key was dropped and the drag's own flush then wrote the stale value back to storage.
+  const start: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
+
+  it('lands, while the dragged key still holds', () => {
+    const dragging = { ...start, threshold: 5 }
+    const first = mergeIncoming({ ...start, mode: 'hide' }, dragging, start)
+    expect(first.settings.mode).toBe('hide')
+    const stillDragging = { ...first.settings, threshold: 6 }
+    const second = mergeIncoming({ ...start, mode: 'dim', source: 'local' }, stillDragging, first.base)
+    expect(second.settings.mode).toBe('dim') // not stuck on the first change's value
+    expect(second.settings.source).toBe('local')
+    expect(second.settings.threshold).toBe(6) // the lever the user is holding is still theirs
+  })
+})
+
+describe('merging a drag with an external change to the other lever', () => {
+  // Both sides are valid on their own, but one lever from each can still cross them. Here the user
+  // is dragging the filter lever up in this window while another window drags the highlight lever
+  // down; taking one from each left the highlight sitting below the filter, a state reconcile()
+  // rules out everywhere else and the popup then renders as crossed levers.
+  const base: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 6 }
+
+  it('pushes the untouched lever out of the way instead of crossing them', () => {
+    const dragging = { ...base, threshold: 5 } // still valid here: 6 > 5
+    const incoming = { ...base, highlightThreshold: 4 } // valid there: 4 > 3
+    const merged = mergeIncoming(incoming, dragging, base).settings
+    expect(merged.threshold).toBe(5) // the lever under the user's cursor is theirs
+    expect(merged.highlightThreshold).toBeGreaterThan(merged.threshold)
+  })
+
+  it('pushes the filter down when the highlight is the lever being dragged', () => {
+    const dragging = { ...base, highlightThreshold: 4 }
+    const incoming = { ...base, threshold: 5 }
+    const merged = mergeIncoming(incoming, dragging, base).settings
+    expect(merged.highlightThreshold).toBe(4)
+    expect(merged.threshold).toBeLessThan(merged.highlightThreshold)
   })
 })

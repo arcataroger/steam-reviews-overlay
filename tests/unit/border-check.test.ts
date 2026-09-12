@@ -380,7 +380,11 @@ describe('degenerate geometry: bands that run off the crop or off the card', () 
     const image = makeImage(24, 24, gray)
     paintInwardRing(image, 4, 2, [102, 192, 244])
     const result = checkCard(image, { shape: 'row', color: POSITIVE }, { pad: 4, corner: 10, band: 4 })
-    expect(result.ok).toBe(false)
+    // Nothing was measured, so nothing is concluded: every edge is marked unjudged rather than
+    // failed. Calling it a failure blamed the card for a ring the checker never looked at.
+    expect(result.ok).toBe(true)
+    expect(result.edges.top.unverified).toBe(true)
+    expect(result.edges.top.sampled).toBe(0)
     expect(result.edges.top.fraction).toBe(0)
     expect(result.notes.some((n) => n.includes('no pixels sampled'))).toBe(true)
   })
@@ -483,5 +487,50 @@ describe('edges touching a highlighted neighbour', () => {
     expect(res.edges.top.unverified).toBe(true)
     expect(res.ok).toBe(true) // not judged rather than failed...
     expect(res.edges.right.pass).toBe(true) // ...while the edges we can judge still are
+  })
+})
+
+describe('an edge with nothing to sample is not judged', () => {
+  // The band skips `corner` px at each end. A capsule sliver narrower than both corners leaves no
+  // pixels at all on its horizontal edges, and calling that a missing ring was a false alarm: the
+  // checker never looked. Occluded edges are counted the same way, as unjudged rather than passed.
+  it('reports an unsampleable expected edge as unverified, not a failure', () => {
+    const pad = 4
+    const img = makeImage(12 + pad * 2, 60 + pad * 2, [20, 20, 20]) // 12px wide: bottom edge has no room
+    const card = { color: '#66c0f4', highlight: 'positive', shape: 'panel' as const, axis: 'y' as const }
+    const res = checkCard(img, { ...card, neighbourHighlight: null }, { pad })
+    expect(res.edges.bottom.expected).toBe(false)
+    const wide = checkCard(img, { ...card, shape: 'panel' as const, axis: 'x' as const }, { pad })
+    expect(wide.edges.top.expected).toBe(true)
+    expect(wide.edges.top.unverified).toBe(true)
+    expect(wide.edges.top.pass).toBe(true)
+    expect(wide.notes.some((n: string) => n.includes('no pixels sampled'))).toBe(true)
+  })
+
+  it('counts an occluded edge as unverified so the tally reflects what was skipped', () => {
+    const pad = 4
+    const img = makeImage(200 + pad * 2, 100 + pad * 2, [20, 20, 20])
+    const card = { color: '#66c0f4', highlight: 'positive', shape: 'row' as const, occluded: { top: true, right: false, bottom: false, left: false } }
+    const res = checkCard(img, card, { pad })
+    expect(res.edges.top.unverified).toBe(true)
+    expect(res.edges.top.pass).toBe(true)
+  })
+})
+
+describe('the measured fraction is reported even when the overlay added nothing', () => {
+  // Scoring tones by gain over the un-highlighted twin is what stops Steam's own blue chrome from
+  // masquerading as our ring. But a lone candidate tone that gains nothing must still be REPORTED:
+  // discarding it left the edge claiming 0% of the colour on a band that measured 100%, which reads
+  // as "the ring is missing" when the truth is "the colour is there but it is not ours".
+  it('keeps the measurement when the only tone ties the baseline', () => {
+    const image = makeImage(W, H, gray)
+    paintInwardRing(image, PAD, 2, [0x66, 0xc0, 0xf4])
+    const baseline = makeImage(W, H, gray)
+    paintInwardRing(baseline, PAD, 2, [0x66, 0xc0, 0xf4]) // the page already painted this edge blue
+    const result = checkCard(image, { shape: 'row', color: POSITIVE }, { pad: PAD, baseline })
+    expect(result.edges.top.fraction).toBe(1)
+    expect(result.edges.top.baseline).toBe(1)
+    expect(result.edges.top.gained).toBe(0)
+    expect(result.edges.top.pass).toBe(false) // no gain: we cannot claim the ring as ours
   })
 })

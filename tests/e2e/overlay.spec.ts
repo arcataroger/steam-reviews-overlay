@@ -75,6 +75,40 @@ test.describe('badges on Steam store pages', () => {
     await page.close()
   })
 
+  test('a rotating carousel is labelled per slide, not as one card', async ({ context }) => {
+    // Steam's content-hub carousel rotates a different game through one viewport every few seconds,
+    // and only the current slide is in the DOM. The viewport therefore looked like a single game's
+    // card and took a ring around the whole widget: the video controls, the auto-advance bar and the
+    // pagination for twelve other games. Built here rather than waited for, because which pages
+    // carry the carousel and which game it shows both change by the hour.
+    const page = await context.newPage()
+    await page.goto('https://store.steampowered.com/', { waitUntil: 'domcontentloaded' })
+    await settle(page)
+    await page.evaluate(() => {
+      const px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
+      const hub = document.createElement('div')
+      hub.className = 'contenthubmaincarousel'
+      hub.id = 'sro-test-carousel'
+      // Wider than the climb's own width cap, so without the fix the climb settles on the viewport
+      // exactly as it does on the real page.
+      hub.style.cssText = 'position:relative;width:1386px;height:591px'
+      hub.innerHTML =
+        '<div id="sro-test-viewport" style="position:relative;width:1200px;height:541px">' +
+        `<a id="sro-test-slide" href="https://store.steampowered.com/app/620/Portal_2/" style="display:block;width:384px;height:252px"><img src="${px}" style="width:384px;height:252px"></a>` +
+        '<div style="height:40px">Next Game in 3 seconds</div>' +
+        '</div>'
+      document.body.appendChild(hub)
+    })
+    await page.waitForTimeout(4000)
+    const claimed = await page.evaluate(() => ({
+      viewport: document.getElementById('sro-test-viewport')!.hasAttribute('data-sro-card'),
+      slide: document.getElementById('sro-test-slide')!.hasAttribute('data-sro-card'),
+      hub: document.getElementById('sro-test-carousel')!.hasAttribute('data-sro-card'),
+    }))
+    expect(claimed).toEqual({ viewport: false, slide: true, hub: false })
+    await page.close()
+  })
+
   test('search rows reuse on-page data and stay in one batch', async ({ context }) => {
     const page = await context.newPage()
     const own: string[] = []

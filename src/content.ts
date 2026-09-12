@@ -70,6 +70,15 @@ const NEVER_CARD_SELECTOR =
   '.page_content, .page_content_ctn, #responsive_page_template_content, .responsive_page_content, main, [role="main"], ' +
   '.app_reviews_area, .game_page_autocollapse_ctn, .leftcol, .rightcol, .block, #game_area_reviews, ' + // app-page sections
   '.game_area_dlc_section, .game_area_dlc_list' // a DLC list with one row is still a list
+
+/**
+ * Steam's main content-hub carousel rotates a different game through one viewport every few
+ * seconds, and only the current slide is in the DOM. The viewport therefore looks like a single
+ * game's card, and took a 1200x541 ring around the whole widget: the video controls, the
+ * auto-advance bar, and the pagination for twelve OTHER games. The slide is the card, so the climb
+ * stops on the way into one of these rather than at the top of it.
+ */
+const ROTATING_CAROUSEL = '.contenthubmaincarousel'
 const maxCardWidth = () => Math.min(MAX_CARD_W, window.innerWidth - 80)
 
 function injectStyles() {
@@ -176,6 +185,8 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
     // A row of tiles that all belong to the same game (three news posts about one title) is a group,
     // not a card: stop at the tile when the parent holds another artwork-bearing link to it.
     if (card && hasSiblingTile(el, card, appid)) break
+    // The slide, not the viewport that rotates other games through it.
+    if (card && el.closest(ROTATING_CAROUSEL)) break
     // Only `/app/` links count towards `appIdsWithin`, so a column pairing a game capsule with a
     // package capsule looked like one game and the whole column became the card: on the homepage
     // the Death Stranding capsule's ring wrapped an unrelated package's capsule below it.
@@ -910,8 +921,11 @@ function scan(root: ParentNode = document) {
     if (!appid || appid === pageAppId) continue
     const owner = el.closest<HTMLElement>(`[${CARD_ATTR}]`)
     if (owner) {
-      if (cardsByAppId.has(owner)) continue
-      stripCard(owner) // left by a re-attached clone or a retired instance
+      // Only skip it if this element still holds the game we claimed it for. A carousel reuses one
+      // element for slide after slide, so a claimed container can end up showing a different game
+      // while still wearing the previous one's tone and ring.
+      if (cardsByAppId.get(owner) === appid) continue
+      stripCard(owner) // a rotated slide, a re-attached clone, or a retired instance
     }
     if (el.closest(EXCLUDE_SELECTOR)) continue
     const card = findCard(el, appid)

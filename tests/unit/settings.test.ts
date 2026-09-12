@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { describe, it, expect } from 'vitest'
 import './setup'
 import {
@@ -13,6 +14,7 @@ import {
   OFF_HIGHLIGHT,
   reconcile,
   type Settings,
+  mergeIncoming,
 } from '../../src/settings'
 
 const s = (over: Partial<Settings>): Settings => ({ ...DEFAULT_SETTINGS, ...over })
@@ -161,5 +163,30 @@ describe('settings change events', () => {
     onSettingsChange((s) => seen.push(s.threshold))
     listeners.forEach((fn) => fn({ 'sro:settings:v4': { newValue: { ...DEFAULT_SETTINGS, threshold: 2 } }, 'sro:settings:v4:t': { newValue: stamp - 500 } }))
     expect(seen).toEqual([]) // the stale echo was dropped
+  })
+})
+
+describe('an external settings change arriving mid-drag', () => {
+  // Another popup window or a sync from another device can land while a lever is still being
+  // dragged. Dropping it outright meant the drag's own save then wrote back the pre-change value
+  // and silently undid the other edit; taking it outright would have yanked the lever from under
+  // the user's cursor. Keep only the keys this window is actively changing.
+  const base: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
+
+  it('keeps the dragged key and takes every other key from the incoming change', () => {
+    const local = { ...base, threshold: 5 } // user has dragged the filter lever to 5, not yet saved
+    const incoming = { ...base, threshold: 1, mode: 'hide' as const, source: 'local' as const }
+    expect(mergeIncoming(incoming, local, base)).toEqual({ mode: 'hide', threshold: 5, source: 'local', highlightThreshold: 8 })
+  })
+
+  it('takes the incoming change whole when nothing local is unsaved', () => {
+    const incoming = { ...base, threshold: 1 }
+    expect(mergeIncoming(incoming, base, null)).toEqual(incoming)
+  })
+
+  it('keeps both keys when a lever push has moved two of them', () => {
+    const local = { ...base, threshold: 9, highlightThreshold: 9 } // filter pushed highlight along
+    const incoming = { ...base, mode: 'hide' as const }
+    expect(mergeIncoming(incoming, local, base)).toEqual({ mode: 'hide', threshold: 9, source: 'global', highlightThreshold: 9 })
   })
 })

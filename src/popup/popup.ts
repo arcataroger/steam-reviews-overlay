@@ -14,6 +14,7 @@ import {
   DEFAULT_SETTINGS,
   type FilterMode,
   type ScoreSource,
+  mergeIncoming,
 } from '../settings'
 import { LANG_KEY, detectLang, langForLocale, type LangInfo } from '../lang'
 import { GRADIENT_CSS, toneColorAt } from '../tonecolor'
@@ -236,17 +237,21 @@ radioKeys(sourceGroup, (b) => update({ source: b.dataset.source as ScoreSource }
 
 let saveTimer: number | undefined
 let pendingSave: Settings | null = null
+/** What the settings were before the unsaved edit began, so we know which keys the user has touched. */
+let dirtyBase: Settings | null = null
 function flush() {
   clearTimeout(saveTimer)
   saveTimer = undefined
   if (!pendingSave) return
   const s = pendingSave
   pendingSave = null
+  dirtyBase = null
   void saveSettings(s)
 }
 /** Discrete changes save immediately; drags (`defer`) coalesce and flush on release or popup close. */
 function update(patch: Partial<Settings>, { defer = false } = {}) {
   if (!loaded) return
+  if (!dirtyBase) dirtyBase = settings
   settings = { ...settings, ...patch }
   render()
   pendingSave = settings
@@ -254,14 +259,16 @@ function update(patch: Partial<Settings>, { defer = false } = {}) {
   if (defer) saveTimer = window.setTimeout(flush, 100)
   else flush()
 }
+
 window.addEventListener('pagehide', flush)
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) flush()
 })
-// Changes from elsewhere (another popup window, sync from another device) while we're open
+// Changes from elsewhere (another popup window, sync from another device) while we're open. A drag
+// still in flight keeps the keys it is moving; everything else takes the incoming value.
 onSettingsChange((s) => {
-  if (pendingSave) return
-  settings = s
+  settings = pendingSave ? mergeIncoming(s, settings, dirtyBase) : s
+  if (pendingSave) pendingSave = settings
   render()
 })
 

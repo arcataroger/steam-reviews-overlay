@@ -46,17 +46,22 @@ export function seedFromSearchRows(root: ParentNode = document): number {
   return n
 }
 
-/** Homepage inline JSON: "appid":N ... "review_summary":{...unfiltered...},"review_summary_filtered":{"cReviews":..,"reviewScore":8,"reviewSummaryDesc":"Very Positive","sReviewScoreTooltip":"81% of the ..."}
- *  Each filtered blob is paired with the nearest preceding "appid" (a sibling object with its own
- *  braces sits between them, so the gap is not brace-free). */
-const BLOB_RE = /"appid":(\d+)|"review_summary_filtered":\{([^{}]*)\}/g
-const MAX_GAP = 4000 // characters between an appid and its filtered summary; beyond that they are unrelated
+/** Homepage inline JSON: "appid":N ... "review_summary":{...all languages...},"review_summary_filtered":{"cReviews":..,"reviewScore":8,"reviewSummaryDesc":"Very Positive","sReviewScoreTooltip":"81% of the ..."}
+ *  Despite its name, `review_summary_filtered` is the *language-specific* summary (what GetItems
+ *  calls summary_language_specific), and the plain `review_summary` is the all-languages one.
+ *  Verified live: appid 275850's plain blob reads 313,738 in both English and German, while its
+ *  filtered blob reads 184,373 in English and 10,204 in German. Seeding the filtered blob as
+ *  'global' put a one-language count behind the all-languages label until the batch fetch landed.
+ *  Each blob is paired with the nearest preceding "appid": a sibling object with its own braces sits
+ *  between them, so the gap is not brace-free. */
+const BLOB_RE = /"appid":(\d+)|"review_summary":\{([^{}]*)\}|"review_summary_filtered":\{([^{}]*)\}/g
+const MAX_GAP = 4000 // characters between an appid and its summary; beyond that they are unrelated
 
 export function seedFromInlineJson(): number {
   let n = 0
   for (const script of document.querySelectorAll<HTMLScriptElement>('script:not([src])')) {
     const text = script.textContent
-    if (!text || !text.includes('review_summary_filtered')) continue
+    if (!text || !text.includes('review_summary')) continue
     let appid = 0
     let at = -1
     for (const m of text.matchAll(BLOB_RE)) {
@@ -66,18 +71,19 @@ export function seedFromInlineJson(): number {
         continue
       }
       if (!appid || m.index - at > MAX_GAP) continue
+      const local = m[3] !== undefined
+      const id = appid
+      if (local) appid = 0 // the filtered blob is the last of the pair, so it closes out this appid
       let obj: Record<string, unknown>
       try {
-        obj = JSON.parse(`{${m[2]}}`)
+        obj = JSON.parse(`{${local ? m[3] : m[2]}}`)
       } catch {
         continue
       }
-      const id = appid
-      appid = 0 // one summary per appid
       const score = Number(obj.reviewScore ?? 0)
       const count = Number(obj.cReviews ?? 0)
       const pm = String(obj.sReviewScoreTooltip ?? '').match(/^(\d+)\s*%/) // "19 % der ..." in German
-      seed(id, 'global', {
+      seed(id, local ? 'local' : 'global', {
         label: String(obj.reviewSummaryDesc ?? '') || (count ? `${count} user reviews` : 'No user reviews'),
         score,
         pct: score > 0 && pm ? Number(pm[1]) : null,

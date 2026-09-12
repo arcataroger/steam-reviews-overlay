@@ -104,14 +104,19 @@ const CHECKS = () => {
       const el = document.elementFromPoint(x, y)
       return !el || !(el === card || card.contains(el))
     }
-    const mx = cr.left + cr.width / 2
-    const my = cr.top + cr.height / 2
+    // Probe five points spread along each edge, not just its midpoint: Steam's hover panels and
+    // dropdowns cover one end of a card while leaving the centre clear, and a single centre sample
+    // called that edge judgeable. The fractions stay inside the 10px corner the checker skips.
+    const FRACTIONS = [0.15, 0.325, 0.5, 0.675, 0.85]
+    const anyCovered = (points) => points.some(([x, y]) => covered(x, y))
+    const alongX = (yy) => FRACTIONS.map((f) => [cr.left + cr.width * f, yy])
+    const alongY = (xx) => FRACTIONS.map((f) => [xx, cr.top + cr.height * f])
     const occluded = fullyVisible
       ? {
-          top: covered(mx, cr.top + 2),
-          right: covered(cr.right - 2, my),
-          bottom: covered(mx, cr.bottom - 2),
-          left: covered(cr.left + 2, my),
+          top: anyCovered(alongX(cr.top + 2)),
+          right: anyCovered(alongY(cr.right - 2)),
+          bottom: anyCovered(alongX(cr.bottom - 2)),
+          left: anyCovered(alongY(cr.left + 2)),
         }
       : { top: true, right: true, bottom: true, left: true }
     sroCards.push({ appid, title, rect, score, tone, label, filtered, highlight, shape, axis, color, op, fullyVisible, occluded })

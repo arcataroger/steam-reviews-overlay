@@ -327,13 +327,19 @@ export function checkCard(image, card = {}, opts = {}) {
   const bands = edgeBands(image.width, image.height, pad, bandOpts)
 
   let colour = null
+  let colourMissing = false
   if (card.color) {
     try {
       colour = hexToRgb(card.color)
     } catch (err) {
+      colourMissing = true
       notes.push(`invalid colour ${JSON.stringify(card.color)}: ${err.message}`)
     }
   } else if (shape) {
+    // Without the colour the card claims, "is the right colour there" degenerates into "is ANY of
+    // our colours there", which is not the check the gate promises. Say so and fail rather than
+    // quietly widening the test.
+    colourMissing = true
     notes.push('highlight shape present but no colour recorded to verify against')
   }
 
@@ -353,12 +359,18 @@ export function checkCard(image, card = {}, opts = {}) {
     const probeColours = isExpected ? (colour ? [colour] : TONE_PALETTE) : TONE_PALETTE
     for (const tone of probeColours) {
       const probe = edgeHit(image, bands[name], tone, { tolerance, chroma, minBrightness })
-      if (probe.fraction <= hit.fraction) continue
-      hit = probe
       // The same edge in the labels state, where the overlay draws no highlight at all. Steam's own
       // accent blue is the very colour we highlight in, so only the DIFFERENCE between the two
       // states is ours; without a baseline the "no highlight here" case cannot be judged at all.
-      base = baseline ? edgeHit(baseline, bands[name], tone, { tolerance, chroma, minBrightness }) : base
+      const probeBase = baseline ? edgeHit(baseline, bands[name], tone, { tolerance, chroma, minBrightness }) : null
+      // Pick the tone by what the overlay ADDED, not by raw presence: Steam's own blue chrome sits
+      // at a high fraction in both states, so scoring on presence alone would let it win the loop
+      // and hide a wrong-tone ring that the overlay really did draw here.
+      const score = probeBase ? probe.fraction - probeBase.fraction : probe.fraction
+      const best = baseline ? hit.fraction - base.fraction : hit.fraction
+      if (score <= best) continue
+      hit = probe
+      if (probeBase) base = probeBase
     }
     const gained = baseline ? Math.max(0, hit.fraction - base.fraction) : null
     // The page can paint over an edge (Steam's sticky category bar, a hover panel). The capture
@@ -407,6 +419,7 @@ export function checkCard(image, card = {}, opts = {}) {
     }
   }
 
+  if (colourMissing) ok = false
   if (card.filtered === 'dim') {
     notes.push(`mean luminance ${meanLuminance(image).toFixed(1)} (card sits under the dim overlay)`)
   }

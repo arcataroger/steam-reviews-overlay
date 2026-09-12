@@ -103,6 +103,13 @@ export function neighbourHighlights(card, all, pad) {
   const out = { top: false, right: false, bottom: false, left: false }
   const overlapsX = (o) => o.x < me.x + me.w && me.x < o.x + o.w
   const overlapsY = (o) => o.y < me.y + me.h && me.y < o.y + o.h
+  // Which edges does a given treatment actually paint? A panel only draws two of its four, so two
+  // stacked panel/axis:y cards paint nothing along the edge they share and cannot bleed into it.
+  const paints = (o, edge) => {
+    if (!o.shape) return false
+    if (o.shape !== 'panel') return true // row and card draw all four
+    return (o.axis === 'x') === (edge === 'top' || edge === 'bottom')
+  }
   for (const other of all) {
     if (other === card || !other.shape) continue // only a highlighted neighbour can bleed colour
     const o = other.rect
@@ -111,10 +118,11 @@ export function neighbourHighlights(card, all, pad) {
     const gapBottom = o.y - (me.y + me.h)
     const gapLeft = me.x - (o.x + o.w)
     const gapRight = o.x - (me.x + me.w)
-    if (overlapsX(o) && gapTop >= -pad && gapTop <= pad) out.top = true
-    if (overlapsX(o) && gapBottom >= -pad && gapBottom <= pad) out.bottom = true
-    if (overlapsY(o) && gapLeft >= -pad && gapLeft <= pad) out.left = true
-    if (overlapsY(o) && gapRight >= -pad && gapRight <= pad) out.right = true
+    // The neighbour bleeds into our edge only if it paints the side of itself that faces us.
+    if (overlapsX(o) && gapTop >= -pad && gapTop <= pad && paints(other, 'bottom')) out.top = true
+    if (overlapsX(o) && gapBottom >= -pad && gapBottom <= pad && paints(other, 'top')) out.bottom = true
+    if (overlapsY(o) && gapLeft >= -pad && gapLeft <= pad && paints(other, 'right')) out.left = true
+    if (overlapsY(o) && gapRight >= -pad && gapRight <= pad && paints(other, 'left')) out.right = true
   }
   return out
 }

@@ -84,7 +84,7 @@ for (const card of selected) {
   }
 
   if (!result.ok) failures++
-  results.push({ file, ...result })
+  results.push({ file, state: card.state, ...result })
 
   if (!result.ok) {
     const colourLabel = card.color ? String(card.color).replace(/^#/, '') : 'none'
@@ -104,7 +104,16 @@ if (jsonOut) {
   fs.writeFileSync(jsonOut, JSON.stringify(results, null, 2) + '\n')
 }
 
-const paired = results.filter((r) => r.twin).length
-const unjudged = results.reduce((n, r) => n + Object.values(r.edges || {}).filter((e) => e.unverified).length, 0)
-console.log(`checked ${selected.length} cards, ${failures} failures (${paired} paired with an un-highlighted twin, ${unjudged} edges unjudged for want of one)`)
+// labels-state crops exist to be the baseline for their active-state twin: every card there is
+// parked, so nothing is expected and no edge can be judged without a twin of its own. Counting them
+// as "checked" inflated the total and made the unjudged tally look far worse than it was.
+const judged = results.filter((r) => r.state !== 'labels')
+const baselinesOnly = results.length - judged.length
+const paired = judged.filter((r) => r.twin).length
+const unjudged = judged.reduce((n, r) => n + Object.values(r.edges || {}).filter((e) => e.unverified).length, 0)
+console.log(
+  `checked ${judged.length} cards, ${failures} failures ` +
+    `(${paired} paired with an un-highlighted twin, ${unjudged} edges unjudged for want of one; ` +
+    `${baselinesOnly} labels-state crops read as baselines)`,
+)
 process.exit(failures > 0 ? 1 : 0)

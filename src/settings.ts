@@ -159,6 +159,17 @@ export async function saveSettings(s: Settings): Promise<void> {
   }
 }
 
+/** Fold an external change into an edit still in flight: the keys the user is dragging stay as they
+ *  have them, everything else takes the incoming value. Dropping the whole update instead let the
+ *  drag's own flush write back the pre-change values and silently undo the other window's edit. */
+export function mergeIncoming(incoming: Settings, local: Settings, base: Settings | null): Settings {
+  if (!base) return incoming
+  const merged = { ...incoming }
+  for (const key of Object.keys(local) as (keyof Settings)[]) {
+    if (local[key] !== base[key]) (merged as Record<string, unknown>)[key] = local[key]
+  }
+  return merged
+}
 export function onSettingsChange(cb: (s: Settings) => void): void {
   ext.storage.onChanged.addListener((changes) => {
     const c = changes[KEY]

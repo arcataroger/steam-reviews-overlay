@@ -213,3 +213,24 @@ describe('neighbourHighlights', () => {
     expect(neighbourHighlights(me, all, 12)).toEqual({ top: false, right: true, bottom: false, left: true })
   })
 })
+
+describe('neighbourHighlights only counts a neighbour that paints the facing edge', () => {
+  // Two stacked panel/axis:y cards draw wings on their left and right only, so neither paints the
+  // horizontal edge they share. Treating that edge as contaminated would suppress the very check
+  // that catches a wing drawn on the wrong axis.
+  const me = { appid: 1, rect: { x: 100, y: 100, w: 200, h: 50 }, shape: 'panel', axis: 'y' }
+  const above = (shape: string, axis?: string) => ({ appid: 2, rect: { x: 100, y: 50, w: 200, h: 50 }, shape, axis })
+
+  it('ignores a panel-y neighbour above, which paints no bottom wing', () => {
+    expect(neighbourHighlights(me, [me, above('panel', 'y')], 12).top).toBe(false)
+  })
+
+  it('counts a panel-x neighbour above, which does paint its bottom wing', () => {
+    expect(neighbourHighlights(me, [me, above('panel', 'x')], 12).top).toBe(true)
+  })
+
+  it('counts a row or card neighbour above, which paint every edge', () => {
+    expect(neighbourHighlights(me, [me, above('row')], 12).top).toBe(true)
+    expect(neighbourHighlights(me, [me, above('card')], 12).top).toBe(true)
+  })
+})

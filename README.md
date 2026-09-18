@@ -1,3 +1,5 @@
+> **Made with AI (Claude) under human supervision.**
+
 # Steam Reviews Overlay
 
 Browser extension (Chrome + Firefox, Manifest V3) that shows each game's review

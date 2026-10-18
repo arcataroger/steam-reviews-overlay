@@ -13,7 +13,7 @@
   vertical-align: middle;
   pointer-events: auto;
   cursor: default;
-  z-index: 5; /* only matters for the absolute corner chip; the dim overlay (z 4 → badge z 1) still covers it */
+  z-index: 5; /* only matters for the absolute corner chip */
 }
 .sro-badge.sro-positive { color: var(--sro-positive); }
 .sro-badge.sro-mixed    { color: var(--sro-mixed); }
@@ -85,7 +85,7 @@
 /* Placed in the lower-right corner of the card when there's no price to sit next to */
 .sro-badge.sro-corner {
   position: absolute;
-  z-index: 7; /* above the highlight ring/wings (z 6), still under the dim overlay (z 30) */
+  z-index: 7; /* above the highlight ring/wings (z 6); a dimmed card lifts it above its overlay (z 30) */
   right: 4px;
   bottom: 4px;
   padding: 2px 6px;
@@ -155,7 +155,11 @@
 
 /* Overwhelmingly Positive: two soft points of light slowly orbit the frame.
    .sro-orbit is a masked ring just outside the card box, in the card's own stacking layer below every
-   child; its inner layer holds a static gradient and only rotates (composited, no repaint). */
+   child. Each light is a short streak travelling the ring's centre line (offset-path), so it moves at
+   one speed along every edge whatever the card's aspect ratio. A layer rotating about the centre
+   does not: on a wide row its sweep crawls along the middle of the long edges, races past the ends,
+   and the rotated layer stops covering the ends at all. Browsers without basic-shape offset paths
+   (Chrome < 116) keep that rotating gradient. */
 [data-sro-op] { isolation: isolate; }
 .sro-orbit {
   position: absolute;
@@ -172,27 +176,65 @@
 }
 .sro-orbit > i {
   position: absolute;
-  inset: -100%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 120deg,
-    color-mix(in srgb, var(--sro-hl) 35%, transparent) 150deg,
-    #ffffff 172deg,
-    color-mix(in srgb, var(--sro-hl) 35%, transparent) 178deg,
-    transparent 180deg,
-    transparent 300deg,
-    color-mix(in srgb, var(--sro-hl) 35%, transparent) 330deg,
-    #ffffff 352deg,
-    color-mix(in srgb, var(--sro-hl) 35%, transparent) 358deg,
-    transparent 360deg
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 7px;
+  offset-path: inset(1.5px); /* the ring's centre line */
+  offset-rotate: auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--sro-hl) 35%, transparent) 55%,
+    #ffffff 92%,
+    transparent
   );
   animation: sro-orbit 7s linear infinite;
-  will-change: transform;
 }
+.sro-orbit > i + i { offset-distance: 50%; animation-delay: -3.5s; }
 .sro-orbit-paused > i { animation-play-state: paused; }
 @keyframes sro-orbit {
-  to { transform: rotate(360deg); }
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+/* Rows draw their highlight as a ring inside the card, and many rows clip their overflow (search
+   results): a ring outside the box would be cut away entirely. Run the lights along the inner ring,
+   above the row's content like the ring itself. */
+[data-sro-shape="row"] > .sro-orbit {
+  inset: 0;
+  padding: 2px;
+  z-index: 7;
+}
+[data-sro-shape="row"] > .sro-orbit > i {
+  offset-path: inset(1px); /* the inner ring's centre line */
+  height: 5px;
+}
+@supports not (offset-path: inset(0)) {
+  .sro-orbit > i {
+    width: auto;
+    height: auto;
+    inset: -100%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 120deg,
+      color-mix(in srgb, var(--sro-hl) 35%, transparent) 150deg,
+      #ffffff 172deg,
+      color-mix(in srgb, var(--sro-hl) 35%, transparent) 178deg,
+      transparent 180deg,
+      transparent 300deg,
+      color-mix(in srgb, var(--sro-hl) 35%, transparent) 330deg,
+      #ffffff 352deg,
+      color-mix(in srgb, var(--sro-hl) 35%, transparent) 358deg,
+      transparent 360deg
+    );
+    animation: sro-orbit-spin 7s linear infinite;
+    will-change: transform;
+  }
+  .sro-orbit > i + i { display: none; }
+  @keyframes sro-orbit-spin {
+    to { transform: rotate(360deg); }
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .sro-orbit > i { animation: none; opacity: 0.6; }
@@ -221,9 +263,13 @@
   outline: 2px solid #66c0f4;
   outline-offset: -2px;
 }
-/* The label dims with the rest of the card (it sits under the overlay) */
+/* The label stays readable above the overlay: it is the reason the card is dimmed. An inline label
+   becomes positioned so its z-index applies; it keeps its place in the flow. */
 [data-sro-filtered="dim"] .sro-badge {
-  z-index: 1;
+  z-index: 31;
+}
+[data-sro-filtered="dim"] .sro-badge:not(.sro-corner) {
+  position: relative;
 }
 
 /* ---------- filter: hide ---------- */

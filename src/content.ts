@@ -28,6 +28,14 @@ const CARD_ATTR = 'data-sro-card'
 const BADGE_CLASS = 'sro-badge'
 
 /** Containers that already show reviews or that we must never touch. */
+/**
+ * "Since you wish for <a>Other Game</a>": the logged-in home page's recommendation blocks name the
+ * game that prompted them. That link is prose about another game, never a card, and it must not count
+ * as a second game in the block, or the block splits into a title strip labelled with the other game's
+ * score, a button bar and an unlabelled capsule.
+ */
+const REASON_SELECTOR = '.home_content_reason'
+
 const EXCLUDE_SELECTOR = [
   '#global_hover',
   '.hover_body',
@@ -37,6 +45,7 @@ const EXCLUDE_SELECTOR = [
   '.search_results_filtered_warning',
   '.game_review_summary',
   '.game_area_purchase_game', // an app page's own purchase boxes (and their bundle-contents strips)
+  REASON_SELECTOR,
   '.sro-badge',
 ].join(',')
 
@@ -124,6 +133,7 @@ function appIdsWithin(root: Element, limit = 3): Set<number> {
   if (self) ids.add(self)
   const nodes = root.querySelectorAll<HTMLElement>('a[href*="/app/"], [data-ds-appid]')
   for (const n of nodes) {
+    if (n.closest(REASON_SELECTOR)) continue
     const id = appIdOf(n)
     if (id) ids.add(id)
     if (ids.size >= limit) break
@@ -150,8 +160,10 @@ function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): 
 }
 
 /** Links to a product that is not an app: a package or a bundle has its own store page and its own
- *  review score, so a box holding one of those alongside our game is a shelf, not that game's card. */
-const OTHER_PRODUCT_SEL = 'a[href*="/sub/"], a[href*="/bundle/"]'
+ *  review score, so a box holding one of those alongside our game is a shelf, not that game's card.
+ *  Sale and franchise tiles count too: the home page's "Today's Deal" panel stacks a game's tile on a
+ *  sale page's tile, and a card climbed past the game's tile took in the sale link and was rejected. */
+const OTHER_PRODUCT_SEL = 'a[href*="/sub/"], a[href*="/bundle/"], a[href*="/sale/"], a[href*="/franchise/"]'
 
 /** Does `parent` hold, outside `tile`, an artwork-sized link to a package or bundle? */
 function hasOtherProductTile(parent: HTMLElement, tile: HTMLElement): boolean {
@@ -348,15 +360,8 @@ function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; a
   if (r.width >= 1100) return { shape: 'card' } // hero carousels: underglow
   // An underglow that a clipping ancestor would shave off is worse than no underglow: use the ring.
   if (glowWouldClip(card, r)) return { shape: 'row' }
-  // The artwork's share of the card: <img>/<video>, or a background-image box (event tiles, some capsules)
-  let imgArea = 0
-  const arts = [...card.querySelectorAll<HTMLElement>('img, video, [style*="background-image"]')]
-  if (card.matches('[style*="background-image"]')) arts.push(card)
-  for (const img of arts) {
-    const ir = img.getBoundingClientRect()
-    imgArea = Math.max(imgArea, ir.width * ir.height)
-  }
-  if (imgArea / (r.width * r.height) > 0.5) return { shape: 'card' }
+  const art = largestArt(card)
+  if (art && (art.width * art.height) / (r.width * r.height) > 0.5) return { shape: 'card' }
   if (!tall) return { shape: 'row' }
   // Tall text-heavy card: wings on the sides when stacked vertically; rectangle when spaced out beside others
   for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
@@ -504,6 +509,18 @@ function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   return out
 }
 
+/** The card's main artwork: <img>/<video>, or a background-image box (event tiles, some capsules). */
+function largestArt(card: HTMLElement): DOMRect | null {
+  const arts = [...card.querySelectorAll<HTMLElement>('img, video, [style*="background-image"]')]
+  if (card.matches('[style*="background-image"]')) arts.push(card)
+  let best: DOMRect | null = null
+  for (const el of arts) {
+    const ir = el.getBoundingClientRect()
+    if (!best || ir.width * ir.height > best.width * best.height) best = ir
+  }
+  return best
+}
+
 const within = (br: DOMRect, cr: DOMRect) => br.left >= cr.left - 2 && br.right <= cr.right + 2 && br.top >= cr.top - 2 && br.bottom <= cr.bottom + 2
 
 /**
@@ -537,9 +554,17 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
     const br = badge.getBoundingClientRect()
     return within(br, cr) && obstaclesFor(card, badge).length === 0
   }
-  // Candidate positions, best first: bottom-right lifted above the price block, bottom-right
-  // lifted above whatever it hits, shifted left of it, then the other corners.
+  // Candidate positions, best first: the artwork's lower-right on art-on-top cards, bottom-right
+  // lifted above the price block, bottom-right lifted above whatever it hits, shifted left of it,
+  // then the top-right.
   const candidates: Array<() => void> = []
+  // Art across the top with text below (carousel tiles with a blurb or tag pills, then a price bar):
+  // the art's lower-right is a fixed spot, where the card's lower half shifts from tile to tile with
+  // the blurb's length and would scatter the chips along one row.
+  const art = largestArt(card)
+  if (art && art.top - cr.top <= 6 && art.width >= cr.width * 0.8 && cr.bottom - art.bottom > bh + 8) {
+    candidates.push(() => apply({ bottom: Math.round(cr.bottom - art.bottom) + 4, right: Math.max(4, Math.round(cr.right - art.right) + 4) }))
+  }
   if (priceRect) {
     const lift = Math.max(0, Math.round(cr.bottom - priceRect.top))
     if (lift > 0 && lift < cr.height - bh - 4) candidates.push(() => apply({ bottom: lift + 4, right: 4 }))
@@ -652,7 +677,7 @@ function setOrbit(card: HTMLElement, on: boolean) {
   const ring = document.createElement('i')
   ring.className = ORBIT_CLASS
   ring.setAttribute('aria-hidden', 'true')
-  ring.appendChild(document.createElement('i'))
+  ring.append(document.createElement('i'), document.createElement('i')) // two lights, half a lap apart
   card.appendChild(ring)
   orbitVisibility.observe(ring)
 }
@@ -974,7 +999,12 @@ function scan(root: ParentNode = document) {
     if (!card || card.hasAttribute(CARD_ATTR)) continue
     // Ignore invisible / zero-size things (hidden templates etc.) and plain prose links
     const r = card.getBoundingClientRect()
-    if (r.width < 40 || r.height < 16) continue
+    if (r.width < 40 || r.height < 16) {
+      // No layout at all (an inactive home tab, a collapsed panel): Steam reveals it by flipping a style,
+      // which the mutation observer never hears about. Look again once it has a size.
+      if (!card.getClientRects().length) layoutWatcher.observe(card)
+      continue
+    }
     // Short and image-less is usually a prose link; a block-level row of a ranking list
     // (charts: "3  Halloween: The Game  1,251,033") is a card even so.
     if (r.height < 60 && !hasArt(card) && !isTextRow(card, r)) continue // art may be a background image
@@ -996,6 +1026,20 @@ function isTextRow(el: HTMLElement, r: DOMRect): boolean {
 }
 
 let scanTimer: number | undefined
+/** Cards skipped for having no layout: scanned again the moment they get one. */
+const layoutWatcher = new ResizeObserver((entries) => {
+  for (const e of entries) {
+    const el = e.target as HTMLElement
+    if (!el.isConnected) {
+      layoutWatcher.unobserve(el)
+      continue
+    }
+    if (!el.getClientRects().length) continue // the initial callback for a still-hidden card
+    layoutWatcher.unobserve(el)
+    scheduleScan(el)
+  }
+})
+
 const pendingRoots = new Set<ParentNode>()
 let fullScanPending = false
 function scheduleScan(root?: Element) {
@@ -1047,6 +1091,7 @@ function shutdown() {
   document.removeEventListener('load', onAssetLoad, true)
   if (replaceTimer) clearTimeout(replaceTimer)
   shapeWatcher.disconnect()
+  layoutWatcher.disconnect()
   orbitVisibility.disconnect()
   if (scanTimer) clearTimeout(scanTimer)
   for (const t of hideTimers.values()) clearTimeout(t)

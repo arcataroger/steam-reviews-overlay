@@ -37,7 +37,8 @@
     "div.NBN-f1mBrso-.Panel < div.Panel < div.fm1dMrfMpDc- < div.Panel.uX4qL3T--O8-.wnzEl6A2mnI-": 8
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-corner": 8
+    "same|shape=row|badge=sro-badge sro-corner": 7,
+    "same|shape=null|badge=sro-badge sro-corner": 1
    },
    "examples": [
     {
@@ -216,7 +217,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div.xjiY68vUbWQ-"
      },
-     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"446x320\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div><div class=\"hv-Pl2EA7-c-\">MOST PLAYED RIGHT NOW</div></div><div><div>1,163,429</div><div class=\"kY5DWfq2Oe0-\">IN GAME</div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"85\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
+     "html": "<div class=\"xjiY68vUbWQ-\" data-sro-card=\"730\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"446x320\"><a href=\"…\" tabindex=\"0\" class=\"Focusable\"><img class=\"_7DwvRNTA4oI-\"></a><a href=\"…\" class=\"S0OGjWAy4Co- Focusable\" tabindex=\"0\"><div class=\"_7zmpUGEGDTM-\">1</div><div class=\"eT-MIEVrsB8-\"><div>Counter-Strike 2</div><div class=\"hv-Pl2EA7-c-\">MOST PLAYED RIGHT NOW</div></div><div><div>1,122,959</div><div class=\"kY5DWfq2Oe0-\">IN GAME</div></div></a><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"730\" data-sro-score=\"8\" data-sro-pct=\"85\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
     }
    ]
   }
@@ -224,5 +225,5 @@
  "errors": [
   "Error: Minified React error #418; visit https://react.dev/errors/418?args[]= for the full message or use the non-minified dev environment for full errors and ad"
  ],
- "capturedAt": "2026-10-18T18:38:22.582Z"
+ "capturedAt": "2026-10-18T19:20:41.805Z"
 }

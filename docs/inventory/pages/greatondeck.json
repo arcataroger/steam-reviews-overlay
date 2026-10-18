@@ -43,7 +43,8 @@
     "div.ItemCount_4.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.Panel < div.Panel.SaleSectionForCustomCSS._1cOoCFwafBlSkwllIMf3XM._39HWXhhjsbML7K9sme9ItV < div#SaleSection_N.Panel.SaleSectionCtn.expanded.i2PTzRNXOK1OXvXb9-wzd.items": 3
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-inline": 15
+    "same|shape=card|badge=sro-badge sro-inline": 14,
+    "same|shape=null|badge=sro-badge sro-inline": 1
    },
    "examples": [
     {
@@ -125,127 +126,6 @@
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
      "html": "<div class=\"\" data-sro-card=\"3219030\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"568x303\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1ScAL4Y0dGHeXycrpJYkAC\"><div class=\"kT9bBl6aBZQ-0xiRlMWzc\">New</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$49.99</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"3219030\" data-sro-score=\"5\" data-sro-pct=\"62\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div>"
-    }
-   ]
-  },
-  {
-   "key": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
-   "signature": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo",
-   "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.79,
-    "price": true,
-    "date": false,
-    "nativeSummary": false,
-    "title": false,
-    "platforms": false,
-    "discount": false,
-    "carousel": true,
-    "parentDisplay": "flex/row",
-    "siblings": 25
-   },
-   "count": 12,
-   "sizes": {
-    "400x220": 3,
-    "300x380": 9
-   },
-   "sections": {
-    ".carousel__slider.vt-scrollable": 12
-   },
-   "headings": {
-    "Coming Soon": 3,
-    "Steam Deck Top Played Games": 9
-   },
-   "chains": {
-    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 12
-   },
-   "ours": {
-    "same|shape=null|badge=sro-badge sro-inline": 3,
-    "same|shape=panel|badge=sro-badge sro-inline": 9
-   },
-   "examples": [
-    {
-     "appid": 3259780,
-     "title": "",
-     "sizeBucket": "400x220",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "block",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "flex",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": null,
-      "axis": null,
-      "filtered": null,
-      "highlighted": false,
-      "badge": "sro-badge sro-inline",
-      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
-     },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"3259780\" data-sro-tone=\"none\" data-sro-score=\"0\" style=\"…\" data-sro-size=\"405x220\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_3r4Ny9tQdQZc50XDM5B2q2\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v\"><div class=\"_2mG_q95stW67uyZmLXcO8y StoreSalePrepurchaseLabel\"><span><svg/>Pre-Purchase</span></div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$49.99</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"3259780\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div></div></div></div>"
-    },
-    {
-     "appid": 3486530,
-     "title": "",
-     "sizeBucket": "400x220",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "block",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "flex",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": null,
-      "axis": null,
-      "filtered": null,
-      "highlighted": false,
-      "badge": "sro-badge sro-inline",
-      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
-     },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"3486530\" data-sro-tone=\"none\" data-sro-score=\"0\" style=\"…\" data-sro-size=\"405x220\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_3r4Ny9tQdQZc50XDM5B2q2\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v\"><div class=\"_2mG_q95stW67uyZmLXcO8y StoreSalePrepurchaseLabel\"><span><svg/>Pre-Purchase</span></div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$49.99</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"3486530\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div></div></div></div>"
     }
    ]
   },
@@ -374,6 +254,127 @@
    ]
   },
   {
+   "key": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo|link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.79,
+    "price": true,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "flex/row",
+    "siblings": 25
+   },
+   "count": 11,
+   "sizes": {
+    "400x220": 2,
+    "300x380": 9
+   },
+   "sections": {
+    ".carousel__slider.vt-scrollable": 11
+   },
+   "headings": {
+    "Coming Soon": 2,
+    "Steam Deck Top Played Games": 9
+   },
+   "chains": {
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 11
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-inline": 2,
+    "same|shape=panel|badge=sro-badge sro-inline": 9
+   },
+   "examples": [
+    {
+     "appid": 3486530,
+     "title": "",
+     "sizeBucket": "400x220",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-inline",
+      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
+     },
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"3486530\" data-sro-tone=\"none\" data-sro-score=\"0\" style=\"…\" data-sro-size=\"405x220\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_3r4Ny9tQdQZc50XDM5B2q2\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v\"><div class=\"_2mG_q95stW67uyZmLXcO8y StoreSalePrepurchaseLabel\"><span><svg/>Pre-Purchase</span></div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$49.99</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"3486530\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div></div></div></div>"
+    },
+    {
+     "appid": 3681610,
+     "title": "",
+     "sizeBucket": "400x220",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-inline",
+      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
+     },
+     "html": "<div aria-selected=\"false\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--hidden _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"3681610\" data-sro-tone=\"none\" data-sro-score=\"0\" style=\"…\" data-sro-size=\"405x220\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_3r4Ny9tQdQZc50XDM5B2q2\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v\"><div class=\"_2mG_q95stW67uyZmLXcO8y StoreSalePrepurchaseLabel\"><span><svg/>Pre-Purchase</span></div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$59.99</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"3681610\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div></div></div></div>"
+    }
+   ]
+  },
+  {
    "key": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo|link=news,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
    "signature": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo",
    "hashedClasses": true,
@@ -390,61 +391,25 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "flex/row",
-    "siblings": 15
+    "siblings": 24
    },
-   "count": 9,
+   "count": 8,
    "sizes": {
-    "300x240": 9
+    "300x240": 8
    },
    "sections": {
-    ".carousel__slider.vt-scrollable": 9
+    ".carousel__slider.vt-scrollable": 8
    },
    "headings": {
-    "Recent & Upcoming Events": 9
+    "Recent & Upcoming Events": 8
    },
    "chains": {
-    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 9
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 8
    },
    "ours": {
-    "same|shape=panel|badge=sro-badge sro-corner": 8,
-    "same|shape=panel|badge=none": 1
+    "same|shape=panel|badge=sro-badge sro-corner": 8
    },
    "examples": [
-    {
-     "appid": 499170,
-     "title": "",
-     "sizeBucket": "300x240",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "block",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "flex",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "panel",
-      "axis": "x",
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
-     },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"499170\" data-sro-tone=\"positive\" data-sro-score=\"9\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-op=\"1\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">We launched Order of the Sinking Star last week on October 8th (and in some parts of the world, October 9th), and we are grateful for the overwhelmingly positive response from you...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">A Thank You from Thekla, Inc. &amp; Arc Games</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, October 16, 2026</span></div><div class=\"ENbI1gFgvIca6HSKA"
-    },
     {
      "appid": 2929250,
      "title": "",
@@ -479,6 +444,41 @@
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
      "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"2929250\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Regular Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">📢 Hey fellow off-roaders! The first post-launch update is out now! We were blown away by your response to the release of over the hill - thank you so much!</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">🚙💨 First Post-Launch Update Is Here!</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Regular Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, October 16, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">"
+    },
+    {
+     "appid": 230410,
+     "title": "",
+     "sizeBucket": "300x240",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "panel",
+      "axis": "x",
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
+     },
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"230410\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">The Void Trader's vexing variant will once again make a series of weekend appearances all month long, offering his usual wares along with some beautifully baleful items you...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Baro Ki'Teer Returns</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, October 16, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">The Void Trader's ve"
     }
    ]
   },
@@ -501,21 +501,21 @@
     "parentDisplay": "flex/row",
     "siblings": 25
    },
-   "count": 4,
+   "count": 5,
    "sizes": {
-    "400x220": 4
+    "400x220": 5
    },
    "sections": {
-    ".carousel__slider.vt-scrollable": 4
+    ".carousel__slider.vt-scrollable": 5
    },
    "headings": {
-    "Coming Soon": 4
+    "Coming Soon": 5
    },
    "chains": {
-    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 4
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 5
    },
    "ours": {
-    "same|shape=null|badge=sro-badge sro-inline": 4
+    "same|shape=null|badge=sro-badge sro-inline": 5
    },
    "examples": [
     {
@@ -596,7 +596,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div aria-selected=\"false\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--hidden _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"4287040\" data-sro-tone=\"none\" data-sro-score=\"0\" style=\"…\" data-sro-size=\"405x220\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_3r4Ny9tQdQZc50XDM5B2q2\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"><span><svg/></span><span><svg/></span></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Available: Oct 27, 2026</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"4287040\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div></div></div></div>"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"4287040\" data-sro-tone=\"none\" data-sro-score=\"0\" style=\"…\" data-sro-size=\"405x220\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_3r4Ny9tQdQZc50XDM5B2q2\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"><span><svg/></span><span><svg/></span></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Available: Oct 27, 2026</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"4287040\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div></div></div></div>"
     }
    ]
   },
@@ -746,7 +746,7 @@
    },
    "examples": [
     {
-     "appid": 4078430,
+     "appid": 1091500,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -765,7 +765,7 @@
        "gap": "normal"
       },
       "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer",
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted",
        "position": "relative",
        "display": "flex",
        "textAlign": "start"
@@ -783,7 +783,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | STAR WARS: Galactic Racer™</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Cyberpunk 2077</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3LA"
     }
    ]
   },
@@ -859,8 +859,81 @@
      "html": "<div class=\"_1cOoCFwafBlSkwllIMf3XM OPH8r3-pnCjCM7T8GrpWo _39HWXhhjsbML7K9sme9ItV SaleSectionForCustomCSS Panel Focusable\" data-sro-card=\"1675200\" style=\"…\"><div class=\"_2wlqOo3XXW1wCAxwfudaL8\" style=\"…\"></div><div class=\"bE2EA4JB9SDa1PZ7HSFL-\"></div><div class=\"Panel Focusable\"><div class=\"_3gb3JeV_1IMaIeODzBSrP3 W9_WAYXgEe-t-7aqqC4Jp SaleSectionContainer center_row_trgt ItemCount_1\"><a href=\"…\" target=\"_blank\" class=\"_2zVSaxkr0mGLlJ4ivF37dx Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\"><div class=\"_1kCTkXxE8CbUnnhSjsL-Kb _2uiBcpls1KbtGPBEPSQyrA\"><img class=\"_1AFjCLdN5rlqKicNNN4qJR\"></div></a></div></div></div>"
     }
    ]
+  },
+  {
+   "key": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo|link=news,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo",
+   "hashedClasses": true,
+   "featureKey": "link=news,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "news",
+    "img": true,
+    "artFraction": 0.92,
+    "price": false,
+    "date": false,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "flex/row",
+    "siblings": 24
+   },
+   "count": 1,
+   "sizes": {
+    "300x240": 1
+   },
+   "sections": {
+    ".carousel__slider.vt-scrollable": 1
+   },
+   "headings": {
+    "Recent & Upcoming Events": 1
+   },
+   "chains": {
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 1
+   },
+   "ours": {
+    "same|shape=panel|badge=sro-badge sro-corner": 1
+   },
+   "examples": [
+    {
+     "appid": 230410,
+     "title": "",
+     "sizeBucket": "300x240",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "panel",
+      "axis": "x",
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
+     },
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"230410\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Live-Stream / Broadcast</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">For the first time since TennoCon, we’re journeying back to Tau together! Devstream #198 - Tau Part One on Friday, October 30th at 2 PM ET will be the first of two Tau showcases.</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Devstream #198 - Tau Part One!</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Live-Stream / Broadcast</div><div class=\"_2CXrGPtlQh-j3aSa6XsQDI UpcomingCtn\"><span class=\"_2V6GLdiU4guy4ND3n4Usgg\">Fri, Octo"
+    }
+   ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:58:56.786Z"
+ "capturedAt": "2026-10-18T19:42:19.138Z"
 }

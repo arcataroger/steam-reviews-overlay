@@ -14,7 +14,8 @@ Regenerate both with the `steam-inventory` skill (`.claude/skills/steam-inventor
 | **inline** label | Label right after the price line, in flow | a price element exists and the label fits without resizing the card or covering text |
 | **inline beside native** | Two-line 🇺🇸/🌐 pair next to Steam's own summary text, only when the labels differ | card has a native summary |
 | **beside title** | Label after the title text (dense table rows) | every corner candidate collides |
-| **corner** chip | Absolute chip in the lower-right, lifted above the price, shifted or moved to the top-right on collision | fallback; removed if nothing fits |
+| **corner** chip | Absolute chip: the art's lower-right on art-on-top cards, else the card's lower-right lifted above the price, shifted, or moved to the top-right on collision | no price spot fits |
+| **fallback** chip | Corner chip (`sro-fallback`) on the art's lower-right, or the card's, even when it covers some text | every other spot collides: every game card carries a label |
 | **row** highlight | Crisp inset ring | listing rows, tab rows, anything art < 50% and not a hero |
 | **card** highlight | Tight underglow | art ≥ 50%, heroes ≥ 1100px, overlapping carousel slides |
 | **panel** highlight | Side wings (`y`) or top/bottom wings (`x`) | tall stacked cards, edge-to-edge carousel tiles |
@@ -37,7 +38,6 @@ budget flags the kind again, so a real regression cannot hide behind a known exc
 | Kind | What the report shows | Why it is fine |
 |---|---|---|
 | K01 React expanded capsule | most cards `badge=none` | Steam prints its own summary there; we add a label only as the 🇺🇸/🌐 pair when the two differ |
-| K03 event/news tile | a few tiles `badge=none` | two-line title plus date leave no clear spot; the label is omitted rather than overlapping |
 | K07 news post row with large art | app-page tiles unclaimed | an app page's own Recent Events tiles link to the game whose page you are already on |
 | K09 classless React tile | unclaimed on app pages | the 780×380 tile left unclaimed on each app page carries that page's own appid |
 | K16 home spotlight | 9/15 unclaimed | franchise and publisher sale spotlights carry a representative game's `data-ds-appid` for Steam's hover panel but link to a `/sale/` page: the tile is the sale, not the game |
@@ -48,7 +48,12 @@ budget flags the kind again, so a real regression cannot hide behind a known exc
 
 ## Open coverage items
 
-One kind is still unexplained and is deliberately left flagged rather than excused:
+These are still unexplained and deliberately left flagged rather than excused:
+
+- **Logged-in demo recommendation block** — `npm run audit:home` once found a home recommendation
+  block for a demo (Bladesong Demo) with no label. Its `data-ds-appid` names the demo, so the block
+  likely counts as two games. It rotated out before we could inspect it. When the audit reports it
+  again, dump the block's `data-ds-appid` and `/app/` links.
 
 - **K03 event/news carousel tile** — on one crawl of the news hub, 3 of 333 tiles had the overlay's
   card on the carousel *container* (`div.EventTileCarouselCtn`) rather than on the tile, with no

@@ -150,8 +150,7 @@
     "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 12
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-inline sro-beside-native": 1,
-    "same|shape=row|badge=none": 11
+    "same|shape=row|badge=none": 12
    },
    "examples": [
     {
@@ -176,7 +175,7 @@
       "price": null,
       "native": {
        "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Mixed(25 User Reviews)"
+       "text": "Mixed(28 User Reviews)"
       }
      },
      "ours": {
@@ -187,10 +186,10 @@
       "axis": null,
       "filtered": null,
       "highlighted": true,
-      "badge": "sro-badge sro-inline sro-beside-native",
-      "badgeParent": "div._3uIw-iqrc6AKEcMLki94nj"
+      "badge": "none",
+      "badgeParent": null
      },
-     "html": "<div class=\"_3_-EEQpFNke34pzfmip5yh\" data-sro-card=\"5076290\" data-sro-size=\"940x158\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" style=\"…\" data-sro-tone=\"positive\" data-sro-score=\"6\"><div class=\"_1YNtl1bfteFkaCFYHhtUMf StoreSaleWidgetOuterContainer Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div class=\"t75Je5tr-0U-BmJ9zl5ia _2kFm1akTi_PvgXVMGuiGXo Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2OmLxbQ8PCPJL9p8YRyEKP\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl\"><a href=\"…\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div></div></a></div></div><div class=\"_3aTPAkD_nC4hFYjSSUGdIx\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_2hY5KQtdBm61wdeNXehgrm\"><a href=\"…\" target=\"_blank\"><div class=\"w75CJy5_YgzbJm91xnOQK StoreSaleWidgetTitle\">No Body No Problem! Demo</div></a></div><div class=\"_38RGrHCxetbJdFlekFhXMJ\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag _38998HcikvEZtZcJXwppxS Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Action</a><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag _38998HcikvEZtZcJXwppxS Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Casual</a><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag _38998HcikvE"
+     "html": "<div class=\"_3_-EEQpFNke34pzfmip5yh\" data-sro-card=\"5076290\" data-sro-size=\"940x158\" data-sro-highlight=\"mixed\" data-sro-shape=\"row\" style=\"…\" data-sro-tone=\"mixed\" data-sro-score=\"5\"><div class=\"_1YNtl1bfteFkaCFYHhtUMf StoreSaleWidgetOuterContainer Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div class=\"t75Je5tr-0U-BmJ9zl5ia _2kFm1akTi_PvgXVMGuiGXo Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2OmLxbQ8PCPJL9p8YRyEKP\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl\"><a href=\"…\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div></div></a></div></div><div class=\"_3aTPAkD_nC4hFYjSSUGdIx\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_2hY5KQtdBm61wdeNXehgrm\"><a href=\"…\" target=\"_blank\"><div class=\"w75CJy5_YgzbJm91xnOQK StoreSaleWidgetTitle\">No Body No Problem! Demo</div></a></div><div class=\"_38RGrHCxetbJdFlekFhXMJ\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag _38998HcikvEZtZcJXwppxS Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Action</a><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag _38998HcikvEZtZcJXwppxS Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Casual</a><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag _38998HcikvEZtZcJX"
     },
     {
      "appid": 5215640,
@@ -450,17 +449,17 @@
    ]
   },
   {
-   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=false,date=true,nativeSummary=true,title=false,platforms=false,carousel=true",
    "signature": "div._3olpRSXr66ohyQFxmzqokI",
    "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=true,title=false,platforms=false,carousel=true",
    "features": {
     "link": "app",
     "img": true,
     "artFraction": 0.58,
     "price": false,
     "date": true,
-    "nativeSummary": false,
+    "nativeSummary": true,
     "title": false,
     "platforms": false,
     "discount": false,
@@ -486,7 +485,7 @@
    },
    "examples": [
     {
-     "appid": 2642680,
+     "appid": 5166840,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -505,7 +504,10 @@
        "gap": "normal"
       },
       "price": null,
-      "native": null
+      "native": {
+       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
+       "text": "Overwhelmingly Positive(507 User Reviews"
+      }
      },
      "ours": {
       "claimed": true,
@@ -518,11 +520,11 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Half Sword Tech Demo</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Character House -Desktop Companion- Demo</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24w"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:39:21.594Z"
+ "capturedAt": "2026-10-18T19:21:49.715Z"
 }

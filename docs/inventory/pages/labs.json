@@ -1,6 +1,6 @@
 {
- "url": "https://store.steampowered.com/labs/",
- "finalUrl": "https://store.steampowered.com/labs/",
+ "url": "https://store.steampowered.com/labs",
+ "finalUrl": "https://store.steampowered.com/labs",
  "title": "Steam Labs",
  "cards": 9,
  "kinds": [
@@ -41,8 +41,7 @@
     "div.left-column < div.labs-content < div.page_content < div.labs.page_content_ctn": 3
    },
    "ours": {
-    "same|shape=null|badge=none": 2,
-    "unclaimed|shape=null|badge=null": 1
+    "other:div.exp_text_ctn|shape=null|badge=none": 3
    },
    "examples": [
     {
@@ -69,8 +68,8 @@
      },
      "ours": {
       "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
+      "sameElement": false,
+      "ourCardSig": "div.exp_text_ctn",
       "shape": null,
       "axis": null,
       "filtered": null,
@@ -78,7 +77,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"capsule\" data-sro-card=\"593110\"><div class=\"capsule-banner\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><img></div></a></div><div class=\"exp_text_ctn\"><h2>016 Personal Calendar </h2><p><b>Oct 21, 2025</b> - Explore a personalized list of games that have released recently or are coming soon. For more details, see the <a href=\"…\">Personal Calendar Announcement</a>, or just click the button below to see your own personal calendar.                    </p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the Personal Calendar Experiment</a></div></div></div>"
+     "html": "<div class=\"capsule\"><div class=\"capsule-banner\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><img></div></a></div><div class=\"exp_text_ctn\" data-sro-card=\"593110\"><h2>016 Personal Calendar </h2><p><b>Oct 21, 2025</b> - Explore a personalized list of games that have released recently or are coming soon. For more details, see the <a href=\"…\">Personal Calendar Announcement</a>, or just click the button below to see your own personal calendar.                    </p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the Personal Calendar Experiment</a></div></div></div>"
     },
     {
      "appid": 593110,
@@ -104,8 +103,8 @@
      },
      "ours": {
       "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
+      "sameElement": false,
+      "ourCardSig": "div.exp_text_ctn",
       "shape": null,
       "axis": null,
       "filtered": null,
@@ -113,7 +112,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"capsule\" data-sro-card=\"593110\"><div class=\"capsule-banner\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><img></div></a></div><div class=\"exp_text_ctn\"><h2>015 DLC For You</h2><p><b>Jan 27, 2023</b> - Explore all the extra content available for all the games that you already own. Read more about the experiment <a href=\"…\">here</a> or just click the button below to check out your DLC Hub.                    </p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the DLC For You Experiment</a></div></div></div>"
+     "html": "<div class=\"capsule\"><div class=\"capsule-banner\"><a href=\"…\"><div class=\"capsule-banner-ctn\"><img></div></a></div><div class=\"exp_text_ctn\" data-sro-card=\"593110\"><h2>015 DLC For You</h2><p><b>Jan 27, 2023</b> - Explore all the extra content available for all the games that you already own. Read more about the experiment <a href=\"…\">here</a> or just click the button below to check out your DLC Hub.                    </p><div class=\"experiment-buttons\"><a href=\"…\" class=\"experiment-button\">Try the DLC For You Experiment</a></div></div></div>"
     }
    ]
   },
@@ -450,5 +449,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T19:03:40.261Z"
+ "capturedAt": "2026-10-18T19:49:23.337Z"
 }

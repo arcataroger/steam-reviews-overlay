@@ -25,21 +25,20 @@
    },
    "count": 19,
    "sizes": {
-    "380x220": 12,
-    "600x320": 1,
+    "380x220": 13,
     "580x300": 6
    },
    "sections": {
-    ".ItemCount_3.center_row_trgt": 12,
-    ".ItemCount_2.center_row_trgt": 7
+    ".ItemCount_3.center_row_trgt": 13,
+    ".ItemCount_2.center_row_trgt": 6
    },
    "headings": {
     "Popular Titles": 4,
     "Top Demos": 15
    },
    "chains": {
-    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 12,
-    "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 7
+    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 13,
+    "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 6
    },
    "ours": {
     "same|shape=card|badge=sro-badge sro-inline": 7,
@@ -115,7 +114,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"1203220\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"row\" data-sro-size=\"389x220\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"1203220\" data-sro-score=\"8\" data-sro-pct=\"81\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Very Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Mostly Positive</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"1203220\" data-sro-size=\"389x220\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"row\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"1203220\" data-sro-score=\"8\" data-sro-pct=\"81\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Very Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Mostly Positive</span></span></span></div></a></div></div></div></div>"
     }
    ]
   },
@@ -140,19 +139,19 @@
    },
    "count": 11,
    "sizes": {
-    "600x320": 5,
-    "380x220": 6
+    "600x320": 6,
+    "380x220": 5
    },
    "sections": {
-    ".ItemCount_2.center_row_trgt": 5,
-    ".ItemCount_3.center_row_trgt": 6
+    ".ItemCount_2.center_row_trgt": 6,
+    ".ItemCount_3.center_row_trgt": 5
    },
    "headings": {
     "Popular Titles": 11
    },
    "chains": {
-    "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 5,
-    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 6
+    "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 6,
+    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 5
    },
    "ours": {
     "same|shape=null|badge=sro-badge sro-inline": 1,
@@ -369,21 +368,21 @@
     "parentDisplay": "block",
     "siblings": 13
    },
-   "count": 8,
+   "count": 7,
    "sizes": {
-    "920x340": 8
+    "920x340": 7
    },
    "sections": {
-    ".Panel": 8
+    ".Panel": 7
    },
    "headings": {
-    "Popular Titles": 8
+    "Popular Titles": 7
    },
    "chains": {
-    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 8
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 7
    },
    "ours": {
-    "same|shape=card|badge=none": 8
+    "same|shape=card|badge=none": 7
    },
    "examples": [
     {
@@ -493,21 +492,22 @@
     "parentDisplay": "block",
     "siblings": 13
    },
-   "count": 3,
+   "count": 4,
    "sizes": {
-    "920x340": 3
+    "920x340": 4
    },
    "sections": {
-    ".Panel": 3
+    ".Panel": 4
    },
    "headings": {
-    "Popular Titles": 3
+    "Popular Titles": 4
    },
    "chains": {
-    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 3
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 4
    },
    "ours": {
-    "same|shape=card|badge=none": 3
+    "same|shape=card|badge=none": 3,
+    "same|shape=card|badge=sro-badge sro-inline sro-beside-native": 1
    },
    "examples": [
     {
@@ -549,7 +549,7 @@
      "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"3564740\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Step into an open-world action-adventure RPG set in ancient China. Uncover the secrets of your own identity as you rise from a humble village wanderer to the sword master of the imperial capital. Learn martial arts and build your reputation as a hero or a bringer of chaos in this free wuxia world.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh W"
     },
     {
-     "appid": 1607250,
+     "appid": 291550,
      "title": "Tags",
      "sizeBucket": "920x340",
      "styles": {
@@ -570,7 +570,7 @@
       "price": null,
       "native": {
        "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Mixed(13,458 English Reviews)"
+       "text": "Mostly Positive(179,589 English Reviews)"
       }
      },
      "ours": {
@@ -584,20 +584,20 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"1607250\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Pick your favorite character, team up and fight to be the last ones standing in the new 24-player Battle Royale free to play game \"MY HERO ULTRA RUMBLE\"!</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Anime</a><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel"
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"291550\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">An epic platform fighter for up to 8 players online or local. Try casual free-for-alls, ranked matches, or invite friends to a private room. And it's free! Play cross-platform with millions of players on PlayStation, Xbox, Nintendo Switch, iOS, Android &amp; Steam! Frequent updates. Over sixty Legends.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALN"
     }
    ]
   },
   {
-   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
    "signature": "div._3olpRSXr66ohyQFxmzqokI",
    "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
    "features": {
     "link": "app",
     "img": true,
     "artFraction": 0.58,
-    "price": true,
+    "price": false,
     "date": true,
     "nativeSummary": false,
     "title": false,
@@ -621,11 +621,11 @@
     "div#SaleSection_N.Panel.SaleSectionCtn.contenthubmaincarousel.expanded.i2PTzRNXOK1OXvXb9-wzd < div.SaleSectionTabListContainer._2VZtqrDRVSIicZZHPUY9SY < div.Panel < div.Panel.SaleOuterContainer._150kddWk8JgylTvh_eC20b": 1
    },
    "ours": {
-    "other:a.Ay0ys40M1NtzbqyKeNgwX|shape=null|badge=sro-badge sro-corner": 1
+    "other:a.Ay0ys40M1NtzbqyKeNgwX|shape=row|badge=sro-badge sro-corner": 1
    },
    "examples": [
     {
-     "appid": 4115450,
+     "appid": 291550,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -643,26 +643,21 @@
        "overflowX": "hidden",
        "gap": "normal"
       },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
+      "price": null,
       "native": null
      },
      "ours": {
       "claimed": true,
       "sameElement": false,
       "ourCardSig": "a.Ay0ys40M1NtzbqyKeNgwX",
-      "shape": null,
+      "shape": "row",
       "axis": null,
       "filtered": null,
-      "highlighted": false,
+      "highlighted": true,
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Phantom Blade Zero</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\""
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Brawlhalla</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3LAiT6F"
     }
    ]
   },
@@ -746,5 +741,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:48:56.119Z"
+ "capturedAt": "2026-10-18T19:32:03.410Z"
 }

@@ -41,9 +41,9 @@
     "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 18
    },
    "ours": {
-    "same|shape=null|badge=sro-badge sro-inline": 15,
+    "same|shape=null|badge=sro-badge sro-inline": 14,
     "same|shape=card|badge=sro-badge sro-inline": 10,
-    "same|shape=row|badge=sro-badge sro-inline": 5
+    "same|shape=row|badge=sro-badge sro-inline": 6
    },
    "examples": [
     {
@@ -265,21 +265,21 @@
     "parentDisplay": "block",
     "siblings": 13
    },
-   "count": 4,
+   "count": 5,
    "sizes": {
-    "920x340": 4
+    "920x340": 5
    },
    "sections": {
-    ".Panel": 4
+    ".Panel": 5
    },
    "headings": {
-    "Popular Titles": 4
+    "Popular Titles": 5
    },
    "chains": {
-    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 4
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 5
    },
    "ours": {
-    "same|shape=card|badge=none": 4
+    "same|shape=card|badge=none": 5
    },
    "examples": [
     {
@@ -371,6 +371,84 @@
    ]
   },
   {
+   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "div._3olpRSXr66ohyQFxmzqokI",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.58,
+    "price": true,
+    "date": true,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "block",
+    "siblings": 1
+   },
+   "count": 1,
+   "sizes": {
+    "1200x540": 1
+   },
+   "sections": {
+    "#SaleSection_N": 1
+   },
+   "headings": {
+    "Soundtracks": 1
+   },
+   "chains": {
+    "div#SaleSection_N.Panel.SaleSectionCtn.contenthubmaincarousel.expanded.i2PTzRNXOK1OXvXb9-wzd < div.SaleSectionTabListContainer._2VZtqrDRVSIicZZHPUY9SY < div.Panel < div.Panel.SaleOuterContainer._150kddWk8JgylTvh_eC20b": 1
+   },
+   "ours": {
+    "other:a.Ay0ys40M1NtzbqyKeNgwX|shape=null|badge=sro-badge sro-corner": 1
+   },
+   "examples": [
+    {
+     "appid": 5180360,
+     "title": "",
+     "sizeBucket": "1200x540",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "hidden auto",
+       "overflowX": "hidden",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": false,
+      "ourCardSig": "a.Ay0ys40M1NtzbqyKeNgwX",
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
+     },
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div></div></div></div><div class=\"_1845vzkd5RIKg7vU214cq0 Panel Focusable\"><div class=\"_2VBMuoBR52ewn9gK7P2k35\"><a href=\"…\" class=\"Ay0ys40M1NtzbqyKeNgwX Focusable\" tabindex=\"0\" data-sro-card=\"5180360\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"384x252\"><img class=\"_30UoV4GCVzLkDbP0T6RHp_\"><img class=\"_36T9hDQVRFHT3VppOm6-7o\"><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"51"
+    }
+   ]
+  },
+  {
    "key": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia|link=app,img=true,price=true,date=true,nativeSummary=true,title=false,platforms=false,carousel=false",
    "signature": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia",
    "hashedClasses": true,
@@ -389,21 +467,21 @@
     "parentDisplay": "block",
     "siblings": 13
    },
-   "count": 2,
+   "count": 1,
    "sizes": {
-    "920x340": 2
+    "920x340": 1
    },
    "sections": {
-    ".Panel": 2
+    ".Panel": 1
    },
    "headings": {
-    "Popular Titles": 2
+    "Popular Titles": 1
    },
    "chains": {
-    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 2
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 1
    },
    "ours": {
-    "same|shape=card|badge=none": 2
+    "same|shape=card|badge=none": 1
    },
    "examples": [
     {
@@ -448,131 +526,10 @@
       "badgeParent": null
      },
      "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"2393240\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"7\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Original Darkest Dungeon II soundtrack by composer Stuart Chatwood, who also created the soundtrack for Darkest Dungeon.</div><div class=\"_28XzNZpa2zm6dfU_Hl1aoF\"><div class=\"dY0SjUwvxyZTq7knLEKEc\">Release date: <span>May 8, 2023</span></div><div class=\"_3B7TyRytxk7VNgUkEksk_g\">Developed By:<span>Stuart Chatwood</span></div><div class=\"_3B7TyRytxk7VNgUkEksk_g\">Published By:<span>Red Hook Studios</span></div></div></div><div class=\"_101xD6rIYm8X_jp483Kshs\"><div class=\"afMTFv3mQcpX11KsRQBFe _17AnAUol6F9ESSlAVOkOR-\"></di"
-    },
-    {
-     "appid": 4647130,
-     "title": "",
-     "sizeBucket": "920x340",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px 5px 0px 0px",
-       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": {
-       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Positive(19 User Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
-     },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4647130\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"7\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Never miss a beat with Volume 1 of Dead as Disco’s streamer safe soundtrack! A rhythm-packed double album complete with 15 streamer safe original songs and 5 bonus tracks!</div><div class=\"_28XzNZpa2zm6dfU_Hl1aoF\"><div class=\"dY0SjUwvxyZTq7knLEKEc\">Release date: <span>May 5, 2026</span></div><div class=\"_3B7TyRytxk7VNgUkEksk_g\">Developed By:<span>Brain Jar Games, Inc.</span></div><div class=\"_3B7TyRytxk7VNgUkEksk_g\">Published By:<span>Brain Jar Games, Inc.</span></div></div></div><div class=\"_101xD6rIYm8X_jp483Kshs\"><"
-    }
-   ]
-  },
-  {
-   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
-   "signature": "div._3olpRSXr66ohyQFxmzqokI",
-   "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.58,
-    "price": true,
-    "date": true,
-    "nativeSummary": false,
-    "title": false,
-    "platforms": false,
-    "discount": false,
-    "carousel": true,
-    "parentDisplay": "block",
-    "siblings": 1
-   },
-   "count": 1,
-   "sizes": {
-    "1200x540": 1
-   },
-   "sections": {
-    "#SaleSection_N": 1
-   },
-   "headings": {
-    "Soundtracks": 1
-   },
-   "chains": {
-    "div#SaleSection_N.Panel.SaleSectionCtn.contenthubmaincarousel.expanded.i2PTzRNXOK1OXvXb9-wzd < div.SaleSectionTabListContainer._2VZtqrDRVSIicZZHPUY9SY < div.Panel < div.Panel.SaleOuterContainer._150kddWk8JgylTvh_eC20b": 1
-   },
-   "ours": {
-    "other:a.Ay0ys40M1NtzbqyKeNgwX|shape=null|badge=sro-badge sro-corner": 1
-   },
-   "examples": [
-    {
-     "appid": 4312370,
-     "title": "",
-     "sizeBucket": "1200x540",
-     "styles": {
-      "card": {
-       "position": "static",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "hidden auto",
-       "overflowX": "hidden",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": false,
-      "ourCardSig": "a.Ay0ys40M1NtzbqyKeNgwX",
-      "shape": null,
-      "axis": null,
-      "filtered": null,
-      "highlighted": false,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
-     },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div></div></div></div><div class=\"_1845vzkd5RIKg7vU214cq0 Panel Focusable\"><div class=\"_2VBMuoBR52ewn9gK7P2k35\"><a href=\"…\" class=\"Ay0ys40M1NtzbqyKeNgwX Focusable\" tabindex=\"0\" data-sro-card=\"4312370\" data-sro-size=\"384x252\" data-sro-tone=\"none\" data-sro-score=\"0\"><img class=\"_30UoV4GCVzLkDbP0T6RHp_\"><img class=\"_36T9hDQVRFHT3VppOm6-7o\"><span class=\"sro-badge sro-none sro-corner\" data-sro-appid=\"43"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T19:02:05.639Z"
+ "capturedAt": "2026-10-18T19:45:46.965Z"
 }

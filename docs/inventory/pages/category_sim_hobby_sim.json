@@ -381,7 +381,7 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "flex/row",
-    "siblings": 16
+    "siblings": 15
    },
    "count": 9,
    "sizes": {
@@ -509,7 +509,7 @@
    },
    "examples": [
     {
-     "appid": 4991240,
+     "appid": 2456740,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -528,7 +528,7 @@
        "gap": "normal"
       },
       "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC",
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer",
        "position": "relative",
        "display": "flex",
        "textAlign": "start"
@@ -546,7 +546,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Witch Cabin Cleanup</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class="
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | inZOI</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3LAiT6FD5iZn"
     }
    ]
   },
@@ -628,5 +628,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:51:52.588Z"
+ "capturedAt": "2026-10-18T19:35:09.122Z"
 }

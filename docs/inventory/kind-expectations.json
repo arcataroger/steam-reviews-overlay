@@ -21,9 +21,10 @@
     "unclaimed": 12
   },
   "div.capsule": {
-    "reason": "a Labs experiment capsule, not a game",
+    "reason": "a Labs experiment capsule, not a game; the overlay may claim its text block (div.exp_text_ctn), which shows nothing because Steam has no reviews for an experiment",
     "unclaimed": 3,
-    "missing": 8
+    "missing": 8,
+    "other": 3
   },
   "div.home_page_content.takeunder": {
     "reason": "the hidden fallback anchor behind the home takeunder banner, with no art and no game",
@@ -53,6 +54,6 @@
   "div.Panel+1h": {
     "reason": "a home deal panel stacks a game tile on a sale-page tile: the game tile is claimed rather than the panel, and panels holding only sale tiles are not games (verified on the home page, 2026-10-18)",
     "unclaimed": 5,
-    "other": 7
+    "other": 9
   }
 }

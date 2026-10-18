@@ -159,16 +159,21 @@ function hasSiblingTile(parent: HTMLElement, tile: HTMLElement, appid: number): 
   return false
 }
 
-/** Links to a product that is not an app: a package or a bundle has its own store page and its own
- *  review score, so a box holding one of those alongside our game is a shelf, not that game's card.
- *  Sale and franchise tiles count too: the home page's "Today's Deal" panel stacks a game's tile on a
- *  sale page's tile, and a card climbed past the game's tile took in the sale link and was rejected. */
-const OTHER_PRODUCT_SEL = 'a[href*="/sub/"], a[href*="/bundle/"], a[href*="/sale/"], a[href*="/franchise/"]'
-
-/** Does `parent` hold, outside `tile`, an artwork-sized link to a package or bundle? */
-function hasOtherProductTile(parent: HTMLElement, tile: HTMLElement): boolean {
-  for (const n of parent.querySelectorAll<HTMLElement>(OTHER_PRODUCT_SEL)) {
-    if (tile.contains(n)) continue
+/**
+ * Does `parent` hold, outside `tile`, a tile for something else: an artwork-bearing link that goes
+ * anywhere but this game? A package, a bundle, a sale page or a franchise hub has its own store page,
+ * so a box holding one beside our game is a shelf, not that game's card. The rule names no link
+ * types on purpose: each one Steam added (packages, then the home page's "Today's Deal" panel that
+ * stacks a game tile on a sale tile) broke a list of them. Links to other games already stop the
+ * climb through appIdsWithin, links to this game are sibling tiles (hasSiblingTile), and in-page
+ * links (`#`, `javascript:`) open viewers rather than products.
+ */
+function hasOtherProductTile(parent: HTMLElement, tile: HTMLElement, appid: number): boolean {
+  for (const n of parent.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+    if (tile.contains(n) || n.closest(REASON_SELECTOR)) continue
+    const href = n.getAttribute('href') ?? ''
+    if (!href || href.startsWith('#') || /^javascript:/i.test(href)) continue
+    if (appIdOf(n) === appid) continue
     const r = n.getBoundingClientRect()
     // Same bar as a sibling game tile: a small "add to cart" link is not another product's capsule
     if (r.height < 40 || r.width < 60 || !hasArt(n)) continue
@@ -202,7 +207,7 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
     // Only `/app/` links count towards `appIdsWithin`, so a column pairing a game capsule with a
     // package capsule looked like one game and the whole column became the card: on the homepage
     // the Death Stranding capsule's ring wrapped an unrelated package's capsule below it.
-    if (card && hasOtherProductTile(el, card)) break
+    if (card && hasOtherProductTile(el, card, appid)) break
     card = el
     el = el.parentElement
     hops++
@@ -596,8 +601,16 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
   badge.style.cssText = ''
   // Last resort for dense rows (charts tables): inline right after the title text
   if (placeBesideTitle(card, badge, cr)) return
-  // Nothing fits without covering something: no label beats an overlapping one
-  badge.remove()
+  // Nothing fits without covering something. Every game card still carries its label, because a card
+  // without one reads as a game we failed to check: a chip on the art's lower-right (the usual spot),
+  // or the card's own lower-right when the art is too small to hold it.
+  badge.classList.add('sro-corner', 'sro-fallback')
+  card.appendChild(badge)
+  if (art && art.width >= bw + 8 && art.height >= bh + 8) {
+    apply({ bottom: Math.max(4, Math.round(cr.bottom - art.bottom) + 4), right: Math.max(4, Math.round(cr.right - art.right) + 4) })
+  } else {
+    apply({ bottom: 4, right: 4 })
+  }
 }
 
 /** Inline after the card's title, when that leaves the card's size alone and covers nothing. */

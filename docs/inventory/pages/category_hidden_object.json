@@ -383,7 +383,7 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "flex/row",
-    "siblings": 13
+    "siblings": 16
    },
    "count": 9,
    "sizes": {
@@ -435,7 +435,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"5085740\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"303x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Hey everyone, This isn't a post I wanted to write, but I'd rather you hear it from us first. Yesterday, on October 16 a game called \"A Game About Needle In A Haystack\" by Little...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Another game stealing our code...</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Sat, October 17, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">H"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"5085740\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Hey everyone, This isn't a post I wanted to write, but I'd rather you hear it from us first. Yesterday, on October 16 a game called \"A Game About Needle In A Haystack\" by Little...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Another game stealing our code...</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Sat, October 17, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">H"
     },
     {
      "appid": 4704690,
@@ -470,7 +470,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"4704690\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"303x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Huge thanks to every streamer and viewer who played with us. Fan votes make up 70% of the result — every vote matters! Vote by Oct 31 👉</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">nominated for Stream Game of the Year at The Streamer Awards 2026!</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, October 16, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Huge thanks "
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"4704690\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Huge thanks to every streamer and viewer who played with us. Fan votes make up 70% of the result — every vote matters! Vote by Oct 31 👉</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">nominated for Stream Game of the Year at The Streamer Awards 2026!</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, October 16, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Huge thanks "
     }
    ]
   },
@@ -511,7 +511,7 @@
    },
    "examples": [
     {
-     "appid": 4995030,
+     "appid": 5028390,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -530,7 +530,7 @@
        "gap": "normal"
       },
       "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC",
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted",
        "position": "relative",
        "display": "flex",
        "textAlign": "start"
@@ -548,11 +548,11 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Folded Fables: Tidy Up The Dragon Hoard</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJ"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Too Many Toys!</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3LA"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:49:12.266Z"
+ "capturedAt": "2026-10-18T19:32:20.912Z"
 }

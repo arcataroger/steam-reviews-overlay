@@ -23,21 +23,21 @@
     "parentDisplay": "flex/row",
     "siblings": 31
    },
-   "count": 8,
+   "count": 7,
    "sizes": {
-    "280x160": 8
+    "280x160": 7
    },
    "sections": {
-    ".carousel__slider.vt-scrollable": 8
+    ".carousel__slider.vt-scrollable": 7
    },
    "headings": {
-    "System Requirements": 8
+    "System Requirements": 7
    },
    "chains": {
-    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 8
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 7
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-inline": 5,
+    "same|shape=row|badge=sro-badge sro-inline": 4,
     "same|shape=card|badge=sro-badge sro-inline": 3
    },
    "examples": [
@@ -77,7 +77,7 @@
      "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"440\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"440\" data-sro-score=\"8\" data-sro-pct=\"90\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div></div></div></div>"
     },
     {
-     "appid": 1607250,
+     "appid": 570,
      "title": "",
      "sizeBucket": "280x160",
      "styles": {
@@ -109,7 +109,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1607250\" data-sro-tone=\"mixed\" data-sro-score=\"5\" style=\"…\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"1607250\" data-sro-score=\"5\" data-sro-pct=\"67\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div></div></div></div>"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"570\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"570\" data-sro-score=\"8\" data-sro-pct=\"87\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div></div></div></div>"
     }
    ]
   },
@@ -361,7 +361,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "a#dlc_row_N.game_area_dlc_row.odd"
      },
-     "html": "<form name=\"add_all_dlc_to_cart\" action=\"https://store.steampowered.com/cart/?snr=1_5_9_\" method=\"POST\" data-sro-card=\"4406010\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"row\"><input type=\"hidden\" name=\"action\" value=\"add_to_cart\"><input type=\"hidden\" name=\"sessionid\" value=\"7d515e9a7fafdad1a9da3725\"><div class=\"tableView\"><div class=\"gameDlcBlocks\"><a class=\"game_area_dlc_row  odd ds_collapse_flag ds_collapse_flag_tiny app_impression_tracked\" id=\"dlc_row_4406010\" href=\"…\" data-ds-appid=\"4406010\" data-ds-itemkey=\"App_4406010\" data-ds-tagids=\"[3859,620519,3814,1671,1775,19,5711]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4406010,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-ds-steam-deck-compat-handled=\"true\"><div class=\"game_area_dlc_name\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tMarvel Rivals - High-Resolution Pack\t\t\t\t\t\t</div><div class=\"game_area_dlc_price\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFree\t\t\t\t\t\t\t\t\t\t\t\t\t</div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"4406010\" data-sro-score=\"5\" data-sro-pct=\"47\"><span class=\"sro-line sro-global sro-mixed\">Mixed</span></span></a></div></div><!-- tableView --><div style=\"…\"></div></form>"
+     "html": "<form name=\"add_all_dlc_to_cart\" action=\"https://store.steampowered.com/cart/?snr=1_5_9_\" method=\"POST\" data-sro-card=\"4406010\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"row\"><input type=\"hidden\" name=\"action\" value=\"add_to_cart\"><input type=\"hidden\" name=\"sessionid\" value=\"3a7af06345e455e3d30dc74a\"><div class=\"tableView\"><div class=\"gameDlcBlocks\"><a class=\"game_area_dlc_row  odd ds_collapse_flag ds_collapse_flag_tiny app_impression_tracked\" id=\"dlc_row_4406010\" href=\"…\" data-ds-appid=\"4406010\" data-ds-itemkey=\"App_4406010\" data-ds-tagids=\"[3859,620519,3814,1671,1775,19,5711]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4406010,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-ds-steam-deck-compat-handled=\"true\"><div class=\"game_area_dlc_name\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tMarvel Rivals - High-Resolution Pack\t\t\t\t\t\t</div><div class=\"game_area_dlc_price\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFree\t\t\t\t\t\t\t\t\t\t\t\t\t</div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"4406010\" data-sro-score=\"5\" data-sro-pct=\"47\"><span class=\"sro-line sro-global sro-mixed\">Mixed</span></span></a></div></div><!-- tableView --><div style=\"…\"></div></form>"
     }
    ]
   },
@@ -512,6 +512,79 @@
    ]
   },
   {
+   "key": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo|link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=false,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.78,
+    "price": false,
+    "date": true,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "flex/row",
+    "siblings": 31
+   },
+   "count": 1,
+   "sizes": {
+    "280x160": 1
+   },
+   "sections": {
+    ".carousel__slider.vt-scrollable": 1
+   },
+   "headings": {
+    "System Requirements": 1
+   },
+   "chains": {
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 1
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-inline": 1
+   },
+   "examples": [
+    {
+     "appid": 1422450,
+     "title": "",
+     "sizeBucket": "280x160",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "flex",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "12px"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-inline",
+      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
+     },
+     "html": "<div aria-selected=\"false\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--hidden _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1422450\" data-sro-tone=\"none\" data-sro-score=\"0\" style=\"…\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">To be announced</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"1422450\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div></div></div></div>"
+    }
+   ]
+  },
+  {
    "key": "div.Panel._8bfDpjt5qevt4WIKJfbhY|link=news,img=false,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=false",
    "signature": "div.Panel._8bfDpjt5qevt4WIKJfbhY",
    "hashedClasses": true,
@@ -580,11 +653,11 @@
       "badge": null,
       "badgeParent": null
      },
-     "html": "<div class=\"_8bfDpjt5qevt4WIKJfbhY Panel Focusable\" role=\"list\"><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Review Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"all\" checked=\"\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">All<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(423,202)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"positive\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Positive<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(318,190)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"negative\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Negative<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(105,012)</span></span></label></div></div></div><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Purchase Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input"
+     "html": "<div class=\"_8bfDpjt5qevt4WIKJfbhY Panel Focusable\" role=\"list\"><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Review Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"all\" checked=\"\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">All<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(423,214)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"positive\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Positive<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(318,196)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"negative\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Negative<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(105,018)</span></span></label></div></div></div><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Purchase Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:40:35.644Z"
+ "capturedAt": "2026-10-18T19:23:12.877Z"
 }

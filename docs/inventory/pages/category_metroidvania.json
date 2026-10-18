@@ -23,26 +23,26 @@
     "parentDisplay": "grid",
     "siblings": 2
    },
-   "count": 30,
+   "count": 29,
    "sizes": {
     "600x320": 12,
-    "380x220": 18
+    "380x220": 17
    },
    "sections": {
     ".ItemCount_2.center_row_trgt": 12,
-    ".ItemCount_3.center_row_trgt": 18
+    ".ItemCount_3.center_row_trgt": 17
    },
    "headings": {
     "Popular Discounted": 15,
-    "Popular Titles": 15
+    "Popular Titles": 14
    },
    "chains": {
     "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 12,
-    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 18
+    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 17
    },
    "ours": {
     "same|shape=card|badge=sro-badge sro-inline": 18,
-    "same|shape=row|badge=sro-badge sro-inline": 12
+    "same|shape=row|badge=sro-badge sro-inline": 11
    },
    "examples": [
     {
@@ -83,7 +83,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"2333000\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-op=\"1\" data-sro-size=\"591x314\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted\"><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-38%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$35.98</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$22.26</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"2333000\" data-sro-score=\"9\" data-sro-pct=\"96\"><span class=\"sro-line sro-both sro-positive\">Overwhelmingly Positive</span></span></span></div></a></div></div></div><i class=\"sro-orbit sro-orbit-paused\" aria-hidden=\"true\"><i></i><i></i></i></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"2333000\" data-sro-size=\"591x314\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-op=\"1\" data-sro-tone=\"positive\" data-sro-score=\"9\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted\"><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-38%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$35.98</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$22.26</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"2333000\" data-sro-score=\"9\" data-sro-pct=\"96\"><span class=\"sro-line sro-both sro-positive\">Overwhelmingly Positive</span></span></span></div></a></div></div></div><i class=\"sro-orbit sro-orbit-paused\" aria-hidden=\"true\"><i></i><i></i></i></div>"
     },
     {
      "appid": 2871520,
@@ -123,7 +123,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"2871520\" data-sro-tone=\"positive\" data-sro-score=\"6\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"591x314\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"><span><svg/></span></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC\"><div class=\"kT9bBl6aBZQ-0xiRlMWzc\">New</div><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-15%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$14.99</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$12.74</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"2871520\" data-sro-score=\"6\" data-sro-pct=\"79\"><span class=\"sro-line sro-global sro-positive\">Mostly Positive</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"2871520\" data-sro-size=\"591x314\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"6\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"><span><svg/></span></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC\"><div class=\"kT9bBl6aBZQ-0xiRlMWzc\">New</div><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-15%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$14.99</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$12.74</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"2871520\" data-sro-score=\"6\" data-sro-pct=\"79\"><span class=\"sro-line sro-global sro-positive\">Mostly Positive</span></span></span></div></a></div></div></div></div>"
     }
    ]
   },
@@ -135,7 +135,7 @@
    "features": {
     "link": "app",
     "img": true,
-    "artFraction": 0.88,
+    "artFraction": 0,
     "price": false,
     "date": false,
     "nativeSummary": false,
@@ -144,30 +144,67 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "grid",
-    "siblings": 2
+    "siblings": 3
    },
-   "count": 15,
+   "count": 16,
    "sizes": {
-    "580x300": 6,
-    "380x220": 9
+    "380x220": 10,
+    "580x300": 6
    },
    "sections": {
-    ".ItemCount_2.center_row_trgt": 6,
-    ".ItemCount_3.center_row_trgt": 9
+    ".ItemCount_3.center_row_trgt": 10,
+    ".ItemCount_2.center_row_trgt": 6
    },
    "headings": {
+    "Popular Titles": 1,
     "Top Demos": 15
    },
    "chains": {
-    "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 6,
-    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 9
+    "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 10,
+    "div.ItemCount_2.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 6
    },
    "ours": {
+    "same|shape=row|badge=sro-badge sro-corner": 1,
     "same|shape=card|badge=sro-badge sro-inline": 6,
     "same|shape=null|badge=sro-badge sro-inline": 6,
     "same|shape=row|badge=sro-badge sro-inline": 3
    },
    "examples": [
+    {
+     "appid": 261570,
+     "title": "",
+     "sizeBucket": "380x220",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "block",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "grid",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "16px"
+      },
+      "price": null,
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "div._3r4Ny9tQdQZc50XDM5B2q2"
+     },
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"261570\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"row\" data-sro-op=\"1\" data-sro-size=\"389x220\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"></span></div></a></div></div></div><i class=\"sro-orbit sro-orbit-paused\" aria-hidden=\"true\"><i></i><i></i></i><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"261570\" data-sro-score=\"9\" data-sro-pct=\"95\" style=\"…\"><span class=\"sro-line sro-local sro-positive\"><span class=\"sro-ico\">🇺🇸</span>Overwhelmingly Positive</span><span class=\"sro-line sro-global sro-positive\"><span class=\"sro-ico\">🌐</span>Very Positive</span></span></div>"
+    },
     {
      "appid": 3618740,
      "title": "",
@@ -202,41 +239,6 @@
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
      "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"3618740\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"575x307\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"><span><svg/></span></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free Demo</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"3618740\" data-sro-score=\"8\" data-sro-pct=\"81\"><span class=\"sro-line sro-global sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div>"
-    },
-    {
-     "appid": 5000760,
-     "title": "",
-     "sizeBucket": "580x300",
-     "styles": {
-      "card": {
-       "position": "static",
-       "display": "block",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "grid",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "16px"
-      },
-      "price": null,
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": null,
-      "axis": null,
-      "filtered": null,
-      "highlighted": false,
-      "badge": "sro-badge sro-inline",
-      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
-     },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"5000760\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"575x307\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free Demo</div></div><span class=\"sro-badge sro-none sro-inline\" data-sro-appid=\"5000760\" data-sro-score=\"0\"><span class=\"sro-line sro-global sro-none\">No user reviews</span></span></span></div></a></div></div></div></div>"
     }
    ]
   },
@@ -318,7 +320,7 @@
       "badge": "sro-badge sro-inline sro-beside-native",
       "badgeParent": "div._2ZlC6bcWXRrbEH_H3ikW_v"
      },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4231820\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Crimson Curse —Will Your Fate Bloom in Despair or Salvation\r\nSet 23 years after Castlevania Dracula's Curse - follow Rose Belmont's journey in an all new 2D Action-Exploration title from KONAMI, Evil Empire and Motion Twin.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Metroidvania</a>"
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4231820\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Crimson Curse —Will Your Fate Bloom in Despair or Salvation\r\nSet 23 years after Castlevania Dracula's Curse - follow Rose Belmont's journey in an all new 2D Action-Exploration title from KONAMI, Evil Empire and Motion Twin.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Metroidvania</a>"
     },
     {
      "appid": 2333000,
@@ -361,7 +363,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"2333000\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-op=\"1\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Silver Pines is a survival horror metroidvania set in small town America. Fight nightmarish terrors and solve puzzles, while carefully managing your scarce resources as you uncover the mysteries that could hold the key to redemption.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tab"
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"2333000\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-op=\"1\" data-sro-tone=\"positive\" data-sro-score=\"9\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Silver Pines is a survival horror metroidvania set in small town America. Fight nightmarish terrors and solve puzzles, while carefully managing your scarce resources as you uncover the mysteries that could hold the key to redemption.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tab"
     }
    ]
   },
@@ -399,7 +401,7 @@
    },
    "ours": {
     "same|shape=panel|badge=sro-badge sro-corner": 5,
-    "same|shape=panel|badge=none": 3
+    "same|shape=panel|badge=sro-badge sro-corner sro-fallback": 3
    },
    "examples": [
     {
@@ -467,8 +469,8 @@
       "axis": "x",
       "filtered": null,
       "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
+      "badge": "sro-badge sro-corner sro-fallback",
+      "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
      "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"2333000\" data-sro-tone=\"positive\" data-sro-score=\"9\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-op=\"1\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Regular Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">The second patch for Silver Pines is now live on Steam. This patch fixes some of the softlock situations some players have experienced, increases the max photo count, tweaks the...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Silver Pines Hotfix 2 out now on Steam</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Regular Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, October 16, 2026</span></div><div class=\"ENbI1"
     }
@@ -511,7 +513,7 @@
    },
    "examples": [
     {
-     "appid": 1030300,
+     "appid": 813630,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -530,7 +532,7 @@
        "gap": "normal"
       },
       "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer",
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted",
        "position": "relative",
        "display": "flex",
        "textAlign": "start"
@@ -548,11 +550,11 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Hollow Knight: Silksong</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div cl"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Supraland</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3LAiT6FD"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:49:28.557Z"
+ "capturedAt": "2026-10-18T19:32:39.055Z"
 }

@@ -2,7 +2,7 @@
  "url": "https://store.steampowered.com/category/tower_defense",
  "finalUrl": "https://store.steampowered.com/category/tower_defense",
  "title": "Tower Defense",
- "cards": 52,
+ "cards": 50,
  "kinds": [
   {
    "key": "div._3r4Ny9tQdQZc50XDM5B2q2|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
@@ -319,7 +319,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"960090\" data-sro-tone=\"positive\" data-sro-score=\"9\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-op=\"1\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">The Bloons are back and better than ever! Get ready for a massive 3D tower defense game designed to give you hours and hours of the best strategy gaming available.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Tower Defense</a><a href=\"…\" target=\"_blank\" class=\"_22IRYeqP"
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"960090\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-op=\"1\" data-sro-tone=\"positive\" data-sro-score=\"9\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">The Bloons are back and better than ever! Get ready for a massive 3D tower defense game designed to give you hours and hours of the best strategy gaming available.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Tower Defense</a><a href=\"…\" target=\"_blank\" class=\"_22IRYeqP"
     },
     {
      "appid": 701160,
@@ -362,7 +362,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"701160\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Fo"
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"701160\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Gather coins, build defenses and reclaim your fallen Kingdom. Explore and uncover secrets, unlock new technologies and protect your crown versus waves of Greed monsters that come at night. Kingdom is a solo or co-op micro-strategy and tower defense game set in an atmospheric pixel world.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Fo"
     }
    ]
   },
@@ -383,23 +383,23 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "flex/row",
-    "siblings": 11
+    "siblings": 8
    },
-   "count": 9,
+   "count": 7,
    "sizes": {
-    "300x240": 9
+    "300x240": 7
    },
    "sections": {
-    ".carousel__slider.vt-scrollable": 9
+    ".carousel__slider.vt-scrollable": 7
    },
    "headings": {
-    "Recent & Upcoming Events": 9
+    "Recent & Upcoming Events": 7
    },
    "chains": {
-    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 9
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 7
    },
    "ours": {
-    "same|shape=panel|badge=sro-badge sro-corner": 9
+    "same|shape=panel|badge=sro-badge sro-corner": 7
    },
    "examples": [
     {
@@ -438,7 +438,7 @@
      "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"4267800\" data-sro-tone=\"positive\" data-sro-score=\"6\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Regular Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">To prevent nasty bugs from slipping into future versions, we've opened a \"Test\" branch as an early-update branch for each version.</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Test Branch Update — Version 1.0.9.0</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Regular Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Sun, October 18, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">To prevent nasty bugs from s"
     },
     {
-     "appid": 1272320,
+     "appid": 469600,
      "title": "",
      "sizeBucket": "300x240",
      "styles": {
@@ -470,7 +470,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1272320\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Pupultas! As you already know, the Gorgoth Empire and the Great Kingdom of Inverland will appear in the Fog of War DLC campaign. But what about other modes?</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">About (not) the DLC: New Enemies in Sandbox and Map Editor</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Sat, October 17, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"469600\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">$875 in prizes, free to enter, cards for all participants!</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Sign Up for the October Nova Cup!</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Fri, October 16, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">$875 in prizes, free to enter, cards for all participants!</div></div></div></a><div class=\"_16au-uWHggl6G731aw_eHt AppCapsu"
     }
    ]
   },
@@ -546,7 +546,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"570\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Every day, millions of players worldwide enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of play or 1,000th, there's always something new to discover. With regular updates that ensure a constant evolution of gameplay, features, and heroes, Dota 2 has taken on a life of its own.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeq"
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"570\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Every day, millions of players worldwide enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of play or 1,000th, there's always something new to discover. With regular updates that ensure a constant evolution of gameplay, features, and heroes, Dota 2 has taken on a life of its own.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeq"
     },
     {
      "appid": 4732690,
@@ -570,7 +570,7 @@
       "price": null,
       "native": {
        "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Very Positive(1,832 User Reviews)"
+       "text": "Very Positive(1,868 User Reviews)"
       }
      },
      "ours": {
@@ -584,7 +584,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4732690\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Arknights: Endfield is a 3D real-time strategy RPG from Gryphline. You will take on the role of the Endministrator of Endfield Industries, explore Talos-II, and defend and expand the frontiers of human civilization.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Anime</a><a href=\"…\" tar"
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4732690\" data-sro-size=\"924x349\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Arknights: Endfield is a 3D real-time strategy RPG from Gryphline. You will take on the role of the Endministrator of Endfield Industries, explore Talos-II, and defend and expand the frontiers of human civilization.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Anime</a><a href=\"…\" tar"
     }
    ]
   },
@@ -625,7 +625,7 @@
    },
    "examples": [
     {
-     "appid": 701160,
+     "appid": 960090,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -644,7 +644,7 @@
        "gap": "normal"
       },
       "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted",
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer",
        "position": "relative",
        "display": "flex",
        "textAlign": "start"
@@ -662,11 +662,11 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Kingdom Two Crowns</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\""
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm _3afqMxr7HnEfdxJwBg6GRd\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Gameplay</span> | Bloons TD 6</div><div class=\"OsRdwk7Q3-sApCo2CDxtN Panel Focusable\" tabindex=\"0\"><svg/></div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _1yr-ANb75ms4sc2qaXuCYM _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class="
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:54:01.705Z"
+ "capturedAt": "2026-10-18T19:37:17.048Z"
 }

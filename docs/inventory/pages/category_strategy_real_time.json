@@ -2,7 +2,7 @@
  "url": "https://store.steampowered.com/category/strategy_real_time",
  "finalUrl": "https://store.steampowered.com/category/strategy_real_time",
  "title": "Real-Time Strategy",
- "cards": 51,
+ "cards": 52,
  "kinds": [
   {
    "key": "div._3r4Ny9tQdQZc50XDM5B2q2|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
@@ -43,8 +43,8 @@
    },
    "ours": {
     "same|shape=card|badge=sro-badge sro-inline": 7,
-    "same|shape=null|badge=sro-badge sro-inline": 7,
-    "same|shape=row|badge=sro-badge sro-inline": 3
+    "same|shape=null|badge=sro-badge sro-inline": 8,
+    "same|shape=row|badge=sro-badge sro-inline": 2
    },
    "examples": [
     {
@@ -261,21 +261,21 @@
     "parentDisplay": "block",
     "siblings": 13
    },
-   "count": 9,
+   "count": 10,
    "sizes": {
-    "920x340": 9
+    "920x340": 10
    },
    "sections": {
-    ".Panel": 9
+    ".Panel": 10
    },
    "headings": {
-    "Popular Titles": 9
+    "Popular Titles": 10
    },
    "chains": {
-    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 9
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 10
    },
    "ours": {
-    "same|shape=card|badge=none": 9
+    "same|shape=card|badge=none": 10
    },
    "examples": [
     {
@@ -383,23 +383,23 @@
     "discount": false,
     "carousel": true,
     "parentDisplay": "flex/row",
-    "siblings": 9
+    "siblings": 11
    },
-   "count": 8,
+   "count": 9,
    "sizes": {
-    "300x240": 8
+    "300x240": 9
    },
    "sections": {
-    ".carousel__slider.vt-scrollable": 8
+    ".carousel__slider.vt-scrollable": 9
    },
    "headings": {
-    "Recent & Upcoming Events": 8
+    "Recent & Upcoming Events": 9
    },
    "chains": {
-    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 8
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 9
    },
    "ours": {
-    "same|shape=panel|badge=sro-badge sro-corner": 8
+    "same|shape=panel|badge=sro-badge sro-corner": 9
    },
    "examples": [
     {
@@ -475,6 +475,84 @@
    ]
   },
   {
+   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "signature": "div._3olpRSXr66ohyQFxmzqokI",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.58,
+    "price": true,
+    "date": true,
+    "nativeSummary": false,
+    "title": false,
+    "platforms": false,
+    "discount": false,
+    "carousel": true,
+    "parentDisplay": "block",
+    "siblings": 1
+   },
+   "count": 1,
+   "sizes": {
+    "1200x540": 1
+   },
+   "sections": {
+    "#SaleSection_N": 1
+   },
+   "headings": {
+    "Real-Time Strategy": 1
+   },
+   "chains": {
+    "div#SaleSection_N.Panel.SaleSectionCtn.contenthubmaincarousel.expanded.i2PTzRNXOK1OXvXb9-wzd < div.SaleSectionTabListContainer._2VZtqrDRVSIicZZHPUY9SY < div.Panel < div.Panel.SaleOuterContainer._150kddWk8JgylTvh_eC20b": 1
+   },
+   "ours": {
+    "other:a.Ay0ys40M1NtzbqyKeNgwX|shape=row|badge=sro-badge sro-corner": 1
+   },
+   "examples": [
+    {
+     "appid": 3028310,
+     "title": "",
+     "sizeBucket": "1200x540",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px",
+       "backgroundImage": "none"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "hidden auto",
+       "overflowX": "hidden",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": false,
+      "ourCardSig": "a.Ay0ys40M1NtzbqyKeNgwX",
+      "shape": "row",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-corner",
+      "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
+     },
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Nordhold</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3LAiT6FD5"
+    }
+   ]
+  },
+  {
    "key": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia|link=app,img=true,price=false,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
    "signature": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia",
    "hashedClasses": true,
@@ -493,22 +571,21 @@
     "parentDisplay": "block",
     "siblings": 13
    },
-   "count": 2,
+   "count": 1,
    "sizes": {
-    "920x340": 2
+    "920x340": 1
    },
    "sections": {
-    ".Panel": 2
+    ".Panel": 1
    },
    "headings": {
-    "Popular Titles": 2
+    "Popular Titles": 1
    },
    "chains": {
-    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 2
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 1
    },
    "ours": {
-    "same|shape=card|badge=none": 1,
-    "same|shape=card|badge=sro-badge sro-inline sro-beside-native": 1
+    "same|shape=card|badge=none": 1
    },
    "examples": [
     {
@@ -548,122 +625,6 @@
       "badgeParent": null
      },
      "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"570\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Every day, millions of players worldwide enter battle as one of over a hundred Dota heroes. And no matter if it's their 10th hour of play or 1,000th, there's always something new to discover. With regular updates that ensure a constant evolution of gameplay, features, and heroes, Dota 2 has taken on a life of its own.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeq"
-    },
-    {
-     "appid": 2426960,
-     "title": "Tags",
-     "sizeBucket": "920x340",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px 5px 0px 0px",
-       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": null,
-      "native": {
-       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Mixed(4,081 English Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-inline sro-beside-native",
-      "badgeParent": "div._2ZlC6bcWXRrbEH_H3ikW_v"
-     },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"2426960\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">A global hit RPG that captured the Summoners all around the world!\r\nJump into the Sky Arena, a world under battle over the vital resource: Mana Crystals.\r\nDesign your own deck and strategy using 1,000 Monsters to claim victory.\r\nGo on an epic adventure with your Monsters!</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopene"
-    }
-   ]
-  },
-  {
-   "key": "div._3olpRSXr66ohyQFxmzqokI|link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
-   "signature": "div._3olpRSXr66ohyQFxmzqokI",
-   "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=false,platforms=false,carousel=true",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.58,
-    "price": true,
-    "date": true,
-    "nativeSummary": false,
-    "title": false,
-    "platforms": false,
-    "discount": false,
-    "carousel": true,
-    "parentDisplay": "block",
-    "siblings": 1
-   },
-   "count": 1,
-   "sizes": {
-    "1200x540": 1
-   },
-   "sections": {
-    "#SaleSection_N": 1
-   },
-   "headings": {
-    "Real-Time Strategy": 1
-   },
-   "chains": {
-    "div#SaleSection_N.Panel.SaleSectionCtn.contenthubmaincarousel.expanded.i2PTzRNXOK1OXvXb9-wzd < div.SaleSectionTabListContainer._2VZtqrDRVSIicZZHPUY9SY < div.Panel < div.Panel.SaleOuterContainer._150kddWk8JgylTvh_eC20b": 1
-   },
-   "ours": {
-    "other:a.Ay0ys40M1NtzbqyKeNgwX|shape=row|badge=sro-badge sro-corner": 1
-   },
-   "examples": [
-    {
-     "appid": 1466860,
-     "title": "",
-     "sizeBucket": "1200x540",
-     "styles": {
-      "card": {
-       "position": "static",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px",
-       "backgroundImage": "none"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "hidden auto",
-       "overflowX": "hidden",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": null
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": false,
-      "ourCardSig": "a.Ay0ys40M1NtzbqyKeNgwX",
-      "shape": "row",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-corner",
-      "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
-     },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Age of Empires IV: Anniversary Edition</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJq"
     }
    ]
   },
@@ -747,5 +708,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:53:46.014Z"
+ "capturedAt": "2026-10-18T19:37:01.400Z"
 }

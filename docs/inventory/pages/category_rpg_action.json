@@ -41,8 +41,8 @@
     "div.ItemCount_3.SaleSectionContainer.W9_WAYXgEe-t-7aqqC4Jp._3gb3JeV_1IMaIeODzBSrP3.center_row_trgt < div.HlkukqE4fB5si76sBJzKX < div.Panel < div.carousel__inner-slide.slideInner___2mfX9": 17
    },
    "ours": {
-    "same|shape=card|badge=sro-badge sro-inline": 16,
-    "same|shape=row|badge=sro-badge sro-inline": 10,
+    "same|shape=card|badge=sro-badge sro-inline": 14,
+    "same|shape=row|badge=sro-badge sro-inline": 12,
     "same|shape=null|badge=sro-badge sro-inline": 1
    },
    "examples": [
@@ -84,7 +84,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"1203620\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"591x314\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC\"><div class=\"kT9bBl6aBZQ-0xiRlMWzc\">New</div><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-10%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$39.99</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$35.99</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"1203620\" data-sro-score=\"8\" data-sro-pct=\"87\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"1203620\" data-sro-size=\"591x314\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC\"><div class=\"kT9bBl6aBZQ-0xiRlMWzc\">New</div><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-10%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$39.99</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$35.99</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"1203620\" data-sro-score=\"8\" data-sro-pct=\"87\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div>"
     },
     {
      "appid": 990080,
@@ -124,7 +124,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"990080\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"591x314\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted\"><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-90%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$59.99</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$5.99</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"990080\" data-sro-score=\"8\" data-sro-pct=\"91\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"990080\" data-sro-size=\"591x314\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-tone=\"positive\" data-sro-score=\"8\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted\"><div class=\"_1kSDZm0Cg9anUkTfWFtwdN StoreSaleDiscountBox\">-90%</div><div class=\"_2KBGD_hHRCfMXm-DDYRbQX\"><div class=\"_1odBXcjq8-Q8SFXViJa7c6\">$59.99</div><div class=\"kauOU9QnW8Fs0QpxzTBph\">$5.99</div></div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"990080\" data-sro-score=\"8\" data-sro-pct=\"91\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div>"
     }
    ]
   },
@@ -204,7 +204,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"230410\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"591x314\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"230410\" data-sro-score=\"8\" data-sro-pct=\"91\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div>"
+     "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"230410\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"591x314\"><div class=\"_1omVjlZWALGX34pum8v7SF capsule_index_0 Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"230410\" data-sro-score=\"8\" data-sro-pct=\"91\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div>"
     },
     {
      "appid": 1974050,
@@ -240,131 +240,6 @@
       "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
      "html": "<div class=\"_3r4Ny9tQdQZc50XDM5B2q2\" data-sro-card=\"1974050\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"389x220\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_3vk4H4zJk_wDD6oaJrsjuj\"></span><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"1974050\" data-sro-score=\"5\" data-sro-pct=\"61\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div>"
-    }
-   ]
-  },
-  {
-   "key": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia|link=app,img=true,price=true,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
-   "signature": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia",
-   "hashedClasses": true,
-   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
-   "features": {
-    "link": "app",
-    "img": true,
-    "artFraction": 0.32,
-    "price": true,
-    "date": true,
-    "nativeSummary": true,
-    "title": true,
-    "platforms": false,
-    "discount": false,
-    "carousel": false,
-    "parentDisplay": "block",
-    "siblings": 13
-   },
-   "count": 9,
-   "sizes": {
-    "920x340": 9
-   },
-   "sections": {
-    ".Panel": 9
-   },
-   "headings": {
-    "Popular Titles": 9
-   },
-   "chains": {
-    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 9
-   },
-   "ours": {
-    "same|shape=card|badge=none": 8,
-    "same|shape=card|badge=sro-badge sro-inline sro-beside-native": 1
-   },
-   "examples": [
-    {
-     "appid": 1203620,
-     "title": "Tags",
-     "sizeBucket": "920x340",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px 5px 0px 0px",
-       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": {
-       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Very Positive(50,558 English Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "none",
-      "badgeParent": null
-     },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"1203620\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Enshrouded is a solo and co-op survival action RPG where your freedom and creativity come first. Conquer the Shroud, a corrupting fog devouring the kingdom of Embervale: explore a handcrafted world full of secrets, forge your hero your way, and build anything, anywhere in a fully terraformable land.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh"
-    },
-    {
-     "appid": 4231820,
-     "title": "Tags",
-     "sizeBucket": "920x340",
-     "styles": {
-      "card": {
-       "position": "relative",
-       "display": "flex",
-       "overflow": "visible",
-       "borderRadius": "0px 5px 0px 0px",
-       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
-      },
-      "parent": {
-       "display": "block",
-       "flexDirection": "row",
-       "overflow": "visible",
-       "overflowX": "visible",
-       "gap": "normal"
-      },
-      "price": {
-       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1ScAL4Y0dGHeXycrpJYkAC",
-       "position": "relative",
-       "display": "flex",
-       "textAlign": "start"
-      },
-      "native": {
-       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
-       "text": "Very Positive(2,227 English Reviews)"
-      }
-     },
-     "ours": {
-      "claimed": true,
-      "sameElement": true,
-      "ourCardSig": null,
-      "shape": "card",
-      "axis": null,
-      "filtered": null,
-      "highlighted": true,
-      "badge": "sro-badge sro-inline sro-beside-native",
-      "badgeParent": "div._2ZlC6bcWXRrbEH_H3ikW_v"
-     },
-     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4231820\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Crimson Curse —Will Your Fate Bloom in Despair or Salvation\r\nSet 23 years after Castlevania Dracula's Curse - follow Rose Belmont's journey in an all new 2D Action-Exploration title from KONAMI, Evil Empire and Motion Twin.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Metroidvania</a>"
     }
    ]
   },
@@ -473,6 +348,131 @@
       "badgeParent": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo"
      },
      "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1203620\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"panel\" data-sro-axis=\"x\" data-sro-size=\"304x236\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_16DzRvjcqFcYr0NYcWmTrg Panel Focusable\"><span style=\"…\"></span><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Major Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Greetings Flameborn! So obviously we released the changelog yesterday, but we've also made the traditional Highlights video for those of you who only believe it when you see it!</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Enshrouded 1.0 is LIVE! Check out our Highlights video!</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Major Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Thu, October 15, 2026</span></div><div class=\"ENbI1gFgvIc"
+    }
+   ]
+  },
+  {
+   "key": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia|link=app,img=true,price=true,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "signature": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=true,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.32,
+    "price": true,
+    "date": true,
+    "nativeSummary": true,
+    "title": true,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 13
+   },
+   "count": 8,
+   "sizes": {
+    "920x340": 8
+   },
+   "sections": {
+    ".Panel": 8
+   },
+   "headings": {
+    "Popular Titles": 8
+   },
+   "chains": {
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 8
+   },
+   "ours": {
+    "same|shape=card|badge=none": 7,
+    "same|shape=card|badge=sro-badge sro-inline sro-beside-native": 1
+   },
+   "examples": [
+    {
+     "appid": 1203620,
+     "title": "Tags",
+     "sizeBucket": "920x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px 5px 0px 0px",
+       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer w775QgXXCtmtG8yzEp-2u Discounted _1ScAL4Y0dGHeXycrpJYkAC",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
+       "text": "Very Positive(50,574 English Reviews)"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "none",
+      "badgeParent": null
+     },
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"1203620\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Enshrouded is a solo and co-op survival action RPG where your freedom and creativity come first. Conquer the Shroud, a corrupting fog devouring the kingdom of Embervale: explore a handcrafted world full of secrets, forge your hero your way, and build anything, anywhere in a fully terraformable land.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh"
+    },
+    {
+     "appid": 4231820,
+     "title": "Tags",
+     "sizeBucket": "920x340",
+     "styles": {
+      "card": {
+       "position": "relative",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px 5px 0px 0px",
+       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1ScAL4Y0dGHeXycrpJYkAC",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
+      "native": {
+       "cls": "_6ctF1zf2MKZRofZdWQXqG ReviewScore",
+       "text": "Very Positive(2,227 English Reviews)"
+      }
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": "card",
+      "axis": null,
+      "filtered": null,
+      "highlighted": true,
+      "badge": "sro-badge sro-inline sro-beside-native",
+      "badgeParent": "div._2ZlC6bcWXRrbEH_H3ikW_v"
+     },
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4231820\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">Crimson Curse —Will Your Fate Bloom in Despair or Salvation\r\nSet 23 years after Castlevania Dracula's Curse - follow Rose Belmont's journey in an all new 2D Action-Exploration title from KONAMI, Evil Empire and Motion Twin.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Metroidvania</a>"
     }
    ]
   },
@@ -627,7 +627,7 @@
    },
    "examples": [
     {
-     "appid": 1245620,
+     "appid": 2694490,
      "title": "",
      "sizeBucket": "1200x540",
      "styles": {
@@ -664,11 +664,89 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "a.Ay0ys40M1NtzbqyKeNgwX"
      },
-     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | ELDEN RING</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3LAiT6F"
+     "html": "<div class=\"_3olpRSXr66ohyQFxmzqokI\"><div class=\"Panel Focusable\" tabindex=\"0\" role=\"button\"><div class=\"mQ2qrYTbonWejXmhFQ81v VideoRow\"><button class=\"q_ShwU2ucCDrMJfg01dzw _2nAcihHr2E0zYAMHUTyfzS\"><svg/></button><div class=\"_3hxg83PMgvZaOaB_-m0mXX\"><div class=\"_1kP9eBa81xqLihEh6ytwiF\" style=\"…\"></div><div class=\"_3ASFJGw8T9-hDikhxRScDI AppVideoCtn Panel Focusable\"><div class=\"_2LOILpLspWCbXnRmFuUbwx\">On Wishlist</div><div class=\"_1otwTolVlX9PfKD2myNigb\"><div class=\"_35ODHCvm13mJ5gOunwQzs9\"><div class=\"_2SriIWC_6CHPZkjggKoxjb\"><div class=\"_1D4RHomSRy25j1Qxl-dDPw\">Ignored</div><div class=\"_29zcmLd8LJQ2FR33D1_Ph6\">We'll never show you this game again</div><div class=\"_1nz7pkRvV4rRrybZrUZu0R _1rPGVQftqLzqjH04tebuaT Panel Focusable\">Undo</div></div></div><div class=\"_2O2oGi6d4q3fJxsg-26cll Panel Focusable\"><button><img class=\"_1S2WeY58fI6yRef-8ArnWh\"></button><div class=\"_2J3J__8l3sk6LI4mpUfWDT\"><div role=\"checkbox\" aria-checked=\"true\" class=\"DialogCheckbox_Container _DialogLayout _1sEIT3Bh71g9JRzpjKvlIo Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"DialogCheckbox Active\"><svg/></div><div class=\"DialogToggle_Label\"><span>Autoplay Videos</span></div><div style=\"…\"></div></div></div><div class=\"_2jWguvQbMj3mHe0ytRpzNm\"><span class=\"_3oxiEsdJdYRkKvYSWGAfih\">Trailer Preview</span> | Path of Exile 2</div><video class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _2HvnbxzEFWWLlYvdP-FWFN\" preload=\"auto\" playsinline=\"\"><source type=\"video/webm\"><source type=\"video/mp4\"></video><div class=\"_2YG6k4pQ2z4jwoRGrdPhbv _2X47xgnvmgTDpH69RCBkZ7 _27Hm281QxYE24wJqONIP0p\"><div class=\"_3L"
+    }
+   ]
+  },
+  {
+   "key": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia|link=app,img=true,price=true,date=true,nativeSummary=false,title=true,platforms=false,carousel=false",
+   "signature": "div.LibraryAssetExpandedDisplay._39Jz5Qi6nhOd7XvaNnbSoR.t75Je5tr-0U-BmJ9zl5ia",
+   "hashedClasses": true,
+   "featureKey": "link=app,img=true,price=true,date=true,nativeSummary=false,title=true,platforms=false,carousel=false",
+   "features": {
+    "link": "app",
+    "img": true,
+    "artFraction": 0.32,
+    "price": true,
+    "date": true,
+    "nativeSummary": false,
+    "title": true,
+    "platforms": false,
+    "discount": false,
+    "carousel": false,
+    "parentDisplay": "block",
+    "siblings": 13
+   },
+   "count": 1,
+   "sizes": {
+    "920x340": 1
+   },
+   "sections": {
+    ".Panel": 1
+   },
+   "headings": {
+    "Popular Titles": 1
+   },
+   "chains": {
+    "div._2Xmxos5yKwoYnXYguVbp1w < div.FceFPjrKVMUMEQizv8jcP < div. < div._18byEIHFiivSklOwKqIx2b": 1
+   },
+   "ours": {
+    "same|shape=null|badge=sro-badge sro-inline": 1
+   },
+   "examples": [
+    {
+     "appid": 4115450,
+     "title": "Tags",
+     "sizeBucket": "920x340",
+     "styles": {
+      "card": {
+       "position": "static",
+       "display": "flex",
+       "overflow": "visible",
+       "borderRadius": "0px 5px 0px 0px",
+       "backgroundImage": "linear-gradient(rgba(0, 0, 0, 0.43) 5%, rgb(0, 0, 0) 95%)"
+      },
+      "parent": {
+       "display": "block",
+       "flexDirection": "row",
+       "overflow": "visible",
+       "overflowX": "visible",
+       "gap": "normal"
+      },
+      "price": {
+       "cls": "_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer _1QuRa-ebvBejdSjmUkqX5v",
+       "position": "relative",
+       "display": "flex",
+       "textAlign": "start"
+      },
+      "native": null
+     },
+     "ours": {
+      "claimed": true,
+      "sameElement": true,
+      "ourCardSig": null,
+      "shape": null,
+      "axis": null,
+      "filtered": null,
+      "highlighted": false,
+      "badge": "sro-badge sro-inline",
+      "badgeParent": "div._20HgIIui8JHLBf62qfz5Gr"
+     },
+     "html": "<div class=\"t75Je5tr-0U-BmJ9zl5ia _39Jz5Qi6nhOd7XvaNnbSoR LibraryAssetExpandedDisplay\" data-sro-card=\"4115450\" data-sro-tone=\"none\" data-sro-score=\"0\" data-sro-size=\"924x349\"><div class=\"ImpressionTrackedElement\"><div class=\"_3R3jAV3aZuBYZUeAW1nD7h\"><div class=\"_1ERk_jpTDmAx8rJn5bJNLR\"><div><a href=\"…\" class=\"Focusable\" target=\"_blank\" rel=\"noopener noreferrer\" tabindex=\"0\" role=\"button\"><div class=\"x_kq8V9RpcQ0NN1peDKg7\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"S9g2oScKWNbE4BrExvI19 HeroCapsuleImageContainer\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\"></div></div></a></div></div><div class=\"_3oOCqm5QnRABrDXfNWZCiV\"><div class=\"_3FAid_cwwxW8-9Sp6pSPqS _1l9DUAcf-usX0U1ouPwOjD WishlistButton Panel Focusable\" tabindex=\"0\" role=\"button\"><svg/><div class=\"_2GqXfP0dBAJl9ozuBV3Jqh WishlistButtonText\">Add to wishlist</div></div><div class=\"_1nfJPebnVfFpujoINIrTwx\"><div class=\"_1kHYilvb5rc5aw0OmhmfNw\"><div class=\"_2VdeXQqeuqu2i4yjprISF- StoreSaleWidgetShortDesc\">S-GAME presents Phantom Blade Zero, a fusion of classic Wuxia storytelling and exhilarating action powered by Unreal Engine 5. You play as Soul, a warrior with only sixty-six days left to live. Fend off assassins, unravel world-ending conspiracies, and defend your values with your life.</div><div class=\"_1hS3ayvVLxIJlkxUDEBACP SaleTagBlockCtn\"><div class=\"_1Tifv9nWMUHpqL-5PdjhNO WidgetTagTitle\">Tags</div><div class=\"_3vCIFKfpJCOL-zsUEUiAtt TagBox\"><a href=\"…\" target=\"_blank\" class=\"_22IRYeqPYSxG2vqNmALNsh WidgetTag Focusable\" rel=\"noopener noreferrer\" tabindex=\"0\">Action RPG</a><a href=\"…\" target=\"_"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-10-18T18:50:15.984Z"
+ "capturedAt": "2026-10-18T19:33:30.296Z"
 }

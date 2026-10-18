@@ -7,3 +7,6 @@ build/
 shots/
 test-results/
 playwright-report/
+web-ext-artifacts/
+.firefox-dev-profile/
+.*-test-profile/

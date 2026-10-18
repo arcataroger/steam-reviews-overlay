@@ -101,7 +101,21 @@ npm run build:firefox
 npm run build:safari     # Chrome-shaped MV3 manifest with Safari-unsupported keys stripped
 npm run safari:xcode     # wraps dist/safari in an Xcode project under build/safari (needs Xcode)
 npm run dev              # CRXJS dev server with HMR (Chrome)
+npm run dev:firefox      # rebuilds dist/firefox on save; your Firefox reloads the add-on
 ```
+
+`dev:firefox` opens your installed Firefox on a kept profile (`.firefox-dev-profile/`), so a
+Steam login there survives restarts.
+
+## Publish (Firefox, unlisted)
+
+AMO signs the add-on but never lists it. You install the signed `.xpi` from a file.
+
+1. Raise `version` in `package.json`. AMO accepts each version once.
+2. Export `WEB_EXT_API_KEY` (the JWT issuer, `user:…`) and `WEB_EXT_API_SECRET` from AMO's
+   Developer Hub → Manage API Keys.
+3. Run `npm run publish:firefox`. It builds, lints, signs, and saves the `.xpi` to
+   `web-ext-artifacts/`.
 
 ## Load
 
@@ -130,7 +144,21 @@ npm run test:e2e         # Playwright: loads dist/chrome into Chromium, visits l
                          # Steam pages, checks badges, request counts, and drives
                          # the popup (dim / hide / outline / park) end to end
 npm run lint             # web-ext lint on the Firefox build
+npm run audit:home       # every visible game card on the home page carries a label (below)
 ```
+
+`audit:home` checks the outcome, not Steam's markup, so it catches layouts we have never seen.
+It scrolls the page, opens every home tab, pages every carousel, and dims cards at Mostly
+Positive and below. It fails on any visible game card without our label, Steam's own summary,
+or a by-design exception (packages, bundles). To run it:
+
+1. Run `npm run build`.
+2. If this browser has no Steam login yet, run `npm run steam-login -- --browser chromium`,
+   log in, then close the window. Personalized home rows only render for a logged-in account.
+3. Run `npm run audit:home`. Add `--browser firefox` for Firefox, or pass URLs to audit other pages.
+
+Chromium is the primary test browser. Firefox runs as your installed copy over WebDriver BiDi.
+Playwright's WebKit cannot load extensions, so it can only check our CSS on bare pages.
 
 Screenshot galleries are on demand only (not part of the test run):
 

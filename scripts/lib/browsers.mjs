@@ -38,7 +38,9 @@ export function browserArg(argv = process.argv.slice(2)) {
  * loaded extension. macOS hands back a symlinked temp path; Chrome keys unpacked extensions by real path.
  */
 function copyBuild(browser) {
-  const src = path.join(root, 'dist', browser === 'chromium' ? 'chrome' : 'firefox')
+  // SRO_CHROMIUM_DIST / SRO_FIREFOX_DIST point at a build made elsewhere (the weekly audit builds
+  // Firefox outside dist/, where `npm run dev:firefox` would reload the add-on mid-session)
+  const src = process.env[`SRO_${browser.toUpperCase()}_DIST`] ?? path.join(root, 'dist', browser === 'chromium' ? 'chrome' : 'firefox')
   if (!fs.existsSync(path.join(src, 'manifest.json'))) throw new Error(`${src} is missing: run npm run build:${browser === 'chromium' ? 'chrome' : 'firefox'}`)
   const dir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'sro-ext-')))
   fs.cpSync(src, dir, { recursive: true })

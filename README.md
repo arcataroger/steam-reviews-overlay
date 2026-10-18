@@ -157,6 +157,14 @@ or a by-design exception (packages, bundles). To run it:
    log in, then close the window. Personalized home rows only render for a logged-in account.
 3. Run `npm run audit:home`. Add `--browser firefox` for Firefox, or pass URLs to audit other pages.
 
+To run it every week:
+
+1. Run `scripts/install-weekly-audit.sh`. A LaunchAgent then runs `scripts/weekly-audit.sh` on
+   Mondays at 9:07, or at the next wake if the Mac was asleep.
+2. Read results in `~/Library/Logs/steam-reviews-overlay-audit.log`. A failed run also posts a macOS
+   notification.
+3. To stop it, run `scripts/install-weekly-audit.sh --uninstall`.
+
 Chromium is the primary test browser. Firefox runs as your installed copy over WebDriver BiDi.
 Playwright's WebKit cannot load extensions, so it can only check our CSS on bare pages.
 

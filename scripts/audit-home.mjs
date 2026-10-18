@@ -51,6 +51,10 @@ const ctx = await launch(browser, { extension: true, settings: SETTINGS })
 const page = await ctx.newPage()
 const failures = new Map()
 const record = async (where) => {
+  if (!(await page.evaluate(unlabelled)).length) return
+  // A slide still arriving (React carousels render on demand) is a race, not a gap: count only cards
+  // still unlabelled a few seconds later
+  await page.waitForTimeout(3000)
   for (const f of await page.evaluate(unlabelled)) if (!failures.has(f.key)) failures.set(f.key, `${f.line}  [${where}]`)
 }
 

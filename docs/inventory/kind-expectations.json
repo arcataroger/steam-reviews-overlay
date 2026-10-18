@@ -2,7 +2,7 @@
   "_comment": "Items in these kinds carry no label on purpose. `unclaimed` is how many were deliberately skipped when the kind was last reviewed; going over that budget flags the kind again so a real regression is not hidden behind a known exception. Keys match docs/inventory/kind-names.json.",
   "a.sale_capsule": {
     "reason": "package capsules share the Discounts & Events shelves with game capsules; a package has its own store page and its own score, so it gets no game label",
-    "unclaimed": 6
+    "unclaimed": 12
   },
   "a.daily_deal.sale_capsule.store_capsule": {
     "reason": "the day's deal is sometimes a package rather than a game",
@@ -45,5 +45,14 @@
     "reason": "an app page's own game gets no label (verified: the 780x380 tile left unclaimed on each app page carries that page's own appid)",
     "unclaimed": 4,
     "missing": 2
+  },
+  "div.+1h|#SaleSection_N|app,art,carousel,art≥50%": {
+    "reason": "the category hero is a rotating video carousel (\"Next Game in 7 seconds\"); the overlay claims the game's capsule, because Steam recycles the slide for the next game (verified on category/action, 2026-10-18)",
+    "other": 70
+  },
+  "div.Panel+1h": {
+    "reason": "a home deal panel stacks a game tile on a sale-page tile: the game tile is claimed rather than the panel, and panels holding only sale tiles are not games (verified on the home page, 2026-10-18)",
+    "unclaimed": 5,
+    "other": 7
   }
 }

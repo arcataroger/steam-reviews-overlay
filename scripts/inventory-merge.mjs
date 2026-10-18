@@ -19,8 +19,10 @@ const names = fs.existsSync(namesFile) ? JSON.parse(fs.readFileSync(namesFile, '
 // Some items in a kind carry no label on purpose: a package or bundle capsule sitting on a shelf of
 // games, an app page's own game, a banner that is not a game at all. Without somewhere to record
 // that, every crawl re-reports them and a real gap has to be picked out of the noise by hand.
-// Each entry is { reason, unclaimed } where `unclaimed` is how many were deliberately skipped when
-// the kind was last reviewed. Going over that budget flags the kind again.
+// Each entry is { reason, unclaimed, missing, other }: how many items were deliberately skipped,
+// left without a label, or claimed on a different element (a rotating hero's capsule rather than the
+// slide Steam recycles) when the kind was last reviewed. Going over any budget flags the kind again.
+// `other` is never implied by the other two: it has to be recorded on its own.
 const expectFile = path.resolve(import.meta.dirname, '..', 'docs', 'inventory', 'kind-expectations.json')
 const expectations = fs.existsSync(expectFile) ? JSON.parse(fs.readFileSync(expectFile, 'utf8')) : {}
 
@@ -110,12 +112,13 @@ export const verdict = (m, expect = expectations) => {
   if (expected && status !== 'covered') {
     const budget = expected.unclaimed ?? 0
     const missingBudget = expected.missing ?? 0
-    if (unclaimed <= budget && missing <= missingBudget && !other) {
+    const otherBudget = expected.other ?? 0
+    if (unclaimed <= budget && missing <= missingBudget && other <= otherBudget) {
       status = 'by-design'
       notes.length = 0
-      notes.push(`${unclaimed + missing}/${total} unlabelled on purpose: ${expected.reason}`)
+      notes.push(`${unclaimed + missing + other}/${total} on purpose: ${expected.reason}`)
     } else {
-      notes.push(`expected at most ${budget} unclaimed and ${missingBudget} unlabelled (${expected.reason})`)
+      notes.push(`expected at most ${budget} unclaimed, ${missingBudget} unlabelled and ${otherBudget} claimed elsewhere (${expected.reason})`)
     }
   }
   return { status, notes, shapes, badges, unclaimed, other, noBadge, missing }

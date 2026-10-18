@@ -31,7 +31,7 @@
     ".game_grid": 8
    },
    "headings": {
-    "Indie Browse all 112,943": 8
+    "Indie Browse all 119,532": 8
    },
    "chains": {
     "div.game_grid < div.browse_tag_games < div.tag_browse_games_results < div#tag_browse_games_ctn.tag_browse_games_ctn": 8
@@ -78,7 +78,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div.browse_tag_game"
      },
-     "html": "<div class=\"browse_tag_game\" data-sro-card=\"2306620\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\"><div class=\"browse_tag_game_cap app_impression_tracked\" data-ds-appid=\"2306620\" data-ds-itemkey=\"App_2306620\" data-ds-tagids=\"[19,492,1756,42804,1716,3859,1685]\" data-ds-crtrids=\"[2428135,45106745]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:2306620,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\"><a href=\"…\"><img></a></div><div class=\"browse_tag_game_name\">Risk of Rain 2: Seekers of the Storm</div><div class=\"browse_tag_game_price\">$14.99&nbsp;</div><span class=\"sro-badge sro-mixed sro-corner\" data-sro-appid=\"2306620\" data-sro-score=\"5\" data-sro-pct=\"54\" style=\"…\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></div>"
+     "html": "<div class=\"browse_tag_game\" data-sro-card=\"2306620\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"card\"><div class=\"browse_tag_game_cap app_impression_tracked\" data-ds-appid=\"2306620\" data-ds-itemkey=\"App_2306620\" data-ds-tagids=\"[19,492,1756,42804,1716,3859,1685]\" data-ds-crtrids=\"[2428135,45106745]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:2306620,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\"><a href=\"…\"><img></a></div><div class=\"browse_tag_game_name\">Risk of Rain 2: Seekers of the Storm</div><div class=\"browse_tag_game_price\">$7.49&nbsp;</div><span class=\"sro-badge sro-mixed sro-corner\" data-sro-appid=\"2306620\" data-sro-score=\"5\" data-sro-pct=\"55\" style=\"…\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></div>"
     },
     {
      "appid": 1607890,
@@ -118,7 +118,7 @@
       "badge": "sro-badge sro-corner",
       "badgeParent": "div.browse_tag_game"
      },
-     "html": "<div class=\"browse_tag_game\" data-sro-card=\"1607890\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\"><div class=\"browse_tag_game_cap app_impression_tracked\" data-ds-appid=\"1607890\" data-ds-itemkey=\"App_1607890\" data-ds-tagids=\"[19,492,1756,1685,1716,3859,3814]\" data-ds-crtrids=\"[2428135,45106745]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1607890,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\"><a href=\"…\"><img></a></div><div class=\"browse_tag_game_name\">Risk of Rain 2: Survivors of the Void</div><div class=\"browse_tag_game_price\">$14.99&nbsp;</div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1607890\" data-sro-score=\"8\" data-sro-pct=\"87\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
+     "html": "<div class=\"browse_tag_game\" data-sro-card=\"1607890\" data-sro-tone=\"positive\" data-sro-score=\"8\" data-sro-pos=\"1\" data-sro-highlight=\"positive\" style=\"…\" data-sro-shape=\"card\"><div class=\"browse_tag_game_cap app_impression_tracked\" data-ds-appid=\"1607890\" data-ds-itemkey=\"App_1607890\" data-ds-tagids=\"[19,492,1756,1685,3859,1716,3814]\" data-ds-crtrids=\"[2428135,45106745]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:1607890,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\"><a href=\"…\"><img></a></div><div class=\"browse_tag_game_name\">Risk of Rain 2: Survivors of the Void</div><div class=\"browse_tag_game_price\">$7.49&nbsp;</div><span class=\"sro-badge sro-positive sro-corner\" data-sro-appid=\"1607890\" data-sro-score=\"8\" data-sro-pct=\"87\" style=\"…\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></div>"
     }
    ]
   },
@@ -149,7 +149,7 @@
     ".game_grid": 1
    },
    "headings": {
-    "Indie Browse all 112,943": 1
+    "Indie Browse all 119,532": 1
    },
    "chains": {
     "div.game_grid < div.browse_tag_games < div.tag_browse_games_results < div#tag_browse_games_ctn.tag_browse_games_ctn": 1
@@ -197,5 +197,5 @@
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T08:47:43.395Z"
+ "capturedAt": "2026-10-18T18:47:06.891Z"
 }

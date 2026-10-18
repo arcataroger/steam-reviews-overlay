@@ -5,7 +5,7 @@
   "a.sale_capsule": "Sale capsule (home Discounts & Events small art tile)",
   "tr._6-rISlJoUe0-": "Charts table row (Top Sellers / Most Played)",
   "div.+1h|.Panel|news,art": "News hub post row",
-  "div.+1h|#SaleSection_N|app,art,carousel,art≥50%": "Category hero spotlight capsule (1200×540)",
+  "div.+1h|#SaleSection_N|app,art,carousel,art≥50%": "Category hero (rotating video carousel, 1200×540)",
   "a.broadcast_capsule+1h": "Home hero broadcast capsule (Featured & Recommended)",
   "div.": "Classless React tile (Most Wanted Upcoming, Popular Game Demos, app-page content rows)",
   "a.tab_item": "Tab row (explore/new Popular New Releases list)",
@@ -25,7 +25,7 @@
   "div.capsule-banner": "Labs experiment banner fragment (not a game)",
   "div.exp_text_ctn": "Labs experiment text blurb (not a game)",
   "div.+2h|.Panel|news,art,carousel": "News hub grouped-event carousel panel (3 posts about one game)",
-  "div.Panel+1h": "Panel holding a news link (app-page events widget, news hub)",
+  "div.Panel+1h": "Panel holding a news link (app-page events widget, news hub) or a home deal panel",
   "a.+1h|.has_takeover.mobile_sizer_set.mobile_static_set|app,art": "Home takeover banner (1380×460)",
   "div.home_page_content.takeunder": "Home takeunder banner (hidden fallback anchor, no art)",
   "div.breadcrumbs": "App-page breadcrumbs (not a card)",
@@ -38,5 +38,8 @@
   "ul.bb_ul": "BBCode list on a package page (not a card)",
   "div#AppN.appeared.reviewed_app": "Community recommendation review card (no microtrailer, no hashed class)",
   "div.+4h|.Panel|news,art": "News hub post tile (row style, Warframe-type single posts)",
-  "div.+1h|.Panel|news,art,art≥50%": "News hub post row with large art, and an app page's own Recent Events & Announcements tiles (those link to the page's own game, so they carry no label by design)"
+  "div.+1h|.Panel|news,art,art≥50%": "News hub post row with large art, and an app page's own Recent Events & Announcements tiles (those link to the page's own game, so they carry no label by design)",
+  "div.+1h|.ItemCount_N.center_row_trgt|app,art,carousel": "React grid capsule tile, art under half the tile (Top Demos / Popular Titles rails)",
+  "div.Panel+2h": "Home deal tile (Today's Deal / Up to -N%, React panel, 374×482)",
+  "div.+1h|.Panel|app,carousel": "Category video hero side panel before its capsule art loads"
 }

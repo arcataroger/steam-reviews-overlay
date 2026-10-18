@@ -48,6 +48,14 @@ describe('coverage verdict', () => {
     expect(v.notes.join(' ')).toContain('claimed on a different element')
   })
 
+  it('excuses a card claimed on a different element only within an explicit `other` budget', () => {
+    // A rotating hero claims the game's capsule, not the slide Steam recycles for the next game
+    const ours = { 'same|shape=card|badge=sro-badge sro-corner': 2, 'other:a.capsule|shape=row|badge=sro-badge sro-corner': 70 }
+    const hero = { [kind().key]: { reason: 'rotating hero', other: 70 } }
+    expect(verdict(kind({ ours }), hero).status).toBe('by-design')
+    expect(verdict(kind({ ours: { ...ours, 'other:a.capsule|shape=row|badge=sro-badge sro-corner': 71 } }), hero).status).toBe('partial')
+  })
+
   it('is a gap when nothing in the kind is claimed and no exception is recorded', () => {
     expect(verdict(kind({ ours: { 'unclaimed|shape=null|badge=null': 100 } }), {}).status).toBe('gap')
   })

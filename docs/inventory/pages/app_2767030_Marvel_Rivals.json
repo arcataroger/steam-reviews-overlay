@@ -2,7 +2,7 @@
  "url": "https://store.steampowered.com/app/2767030/Marvel_Rivals",
  "finalUrl": "https://store.steampowered.com/app/2767030/Marvel_Rivals/",
  "title": "Marvel Rivals on Steam",
- "cards": 11,
+ "cards": 15,
  "kinds": [
   {
    "key": "div._3Cc2bMRML2lEkSyi2IAZ9G.carousel__slide.slideHorizontal___1NzNV.slide___3-Nqo|link=app,img=true,price=false,date=false,nativeSummary=false,title=false,platforms=false,carousel=true",
@@ -23,26 +23,26 @@
     "parentDisplay": "flex/row",
     "siblings": 31
    },
-   "count": 4,
+   "count": 8,
    "sizes": {
-    "280x160": 4
+    "280x160": 8
    },
    "sections": {
-    ".carousel__slider.vt-scrollable": 4
+    ".carousel__slider.vt-scrollable": 8
    },
    "headings": {
-    "System Requirements": 4
+    "System Requirements": 8
    },
    "chains": {
-    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 4
+    "div._2VUpHDtxN8lR1LDahY_cI2._3J8-bW87K3pb8EpRNYq0JG.carousel__slider-tray.carousel__slider-tray--horizontal.sliderTray___-vHFQ < div.carousel__slider-tray-wrap--horizontal.carousel__slider-tray-wrapper < div.carousel__slider.carousel__slider--horizontal.horizontalSlider___281Ls.touchDisabled___2qs4y.vt-scrollable < div.SliderBody._2M3SnYGvMvplWUC8yGhowo": 8
    },
    "ours": {
-    "same|shape=row|badge=sro-badge sro-inline": 1,
+    "same|shape=row|badge=sro-badge sro-inline": 5,
     "same|shape=card|badge=sro-badge sro-inline": 3
    },
    "examples": [
     {
-     "appid": 359550,
+     "appid": 440,
      "title": "",
      "sizeBucket": "280x160",
      "styles": {
@@ -72,12 +72,12 @@
       "filtered": null,
       "highlighted": true,
       "badge": "sro-badge sro-inline",
-      "badgeParent": "span._1X3j2g29SBtsrFMgNiKi_Y"
+      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"359550\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer\"><div class=\"_3j4dI1yA7cRfCvK8h406OB\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"359550\" data-sro-score=\"8\" data-sro-pct=\"81\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div></div></div></div>"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"440\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"row\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"440\" data-sro-score=\"8\" data-sro-pct=\"90\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div></div></div></div>"
     },
     {
-     "appid": 440,
+     "appid": 1607250,
      "title": "",
      "sizeBucket": "280x160",
      "styles": {
@@ -107,9 +107,9 @@
       "filtered": null,
       "highlighted": true,
       "badge": "sro-badge sro-inline",
-      "badgeParent": "span._1X3j2g29SBtsrFMgNiKi_Y"
+      "badgeParent": "span._2ogs95OHz8bo5FTfppAZiJ"
      },
-     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"440\" data-sro-tone=\"positive\" data-sro-score=\"8\" style=\"…\" data-sro-highlight=\"positive\" data-sro-shape=\"card\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1dKR2IPNQSHs1MAIXBvt_R Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _22AcxR1RBDH6i-gjKRHYk0\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1xNQcxU9_OtQ-_PrMbviS4 CapsuleDecorators\"></div><div class=\"_2oW_y7Mm3ihf1XQ0C1VWhx CapsuleImageCtn\"><img class=\"_2eQ4mkpf4IzUp1e9NnM2Wr\" loading=\"lazy\"></div></div></div><div class=\"_3lmdEmwrmqe-kicNCZ9v-I CapsuleBottomBar\"><span class=\"_1X3j2g29SBtsrFMgNiKi_Y\"><div class=\"_2s-O5T3qJJYR2AUq4b9jIN StoreSalePriceWidgetContainer\"><div class=\"_3j4dI1yA7cRfCvK8h406OB\">Free To Play</div></div><span class=\"sro-badge sro-positive sro-inline\" data-sro-appid=\"440\" data-sro-score=\"8\" data-sro-pct=\"90\"><span class=\"sro-line sro-both sro-positive\">Very Positive</span></span></span></div></a></div></div></div></div></div></div></div>"
+     "html": "<div aria-selected=\"true\" role=\"listitem\" class=\"slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible _3Cc2bMRML2lEkSyi2IAZ9G\" data-sro-card=\"1607250\" data-sro-tone=\"mixed\" data-sro-score=\"5\" style=\"…\" data-sro-highlight=\"mixed\" data-sro-shape=\"card\" data-sro-size=\"280x169\"><div class=\"slideInner___2mfX9 carousel__inner-slide\" style=\"…\"><div class=\"Panel Focusable\" style=\"…\"><div class=\"_292IWiCTro5jiTmIxiDfyc\"><div class=\"_1omVjlZWALGX34pum8v7SF Panel Focusable\"><div class=\"ImpressionTrackedElement\"><div data-key=\"hover div\" role=\"button\" tabindex=\"0\" class=\"_31qyh2htA-NLfzSAvjjJcl _1kCTkXxE8CbUnnhSjsL-Kb\"><a href=\"…\"><div class=\"\"><div class=\"Panel Focusable\" tabindex=\"0\" style=\"…\"><div class=\"_1Ss9w5OINDsfSBbOR7VWp9 CapsuleDecorators\"></div><div class=\"_1W35jfl6uiYKf7Iwt3NNEz CapsuleImageCtn\"><img class=\"_2xiNqpMzhZh4tVcBPD6z1W\" loading=\"lazy\"></div><div class=\"\"></div></div></div><div class=\"_1_ehE8jTqsTDnx5E7Sqjy7 CapsuleBottomBar\"><span class=\"_2ogs95OHz8bo5FTfppAZiJ\"><div class=\"_1so1AGD_m_uIBFDEc1ImOu StoreSalePriceWidgetContainer\"><div class=\"kauOU9QnW8Fs0QpxzTBph\">Free To Play</div></div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"1607250\" data-sro-score=\"5\" data-sro-pct=\"67\"><span class=\"sro-line sro-both sro-mixed\">Mixed</span></span></span></div></a></div></div></div></div></div></div></div>"
     }
    ]
   },
@@ -182,7 +182,7 @@
       "badge": null,
       "badgeParent": null
      },
-     "html": "<div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Major Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Greetings, Rivals! After assassinating two deities back-to-back, the mysterious God Butcher has finally revealed his true face.</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Marvel Rivals Version 20260911 Patch Notes - Season 10 Arrives</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Major Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Thu, September 10, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Greetings, Rivals! After assassinating two deities back-to-back, the mysterious God Butcher has finally revealed his true face.</div></div></div></a></div>"
+     "html": "<div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Greeting Rivals! It's time to check in with the Marvel Rivals art team: Art Vision Vol. 06 is here! Tune in to see what our team has been up to lately, as our talented roster of...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Art Vision Vol. 06 // Behind The Scenes (Part 1): Dedication and Passion</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Thu, October 15, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Greeting Rivals! It's time to check in with the Marvel Rivals art team: Art Vision Vol. 06 is here! Tune in to see what our team has been up to lately, as our talented roster of...</div></div></div></a></div>"
     },
     {
      "appid": 2767030,
@@ -217,7 +217,7 @@
       "badge": null,
       "badgeParent": null
      },
-     "html": "<div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Guangguang and Zhiyong are back again and ready to dive into Dev Vision Vol. 21! 📺 Tune in now to discover what lies ahead for Season 10, including a new map, exciting events,...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Season 10: Butcher's Blasphemy // Dev Vision Vol. 21 | Marvel Rivals</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Thu, September 10, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Guangguang and Zhiyong are back again and ready to dive into Dev Vision Vol. 21! 📺 Tune in now to discover what lies ahead for Season 10, including a new map, exciting events,...</div></div></div></a></div>"
+     "html": "<div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Greetings, Rivals! We're thrilled to announce the upcoming patch drops on October 15th, 2026, at 09 : 00 : 00 (UTC)! No server downtime; just patch and play!</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Marvel Rivals Version 20261015 Patch Notes</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Thu, October 15, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Greetings, Rivals! We're thrilled to announce the upcoming patch drops on October 15th, 2026, at 09 : 00 : 00 (UTC)! No server downtime; just patch and play!</div></div></div></a></div>"
     }
    ]
   },
@@ -361,7 +361,7 @@
       "badge": "sro-badge sro-inline",
       "badgeParent": "a#dlc_row_N.game_area_dlc_row.odd"
      },
-     "html": "<form name=\"add_all_dlc_to_cart\" action=\"https://store.steampowered.com/cart/?snr=1_5_9_\" method=\"POST\" data-sro-card=\"4406010\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"row\"><input type=\"hidden\" name=\"action\" value=\"add_to_cart\"><input type=\"hidden\" name=\"sessionid\" value=\"82ff18b5878b1257a23cb1c7\"><div class=\"tableView\"><div class=\"gameDlcBlocks\"><a class=\"game_area_dlc_row  odd ds_collapse_flag ds_collapse_flag_tiny app_impression_tracked\" id=\"dlc_row_4406010\" href=\"…\" data-ds-appid=\"4406010\" data-ds-itemkey=\"App_4406010\" data-ds-tagids=\"[3859,620519,3814,1671,1775,19,5711]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4406010,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-ds-steam-deck-compat-handled=\"true\"><div class=\"game_area_dlc_name\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tMarvel Rivals - High-Resolution Pack\t\t\t\t\t\t</div><div class=\"game_area_dlc_price\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFree\t\t\t\t\t\t\t\t\t\t\t\t\t</div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"4406010\" data-sro-score=\"5\" data-sro-pct=\"47\"><span class=\"sro-line sro-global sro-mixed\">Mixed</span></span></a></div></div><!-- tableView --><div style=\"…\"></div></form>"
+     "html": "<form name=\"add_all_dlc_to_cart\" action=\"https://store.steampowered.com/cart/?snr=1_5_9_\" method=\"POST\" data-sro-card=\"4406010\" data-sro-tone=\"mixed\" data-sro-score=\"5\" data-sro-pos=\"1\" data-sro-highlight=\"mixed\" style=\"…\" data-sro-shape=\"row\"><input type=\"hidden\" name=\"action\" value=\"add_to_cart\"><input type=\"hidden\" name=\"sessionid\" value=\"7d515e9a7fafdad1a9da3725\"><div class=\"tableView\"><div class=\"gameDlcBlocks\"><a class=\"game_area_dlc_row  odd ds_collapse_flag ds_collapse_flag_tiny app_impression_tracked\" id=\"dlc_row_4406010\" href=\"…\" data-ds-appid=\"4406010\" data-ds-itemkey=\"App_4406010\" data-ds-tagids=\"[3859,620519,3814,1671,1775,19,5711]\" onmouseover=\"GameHover( this, event, 'global_hover', {&quot;type&quot;:&quot;app&quot;,&quot;id&quot;:4406010,&quot;public&quot;:1,&quot;v6&quot;:1} );\" onmouseout=\"HideGameHover( this, event, 'global_hover' )\" data-ds-steam-deck-compat-handled=\"true\"><div class=\"game_area_dlc_name\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tMarvel Rivals - High-Resolution Pack\t\t\t\t\t\t</div><div class=\"game_area_dlc_price\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tFree\t\t\t\t\t\t\t\t\t\t\t\t\t</div><span class=\"sro-badge sro-mixed sro-inline\" data-sro-appid=\"4406010\" data-sro-score=\"5\" data-sro-pct=\"47\"><span class=\"sro-line sro-global sro-mixed\">Mixed</span></span></a></div></div><!-- tableView --><div style=\"…\"></div></form>"
     }
    ]
   },
@@ -434,7 +434,7 @@
       "badge": "none",
       "badgeParent": null
      },
-     "html": "<div data-featuretarget=\"deck-topplayed-banner\" data-props=\"{&quot;app_name&quot;:&quot;Marvel Rivals&quot;,&quot;appid&quot;:2767030}\" data-sro-card=\"1675200\"><div><div><div class=\"s1wKhoJ4gbSLtf27P3_EZ\"><div class=\"E-ox_4OryQdke1181LNoB\"></div>Steam Deck Top Played</div><a href=\"…\" class=\"_28-JzhtXHYEcY9I5iFk3YP _2z91XhCKqvwmYqkRndpTq3\"><div class=\"_34ZA0IltnucVU_mKBtcc8E\"><div class=\"_2whUPn_CZ5_BidCN9GODA5\">Take this game anywhere!</div><div class=\"OXgVBMVdP9Ecu6IgqZ3_n\"><span>Marvel Rivals</span> is one of the top played games on Steam Deck!</div></div></a></div></div></div>"
+     "html": "<div data-featuretarget=\"deck-topplayed-banner\" data-props=\"{&quot;app_name&quot;:&quot;Marvel Rivals&quot;,&quot;appid&quot;:2767030}\" data-sro-card=\"1675200\"><div><div><div class=\"R1EIDJDmlv3wymunXxGRz\"><div class=\"_2fWPD8Bedv6c-yWTvZgAqn\"></div>Steam Deck Top Played</div><a href=\"…\" class=\"_3m4H3O5OzhRFzeMBr1GiJh _3M4GVoRT9lg9yBm6y1dCSi\"><div class=\"_3xmin8LWu9-cWEzsA9HEqJ\"><div class=\"_2qmB_riG0azA3gECMHzEs_\">Take this game anywhere!</div><div class=\"VTRpu0RD7FA2Cn1UIp_Sn\"><span>Marvel Rivals</span> is one of the top played games on Steam Deck!</div></div></a></div></div></div>"
     }
    ]
   },
@@ -507,7 +507,7 @@
       "badge": null,
       "badgeParent": null
      },
-     "html": "<div data-featuretarget=\"events-row\"><div><div class=\"early_access_announcements Panel Focusable\"><div class=\"_2Jd3MGaOu0C9Ydswf8Q4Tn\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><h2>Recent Events &amp; Announcements<a href=\"…\" class=\"_3n8swQFM3I_ARVM_5bPhAs Focusable\" tabindex=\"0\" role=\"button\">View All</a></h2><div class=\"_1snIw0RvJduvDtqpmwtKJ9\"><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">Major Update</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Greetings, Rivals! After assassinating two deities back-to-back, the mysterious God Butcher has finally revealed his true face.</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Marvel Rivals Version 20260911 Patch Notes - Season 10 Arrives</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">Major Update</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Thu, September 10, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Greetings, Rivals! After assassinating two deities back-to-back, the mysterious God Butcher has finally revealed his true face.</div></div></div></a></div><div cl"
+     "html": "<div data-featuretarget=\"events-row\"><div><div class=\"early_access_announcements Panel Focusable\"><div class=\"_2Jd3MGaOu0C9Ydswf8Q4Tn\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><h2>Recent Events &amp; Announcements<a href=\"…\" class=\"_3n8swQFM3I_ARVM_5bPhAs Focusable\" tabindex=\"0\" role=\"button\">View All</a></h2><div class=\"_1snIw0RvJduvDtqpmwtKJ9\"><div class=\"_2JC5DEuXUeE50kjpb7Eeau\"><a href=\"…\" class=\"_1MwNf8slOG9lOvAeOshmuu OtherEvents_EventCtn _3o6M87A6T172WsUE6MNvdW Focusable\" tabindex=\"0\" role=\"button\"><div class=\"_2GYp44BuZLfKRQdeILTDC3 _3itHivPkrgI7TWENi1yxjI\"><div class=\"_11JXznGoylLSEmZXZbgcsq\">News</div><div class=\"ENbI1gFgvIca6HSKAbfiJ\">Greeting Rivals! It's time to check in with the Marvel Rivals art team: Art Vision Vol. 06 is here! Tune in to see what our team has been up to lately, as our talented roster of...</div></div><div class=\"_2pPj9UWoWM6h318uBN0-8X\" style=\"…\"></div><div class=\"_22jEpNTfml-w_aRJV-fKDm\"><div class=\"_2qyLPxO8_nkczRvFiaju8N\"><img class=\"_3_wKbXvT7_y5YkrtadL0I6\"></div><div class=\"_3-EtNa1Nr_737K0kglkT9C\"><div class=\"_2jc1DpJ_WzFtigRh5qDWce\">Art Vision Vol. 06 // Behind The Scenes (Part 1): Dedication and Passion</div><div class=\"_3JCkAyd9cnB90tRcDLPp4W _1SxQuUnaM-MXeF5UfssWve ja5o2GZTopxfGJArsZgFh _3nHL7awgK1Qei1XivGvHMK\" style=\"…\"><div class=\"_2BWwVF5N-3fDuJRblB6gHb RLbLb742gN095uDUITtIB\">News</div><span class=\"HZ6b2d4r4EFnT_1BeU5vo\">Thu, October 15, 2026</span></div><div class=\"ENbI1gFgvIca6HSKAbfiJ RLbLb742gN095uDUITtIB\">Greeting Rivals! It's time to check in with the Marvel Rivals art team: Art Vision Vol. 06 is here! Tune in to see wh"
     }
    ]
   },
@@ -580,11 +580,11 @@
       "badge": null,
       "badgeParent": null
      },
-     "html": "<div class=\"_8bfDpjt5qevt4WIKJfbhY Panel Focusable\" role=\"list\"><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Review Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"all\" checked=\"\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">All<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(415,901)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"positive\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Positive<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(314,558)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"negative\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Negative<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(101,343)</span></span></label></div></div></div><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Purchase Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input"
+     "html": "<div class=\"_8bfDpjt5qevt4WIKJfbhY Panel Focusable\" role=\"list\"><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Review Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"all\" checked=\"\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">All<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(423,202)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"positive\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Positive<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(318,190)</span></span></label><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input type=\"radio\" value=\"negative\" name=\"review_type\"><span class=\"_3SylPDpxfzxULSIHNNs0e9\">Negative<span class=\"_2gZBTB3Ko7mAvZCtcGVqVm\">&nbsp;(105,012)</span></span></label></div></div></div><div class=\"KWW38fWPQYOxw1BAaS6Ju Panel Focusable\" role=\"listitem\"><button type=\"button\" class=\"_5LZaR2A9MHRJsI_5NuOH Focusable\" aria-expanded=\"false\" role=\"button\">Purchase Type<svg/></button><div popover=\"manual\" class=\"_2i2FUBZKGyiP5Sb6tuASpO _1ZD_vW39scAOPFhX3KQC42 Panel Focusable\"><div class=\"_3FIjYetykQsFYR08l1v7Ls\"></div><div class=\"_1izCzlTvKxkrCG8LHGKotV\"><label class=\"_2YwI6QyeX5t6yHIRe9YxHR Focusable\" tabindex=\"0\"><input"
     }
    ]
   }
  ],
  "errors": [],
- "capturedAt": "2026-09-12T08:41:11.762Z"
+ "capturedAt": "2026-10-18T18:40:35.644Z"
 }

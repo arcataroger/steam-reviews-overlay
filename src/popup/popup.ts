@@ -159,8 +159,41 @@ for (const tier of TIERS) {
   tr.dataset.side = 'highlight'
   tr.setAttribute('aria-hidden', 'true')
   n.append(tl, label, tr)
+  n.dataset.hint = `${tierName(tier.score)} · ${tierRule(tier.score)}`
   notches.appendChild(n)
 }
+
+/* A browser minimum font size (or a long locale) can make the two-line notch labels taller than the
+   notch pitch, and then they overlap. getComputedStyle hides that clamp, so measure the boxes:
+   switch to the one-line compact ladder, then shorten the track so the popup stays inside the cap. */
+const throttle = $<HTMLDivElement>('#throttle')
+const POPUP_CAP = 600 // Chrome's and Firefox's maximum popup height
+function fitLadder() {
+  throttle.style.removeProperty('--track')
+  document.body.classList.remove('compact')
+  // The readout tier name keeps two lines' room; em units ignore the clamp, so measure two lines
+  const probe = document.createElement('span')
+  probe.className = 'tier'
+  probe.style.cssText = 'position:absolute; visibility:hidden; height:auto; display:block'
+  probe.append('X', document.createElement('br'), 'X')
+  ui.filter.readout.appendChild(probe)
+  document.documentElement.style.setProperty('--tier-h', `${probe.getBoundingClientRect().height}px`)
+  probe.remove()
+  const all = [...notches.querySelectorAll<HTMLElement>('.notch')]
+  for (const n of all) n.removeAttribute('title')
+  const track = () => parseFloat(getComputedStyle(throttle).getPropertyValue('--track'))
+  const tallest = () => Math.max(...all.map((n) => n.querySelector('span')!.getBoundingClientRect().height))
+  if (tallest() <= track() / 8) return
+  document.body.classList.add('compact')
+  for (const n of all) n.title = n.dataset.hint!
+  const capped = !matchMedia('(pointer: coarse)').matches
+  const excess = capped ? Math.max(0, document.documentElement.scrollHeight - POPUP_CAP) : 0
+  // Never closer than one label plus a hairline; past that floor the popup scrolls
+  const next = Math.max(track() - excess, 8 * (tallest() + 4))
+  throttle.style.setProperty('--track', `${Math.round(next)}px`)
+}
+fitLadder()
+void document.fonts?.ready.then(fitLadder)
 
 function renderSide(side: Side, value: number) {
   const u = ui[side]
@@ -392,6 +425,7 @@ function showStatus(text: string | null, kind: 'info' | 'warn' = 'warn') {
   statusEl.className = `status ${kind}`
   statusEl.textContent = text ?? ''
   document.body.classList.toggle('has-notice', !!text)
+  fitLadder()
 }
 async function refreshStatus() {
   try {

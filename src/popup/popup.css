@@ -133,7 +133,8 @@ body.has-notice .throttle { --track: 230px; }
 .tier {
   font-weight: 600; font-size: 11px; line-height: 1.2;
   /* always two lines tall so the panel never shifts as the label changes length */
-  height: calc(11px * 1.2 * 2);
+  /* fitLadder sets --tier-h when a minimum font size makes two real lines taller than this */
+  height: var(--tier-h, calc(11px * 1.2 * 2));
   overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .readout.off .tier { visibility: hidden; }
@@ -296,6 +297,14 @@ body.has-notice .throttle { --track: 230px; }
 .knob.parked .arrow { --c: #4a5566; filter: none; opacity: 0.8; }
 
 
+
+/* Compact ladder (set by fitLadder when labels outgrow the notch pitch): one line per notch, the
+   rule moves to a tooltip, and the panel gives the names its side padding */
+body.compact .sec { padding-left: 10px; padding-right: 10px; }
+body.compact .panel { padding-left: 8px; padding-right: 8px; }
+body.compact .notch .tick { min-width: 4px; }
+body.compact .notch span { display: block; padding: 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.compact .notch span b { display: none; }
 
 /* Touch devices (Firefox for Android, iOS Safari): the popup opens as a full page, so fill it */
 @media (pointer: coarse) {

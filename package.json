@@ -14,7 +14,7 @@
     "test": "vitest run",
     "test:e2e": "npm run build:chrome && playwright test",
     "lint": "npm run build:firefox && web-ext lint --source-dir dist/firefox",
-    "publish:firefox": "node scripts/publish-firefox.mjs",
+    "publish:firefox": "node --env-file-if-exists=.env scripts/publish-firefox.mjs",
     "shots:gallery": "node scripts/screenshots.mjs ./shots",
     "shots:locales": "node scripts/locale-matrix.mjs ./shots/matrix",
     "demo": "node scripts/demo.mjs",

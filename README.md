@@ -112,8 +112,8 @@ Steam login there survives restarts.
 AMO signs the add-on but never lists it. You install the signed `.xpi` from a file.
 
 1. Raise `version` in `package.json`. AMO accepts each version once.
-2. Export `WEB_EXT_API_KEY` (the JWT issuer, `user:…`) and `WEB_EXT_API_SECRET` from AMO's
-   Developer Hub → Manage API Keys.
+2. Put `WEB_EXT_API_KEY` (the JWT issuer, `user:…`) and `WEB_EXT_API_SECRET` from AMO's
+   Developer Hub → Manage API Keys in `.env` (git-ignored). Exported variables work too.
 3. Run `npm run publish:firefox`. It builds, lints, signs, and saves the `.xpi` to
    `web-ext-artifacts/`.
 

@@ -1,5 +1,6 @@
 // Signs the Firefox build on AMO as an unlisted (private) add-on and saves the signed .xpi to web-ext-artifacts/.
 // Needs WEB_EXT_API_KEY (the JWT issuer, "user:...") and WEB_EXT_API_SECRET from AMO's "Manage API Keys" page.
+// npm run publish:firefox loads them from .env (git-ignored) when it exists.
 // AMO accepts each version once, so bump "version" in package.json before every run.
 import { spawnSync } from 'node:child_process'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'

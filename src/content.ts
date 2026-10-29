@@ -389,6 +389,7 @@ function findReviewSlot(card: HTMLElement): HTMLElement | null {
 function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   if (!card.isConnected) return
   card.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
+  lowerPrices(card)
   const pick = chosen(summary)
   card.dataset.sroTone = toneFor(pick?.score ?? 0)
   card.dataset.sroScore = String(pick?.score ?? 0)
@@ -463,7 +464,7 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
       badge.remove()
       badge.classList.remove('sro-inline')
       // The card and price rects are back to their pre-insertion values: no need to re-measure.
-      placeInCorner(card, badge, before, priceBefore)
+      placeInCorner(card, badge, before, priceBefore, priceBlock)
     }
   } else {
     placeInCorner(card, badge)
@@ -563,7 +564,15 @@ function ensureContainingBlock(card: HTMLElement) {
 }
 
 /** Absolute chip in the card's lower-right corner, lifted above the price block when there is one. */
-function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOMRect, priceRect?: DOMRect) {
+/** Undo every price block that placeInCorner raised to make room for a label under it. */
+function lowerPrices(card: HTMLElement) {
+  for (const el of card.querySelectorAll<HTMLElement>('[data-sro-lift]')) {
+    el.style.removeProperty('translate')
+    delete el.dataset.sroLift
+  }
+}
+
+function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOMRect, priceRect?: DOMRect, priceEl?: HTMLElement) {
   badge.classList.add('sro-corner')
   ensureContainingBlock(card)
   card.appendChild(badge)
@@ -571,6 +580,7 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
   const bh = badge.offsetHeight
   const bw = badge.offsetWidth
   const apply = (pos: { bottom?: number; top?: number; right?: number; left?: number }) => {
+    lowerPrices(card)
     badge.style.bottom = pos.bottom !== undefined ? `${pos.bottom}px` : 'auto'
     badge.style.top = pos.top !== undefined ? `${pos.top}px` : 'auto'
     badge.style.right = pos.right !== undefined ? `${pos.right}px` : 'auto'
@@ -580,9 +590,10 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
     const br = badge.getBoundingClientRect()
     return within(br, cr) && obstaclesFor(card, badge).length === 0
   }
-  // Candidate positions, best first: the artwork's lower-right on art-on-top cards, bottom-right
-  // lifted above the price block, bottom-right lifted above whatever it hits, shifted left of it,
-  // then the top-right.
+  // Candidate positions, best first: the artwork's lower-right on art-on-top cards, the card's own
+  // bottom-right, lifted above the price block, lifted above whatever it hits, shifted left of it,
+  // then the top-right. The plain corner comes before the price lift so a row list reads as one
+  // column of labels: rows with a centred price and rows with a discount stack all keep the corner.
   const candidates: Array<() => void> = []
   // Art across the top with text below (carousel tiles with a blurb or tag pills, then a price bar):
   // the art's lower-right is a fixed spot, where the card's lower half shifts from tile to tile with
@@ -591,11 +602,28 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
   if (art && art.top - cr.top <= 6 && art.width >= cr.width * 0.8 && cr.bottom - art.bottom > bh + 8) {
     candidates.push(() => apply({ bottom: Math.round(cr.bottom - art.bottom) + 4, right: Math.max(4, Math.round(cr.right - art.right) + 4) }))
   }
+  candidates.push(() => apply({ bottom: 4, right: 4 }))
+  // Rows whose price sits in that corner: raise the price by the label's height (a translate, so
+  // nothing else reflows) and put the label under it. Only when the raised price covers nothing.
+  // The whole discount block moves (percentage, struck price and final price), not just the prices.
+  const raiseEl = priceEl?.closest<HTMLElement>('.discount_block') ?? priceEl
+  let raised = false
+  if (raiseEl && highlightShape(card).shape === 'row') {
+    const rr = raiseEl.getBoundingClientRect()
+    const lift = Math.ceil(rr.bottom - (cr.bottom - 4 - bh)) + 2
+    if (lift > 0 && rr.top - lift >= cr.top + 2) {
+      candidates.push(() => {
+        apply({ bottom: 4, right: 4 })
+        raiseEl.style.translate = `0 ${-lift}px`
+        raiseEl.dataset.sroLift = '1'
+        raised = true
+      })
+    }
+  }
   if (priceRect) {
     const lift = Math.max(0, Math.round(cr.bottom - priceRect.top))
     if (lift > 0 && lift < cr.height - bh - 4) candidates.push(() => apply({ bottom: lift + 4, right: 4 }))
   }
-  candidates.push(() => apply({ bottom: 4, right: 4 }))
   candidates.push(() => {
     apply({ bottom: 4, right: 4 })
     const obs = obstaclesFor(card, badge)
@@ -614,9 +642,11 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
   })
   candidates.push(() => apply({ top: 4, right: 4 }))
   for (const place of candidates) {
+    raised = false
     place()
-    if (clear()) return
+    if (clear() && (!raised || (within(raiseEl!.getBoundingClientRect(), cr) && !obstaclesFor(card, raiseEl!).length))) return
   }
+  lowerPrices(card)
   badge.remove()
   badge.classList.remove('sro-corner')
   badge.style.cssText = ''
@@ -917,6 +947,7 @@ function stripCard(card: HTMLElement) {
     card.style.removeProperty('position')
     delete card.dataset.sroPos
   }
+  lowerPrices(card)
   card.querySelectorAll(`:scope > .${ORBIT_CLASS}`).forEach((n) => orbitVisibility.unobserve(n))
   card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}, :scope > .${ORBIT_CLASS}`).forEach((n) => n.remove())
 }

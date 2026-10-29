@@ -92,7 +92,15 @@
   border-radius: 2px;
   background: rgba(0, 0, 0, 0.72);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  /* Never wider than the card: a minimum font size (a browser setting) can make "Overwhelmingly
+     Positive" wider than a 200px capsule. The line ellipsizes; its tooltip keeps the full label. */
+  max-width: calc(100% - 8px);
 }
+.sro-badge.sro-corner .sro-line {
+  display: block; max-width: 100%;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.sro-badge.sro-corner .sro-ico { margin-inline-end: 4px; }
 
 /* Cards also carry data-sro-tone="positive|mixed|negative|none" and data-sro-score for custom user styles */
 

@@ -481,6 +481,26 @@ function invisibleText(el: HTMLElement): boolean {
   return cs.visibility === 'hidden' || cs.opacity === '0' || /rgba\(\d+, \d+, \d+, 0\)$/.test(cs.color)
 }
 
+/**
+ * A text range reports where its glyphs are laid out, not what is drawn. Ellipsized titles run on
+ * past their "…", and Steam's screen-reader discount labels (a 1x1 box, clip-path: inset(50%))
+ * report their full sentence: a 250px phantom that pushed every discounted home row's label off its
+ * price and onto the art. Cut the rect to each clipping ancestor up to the card.
+ */
+function clipToAncestors(r: DOMRect, from: HTMLElement | null, card: HTMLElement): DOMRect {
+  let { left, top, right, bottom } = r
+  for (let el = from; el && el !== card.parentElement; el = el.parentElement) {
+    const cs = getComputedStyle(el)
+    if (cs.overflowX === 'visible' && cs.overflowY === 'visible' && cs.clipPath === 'none') continue
+    const cr = el.getBoundingClientRect()
+    if (cs.clipPath === 'inset(50%)') return new DOMRect(cr.left, cr.top, 0, 0) // visually hidden
+    if (cs.overflowX !== 'visible') { left = Math.max(left, cr.left); right = Math.min(right, cr.right) }
+    if (cs.overflowY !== 'visible') { top = Math.max(top, cr.top); bottom = Math.min(bottom, cr.bottom) }
+    if (right <= left || bottom <= top) return new DOMRect(left, top, 0, 0)
+  }
+  return new DOMRect(left, top, right - left, bottom - top)
+}
+
 function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   const br = badge.getBoundingClientRect()
   const cr = card.getBoundingClientRect()
@@ -504,8 +524,9 @@ function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
     if (node.parentElement && invisibleText(node.parentElement)) continue // laid out but not drawn
     const range = document.createRange()
     range.selectNodeContents(node)
-    for (const er of range.getClientRects()) {
-      if (er.width && er.height && hits(er)) {
+    for (const raw of range.getClientRects()) {
+      const er = clipToAncestors(raw, node.parentElement, card)
+      if (er.width > 1 && er.height > 1 && hits(er)) {
         out.push(er)
         break
       }
@@ -606,7 +627,10 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
   // or the card's own lower-right when the art is too small to hold it.
   badge.classList.add('sro-corner', 'sro-fallback')
   card.appendChild(badge)
-  if (art && art.width >= bw + 8 && art.height >= bh + 8) {
+  // A chip wider than the art (a long label under a minimum font size) ellipsizes to fit it rather
+  // than move to the card's own corner, which in a row is where the price sits.
+  if (art && art.width >= Math.min(bw, 100) + 8 && art.height >= bh + 8) {
+    if (bw + 8 > art.width) badge.style.maxWidth = `${Math.floor(art.width) - 8}px`
     apply({ bottom: Math.max(4, Math.round(cr.bottom - art.bottom) + 4), right: Math.max(4, Math.round(cr.right - art.right) + 4) })
   } else {
     apply({ bottom: 4, right: 4 })

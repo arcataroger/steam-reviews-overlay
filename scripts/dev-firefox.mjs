@@ -9,7 +9,8 @@ const bin = (name) => path.join(root, 'node_modules', '.bin', name)
 // web-ext needs a manifest to exist before it starts, so build once up front
 if (spawnSync(bin('vite'), ['build'], { cwd: root, env, stdio: 'inherit' }).status !== 0) process.exit(1)
 
-const vite = spawn(bin('vite'), ['build', '--watch'], { cwd: root, env, stdio: 'inherit' })
+// --emptyOutDir false: the watcher's first build would otherwise wipe dist/firefox while web-ext reads its manifest
+const vite = spawn(bin('vite'), ['build', '--watch', '--emptyOutDir', 'false'], { cwd: root, env, stdio: 'inherit' })
 const ext = spawn(bin('web-ext'), [
   'run',
   '--source-dir', 'dist/firefox',

@@ -194,3 +194,11 @@ All styling lives in `src/content.css` (`.sro-badge`, `.sro-inline`,
 `.sro-corner`, tone classes, and the `[data-sro-filtered="dim|hide"]` rules).
 The popup is `src/popup/`; shared settings live in `src/settings.ts`. Card detection and placement heuristics are in
 `src/content.ts` (`findCard`, `findPriceEl`, `placeBadge`).
+
+## Privacy
+
+The extension collects no personal data. See [PRIVACY.md](PRIVACY.md).
+
+## License
+
+Public domain, via [The Unlicense](LICENSE).

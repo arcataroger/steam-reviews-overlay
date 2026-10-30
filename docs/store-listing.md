@@ -44,6 +44,16 @@ Works in 30 languages, matching every language Steam supports.
 - Chrome: Shopping (or Fun)
 - AMO: Shopping (or Games & Entertainment)
 
+## License
+
+- AMO: The Unlicense (public domain; matches `LICENSE`).
+
+## Privacy policy URL
+
+Both stores take this link:
+
+> https://github.com/arcataroger/steam-reviews-overlay/blob/main/PRIVACY.md
+
 ## Privacy (Chrome "Privacy practices" tab)
 
 Single purpose:

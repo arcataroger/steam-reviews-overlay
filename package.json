@@ -33,7 +33,7 @@
   },
   "keywords": [],
   "author": "arcataroger",
-  "license": "MIT",
+  "license": "Unlicense",
   "type": "module",
   "devDependencies": {
     "@crxjs/vite-plugin": "^2.7.1",

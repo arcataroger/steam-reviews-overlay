@@ -1,8 +1,8 @@
 # Builds the extension for each version tag (v1.2.3) and publishes a GitHub Release with:
 #   steam-reviews-overlay-chrome-<v>.zip   upload to the Chrome Web Store, or load unpacked
-#   steam-reviews-overlay-firefox-<v>.zip  upload to AMO (unsigned; AMO signs it)
+#   steam-reviews-overlay-firefox-<v>.xpi  unsigned; drag onto about:addons in Developer Edition, or upload to AMO
 #   steam-reviews-overlay-source-<v>.zip   the source AMO's reviewers ask for (see BUILD.md)
-# The notes come from .github/release-notes.md plus the commits since the previous tag.
+# The notes come from .github/release-notes.md; add what changed by editing the release on GitHub.
 # To release: bump "version" in package.json, commit, then `git tag v<version> && git push origin v<version>`.
 name: Release
 
@@ -18,8 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0 # the notes list commits since the previous tag
 
       - uses: actions/setup-node@v5
         with:
@@ -48,16 +46,12 @@ jobs:
         run: |
           mkdir release
           (cd dist/chrome && zip -qrX "../../release/steam-reviews-overlay-chrome-$VERSION.zip" . -x '.*' '*.map')
-          (cd dist/firefox && zip -qrX "../../release/steam-reviews-overlay-firefox-$VERSION.zip" . -x '.*' '*.map')
+          (cd dist/firefox && zip -qrX "../../release/steam-reviews-overlay-firefox-$VERSION.xpi" . -x '.*' '*.map')
           git archive --format=zip -o "release/steam-reviews-overlay-source-$VERSION.zip" HEAD
 
       - name: Publish the release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          prev=$(git describe --tags --abbrev=0 "$GITHUB_REF_NAME^" 2>/dev/null || true)
-          {
-            sed -e "s|{{VERSION}}|$VERSION|g" -e "s|{{REPO}}|$GITHUB_REPOSITORY|g" -e "s|{{TAG}}|$GITHUB_REF_NAME|g" .github/release-notes.md
-            git log --no-merges --format='- %s' "${prev:+$prev..}$GITHUB_REF_NAME" | head -n 60
-          } > notes.md
-          gh release create "$GITHUB_REF_NAME" release/*.zip --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag
+          sed -e "s|{{VERSION}}|$VERSION|g" -e "s|{{REPO}}|$GITHUB_REPOSITORY|g" -e "s|{{TAG}}|$GITHUB_REF_NAME|g" .github/release-notes.md > notes.md
+          gh release create "$GITHUB_REF_NAME" release/* --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag

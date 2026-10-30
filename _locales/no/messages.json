@@ -3,7 +3,7 @@
     "message": "Steam-anmeldelsesoverlegg"
   },
   "extDescription": {
-    "message": "Viser anmeldelsessammendraget («Veldig positive», «Blandet» …) på alle spill i Steam-butikken uten at du må holde musepekeren over, og lar deg dempe, skjule eller ramme inn spill etter anmeldelsesscore."
+    "message": "Steams anmeldelser («Veldig positive», «Blandede» …) på hvert spill uten musepeker. Demp, skjul eller marker spill etter vurdering."
   },
   "filter": {
     "message": "FILTER"

@@ -12,3 +12,4 @@ web-ext-artifacts/
 .*-test-profile/
 .env
 .DS_Store
+release/

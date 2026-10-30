@@ -3,7 +3,7 @@
     "message": "Steam-Rezensionen-Overlay"
   },
   "extDescription": {
-    "message": "Zeigt die Rezensionsbewertung („Sehr positiv“, „Ausgeglichen“ …) bei jedem Spiel im Steam-Shop an, ohne dass Sie den Mauszeiger darüber bewegen müssen, und lässt Sie Spiele nach Rezensionswertung abdunkeln, ausblenden oder umranden."
+    "message": "Steam-Bewertungen („Sehr positiv“, „Ausgeglichen“ …) bei jedem Spiel, ohne Hovern. Spiele abdunkeln, ausblenden oder umranden."
   },
   "filter": {
     "message": "FILTER"

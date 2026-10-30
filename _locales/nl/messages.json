@@ -3,7 +3,7 @@
     "message": "Steam-recensie-overlay"
   },
   "extDescription": {
-    "message": "Toont de recensiesamenvatting ('Erg positief', 'Gemengd', ...) bij elk spel in de Steam-winkel zonder dat je eroverheen hoeft te bewegen, en laat je spellen dimmen, verbergen of omlijnen op basis van de recensiescore."
+    "message": "De Steam-recensiescore (\"Heel positief\", \"Verdeeld\"…) bij elke game, zonder hoveren. Dim, verberg of omlijn games op score."
   },
   "filter": {
     "message": "FILTER"

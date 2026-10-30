@@ -3,7 +3,7 @@
     "message": "Superposition d'évaluations Steam"
   },
   "extDescription": {
-    "message": "Affiche le résumé des évaluations (« Très positives », « Moyennes »…) sur chaque jeu du magasin Steam sans avoir à survoler, et permet d'assombrir, de masquer ou d'encadrer les jeux selon leur note d'évaluation."
+    "message": "La note Steam (« très positives », « moyennes »…) sur chaque jeu, sans survol. Assombrissez, masquez ou encadrez des jeux."
   },
   "filter": {
     "message": "FILTRE"

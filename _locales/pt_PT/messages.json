@@ -3,7 +3,7 @@
     "message": "Sobreposição de análises do Steam"
   },
   "extDescription": {
-    "message": "Mostra o resumo das análises («Muito positivas», «Mistas»…) em todos os jogos da loja Steam sem ser preciso passar o rato por cima, e permite escurecer, ocultar ou contornar jogos consoante a pontuação das análises."
+    "message": "A classificação Steam («Muito positivas», «Neutras»…) em cada jogo, sem passar o rato. Escureça, oculte ou destaque jogos."
   },
   "filter": {
     "message": "FILTRO"

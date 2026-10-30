@@ -3,7 +3,7 @@
     "message": "Lớp phủ đánh giá Steam"
   },
   "extDescription": {
-    "message": "Hiển thị tóm tắt đánh giá (\"Rất tích cực\", \"Trái chiều\"...) trên mọi trò chơi trong cửa hàng Steam mà không cần di chuột, đồng thời cho phép bạn làm mờ, ẩn hoặc viền các trò chơi theo điểm đánh giá."
+    "message": "Điểm đánh giá Steam (\"Rất tích cực\", \"Trái chiều\"…) trên mọi trò chơi, không cần rê chuột. Làm mờ, ẩn hoặc tô viền trò chơi."
   },
   "filter": {
     "message": "LỌC"

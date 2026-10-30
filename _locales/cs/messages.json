@@ -3,7 +3,7 @@
     "message": "Překryv recenzí Steam"
   },
   "extDescription": {
-    "message": "Zobrazuje souhrn recenzí („Velmi kladné“, „Smíšené“ …) u každé hry v obchodě Steam bez nutnosti najetí myší a umožňuje hry podle hodnocení recenzí ztmavit, skrýt nebo orámovat."
+    "message": "Hodnocení recenzí Steamu („Velmi kladné“, „Smíšené“…) u každé hry bez najetí myší. Hry lze ztlumit, skrýt nebo orámovat."
   },
   "filter": {
     "message": "FILTR"

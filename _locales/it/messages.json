@@ -3,7 +3,7 @@
     "message": "Overlay recensioni Steam"
   },
   "extDescription": {
-    "message": "Mostra il riepilogo delle recensioni (\"Molto positiva\", \"Nella media\"...) su ogni gioco dello store di Steam senza passarci sopra col mouse, e permette di oscurare, nascondere o evidenziare i giochi in base al punteggio delle recensioni."
+    "message": "Il giudizio Steam («Molto positive», «Nella media»…) su ogni gioco, senza passarci sopra. Oscura, nascondi o evidenzia giochi."
   },
   "filter": {
     "message": "FILTRO"

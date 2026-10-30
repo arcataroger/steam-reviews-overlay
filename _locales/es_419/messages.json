@@ -3,7 +3,7 @@
     "message": "Superposición de reseñas de Steam"
   },
   "extDescription": {
-    "message": "Muestra el resumen de reseñas (\"Muy positivas\", \"Variadas\"...) en todos los juegos de la tienda de Steam sin pasar el mouse por encima, y te permite atenuar, ocultar o resaltar juegos según su puntuación de reseñas."
+    "message": "Calificación de reseñas de Steam («Muy positivas», «Variadas»…) en cada juego sin pasar el mouse. Atenúa, oculta o resalta juegos."
   },
   "filter": {
     "message": "FILTRO"

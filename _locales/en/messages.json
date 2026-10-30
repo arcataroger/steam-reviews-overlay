@@ -3,7 +3,7 @@
     "message": "Steam Reviews Overlay"
   },
   "extDescription": {
-    "message": "Shows the review summary (\"Very Positive\", \"Mixed\", ...) on every game on the Steam store without hovering, and lets you dim, hide or outline games by review score."
+    "message": "See Steam review scores (\"Very Positive\", \"Mixed\"…) on every store game without hovering. Dim, hide or outline games by score."
   },
   "filter": {
     "message": "FILTER",

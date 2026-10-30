@@ -3,7 +3,7 @@
     "message": "Steam-anmeldelsesoverlay"
   },
   "extDescription": {
-    "message": "Viser anmeldelsesoversigten (\"Meget positive\", \"Blandede\" ...) på alle spil i Steam-butikken uden at du skal holde musen over, og lader dig dæmpe, skjule eller indramme spil efter anmeldelsesscore."
+    "message": "Se Steams anmeldelser (\"Meget positive\", \"Blandede\" …) på hvert spil uden at holde musen over. Dæmp, skjul eller fremhæv spil."
   },
   "filter": {
     "message": "FILTER"

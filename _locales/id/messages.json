@@ -3,7 +3,7 @@
     "message": "Overlay Ulasan Steam"
   },
   "extDescription": {
-    "message": "Menampilkan ringkasan ulasan (\"Sangat Positif\", \"Campuran\", ...) di setiap game di toko Steam tanpa perlu mengarahkan kursor, dan memungkinkan Anda meredupkan, menyembunyikan, atau membingkai game berdasarkan skor ulasan."
+    "message": "Skor ulasan Steam (\"Sangat Positif\", \"Bercampur\"…) di setiap game tanpa mengarahkan kursor. Redupkan, sembunyikan, atau tandai game."
   },
   "filter": {
     "message": "FILTER"

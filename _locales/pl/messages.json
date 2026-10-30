@@ -3,7 +3,7 @@
     "message": "Nakładka recenzji Steam"
   },
   "extDescription": {
-    "message": "Pokazuje podsumowanie recenzji („Bardzo pozytywne”, „Mieszane”…) przy każdej grze w sklepie Steam bez najeżdżania kursorem oraz pozwala przyciemniać, ukrywać lub obramowywać gry według oceny recenzji."
+    "message": "Ocena recenzji Steam („Bardzo pozytywne”, „Mieszane”…) przy każdej grze bez najeżdżania. Przyciemniaj, ukrywaj lub obramowuj gry."
   },
   "filter": {
     "message": "FILTR"

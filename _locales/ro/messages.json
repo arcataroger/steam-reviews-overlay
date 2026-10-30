@@ -3,7 +3,7 @@
     "message": "Suprapunere recenzii Steam"
   },
   "extDescription": {
-    "message": "Afișează rezumatul recenziilor („Foarte pozitive”, „Mixte” …) la fiecare joc din magazinul Steam fără a trece cu mouse-ul deasupra și îți permite să estompezi, să ascunzi sau să încadrezi jocurile după scorul recenziilor."
+    "message": "Scorul recenziilor Steam („Foarte pozitive”, „Echilibrate”…) la fiecare joc, fără hover. Estompează, ascunde sau evidențiază jocuri."
   },
   "filter": {
     "message": "FILTRU"

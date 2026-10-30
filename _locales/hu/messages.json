@@ -3,7 +3,7 @@
     "message": "Steam-értékelés overlay"
   },
   "extDescription": {
-    "message": "Megjeleníti az értékelések összegzését („Nagyon pozitív”, „Vegyes” …) a Steam áruház minden játékánál anélkül, hogy fölé kellene vinni az egeret, és lehetővé teszi a játékok elhalványítását, elrejtését vagy bekeretezését az értékelési pontszám alapján."
+    "message": "A Steam-értékelés („Nagyon pozitív”, „Vegyes”…) minden játéknál, egér nélkül. Halványíts, rejts el vagy keretezz játékokat."
   },
   "filter": {
     "message": "SZŰRŐ"

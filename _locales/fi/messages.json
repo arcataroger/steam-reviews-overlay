@@ -3,7 +3,7 @@
     "message": "Steam-arvostelupeite"
   },
   "extDescription": {
-    "message": "Näyttää arvosteluyhteenvedon (”Erittäin myönteinen”, ”Vaihteleva” …) jokaisen Steam-kaupan pelin kohdalla ilman hiiren viemistä päälle, ja antaa himmentää, piilottaa tai kehystää pelejä arvostelupisteiden mukaan."
+    "message": "Steamin arvosteluarvio (”Erittäin myönteinen”, ”Vaihteleva”…) jokaisessa pelissä. Himmennä, piilota tai korosta pelejä."
   },
   "filter": {
     "message": "SUODATIN"

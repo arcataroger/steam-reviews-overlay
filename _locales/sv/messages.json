@@ -3,7 +3,7 @@
     "message": "Steam-recensionsöverlägg"
   },
   "extDescription": {
-    "message": "Visar recensionssammanfattningen (”Mycket positiva”, ”Blandade” …) på varje spel i Steam-butiken utan att du behöver hovra, och låter dig tona ned, dölja eller rama in spel efter recensionsbetyg."
+    "message": "Steams recensionsbetyg (”Mycket positiva”, ”Blandade” …) på varje spel utan att hovra. Dämpa, dölj eller rama in spel."
   },
   "filter": {
     "message": "FILTER"

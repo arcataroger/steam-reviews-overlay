@@ -3,7 +3,7 @@
     "message": "Steam İnceleme Katmanı"
   },
   "extDescription": {
-    "message": "Steam mağazasındaki her oyunda, üzerine gelmeden inceleme özetini (\"Çok Olumlu\", \"Karma\" vb.) gösterir ve oyunları inceleme puanına göre karartmanıza, gizlemenize veya çerçevelemenize olanak tanır."
+    "message": "Steam inceleme puanı (\"Çok Olumlu\", \"Karışık\"…) her oyunda, fareyi getirmeden. Oyunları karartın, gizleyin veya çerçeveleyin."
   },
   "filter": {
     "message": "FİLTRE"

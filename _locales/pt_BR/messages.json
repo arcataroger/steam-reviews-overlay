@@ -3,7 +3,7 @@
     "message": "Sobreposição de análises do Steam"
   },
   "extDescription": {
-    "message": "Mostra o resumo das análises (\"Muito positivas\", \"Neutras\"...) em todos os jogos da loja Steam sem precisar passar o mouse, e permite escurecer, ocultar ou contornar jogos pela nota das análises."
+    "message": "A nota da Steam (\"Muito positivas\", \"Mistas\"…) em cada jogo, sem passar o mouse. Escureça, oculte ou destaque jogos."
   },
   "filter": {
     "message": "FILTRO"

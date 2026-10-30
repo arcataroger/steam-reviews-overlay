@@ -19,6 +19,8 @@ describe('locale catalogs', () => {
         expect(cat[k]?.message, `${loc} missing ${k}`).toBeTruthy()
         for (const p of Object.keys(en[k].placeholders ?? {})) expect(cat[k].message).toContain(`$${p}$`)
       }
+      // the Chrome Web Store rejects a manifest description over 132 characters, in any locale
+      expect([...cat.extDescription.message].length, `${loc} extDescription`).toBeLessThanOrEqual(132)
       setFallbackCatalog(cat)
       const tip = t('tooltip', 'X', 'Y', 87, '1,234')
       expect(tip).toContain('87')

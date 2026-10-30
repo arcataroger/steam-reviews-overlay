@@ -1,4 +1,5 @@
-// Rasterizes the extension icon SVG to public/icon{16,32,48,128}.png using Playwright's Chromium.
+// Rasterizes the extension icon SVG to public/icon{16,32,48,128}.png using Playwright's Chromium,
+// plus the 128px store icons in docs/store/ (Chrome's wants 96px artwork inside 16px of transparent padding).
 import { chromium } from 'playwright'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -38,6 +39,14 @@ for (const size of [16, 32, 48, 128]) {
   await page.setViewportSize({ width: size, height: size })
   await page.setContent(`<style>html,body{margin:0;background:transparent}svg{display:block;width:${size}px;height:${size}px}</style>${svg}`)
   await page.screenshot({ path: path.resolve(import.meta.dirname, '..', 'public', `icon${size}.png`), omitBackground: true })
+}
+const store = path.resolve(import.meta.dirname, '..', 'docs', 'store')
+fs.mkdirSync(store, { recursive: true })
+for (const [name, art] of [['icon-chrome-128.png', 96], ['icon-amo-128.png', 128]]) {
+  const pad = (128 - art) / 2
+  await page.setViewportSize({ width: 128, height: 128 })
+  await page.setContent(`<style>html,body{margin:0;background:transparent}svg{display:block;width:${art}px;height:${art}px;margin:${pad}px}</style>${svg}`)
+  await page.screenshot({ path: path.join(store, name), omitBackground: true })
 }
 await browser.close()
 console.log('icons written')

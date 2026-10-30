@@ -44,6 +44,13 @@ Works in 30 languages, matching every language Steam supports.
 - Chrome: Shopping (or Fun)
 - AMO: Shopping (or Games & Entertainment)
 
+## Store icon
+
+- Chrome: `docs/store/icon-chrome-128.png` (96px artwork, 16px transparent padding, per Chrome's guidelines).
+- AMO: `docs/store/icon-amo-128.png` (full 128px; AMO also reads the icon from the manifest).
+
+To regenerate them, run `node scripts/make-icons.mjs`.
+
 ## License
 
 - AMO: The Unlicense (public domain; matches `LICENSE`).

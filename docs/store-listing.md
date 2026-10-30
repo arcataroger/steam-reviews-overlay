@@ -73,9 +73,4 @@ Data usage: tick none of the data types. Certify all three statements: we don't 
 
 ## AMO source code
 
-Vite bundles the extension, so AMO asks for the source. Upload `release/steam-reviews-overlay-source-<version>.zip` (made with `git archive`). Reviewer build steps:
-
-1. Install Node 22.12 or later.
-2. Run `npm ci`.
-3. Run `npm run build:firefox`.
-4. Find the build in `dist/firefox`.
+Vite bundles and minifies the extension, so AMO asks for the source. Upload `release/steam-reviews-overlay-source-<version>.zip` (made with `git archive`). For the reviewer build steps, see [BUILD.md](../BUILD.md); paste them into AMO's "Notes to Reviewer" field too.

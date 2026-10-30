@@ -111,12 +111,12 @@ Steam login there survives restarts.
 
 A version tag makes GitHub Actions (`.github/workflows/release.yml`) test, build and publish a
 GitHub Release. The release carries the Chrome zip, the unsigned Firefox `.xpi` and the
-source zip. Its page explains how to install them; `.github/release-notes.md` holds that text.
+source zip. Its page explains how to install them (`.github/release-notes.md`) and lists the commits since
+the previous tag.
 
 1. Raise `version` in `package.json` and commit.
 2. Run `git tag v<version> && git push origin main v<version>`.
 3. Upload the Chrome zip to the Chrome Web Store, and the `.xpi` and source zip to AMO.
-4. To say what changed, edit the release on GitHub.
 
 The workflow fails when the tag doesn't match `package.json`.
 

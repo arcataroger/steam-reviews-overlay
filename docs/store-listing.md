@@ -51,6 +51,18 @@ Works in 30 languages, matching every language Steam supports.
 
 To regenerate them, run `node scripts/make-icons.mjs`.
 
+## Screenshots
+
+Five 1280×800 PNGs in `docs/store/screenshots/` (Chrome's required size; AMO accepts it too). Upload them in order:
+
+1. `1-search-labels.png`: review labels on search results.
+2. `2-front-labels.png`: labels on the front page.
+3. `3-search-outline.png`: Very Positive and better outlined.
+4. `4-search-dim.png`: Mostly Positive and lower dimmed.
+5. `5-popup.png`: the popup's two levers over the store.
+
+To retake them from live Steam pages, run `npm run shots:store`.
+
 ## License
 
 - AMO: The Unlicense (public domain; matches `LICENSE`).

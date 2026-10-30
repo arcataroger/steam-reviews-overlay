@@ -59,7 +59,7 @@ jobs:
             echo "## Downloads"
             echo
             echo "- **Chrome:** \`steam-reviews-overlay-chrome-$VERSION.zip\`. Unzip it, open \`chrome://extensions\`, turn on Developer mode, then click **Load unpacked**."
-            echo "- **Firefox:** install from [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/17809af9e1334adf920a/). The zip here is unsigned, so release Firefox won't install it directly."
+            echo "- **Firefox:** install from [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/steam-reviews-overlay/). The zip here is unsigned, so release Firefox won't install it directly."
             echo "- **Source:** \`steam-reviews-overlay-source-$VERSION.zip\`. To build it, see [BUILD.md](https://github.com/$GITHUB_REPOSITORY/blob/$GITHUB_REF_NAME/BUILD.md)."
             echo
             echo "## Changes"

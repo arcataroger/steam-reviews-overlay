@@ -39,7 +39,7 @@ await shot(front, '2-front-labels')
 await apply({ ...OFF, highlightThreshold: 8 })
 await shot(search, '3-search-outline')
 await apply({ ...OFF, mode: 'dim', threshold: 6 })
-await shot(search, '4-search-dim')
+await shot(search, 'extra-search-dim')
 
 // The popup over the page, where the toolbar would drop it.
 const both = { ...OFF, mode: 'dim', threshold: 6, highlightThreshold: 9 }
@@ -55,8 +55,40 @@ await comp.setContent(`<style>html,body{margin:0;width:${W}px;height:${H}px;over
   .pop{position:absolute;top:24px;right:32px;width:340px;border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}</style>
   <img class="bg" src="data:image/png;base64,${page}"><img class="pop" src="data:image/png;base64,${pop}">`)
 await comp.waitForTimeout(300)
-await shot(comp, '5-popup')
+await shot(comp, '4-popup')
 
 await apply(OFF)
 await ctx.close()
+
+// The popup on its own: rendered at 2× in a second profile, scaled to fit, with a caption per control.
+const hi = await chromium.launchPersistentContext('', { headless: false, args, viewport: { width: 340, height: 600 }, deviceScaleFactor: 2, locale: 'en-US' })
+const hp = await hi.newPage()
+await hp.goto(POPUP); await hp.waitForTimeout(400)
+await hp.evaluate((o) => chrome.storage.sync.set(o), { [KEY]: both }); await hp.reload(); await hp.waitForTimeout(800)
+// No Steam tab is open here, so drop the "open a store page" notice the popup would show.
+await hp.evaluate(() => { document.body.classList.remove('has-notice'); document.getElementById('status').hidden = true })
+await hp.waitForTimeout(300)
+const uiH = await hp.evaluate(() => Math.ceil(document.querySelector('.panel-wrap').getBoundingClientRect().bottom))
+const ui = (await hp.screenshot({ clip: { x: 0, y: 0, width: 340, height: uiH } })).toString('base64')
+const scale = Math.min(1.25, 720 / uiH)
+const cap = (title, text) => `<div class="cap"><h2>${title}</h2><p>${text}</p></div>`
+await hp.setViewportSize({ width: W, height: H })
+await hp.goto('about:blank')
+await hp.setContent(`<style>html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;font-family:"Motiva Sans",Arial,Helvetica,sans-serif;
+    background:radial-gradient(ellipse at 70% 40%,#2a475e 0%,#1b2838 55%,#171a21 100%);color:#c7d5e0}
+  .wrap{display:flex;align-items:center;justify-content:center;gap:72px;height:100%}
+  .caps{width:520px;display:flex;flex-direction:column;gap:30px}
+  h1{margin:0 0 6px;font-size:40px;color:#fff;font-weight:600;letter-spacing:.2px}
+  .cap h2{margin:0 0 6px;font-size:22px;color:#66c0f4;font-weight:600}
+  .cap p{margin:0;font-size:18px;line-height:1.45;color:#acb2b8}
+  img{width:${Math.round(340 * scale)}px;border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.08)}</style>
+  <div class="wrap"><div class="caps"><h1>Two levers, nine tiers</h1>
+    ${cap('Filter', 'Dim or hide every game at or below a tier.')}
+    ${cap('Highlight', 'Outline every game at or above a tier, in its review color.')}
+    ${cap('Your language or all', 'Judge by reviews in your Steam language, or in every language.')}
+    ${cap("Steam's own rules", 'Each notch shows the percent and review count Steam requires.')}
+  </div><img src="data:image/png;base64,${ui}"></div>`)
+await hp.waitForTimeout(400)
+await hp.screenshot({ path: path.join(out, '5-popup-ui.png'), scale: 'css' }); console.log('   5-popup-ui')
+await hi.close()
 console.log('wrote', out)

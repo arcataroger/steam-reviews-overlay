@@ -53,13 +53,17 @@ To regenerate them, run `node scripts/make-icons.mjs`.
 
 ## Screenshots
 
-Five 1280×800 PNGs in `docs/store/screenshots/` (Chrome's required size; AMO accepts it too). Upload them in order:
+1280×800 PNGs in `docs/store/screenshots/`, plain RGB with no alpha (Chrome's requirement; AMO accepts them too). Chrome takes at most 5:
 
 1. `1-search-labels.png`: review labels on search results.
 2. `2-front-labels.png`: labels on the front page.
 3. `3-search-outline.png`: Very Positive and better outlined.
-4. `4-search-dim.png`: Mostly Positive and lower dimmed.
-5. `5-popup.png`: the popup's two levers over the store.
+4. `4-popup.png`: the popup over a dimmed and outlined page.
+5. `5-popup-ui.png`: the popup up close, with a caption for each control.
+
+`extra-search-dim.png` (dimming alone) is a sixth shot for AMO, which has no limit.
+
+Chrome asks for screenshots twice: "Global screenshots" show in every language; "Localized screenshots" replace them for one language. Upload the five as global, and as localized for English if the form requires it.
 
 To retake them from live Steam pages, run `npm run shots:store`.
 

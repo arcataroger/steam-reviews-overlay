@@ -1,0 +1,69 @@
+# Builds the extension for each version tag (v1.2.3) and publishes a GitHub Release with:
+#   steam-reviews-overlay-chrome-<v>.zip   upload to the Chrome Web Store, or load unpacked
+#   steam-reviews-overlay-firefox-<v>.zip  upload to AMO (unsigned; AMO signs it)
+#   steam-reviews-overlay-source-<v>.zip   the source AMO's reviewers ask for (see BUILD.md)
+# To release: bump "version" in package.json, commit, then `git tag v<version> && git push origin v<version>`.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # the notes list commits since the previous tag
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Check the tag matches package.json
+        run: |
+          v=$(node -p "require('./package.json').version")
+          if [ "v$v" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME doesn't match package.json version $v"
+            exit 1
+          fi
+          echo "VERSION=$v" >> "$GITHUB_ENV"
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+      - name: Build and lint
+        run: |
+          npm run build:chrome
+          npm run lint # builds dist/firefox, then runs Mozilla's web-ext lint on it
+
+      - name: Package
+        run: |
+          mkdir release
+          (cd dist/chrome && zip -qrX "../../release/steam-reviews-overlay-chrome-$VERSION.zip" . -x '.*' '*.map')
+          (cd dist/firefox && zip -qrX "../../release/steam-reviews-overlay-firefox-$VERSION.zip" . -x '.*' '*.map')
+          git archive --format=zip -o "release/steam-reviews-overlay-source-$VERSION.zip" HEAD
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          prev=$(git describe --tags --abbrev=0 "$GITHUB_REF_NAME^" 2>/dev/null || true)
+          {
+            echo "## Downloads"
+            echo
+            echo "- **Chrome:** \`steam-reviews-overlay-chrome-$VERSION.zip\`. Unzip it, open \`chrome://extensions\`, turn on Developer mode, then click **Load unpacked**."
+            echo "- **Firefox:** install from [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/17809af9e1334adf920a/). The zip here is unsigned, so release Firefox won't install it directly."
+            echo "- **Source:** \`steam-reviews-overlay-source-$VERSION.zip\`. To build it, see [BUILD.md](https://github.com/$GITHUB_REPOSITORY/blob/$GITHUB_REF_NAME/BUILD.md)."
+            echo
+            echo "## Changes"
+            echo
+            git log --no-merges --format='- %s' "${prev:+$prev..}$GITHUB_REF_NAME" | head -n 60
+          } > notes.md
+          gh release create "$GITHUB_REF_NAME" release/*.zip --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag

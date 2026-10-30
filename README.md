@@ -107,9 +107,21 @@ npm run dev:firefox      # rebuilds dist/firefox on save; your Firefox reloads t
 `dev:firefox` opens your installed Firefox on a kept profile (`.firefox-dev-profile/`), so a
 Steam login there survives restarts.
 
+## Release
+
+A version tag makes GitHub Actions (`.github/workflows/release.yml`) test, build and publish a
+GitHub Release. The release carries the Chrome, Firefox and source zips.
+
+1. Raise `version` in `package.json` and commit.
+2. Run `git tag v<version> && git push origin main v<version>`.
+3. Upload the release's zips to the Chrome Web Store and AMO. AMO wants the source zip too.
+
+The workflow fails when the tag doesn't match `package.json`.
+
 ## Publish (Firefox, unlisted)
 
-AMO signs the add-on but never lists it. You install the signed `.xpi` from a file.
+AMO signs the add-on but never lists it. You install the signed `.xpi` from a file. AMO counts
+each version once across both channels, so an unlisted build uses up that version number.
 
 1. Raise `version` in `package.json`. AMO accepts each version once.
 2. Put `WEB_EXT_API_KEY` (the JWT issuer, `user:…`) and `WEB_EXT_API_SECRET` from AMO's

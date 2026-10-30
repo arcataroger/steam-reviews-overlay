@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "모든 언어"
   },
+  "sourceLocalHint": {
+    "message": "$LANG$ 리뷰만으로 필터링하고 강조합니다. 이 언어로 된 평가가 없는 게임은 모든 언어를 사용합니다.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "모든 언어의 리뷰로 필터링하고 강조합니다."
+  },
+  "sourceLabelsNote": {
+    "message": "두 평가가 다르면 라벨에 둘 다 표시합니다."
+  },
   "betweenTiers": {
     "message": "두 등급 사이"
   },

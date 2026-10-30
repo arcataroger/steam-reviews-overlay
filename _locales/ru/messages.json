@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Все языки"
   },
+  "sourceLocalHint": {
+    "message": "Фильтровать и подсвечивать только по обзорам на языке: $LANG$. Для игр без оценки на этом языке берутся все языки.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Фильтровать и подсвечивать по обзорам на всех языках."
+  },
+  "sourceLabelsNote": {
+    "message": "Метки показывают обе оценки, если они различаются."
+  },
   "betweenTiers": {
     "message": "между уровнями"
   },

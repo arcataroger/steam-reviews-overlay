@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Всички езици"
   },
+  "sourceLocalHint": {
+    "message": "Филтриране и открояване само по отзиви на език: $LANG$. Игрите без оценка на този език използват всички езици.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Филтриране и открояване по отзиви на всички езици."
+  },
+  "sourceLabelsNote": {
+    "message": "Етикетите показват и двете оценки, когато се различават."
+  },
   "betweenTiers": {
     "message": "между две нива"
   },

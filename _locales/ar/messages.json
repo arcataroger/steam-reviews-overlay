@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "كل اللغات"
   },
+  "sourceLocalHint": {
+    "message": "التصفية والتمييز حسب المراجعات باللغة: $LANG$ فقط. الألعاب التي ليس لها تقييم بهذه اللغة تستخدم كل اللغات.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "التصفية والتمييز حسب المراجعات بكل اللغات."
+  },
+  "sourceLabelsNote": {
+    "message": "تعرض الملصقات التقييمين عندما يختلفان."
+  },
   "betweenTiers": {
     "message": "بين مستويين"
   },

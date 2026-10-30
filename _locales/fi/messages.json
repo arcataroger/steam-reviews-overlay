@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Kaikki kielet"
   },
+  "sourceLocalHint": {
+    "message": "Suodata ja korosta vain arvosteluilla kielellä $LANG$. Pelit ilman pisteitä tällä kielellä käyttävät kaikkia kieliä.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Suodata ja korosta kaikkien kielten arvosteluilla."
+  },
+  "sourceLabelsNote": {
+    "message": "Merkinnät näyttävät molemmat pisteet, kun ne eroavat."
+  },
   "betweenTiers": {
     "message": "kahden tason välissä"
   },

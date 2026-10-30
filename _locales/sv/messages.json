@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Alla språk"
   },
+  "sourceLocalHint": {
+    "message": "Filtrera och markera bara efter recensioner på språket $LANG$. Spel utan betyg på det språket använder alla språk.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filtrera och markera efter recensioner på alla språk."
+  },
+  "sourceLabelsNote": {
+    "message": "Etiketterna visar båda betygen när de skiljer sig."
+  },
   "betweenTiers": {
     "message": "mellan två nivåer"
   },

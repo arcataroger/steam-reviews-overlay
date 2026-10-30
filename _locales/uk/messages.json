@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Усі мови"
   },
+  "sourceLocalHint": {
+    "message": "Фільтрувати й підсвічувати лише за оглядами мовою: $LANG$. Для ігор без оцінки цією мовою беруться всі мови.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Фільтрувати й підсвічувати за оглядами всіма мовами."
+  },
+  "sourceLabelsNote": {
+    "message": "Мітки показують обидві оцінки, якщо вони різняться."
+  },
   "betweenTiers": {
     "message": "між рівнями"
   },

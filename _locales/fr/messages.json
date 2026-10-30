@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Toutes les langues"
   },
+  "sourceLocalHint": {
+    "message": "Filtrer et surligner uniquement d’après les évaluations en $LANG$. Les jeux sans note dans cette langue utilisent toutes les langues.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filtrer et surligner d’après les évaluations dans toutes les langues."
+  },
+  "sourceLabelsNote": {
+    "message": "Les étiquettes affichent les deux notes quand elles diffèrent."
+  },
   "betweenTiers": {
     "message": "entre deux niveaux"
   },

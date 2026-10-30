@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Alle språk"
   },
+  "sourceLocalHint": {
+    "message": "Filtrer og fremhev bare etter anmeldelser på språket $LANG$. Spill uten poengsum på dette språket bruker alle språk.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filtrer og fremhev etter anmeldelser på alle språk."
+  },
+  "sourceLabelsNote": {
+    "message": "Etikettene viser begge poengsummene når de er ulike."
+  },
   "betweenTiers": {
     "message": "mellom to nivåer"
   },

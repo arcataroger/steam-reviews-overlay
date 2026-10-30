@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "所有語言"
   },
+  "sourceLocalHint": {
+    "message": "僅依$LANG$評論進行篩選與醒目標示。沒有該語言評分的遊戲改用所有語言。",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "依所有語言的評論進行篩選與醒目標示。"
+  },
+  "sourceLabelsNote": {
+    "message": "兩個評分不同時，標籤會同時顯示。"
+  },
   "betweenTiers": {
     "message": "介於兩級之間"
   },

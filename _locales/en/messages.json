@@ -37,6 +37,23 @@
     "message": "All languages",
     "description": "Button and tooltip prefix: use the score from reviews in every language."
   },
+  "sourceLocalHint": {
+    "message": "Filter and highlight using only reviews in $LANG$. Games with no score in $LANG$ use all languages instead.",
+    "description": "Popup tooltip for the \"My language\" button. $LANG$ is the Steam language name.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filter and highlight using reviews in every language.",
+    "description": "Popup tooltip for the \"All languages\" button."
+  },
+  "sourceLabelsNote": {
+    "message": "Labels show both scores when they differ.",
+    "description": "Popup tooltip line: the store labels list both scores when they differ."
+  },
   "betweenTiers": {
     "message": "between tiers",
     "description": "Small note when a lever rests between two Steam labels."

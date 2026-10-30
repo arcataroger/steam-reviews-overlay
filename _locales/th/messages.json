@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "ทุกภาษา"
   },
+  "sourceLocalHint": {
+    "message": "กรองและไฮไลต์ตามรีวิวภาษา $LANG$ เท่านั้น เกมที่ไม่มีคะแนนในภาษานี้จะใช้ทุกภาษา",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "กรองและไฮไลต์ตามรีวิวทุกภาษา"
+  },
+  "sourceLabelsNote": {
+    "message": "ป้ายแสดงทั้งสองคะแนนเมื่อต่างกัน"
+  },
   "betweenTiers": {
     "message": "อยู่ระหว่างสองระดับ"
   },

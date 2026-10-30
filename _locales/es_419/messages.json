@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Todos los idiomas"
   },
+  "sourceLocalHint": {
+    "message": "Filtra y resalta solo con reseñas en $LANG$. Los juegos sin puntuación en ese idioma usan todos los idiomas.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filtra y resalta con reseñas en todos los idiomas."
+  },
+  "sourceLabelsNote": {
+    "message": "Las etiquetas muestran ambas puntuaciones cuando difieren."
+  },
   "betweenTiers": {
     "message": "entre dos niveles"
   },

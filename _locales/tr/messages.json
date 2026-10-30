@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Tüm diller"
   },
+  "sourceLocalHint": {
+    "message": "Yalnızca şu dildeki incelemelere göre filtrele ve vurgula: $LANG$. Bu dilde puanı olmayan oyunlar tüm dilleri kullanır.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Tüm dillerdeki incelemelere göre filtrele ve vurgula."
+  },
+  "sourceLabelsNote": {
+    "message": "Puanlar farklıysa etiketler ikisini de gösterir."
+  },
   "betweenTiers": {
     "message": "iki seviye arasında"
   },

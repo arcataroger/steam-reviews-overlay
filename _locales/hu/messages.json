@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Minden nyelv"
   },
+  "sourceLocalHint": {
+    "message": "Szűrés és kiemelés csak ezen a nyelven írt értékelések alapján: $LANG$. Az ilyen nyelvű pontszám nélküli játékoknál minden nyelv számít.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Szűrés és kiemelés minden nyelv értékelései alapján."
+  },
+  "sourceLabelsNote": {
+    "message": "A címkék mindkét pontszámot mutatják, ha eltérnek."
+  },
   "betweenTiers": {
     "message": "két szint között"
   },

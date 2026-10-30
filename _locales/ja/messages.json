@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "すべての言語"
   },
+  "sourceLocalHint": {
+    "message": "$LANG$のレビューだけで絞り込みとハイライトを行います。この言語の評価がないゲームは全言語の評価を使います。",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "全言語のレビューで絞り込みとハイライトを行います。"
+  },
+  "sourceLabelsNote": {
+    "message": "評価が異なる場合、ラベルには両方を表示します。"
+  },
   "betweenTiers": {
     "message": "2 つの評価の間"
   },

@@ -105,10 +105,14 @@ function showLang(l: LangInfo) {
   $('#srcFlag').textContent = l.flag
   const local = document.querySelector<HTMLButtonElement>('#source [data-source="local"]')!
   const global = document.querySelector<HTMLButtonElement>('#source [data-source="global"]')!
-  local.title = `${t('myLanguage')} (${l.name})`
-  local.setAttribute('aria-label', local.title)
-  global.title = t('allLanguages')
-  global.setAttribute('aria-label', global.title)
+  // Name on the first line; then what the choice changes (only which score the levers judge by).
+  const label = (btn: HTMLButtonElement, name: string, hint: string) => {
+    btn.title = `${name}\n${hint}\n${t('sourceLabelsNote')}`
+    btn.setAttribute('aria-label', name)
+    btn.setAttribute('aria-description', `${hint} ${t('sourceLabelsNote')}`)
+  }
+  label(local, `${t('myLanguage')} (${l.name})`, t('sourceLocalHint', l.name))
+  label(global, t('allLanguages'), t('sourceGlobalHint'))
 }
 showLang(qaLocale ? langForLocale(qaLocale) : detectLang())
 if (!qaLocale) {

@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Alle Sprachen"
   },
+  "sourceLocalHint": {
+    "message": "Nur Rezensionen in der Sprache $LANG$ zum Filtern und Hervorheben nutzen. Spiele ohne Wertung in dieser Sprache nutzen alle Sprachen.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Rezensionen in allen Sprachen zum Filtern und Hervorheben nutzen."
+  },
+  "sourceLabelsNote": {
+    "message": "Labels zeigen beide Wertungen, wenn sie sich unterscheiden."
+  },
   "betweenTiers": {
     "message": "zwischen zwei Stufen"
   },

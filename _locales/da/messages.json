@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Alle sprog"
   },
+  "sourceLocalHint": {
+    "message": "Filtrér og fremhæv kun efter anmeldelser på sproget $LANG$. Spil uden en score på det sprog bruger alle sprog.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filtrér og fremhæv efter anmeldelser på alle sprog."
+  },
+  "sourceLabelsNote": {
+    "message": "Etiketterne viser begge scorer, når de er forskellige."
+  },
   "betweenTiers": {
     "message": "mellem to niveauer"
   },

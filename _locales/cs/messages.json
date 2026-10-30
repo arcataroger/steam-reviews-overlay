@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Všechny jazyky"
   },
+  "sourceLocalHint": {
+    "message": "Filtrovat a zvýrazňovat jen podle recenzí v jazyce: $LANG$. Hry bez hodnocení v tomto jazyce použijí všechny jazyky.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filtrovat a zvýrazňovat podle recenzí ve všech jazycích."
+  },
+  "sourceLabelsNote": {
+    "message": "Štítky ukazují obě hodnocení, když se liší."
+  },
   "betweenTiers": {
     "message": "mezi úrovněmi"
   },

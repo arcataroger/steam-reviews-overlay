@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Mọi ngôn ngữ"
   },
+  "sourceLocalHint": {
+    "message": "Lọc và tô sáng chỉ theo đánh giá bằng $LANG$. Trò chơi không có điểm bằng ngôn ngữ này sẽ dùng mọi ngôn ngữ.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Lọc và tô sáng theo đánh giá bằng mọi ngôn ngữ."
+  },
+  "sourceLabelsNote": {
+    "message": "Nhãn hiển thị cả hai điểm khi chúng khác nhau."
+  },
   "betweenTiers": {
     "message": "giữa hai mức"
   },

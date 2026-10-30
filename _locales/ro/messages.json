@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Toate limbile"
   },
+  "sourceLocalHint": {
+    "message": "Filtrează și evidențiază doar după recenziile în limba $LANG$. Jocurile fără scor în această limbă folosesc toate limbile.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filtrează și evidențiază după recenziile în toate limbile."
+  },
+  "sourceLabelsNote": {
+    "message": "Etichetele arată ambele scoruri când diferă."
+  },
   "betweenTiers": {
     "message": "între două niveluri"
   },

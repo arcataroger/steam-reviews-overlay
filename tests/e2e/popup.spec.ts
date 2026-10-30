@@ -70,4 +70,13 @@ test.describe('popup levers drive the overlay live', () => {
     await expect(popup.locator('[data-i18n="filter"]')).toHaveText('FILTER')
     await expect(popup.locator('.notch[data-pos="9"] span')).toContainText('Overwhelmingly Positive')
   })
+
+  test('source buttons say what they change', async ({ popup }) => {
+    const en = JSON.parse(fs.readFileSync(path.resolve(import.meta.dirname, '../../_locales/en/messages.json'), 'utf8'))
+    const local = popup.locator('#source [data-source="local"]')
+    const global = popup.locator('#source [data-source="global"]')
+    await expect(local).toHaveAttribute('title', /^My language \(.+\)\nFilter and highlight using only reviews in .+\.\n/)
+    expect(await global.getAttribute('title')).toBe(`All languages\n${en.sourceGlobalHint.message}\n${en.sourceLabelsNote.message}`)
+    await expect(global).toHaveAttribute('aria-label', 'All languages')
+  })
 })

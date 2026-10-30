@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Semua bahasa"
   },
+  "sourceLocalHint": {
+    "message": "Saring dan sorot hanya berdasarkan ulasan dalam $LANG$. Game tanpa skor dalam bahasa ini memakai semua bahasa.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Saring dan sorot berdasarkan ulasan dalam semua bahasa."
+  },
+  "sourceLabelsNote": {
+    "message": "Label menampilkan kedua skor jika berbeda."
+  },
   "betweenTiers": {
     "message": "di antara dua tingkat"
   },

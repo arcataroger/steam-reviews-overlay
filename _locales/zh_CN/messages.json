@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "所有语言"
   },
+  "sourceLocalHint": {
+    "message": "仅按$LANG$评测进行筛选和高亮。没有该语言评分的游戏改用所有语言。",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "按所有语言的评测进行筛选和高亮。"
+  },
+  "sourceLabelsNote": {
+    "message": "两个评分不同时，标签会同时显示。"
+  },
   "betweenTiers": {
     "message": "介于两级之间"
   },

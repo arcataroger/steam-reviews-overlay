@@ -29,6 +29,20 @@
   "allLanguages": {
     "message": "Alle talen"
   },
+  "sourceLocalHint": {
+    "message": "Filter en markeer alleen op recensies in de taal $LANG$. Games zonder score in deze taal gebruiken alle talen.",
+    "placeholders": {
+      "LANG": {
+        "content": "$1"
+      }
+    }
+  },
+  "sourceGlobalHint": {
+    "message": "Filter en markeer op recensies in alle talen."
+  },
+  "sourceLabelsNote": {
+    "message": "Labels tonen beide scores als ze verschillen."
+  },
   "betweenTiers": {
     "message": "tussen twee niveaus"
   },

@@ -2,6 +2,7 @@
 #   steam-reviews-overlay-chrome-<v>.zip   upload to the Chrome Web Store, or load unpacked
 #   steam-reviews-overlay-firefox-<v>.zip  upload to AMO (unsigned; AMO signs it)
 #   steam-reviews-overlay-source-<v>.zip   the source AMO's reviewers ask for (see BUILD.md)
+# The notes come from .github/release-notes.md plus the commits since the previous tag.
 # To release: bump "version" in package.json, commit, then `git tag v<version> && git push origin v<version>`.
 name: Release
 
@@ -56,14 +57,7 @@ jobs:
         run: |
           prev=$(git describe --tags --abbrev=0 "$GITHUB_REF_NAME^" 2>/dev/null || true)
           {
-            echo "## Downloads"
-            echo
-            echo "- **Chrome:** \`steam-reviews-overlay-chrome-$VERSION.zip\`. Unzip it, open \`chrome://extensions\`, turn on Developer mode, then click **Load unpacked**."
-            echo "- **Firefox:** install from [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/steam-reviews-overlay/). The zip here is unsigned, so release Firefox won't install it directly."
-            echo "- **Source:** \`steam-reviews-overlay-source-$VERSION.zip\`. To build it, see [BUILD.md](https://github.com/$GITHUB_REPOSITORY/blob/$GITHUB_REF_NAME/BUILD.md)."
-            echo
-            echo "## Changes"
-            echo
+            sed -e "s|{{VERSION}}|$VERSION|g" -e "s|{{REPO}}|$GITHUB_REPOSITORY|g" -e "s|{{TAG}}|$GITHUB_REF_NAME|g" .github/release-notes.md
             git log --no-merges --format='- %s' "${prev:+$prev..}$GITHUB_REF_NAME" | head -n 60
           } > notes.md
           gh release create "$GITHUB_REF_NAME" release/*.zip --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag

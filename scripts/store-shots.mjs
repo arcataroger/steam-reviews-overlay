@@ -1,5 +1,6 @@
 // Store listing screenshots: 1280×800 PNGs (Chrome Web Store's size; AMO takes the same ratio).
-// Two shots: a live search page with the popup laid over it, and the popup alone with captions.
+// Three shots: a live search page with the popup laid over it, then the popup and its options screen
+// alone with captions.
 // Usage: npm run build:chrome && node scripts/store-shots.mjs [outDir]
 import { chromium } from 'playwright'
 import path from 'node:path'
@@ -33,7 +34,7 @@ const search = await open('https://store.steampowered.com/search/?term=racing', 
 await search.evaluate(() => window.scrollBy(0, -60))
 
 // The popup over the page, where the toolbar would drop it.
-const both = { ...OFF, mode: 'dim', threshold: 6, highlightThreshold: 9 }
+const both = { ...OFF, mode: 'dim', threshold: 6, highlightThreshold: 9, dimOpacity: 50 }
 await apply(both)
 await search.bringToFront(); await search.waitForTimeout(800)
 const page = (await search.screenshot()).toString('base64')
@@ -61,11 +62,17 @@ await hp.evaluate(() => { document.body.classList.remove('has-notice'); document
 await hp.waitForTimeout(300)
 const uiH = await hp.evaluate(() => Math.ceil(document.querySelector('.panel-wrap').getBoundingClientRect().bottom))
 const ui = (await hp.screenshot({ clip: { x: 0, y: 0, width: 340, height: uiH } })).toString('base64')
-const scale = Math.min(1.25, 720 / uiH)
+// The options screen, in a taller window: it runs longer than the levers
+await hp.setViewportSize({ width: 340, height: 800 })
+await hp.click('#configToggle'); await hp.waitForTimeout(400)
+const cfgH = await hp.evaluate(() => Math.ceil(document.querySelector('#configView').getBoundingClientRect().bottom))
+const cfg = (await hp.screenshot({ clip: { x: 0, y: 0, width: 340, height: cfgH } })).toString('base64')
 const cap = (title, text) => `<div class="cap"><h2>${title}</h2><p>${text}</p></div>`
 await hp.setViewportSize({ width: W, height: H })
 await hp.goto('about:blank')
-await hp.setContent(`<style>html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;font-family:"Motiva Sans",Arial,Helvetica,sans-serif;
+const captioned = async (name, heading, caps, image, height) => {
+  const scale = Math.min(1.25, 720 / height)
+  await hp.setContent(`<style>html,body{margin:0;width:${W}px;height:${H}px;overflow:hidden;font-family:"Motiva Sans",Arial,Helvetica,sans-serif;
     background:radial-gradient(ellipse at 70% 40%,#2a475e 0%,#1b2838 55%,#171a21 100%);color:#c7d5e0}
   .wrap{display:flex;align-items:center;justify-content:center;gap:72px;height:100%}
   .caps{width:520px;display:flex;flex-direction:column;gap:30px}
@@ -73,13 +80,20 @@ await hp.setContent(`<style>html,body{margin:0;width:${W}px;height:${H}px;overfl
   .cap h2{margin:0 0 6px;font-size:22px;color:#66c0f4;font-weight:600}
   .cap p{margin:0;font-size:18px;line-height:1.45;color:#acb2b8}
   img{width:${Math.round(340 * scale)}px;border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.08)}</style>
-  <div class="wrap"><div class="caps"><h1>Two levers, nine tiers</h1>
-    ${cap('Filter', 'Dim or hide every game at or below a tier.')}
-    ${cap('Highlight', 'Outline every game at or above a tier, in its review color or yours.')}
-    ${cap('Your language or all', 'Judge by reviews in your Steam language, or in every language.')}
-    ${cap("Steam's own rules", 'Each notch shows the percent and review count Steam requires.')}
-  </div><img src="data:image/png;base64,${ui}"></div>`)
-await hp.waitForTimeout(400)
-await hp.screenshot({ path: path.join(out, '5-popup-ui.png'), scale: 'css' }); console.log('   5-popup-ui')
+  <div class="wrap"><div class="caps"><h1>${heading}</h1>${caps.join('')}</div><img src="data:image/png;base64,${image}"></div>`)
+  await hp.waitForTimeout(400)
+  await hp.screenshot({ path: path.join(out, `${name}.png`), scale: 'css' }); console.log(`   ${name}`)
+}
+await captioned('5-popup-ui', 'Two levers, nine tiers', [
+  cap('Filter', 'Dim or hide every game at or below a tier.'),
+  cap('Highlight', 'Outline every game at or above a tier, in its review color or yours.'),
+  cap("Steam's own rules", 'Each notch shows the percent and review count Steam requires.'),
+], ui, uiH)
+await captioned('6-popup-config', 'Make it yours', [
+  cap('Your language or all', 'Judge by reviews in your Steam language, or in every language.'),
+  cap('Frame color', "Keep each game's review color, or pick your own."),
+  cap('Dim', 'Choose how dark filtered games get.'),
+  cap('Sparkle', 'Turn the Overwhelmingly Positive sparkle on or off.'),
+], cfg, cfgH)
 await hi.close()
 console.log('wrote', out)

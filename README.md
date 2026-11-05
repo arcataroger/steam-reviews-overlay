@@ -6,6 +6,12 @@ Browser extension (Chrome + Firefox, Manifest V3) that shows each game's review
 summary ("Very Positive", "Mixed", "Mostly Negative", ...) directly on game
 cards across the Steam store, so you don't have to hover every capsule.
 
+![The popup over a Steam search page, with games dimmed and highlighted by review score](docs/store/screenshots/4-popup.png)
+
+![The popup's two levers, with a caption for each control](docs/store/screenshots/5-popup-ui.png)
+
+![The settings screen: review language, frame color, dim strength and sparkle](docs/store/screenshots/6-popup-config.png)
+
 - Works on the front page, search results, category/tag pages, sale pages,
   "more like this" carousels on app pages, and anything else that links to
   `/app/<id>`. Dynamically loaded content is picked up via a `MutationObserver`.

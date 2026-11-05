@@ -53,10 +53,11 @@ To regenerate them, run `node scripts/make-icons.mjs`.
 
 ## Screenshots
 
-1280×800 PNGs in `docs/store/screenshots/`, plain RGB with no alpha (Chrome's requirement; AMO accepts them too). We use two, in this order:
+1280×800 PNGs in `docs/store/screenshots/`, plain RGB with no alpha (Chrome's requirement; AMO accepts them too). We use three, in this order:
 
 1. `5-popup-ui.png`: the popup up close, with a caption for each control.
-2. `4-popup.png`: the popup over a dimmed and outlined search page.
+2. `6-popup-config.png`: the options screen, with a caption for each section.
+3. `4-popup.png`: the popup over a dimmed and outlined search page.
 
 Chrome asks for screenshots twice: "Global screenshots" show in every language; "Localized screenshots" replace them for one language. Upload both as global, and as localized for English if the form requires it.
 

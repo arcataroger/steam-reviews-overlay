@@ -55,6 +55,11 @@
   display: block; max-width: 100%;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+/* A lone line has no flag or globe. An unseen one keeps its words on the same left edge as those that do. */
+.search_reviewscore .sro-badge.sro-slot .sro-ico { margin-inline-end: 4px; }
+.search_reviewscore .sro-badge.sro-slot .sro-line:only-child:not(:has(.sro-ico))::before {
+  content: '🌐'; visibility: hidden; font-size: 10px; line-height: 1; margin-inline-end: 4px;
+}
 /* Steam's narrow layout moves reviews to a 24px column beside the platform icons */
 @media (max-width: 750px) {
   /* Keep desktop's order (OS icons, then the review label) instead of Steam's reviews-first swap */
@@ -70,6 +75,7 @@
   }
   html.responsive .search_reviewscore .sro-badge.sro-slot,
   html.responsive .search_reviewscore .sro-badge.sro-slot .sro-line { display: inline; }
+  html.responsive .search_reviewscore .sro-badge.sro-slot .sro-line::before { content: none; }
   .search_reviewscore .sro-badge.sro-slot { margin-left: 6px; }
 }
 
@@ -83,6 +89,8 @@
   vertical-align: middle;
   align-self: center; /* on a price strip's centre line, not its top */
 }
+/* A price bar runs to the tile's edge, and the frame's border sits on that edge */
+[class*="CapsuleBottomBar"] .sro-badge.sro-inline { margin-right: 8px; }
 
 /* Placed in the lower-right corner of the card when there's no price to sit next to */
 .sro-badge.sro-corner {
@@ -95,11 +103,11 @@
   background: rgba(0, 0, 0, 0.9); /* near opaque: lettering baked into the art must not show through */
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
   /* Never wider than the card: a minimum font size (a browser setting) can make "Overwhelmingly
-     Positive" wider than a 200px capsule. The line wraps instead. */
+     Positive" wider than a 200px capsule. Its section then moves to thumbs. */
   max-width: calc(100% - 8px);
 }
-/* A long label wraps before anything gives up on words */
-.sro-badge.sro-corner .sro-line { display: block; max-width: 100%; white-space: normal; }
+/* One line only: the overflow is how tooTightForWords sees a label that needs thumbs */
+.sro-badge.sro-corner .sro-line { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .sro-badge.sro-corner .sro-ico { margin-inline-end: 4px; }
 
 /* Chart rows: thumbs opening the cell after the price, centred on the row, one left edge down the table */
@@ -143,7 +151,7 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
 .sro-thumb.sro-thumb-mixed { width: 22px; height: 22px; }
 .sro-thumb-fill { fill: var(--sro-thumb); }
 .sro-thumb-line { fill: var(--sro-thumb-line); }
-.sro-thumb-slash { stroke: var(--sro-thumb); stroke-width: 56; stroke-linecap: round; }
+.sro-thumb-tilde { fill: none; stroke: var(--sro-thumb); stroke-width: 120; stroke-linecap: round; }
 
 /* Cards also carry data-sro-tone="positive|mixed|negative|none" and data-sro-score for custom user styles */
 
@@ -167,6 +175,11 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
   box-sizing: border-box;
   border: 2px solid var(--sro-hl);
 }
+/* Overwhelmingly Positive: a soft glow under the frame, in its own color. It spreads inward, because Steam clips
+   and overlaps anything outside a card, which would leave it on some sides only. */
+:is([data-sro-op][data-sro-shape]:not(tr), tr[data-sro-op][data-sro-shape] > td:first-child)::before {
+  box-shadow: inset 0 0 15px var(--sro-hl);
+}
 /* Tag tiles run their words to the edge: inset them and let the frame use the gap below */
 .browse_tag_game[data-sro-card] { --sro-frame-bottom: -4px; }
 .browse_tag_game[data-sro-card] :is(.browse_tag_game_name, .browse_tag_game_price) { padding-inline-start: 6px; }
@@ -176,20 +189,19 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
 [data-sro-highlight="mixed"]    { --sro-hl: #b9a074; }
 [data-sro-highlight="negative"] { --sro-hl: #c85e2d; }
 
-/* Overwhelmingly Positive: two soft points of light slowly orbit the frame.
+/* Overwhelmingly Positive: two lights with long tails circle the frame.
    .sro-orbit is a masked ring over the highlight ring, inside the card for the same reason the ring
-   is (and because many rows clip their overflow). Each light is a short streak travelling the ring's
-   centre line (offset-path), so it moves at one speed along every edge whatever the card's aspect
-   ratio. A layer rotating about the centre does not: on a wide row its sweep crawls along the middle
-   of the long edges, races past the ends, and the rotated layer stops covering the ends at all.
-   Browsers without basic-shape offset paths (Chrome < 116) keep that rotating gradient. */
+   is (and because many rows clip their overflow). Each light is a chain of short pieces on the ring's
+   centre line (offset-path), built in sparkle.ts, so its tail bends round the corners and it moves
+   at one speed along every edge whatever the card's aspect ratio.
+   Browsers without basic-shape offset paths (Chrome < 116) keep a rotating gradient. */
 .sro-orbit {
   position: absolute;
   inset: var(--sro-frame-top, 0) var(--sro-frame-right, 0) var(--sro-frame-bottom, 0) var(--sro-frame-left, 0);
   z-index: 21;
   pointer-events: none;
   border-radius: inherit;
-  padding: 2px;
+  padding: 3px;
   overflow: hidden;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
@@ -200,20 +212,11 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
   position: absolute;
   top: 0;
   left: 0;
-  width: 140px;
-  height: 5px;
-  offset-path: inset(1px); /* the ring's centre line */
+  height: 3px;
+  offset-path: inset(1.5px); /* the ring's centre line */
   offset-rotate: auto;
-  background: linear-gradient(
-    to right,
-    transparent,
-    color-mix(in srgb, var(--sro-hl) 35%, transparent) 55%,
-    #ffffff 92%,
-    transparent
-  );
-  animation: sro-orbit 7s linear infinite;
+  animation: sro-orbit 5s linear infinite; /* LAP_SECONDS in sparkle.ts */
 }
-.sro-orbit > i + i { offset-distance: 50%; animation-delay: -3.5s; }
 .sro-orbit-paused > i { animation-play-state: paused; }
 @keyframes sro-orbit {
   from { offset-distance: 0%; }
@@ -221,7 +224,7 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
 }
 @supports not (offset-path: inset(0)) {
   .sro-orbit > i {
-    width: auto;
+    width: auto !important;
     height: auto;
     inset: -100%;
     background: conic-gradient(
@@ -237,8 +240,9 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
       #ffffff 352deg,
       color-mix(in srgb, var(--sro-hl) 35%, transparent) 358deg,
       transparent 360deg
-    );
-    animation: sro-orbit-spin 7s linear infinite;
+    ) !important;
+    animation: sro-orbit-spin 5s linear infinite;
+    animation-delay: 0s !important;
     will-change: transform;
   }
   .sro-orbit > i + i { display: none; }
@@ -248,6 +252,7 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
 }
 @media (prefers-reduced-motion: reduce) {
   .sro-orbit > i { animation: none; opacity: 0.6; }
+  .sro-orbit > i + i { display: none; }
 }
 
 /* ---------- filter: dim ---------- */
@@ -256,14 +261,14 @@ tr[data-sro-card] > td:has(> .sro-gutter) { position: relative; padding-inline-s
   content: "";
   position: absolute;
   inset: var(--sro-frame-top, 0) var(--sro-frame-right, 0) var(--sro-frame-bottom, 0) var(--sro-frame-left, 0);
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, var(--sro-dim, 0.75)); /* set from the popup's dim slider */
   pointer-events: none;
   z-index: 30; /* above Steam's own price chips and tags inside the card */
   border-radius: inherit;
   transition: background 0.25s ease;
 }
 :is([data-sro-filtered="dim"]:not(tr):hover, tr[data-sro-filtered="dim"]:hover > td:first-child)::after {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, calc(var(--sro-dim, 0.75) * 0.6));
 }
 /* Keyboard users: a focused link inside a dimmed card lifts the overlay and shows a focus ring */
 :is([data-sro-filtered="dim"]:not(tr):focus-within, tr[data-sro-filtered="dim"]:focus-within > td:first-child)::after {

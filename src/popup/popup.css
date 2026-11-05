@@ -96,6 +96,8 @@ body.has-notice .throttle { --track: 230px; }
 .hue::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 16px; border-radius: 3px; background: #fff; border: 1px solid #000; }
 .hue::-moz-range-thumb { width: 12px; height: 16px; border-radius: 3px; background: #fff; border: 1px solid #000; }
 .hue:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.dim-level { background: linear-gradient(to right, #8ea3b5, #0b0e13); }
+.dim-value { flex: none; min-width: 4ch; text-align: end; font-variant-numeric: tabular-nums; }
 .opt-check { display: flex; align-items: center; gap: 7px; cursor: pointer; line-height: 1.25; }
 .opt-check input { flex: none; margin: 0; accent-color: var(--accent); }
 

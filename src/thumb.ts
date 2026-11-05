@@ -40,9 +40,8 @@ function icon(cls: string, ...parts: SVGElement[]): SVGSVGElement {
 export function thumbIcons(score: number): SVGSVGElement[] {
   const { dir, count } = thumbsFor(score)
   if (dir === 'mixed') {
-    // A small hand up at the upper left, a small hand down at the lower right, a slash between them
-    const slash = el('line', { class: 'sro-thumb-slash', x1: '130', y1: '900', x2: '894', y2: '124' })
-    return [icon('sro-thumb-mixed', hand('scale(.5)'), hand(`translate(512 512) scale(.5) ${FLIP}`), slash)]
+    // The tilde Steam prints beside Mixed, without its square
+    return [icon('sro-thumb-mixed', el('path', { class: 'sro-thumb-tilde', d: 'M130 610C250 370 400 370 512 512S774 654 894 414' }))]
   }
   return Array.from({ length: count }, () => icon('', hand(dir === 'down' ? FLIP : '')))
 }

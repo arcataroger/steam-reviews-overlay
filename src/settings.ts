@@ -18,24 +18,42 @@ export interface Settings {
   frameColor: string | null
   /** Run the orbiting lights around Overwhelmingly Positive frames. */
   sparkle: boolean
+  /** How dark the overlay on a dimmed card is, in percent. */
+  dimOpacity: number
 }
 
 export const OFF_FILTER = 0
 export const OFF_HIGHLIGHT = 10
+/** Below this a dimmed card barely differs from the rest. Above it, the art is gone. */
+export const DIM_MIN = 20
+export const DIM_MAX = 95
+export const DIM_STEP = 5
 
+/** A new install's starting point. A saved setting always beats these: see normalize. */
 export const DEFAULT_SETTINGS: Settings = {
   mode: 'dim',
-  threshold: OFF_FILTER,
+  threshold: 5, // Mixed and below
   source: 'global',
-  highlightThreshold: OFF_HIGHLIGHT,
+  highlightThreshold: 8, // Very Positive and above
   frameColor: null,
   sparkle: true,
+  dimOpacity: 50,
 }
+
+/** The fixed darkness before the slider existed. Saves from then have no value, and keep their look. */
+const PRE_SLIDER_DIM = 75
 
 /** The #rrggbb form of a typed or stored color, or null when it is not one. */
 export function parseHexColor(raw: unknown): string | null {
   const m = typeof raw === 'string' ? /^#?([0-9a-f]{6})$/i.exec(raw.trim()) : null
   return m ? `#${m[1].toLowerCase()}` : null
+}
+
+/** A stored dim opacity, snapped to the slider's steps. Anything unusable falls back to the default. */
+export function parseDimOpacity(raw: unknown): number {
+  const n = typeof raw === 'number' || typeof raw === 'string' ? Number(raw) : NaN
+  if (raw === '' || !Number.isFinite(n)) return DEFAULT_SETTINGS.dimOpacity
+  return Math.min(DIM_MAX, Math.max(DIM_MIN, Math.round(n / DIM_STEP) * DIM_STEP))
 }
 
 export interface Tier {
@@ -90,6 +108,7 @@ function normalize(raw: Partial<Settings> | undefined): Settings {
   if (s.source !== 'local') s.source = 'global'
   s.frameColor = parseHexColor(s.frameColor)
   s.sparkle = s.sparkle !== false
+  s.dimOpacity = raw && raw.dimOpacity === undefined ? PRE_SLIDER_DIM : parseDimOpacity(s.dimOpacity)
   // Whatever storage or a migration handed us, the levers must not collide (highlight strictly above filter)
   return reconcile(s, 'filter')
 }

@@ -5,11 +5,12 @@
 Steam's layouts shift with the window width and the font size. A change that looks right once can overlap at another size. After any change to labels, frames, dimming, card detection or CSS:
 
 1. Run `npm run build:firefox`.
-2. Run `npm run check:overlaps`. It loads live pages at four widths and both font settings. It fails on a label over text, a label off its card, a price pushed out of its card, or a table split into different column layouts.
+2. Run `npm run check:overlaps`. It loads live pages at four widths and both font settings. It fails on a label over text, a label off its card, a price pushed out of its card, a table split into different column layouts, or uneven or cut-off search labels.
 3. Fix every fault it reports. Never call a change done while it fails.
 4. Look at screenshots of the pages you changed. Measurements pass things a reader would reject.
 5. When you find a new kind of fault by eye, add it to `scripts/check-overlaps.mjs` so it stays caught.
-6. If a browser already holds the test profile, set `SRO_PROFILE_DIR` to a temporary folder. That run is logged out, so say that personalised rows went unchecked.
+6. Add `-- --browser chromium` to run it in Chrome, which has its own logged-in profile.
+7. If a browser already holds the test profile, set `SRO_PROFILE_DIR` to a temporary folder. That run is logged out, so say that personalised rows went unchecked.
 
 When you notice a layout risk, test it before you report it. Never only mention it.
 

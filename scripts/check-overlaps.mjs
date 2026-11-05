@@ -1,23 +1,26 @@
 #!/usr/bin/env node
 // Layout gate: load live pages at several window widths and both font settings, scroll through
-// each, and fail if a label covers text, leaves its card, a price is pushed out of its card, or a
-// table loses its shared columns.
+// each, and fail if a label covers text, leaves its card, a price is pushed out of its card, a
+// table loses its shared columns, or search labels lose their shared left edge.
 // Steam's layouts change with the window and the font, so a fix checked once proves little: one
 // chart overlap only appeared at the default font, another only at 1400px with a 16px minimum.
 //
 //   npm run check:overlaps                      all pages, all widths
 //   npm run check:overlaps -- --pages charts/topselling/US,search/
 //   npm run check:overlaps -- --widths 1100,1760 --fonts 0,16
+//   npm run check:overlaps -- --browser chromium
 //
-// Needs a Firefox build: run `npm run build:firefox` first. Set SRO_PROFILE_DIR to run beside a
-// browser already holding the kept profile (logged out, so personalised rows go unchecked).
-import { launch, waitForOverlay } from './lib/browsers.mjs'
+// Needs a build of the browser under test: `npm run build:firefox` (the default) or `build:chrome`.
+// Set SRO_PROFILE_DIR to run beside a browser already holding the kept profile (logged out, so
+// personalised rows go unchecked).
+import { browserArg, launch, waitForOverlay } from './lib/browsers.mjs'
 import { CHECKS } from './visual-pass.mjs'
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`)
   return i < 0 ? fallback : process.argv[i + 1]
 }
+const { browser } = browserArg(process.argv.slice(2).join(' ').includes('--browser') ? undefined : ['--browser', 'firefox'])
 const STORE = 'https://store.steampowered.com/'
 const PAGES = ['', 'charts/topselling/US', 'charts/mostplayed', 'search/?filter=topsellers', 'explore/new/', 'category/programming', 'specials/', 'tag/browse/', 'recommended/friendactivity/']
 const pages = arg('pages')?.split(',') ?? PAGES
@@ -33,6 +36,34 @@ const tableLayouts = () => {
 }
 
 /** Prices pushed past their card's edge. Our column changes can do this without overlapping anything. */
+/** Search rows: words share one left edge, with or without a flag, and never lose their ends. */
+const searchLabels = () => {
+  const lines = [...document.querySelectorAll('.sro-slot .sro-line')].filter((l) => l.getClientRects().length)
+  const edges = new Set()
+  for (const l of lines) {
+    const text = [...l.childNodes].find((n) => n.nodeType === Node.TEXT_NODE)
+    if (!text) continue
+    const range = document.createRange()
+    range.selectNodeContents(text)
+    edges.add(Math.round(range.getBoundingClientRect().left))
+  }
+  const sorted = [...edges].sort((x, y) => x - y)
+  return { spread: sorted.length ? sorted.at(-1) - sorted[0] : 0, cut: lines.filter((l) => l.scrollWidth > l.clientWidth).map((l) => l.textContent) }
+}
+
+/** A frame hugs the tile: a price bar narrower than its frame means the frame took in the slot's margin. */
+const wideFrames = () =>
+  [...document.querySelectorAll('[data-sro-highlight]')].flatMap((card) => {
+    const bar = card.querySelector('[class*="CapsuleBottomBar"]')
+    if (!bar?.getClientRects().length) return []
+    const style = getComputedStyle(card)
+    const c = card.getBoundingClientRect()
+    const b = bar.getBoundingClientRect()
+    const left = c.left + (parseFloat(style.getPropertyValue('--sro-frame-left')) || 0)
+    const right = c.right - (parseFloat(style.getPropertyValue('--sro-frame-right')) || 0)
+    return Math.abs(b.left - left) > 2 || Math.abs(right - b.right) > 2 ? [card.textContent.trim().slice(0, 30)] : []
+  })
+
 const lostPrices = () => {
   const lost = []
   for (const card of document.querySelectorAll('[data-sro-card]')) {
@@ -53,7 +84,7 @@ let checked = 0
 
 for (const font of fonts) {
   const prefs = { 'browser.zoom.siteSpecific': false, 'font.minimum-size.x-western': font }
-  const ctx = await launch('firefox', { extension: true, settings, viewport: { width: widths[0], height: 1000 }, prefs })
+  const ctx = await launch(browser, { extension: true, settings, viewport: { width: widths[0], height: 1000 }, prefs })
   const page = ctx.pages()[0] ?? (await ctx.newPage())
   for (const width of widths) {
     const where = `${width}px, min font ${font}`
@@ -69,6 +100,7 @@ for (const font of fonts) {
       for (let i = 0, y = 0; i < STOPS && y < height; i++, y += 900) {
         await page.evaluate((top) => scrollTo(0, top), y)
         await page.waitForTimeout(700)
+        for (const name of await page.evaluate(wideFrames)) faults.set(`${route}|wide|${name}`, `${where} /${route}: frame wider than its tile: ${name}`)
         for (const price of await page.evaluate(lostPrices)) faults.set(`${route}|price|${price}`, `${where} /${route}: price-lost: ${price}`)
         const { issues } = await page.evaluate(CHECKS)
         for (const issue of issues.filter((x) => FAULTS.test(x.kind))) {
@@ -76,6 +108,9 @@ for (const font of fonts) {
           if (!faults.has(key)) faults.set(key, `${where} /${route}: ${issue.kind}: ${issue.name ?? ''} ${issue.badge ? `"${issue.badge}"` : ''} ${issue.with ? `over "${issue.with}"` : ''}`)
         }
       }
+      const { spread, cut } = await page.evaluate(searchLabels)
+      if (spread > 1) faults.set(`${route}|edges`, `${where} /${route}: search labels start ${spread}px apart`)
+      for (const text of cut) faults.set(`${route}|cut|${text}`, `${where} /${route}: search label cut off: ${text}`)
       const layouts = await page.evaluate(tableLayouts)
       if (layouts > 1) faults.set(`${route}|layouts`, `${where} /${route}: table rows split into ${layouts} column layouts`)
       checked++

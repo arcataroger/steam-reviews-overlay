@@ -28,7 +28,8 @@ cards across the Steam store, so you don't have to hover every capsule.
   tier: games at that tier **or higher** are outlined. Both are inclusive, so
   the highlight lever always sits at least one tier above the filter lever and
   pushes it along if you drag past. Each track runs past its end notch into a parking
-  gate marked OFF; a parked lever does nothing. "Under Negative" is a real
+  gate marked OFF; a parked lever does nothing. A new install starts with Mixed and below
+  dimmed and Very Positive and above highlighted. "Under Negative" is a real
   stop (it filters Very Negative and Overwhelmingly Negative), as is "above
   Overwhelmingly Positive". Both levers run along
   Steam's full nine-tier ladder (Overwhelmingly Negative, Very Negative,
@@ -40,7 +41,7 @@ cards across the Steam store, so you don't have to hover every capsule.
   the all-languages score. The rails carry a gradient through Steam's three review colors,
   and the readouts sample it at the lever's position. Highlights on the store
   use each game's own review color, or a frame color you pick on the config screen (the gear at the
-  top right). A checkbox there turns the Overwhelmingly Positive sparkle on or off. Settings sync via `storage.sync` and apply live to open tabs.
+  top right). A checkbox there turns the Overwhelmingly Positive sparkle on or off, and a slider sets how dark dimmed cards get. Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
   1. Summaries already rendered on the page are reused for an instant first
      paint (search rows carry the label, percent and count in a tooltip; the

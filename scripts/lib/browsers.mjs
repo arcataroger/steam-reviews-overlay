@@ -53,11 +53,11 @@ function copyBuild(browser) {
 function bakeSettings(dir, settings) {
   const assets = path.join(dir, 'assets')
   const file = fs.readdirSync(assets).find((f) => /^settings-.*\.js$/.test(f))
-  const DEFAULTS = /mode:`dim`,threshold:0,source:`global`,highlightThreshold:10(?:,frameColor:null,sparkle:!0)?/
+  const DEFAULTS = /mode:`dim`,threshold:5,source:`global`,highlightThreshold:8,frameColor:null,sparkle:!0,dimOpacity:50/
   const src = file && fs.readFileSync(path.join(assets, file), 'utf8')
   if (!src || !DEFAULTS.test(src)) throw new Error('settings defaults not found in the Firefox build; update DEFAULTS in scripts/lib/browsers.mjs')
   const s = settings
-  fs.writeFileSync(path.join(assets, file), src.replace(DEFAULTS, `mode:\`${s.mode}\`,threshold:${s.threshold},source:\`${s.source}\`,highlightThreshold:${s.highlightThreshold},frameColor:${JSON.stringify(s.frameColor ?? null)},sparkle:${s.sparkle !== false}`))
+  fs.writeFileSync(path.join(assets, file), src.replace(DEFAULTS, `mode:\`${s.mode}\`,threshold:${s.threshold},source:\`${s.source}\`,highlightThreshold:${s.highlightThreshold},frameColor:${JSON.stringify(s.frameColor ?? null)},sparkle:${s.sparkle !== false},dimOpacity:${s.dimOpacity ?? 50}`))
 }
 
 /**
@@ -92,6 +92,9 @@ export async function launch(browser, { headless = true, extension = false, sett
   const dir = extension ? copyBuild(browser) : null
   if (browser === 'chromium') {
     const args = ['--window-size=1400,1000']
+    // Firefox's minimum font pref, spoken in Chromium's terms, so one gate can drive both
+    const minFont = prefs['font.minimum-size.x-western']
+    if (minFont) args.push(`--blink-settings=minimumFontSize=${minFont}`)
     if (dir) args.push(`--disable-extensions-except=${dir}`, `--load-extension=${dir}`)
     // Chromium's headless shell cannot load extensions; the new headless mode can
     if (headless) args.push('--headless=new')

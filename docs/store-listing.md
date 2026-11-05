@@ -70,13 +70,15 @@ Paste the current version's notes into AMO's "Release notes" field when you subm
 
 - Every highlight is now a complete frame around the card you see. Frames no longer lose a side, and no longer float outside the card.
 - Top Sellers and Most Played line up again in Firefox, with every rating in one neat column.
-- Lists too small for words now show thumbs: three, two or one up or down, and a split mark for Mixed. Hover over them for the full label.
+- Lists too small for words now show thumbs: three, two or one up or down, and a tilde for Mixed. Hover over them for the full label.
 - Labels on dimmed cards stay readable.
 - Labels no longer cover dates or prices.
 - Stacked recommendations on the front page now sit apart, and their labels sit on the screenshots.
 - New Settings screen: click the gear at the top right of the popup.
 - Pick your own frame color, or keep each game's review color.
-- Turn the Overwhelmingly Positive sparkle on or off.
+- Overwhelmingly Positive frames now have a soft glow, and a faster sparkle that follows every edge. Turn them on or off in Settings.
+- Choose how dark dimmed cards get.
+- New installs start with Mixed and below dimmed, and Very Positive and above highlighted. Your saved settings stay as they are.
 - The language choice moved to Settings, with labels that say what it does.
 - A cleaner popup, with the screws gone.
 

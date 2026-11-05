@@ -18,11 +18,11 @@ describe('thumbs for a review score', () => {
     expect(thumbsFor(5).dir).toBe('mixed')
   })
 
-  it('draws one icon per thumb, and two hands and a slash for Mixed', () => {
+  it('draws one icon per thumb, and a lone tilde for Mixed', () => {
     expect(thumbIcons(9)).toHaveLength(3)
     const [mixed] = thumbIcons(5)
-    expect(mixed.querySelectorAll('g')).toHaveLength(2)
-    expect(mixed.querySelector('.sro-thumb-slash')).not.toBeNull()
+    expect(mixed.querySelectorAll('g')).toHaveLength(0)
+    expect(mixed.querySelector('.sro-thumb-tilde')).not.toBeNull()
   })
 
   it('flips a thumb down, leaving a thumb up as drawn', () => {

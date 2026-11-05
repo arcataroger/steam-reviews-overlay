@@ -17,6 +17,7 @@ const lang: LangInfo = detectLang()
 const TAKEOVER_EVENT = 'sro:takeover'
 let dead = false
 const alive = () => !dead && !!ext.runtime?.id
+import { orbitPieces } from './sparkle'
 import { loadSettings, onSettingsChange, isFiltered, isHighlighted, DEFAULT_SETTINGS, type Settings } from './settings'
 
 let settings: Settings = DEFAULT_SETTINGS
@@ -33,9 +34,10 @@ const BADGE_CLASS = 'sro-badge'
  * "Since you wish for <a>Other Game</a>": the logged-in home page's recommendation blocks name the
  * game that prompted them. That link is prose about another game, never a card, and it must not count
  * as a second game in the block, or the block splits into a title strip labelled with the other game's
- * score, a button bar and an unlabelled capsule.
+ * score, a button bar and an unlabelled capsule. The button bar is the same trap: a demo's "Visit Product
+ * Page" button can name a different appid from its capsule, which gave one game two labels.
  */
-const REASON_SELECTOR = '.home_content_reason'
+const REASON_SELECTOR = '.home_content_reason, .single_buttonbar'
 
 const EXCLUDE_SELECTOR = [
   '#global_hover',
@@ -367,6 +369,16 @@ const STACKED_PANEL = '.home_content_single_ctn'
  *    too. Steam recycles those nodes, so the claim stays on the link and the frame reaches out.
  */
 function frameBox(card: HTMLElement): Element | null {
+  const known = frameTargets.get(card)
+  if (known && card.contains(known)) return known
+  const box = findFrameBox(card)
+  // Find a tile once, at rest. Steam's hover popup lands inside the card and stays there, and it
+  // holds more words and larger art than the tile, so a later search would frame the popup instead.
+  if (box && card.contains(box) && !card.matches(':hover')) frameTargets.set(card, box)
+  return box
+}
+
+function findFrameBox(card: HTMLElement): Element | null {
   if (isTableRow(card)) return null
   // An app page's "Similar to games you've played": one small capsule in a wide row
   if (card.matches('.similar_recent_apps_container')) return card.querySelector(':scope > .similarapp')
@@ -397,7 +409,8 @@ function innerTile(card: HTMLElement): Element | null {
   const midX = art.left + art.width / 2
   const midY = art.top + art.height / 2
   let tile: Element = card
-  for (let depth = 0; depth < 4; depth++) {
+  // A carousel slide holds its tile five wrappers down, and that tile carries the slot's margin
+  for (let depth = 0; depth < 8; depth++) {
     const next = [...tile.children].find((k) => {
       if (ours(k)) return false
       const q = k.getBoundingClientRect()
@@ -413,8 +426,23 @@ function innerTile(card: HTMLElement): Element | null {
 
 const FRAME_SIDES = ['top', 'right', 'bottom', 'left'] as const
 
+const framesAwaitingLeave = new WeakSet<HTMLElement>()
+const frameTargets = new WeakMap<HTMLElement, Element>()
+
 /** Point the frame and dim at frameBox, as offsets from the card's own edges (negative reaches outside it). */
 function setFrame(card: HTMLElement) {
+  // Hovering scales a tile and opens Steam's popup inside it. A measurement then would stick for
+  // good, so wait until the pointer has left and the 0.15s scale has settled.
+  if (card.matches(':hover')) {
+    if (!framesAwaitingLeave.has(card)) {
+      framesAwaitingLeave.add(card)
+      card.addEventListener('mouseleave', () => {
+        framesAwaitingLeave.delete(card)
+        window.setTimeout(() => card.isConnected && setFrame(card), 250)
+      }, { once: true })
+    }
+    return
+  }
   const box = frameBox(card)?.getBoundingClientRect()
   const r = card.getBoundingClientRect()
   const offsets = box && { top: box.top - r.top, right: r.right - box.right, bottom: r.bottom - box.bottom, left: box.left - r.left }
@@ -424,7 +452,15 @@ function setFrame(card: HTMLElement) {
   }
 }
 
+/** Lazy art has no size until it loads, so a frame measured before then sits on the empty slot. */
+function onArtLoaded(e: Event) {
+  if (!(e.target instanceof HTMLImageElement)) return
+  const card = e.target.closest<HTMLElement>(`[${CARD_ATTR}]`)
+  if (card?.hasAttribute('data-sro-highlight') || card?.dataset.sroFiltered) setFrame(card)
+}
+
 function clearFrame(card: HTMLElement) {
+  frameTargets.delete(card)
   for (const side of FRAME_SIDES) card.style.removeProperty(`--sro-frame-${side}`)
 }
 
@@ -1079,25 +1115,64 @@ const focusWatched = new WeakSet<HTMLElement>()
  * so it composites instead of repainting a gradient every frame). Paused while off-screen.
  */
 const ORBIT_CLASS = 'sro-orbit'
+/** Lay the pieces out for the ring's size. Layout size, not a rect: a hover scale must not rebuild it. */
+function fitOrbit(ring: HTMLElement) {
+  const { offsetWidth: width, offsetHeight: height } = ring
+  const size = `${width}x${height}`
+  if (!width || !height || ring.dataset.sroSize === size) return
+  ring.dataset.sroSize = size
+  ring.replaceChildren(
+    ...orbitPieces(width, height).map((p) => {
+      const piece = document.createElement('i')
+      piece.style.width = p.width
+      piece.style.animationDelay = p.delay
+      piece.style.background = p.background
+      return piece
+    }),
+  )
+}
+
+/** A frame that changes size while on screen needs its tails measured again. Off screen can wait. */
+const orbitSize = new ResizeObserver((entries) => {
+  for (const e of entries) {
+    const ring = e.target as HTMLElement
+    if (ring.classList.contains('sro-orbit-paused')) continue
+    fitOrbit(ring)
+    syncOrbit(ring)
+  }
+})
+
+/** One clock for every orbit. Each would otherwise keep the time it started and the time it spent paused. */
+function syncOrbit(ring: HTMLElement) {
+  for (const a of ring.getAnimations({ subtree: true })) a.startTime = 0
+}
 const orbitVisibility = new IntersectionObserver((entries) => {
-  for (const e of entries) (e.target as HTMLElement).classList.toggle('sro-orbit-paused', !e.isIntersecting)
+  for (const e of entries) {
+    const ring = e.target as HTMLElement
+    ring.classList.toggle('sro-orbit-paused', !e.isIntersecting)
+    if (e.isIntersecting) {
+      fitOrbit(ring)
+      syncOrbit(ring)
+    }
+  }
 })
 function setOrbit(card: HTMLElement, on: boolean) {
   const existing = card.querySelector<HTMLElement>(`.${ORBIT_CLASS}`)
   if (!on) {
     if (existing) {
       orbitVisibility.unobserve(existing)
+      orbitSize.unobserve(existing)
       existing.remove()
     }
     return
   }
   if (existing) return
   const ring = document.createElement('i')
-  ring.className = ORBIT_CLASS
+  ring.className = `${ORBIT_CLASS} sro-orbit-paused` // its pieces arrive when it first comes on screen
   ring.setAttribute('aria-hidden', 'true')
-  ring.append(document.createElement('i'), document.createElement('i')) // two lights, half a lap apart
   decorationHost(card).appendChild(ring)
   orbitVisibility.observe(ring)
+  orbitSize.observe(ring)
 }
 
 /** Cards change size when a carousel reveals them; re-derive the highlight shape when that happens. */
@@ -1306,7 +1381,10 @@ function stripCard(card: HTMLElement) {
     delete card.dataset.sroPos
   }
   lowerPrices(card)
-  card.querySelectorAll(`.${ORBIT_CLASS}`).forEach((n) => orbitVisibility.unobserve(n))
+  card.querySelectorAll(`.${ORBIT_CLASS}`).forEach((n) => {
+    orbitVisibility.unobserve(n)
+    orbitSize.unobserve(n)
+  })
   card.querySelectorAll(`.${BADGE_CLASS}, .sro-spacer, .${ORBIT_CLASS}`).forEach((n) => n.remove())
 }
 
@@ -1487,6 +1565,11 @@ function scheduleScan(root?: Element) {
   }, 250)
 }
 
+/** One variable on the page sets every dimmed card, so moving the slider needs no walk over the cards. */
+function applyDim() {
+  document.documentElement.style.setProperty('--sro-dim', String(settings.dimOpacity / 100))
+}
+
 /** Remove badges and markers left by a previous instance of this script (extension reload/update). */
 function clearPreviousInstance() {
   // Ask any older instance to stop first, then sweep what it left behind.
@@ -1525,6 +1608,7 @@ function shutdown() {
   thumbTip?.remove()
   layoutWatcher.disconnect()
   orbitVisibility.disconnect()
+  orbitSize.disconnect()
   if (scanTimer) clearTimeout(scanTimer)
   for (const t of hideTimers.values()) clearTimeout(t)
   hideTimers.clear()
@@ -1541,6 +1625,8 @@ async function main() {
   injectStyles()
   settings = await loadSettings()
   if (!alive()) return // a newer instance took over while settings were loading
+  applyDim()
+  document.addEventListener('load', onArtLoaded, true) // load does not bubble: catch it on the way down
   document.addEventListener('mouseover', onThumbOver)
   document.addEventListener('mouseout', onThumbOut)
   document.addEventListener('scroll', hideThumbTip, { capture: true, passive: true })
@@ -1548,6 +1634,7 @@ async function main() {
     if (!alive()) return
     const sourceChanged = s.source !== settings.source
     settings = s
+    applyDim()
     reapplyFilters(sourceChanged)
   })
   setLanguage(lang.steam)
@@ -1576,6 +1663,7 @@ async function main() {
         if (n.nodeType !== 1) continue
         const el = n as Element
         if (el.classList.contains(BADGE_CLASS) || el.classList.contains(ORBIT_CLASS)) continue // our own insertions
+        if (el.parentElement?.classList.contains(ORBIT_CLASS)) continue // and a ring's pieces
         scheduleScan(el)
       }
     }

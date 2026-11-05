@@ -16,6 +16,9 @@ import {
   type ScoreSource,
   mergeIncoming,
   parseHexColor,
+  DIM_MIN,
+  DIM_MAX,
+  DIM_STEP,
 } from '../settings'
 import { LANG_KEY, detectLang, langForLocale, type LangInfo } from '../lang'
 import { GRADIENT_CSS, POSITIVE, toneColorAt, hueToHex, hexToHue } from '../tonecolor'
@@ -95,6 +98,12 @@ const frameSwatches = $<HTMLDivElement>('#frameSwatches')
 const frameHex = $<HTMLInputElement>('#frameHex')
 const frameHue = $<HTMLInputElement>('#frameHue')
 const sparkleBox = $<HTMLInputElement>('#sparkle')
+const dimSlider = $<HTMLInputElement>('#dimOpacity')
+const dimValue = $<HTMLOutputElement>('#dimValue')
+dimSlider.min = String(DIM_MIN)
+dimSlider.max = String(DIM_MAX)
+dimSlider.step = String(DIM_STEP)
+const percent = new Intl.NumberFormat(undefined, { style: 'percent' })
 
 // The picker lives in the popup on purpose: a native <input type="color"> opens a separate window,
 // and Firefox can close the popup under it, losing the pick. The first swatch means "no custom color".
@@ -291,6 +300,8 @@ function render() {
   if (document.activeElement !== frameHex) frameHex.value = settings.frameColor ?? ''
   if (document.activeElement !== frameHue) frameHue.value = String(hexToHue(settings.frameColor ?? POSITIVE))
   sparkleBox.checked = settings.sparkle
+  if (document.activeElement !== dimSlider) dimSlider.value = String(settings.dimOpacity)
+  dimValue.textContent = percent.format(settings.dimOpacity / 100)
 }
 
 /** Arrow keys move the selection within a radio group, as the radiogroup role promises. */
@@ -347,6 +358,8 @@ frameHex.addEventListener('blur', () => {
 frameHue.addEventListener('input', () => update({ frameColor: hueToHex(Number(frameHue.value)) }, { defer: true }))
 frameHue.addEventListener('change', () => flush())
 sparkleBox.addEventListener('change', () => update({ sparkle: sparkleBox.checked }))
+dimSlider.addEventListener('input', () => update({ dimOpacity: Number(dimSlider.value) }, { defer: true }))
+dimSlider.addEventListener('change', () => flush())
 
 let saveTimer: number | undefined
 let pendingSave: Settings | null = null

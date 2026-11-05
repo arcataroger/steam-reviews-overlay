@@ -44,14 +44,34 @@ test.describe('popup levers drive the overlay live', () => {
     await store.close()
   })
 
+  test('the dim slider sets how dark dimmed cards get, live', async ({ context, popup }) => {
+    const store = await context.newPage()
+    await store.goto('https://store.steampowered.com/search/?term=portal', { waitUntil: 'domcontentloaded' })
+    await settle(store)
+    const overlay = () =>
+      store.evaluate(() => {
+        const card = document.querySelector('[data-sro-card]')!
+        card.setAttribute('data-sro-filtered', 'dim')
+        return getComputedStyle(card, '::after').backgroundColor
+      })
+    await expect.poll(overlay).toBe('rgba(0, 0, 0, 0.5)')
+    await popup.bringToFront()
+    await popup.click('#configToggle')
+    await expect(popup.locator('#dimOpacity')).toHaveValue('50')
+    await popup.locator('#dimOpacity').fill('40')
+    await expect(popup.locator('#dimValue')).toHaveText(/40/)
+    await expect.poll(overlay).toBe('rgba(0, 0, 0, 0.4)')
+    await store.close()
+  })
+
   test('dim, hide, outline and park', async ({ context, popup }) => {
     const store = await context.newPage()
     await store.goto('https://store.steampowered.com/search/?term=survival', { waitUntil: 'domcontentloaded' })
     await settle(store)
 
-    // Both levers start parked
-    await expect(popup.locator('#pctFilter')).toHaveText('OFF')
-    await expect(popup.locator('#pctHighlight')).toHaveText('OFF')
+    // A new install starts at Mixed and Very Positive
+    await expect(popup.locator('#tierFilter')).toContainText('Mixed')
+    await expect(popup.locator('#tierHighlight')).toHaveText('Very Positive')
 
     // Filter lever to Very Positive, Dim
     await popup.click('button[data-mode="dim"]')

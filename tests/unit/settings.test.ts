@@ -151,6 +151,17 @@ describe('settings change events', () => {
     expect(seen).toEqual([5, 7])
   })
 
+  it('never lets the new defaults touch a save', async () => {
+    const { loadSettings, OFF_FILTER, OFF_HIGHLIGHT } = await import('../../src/settings')
+    const store = (globalThis as any).chrome.storage
+    const before = { mode: 'hide', threshold: OFF_FILTER, source: 'local', highlightThreshold: OFF_HIGHLIGHT, frameColor: null, sparkle: false }
+    await store.local.set({ 'sro:settings:v4': before, 'sro:settings:v4:t': Date.now() + 2000 })
+    // Parked levers stay parked, and a save from before the slider keeps the old darkness
+    expect(await loadSettings()).toEqual({ ...before, dimOpacity: 75 })
+    await store.local.set({ 'sro:settings:v4': { ...before, dimOpacity: 30 }, 'sro:settings:v4:t': Date.now() + 3000 })
+    expect((await loadSettings()).dimOpacity).toBe(30)
+  })
+
   it('a context that only loads settings still ignores echoes older than what it loaded', async () => {
     const { onSettingsChange, loadSettings, DEFAULT_SETTINGS } = await import('../../src/settings')
     const listeners: Array<(c: Record<string, { newValue?: unknown }>) => void> = []
@@ -259,5 +270,21 @@ describe('frame options', () => {
   it('defaults to the review color with the sparkle on, for settings saved before these options', () => {
     expect(DEFAULT_SETTINGS.frameColor).toBeNull()
     expect(DEFAULT_SETTINGS.sparkle).toBe(true)
+  })
+
+  it('starts a new install at Mixed, Very Positive and half dim', () => {
+    expect(DEFAULT_SETTINGS).toMatchObject({ mode: 'dim', threshold: 5, highlightThreshold: 8, dimOpacity: 50 })
+  })
+
+  it('keeps a dim opacity on the slider, and falls back to the default on junk', async () => {
+    const { parseDimOpacity } = await import('../../src/settings')
+    expect(parseDimOpacity(undefined)).toBe(50)
+    expect(parseDimOpacity('')).toBe(50)
+    expect(parseDimOpacity('dark')).toBe(50)
+    expect(parseDimOpacity(null)).toBe(50)
+    expect(parseDimOpacity(70)).toBe(70)
+    expect(parseDimOpacity(52)).toBe(50)
+    expect(parseDimOpacity(5)).toBe(20)
+    expect(parseDimOpacity(100)).toBe(95)
   })
 })

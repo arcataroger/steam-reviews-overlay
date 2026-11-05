@@ -75,6 +75,35 @@ test.describe('badges on Steam store pages', () => {
     await page.close()
   })
 
+  test('a recommendation block is one card, whatever its button links to', async ({ context }) => {
+    // A demo's "Visit Product Page" button can name a different appid from its capsule. That made
+    // the block look like two games: the title strip and the art each took a frame and a label.
+    const page = await context.newPage()
+    await page.goto('https://store.steampowered.com/', { waitUntil: 'domcontentloaded' })
+    await settle(page)
+    await page.evaluate(() => {
+      const px = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=='
+      const block = document.createElement('div')
+      block.className = 'home_content_single_ctn'
+      block.id = 'sro-test-block'
+      block.style.cssText = 'position:relative;width:1200px'
+      block.innerHTML =
+        '<div class="single_header_ctn" style="height:80px"><h2 class="single_title">A Demo</h2>' +
+        '<div class="home_content_reason">Since you wish for <a href="https://store.steampowered.com/app/70/Half_Life/">Half-Life</a></div>' +
+        '<div class="home_content single_buttonbar"><a class="btnv6_white_transparent" href="https://store.steampowered.com/app/620/Portal_2/">Visit Product Page</a></div></div>' +
+        `<div class="gamelink home_content_items" data-ds-appid="400"><a class="capsule_image_ctn" href="https://store.steampowered.com/app/400/Portal/"><img src="${px}" style="display:block;width:616px;height:294px"></a></div>`
+      document.body.appendChild(block)
+      block.scrollIntoView()
+    })
+    await page.waitForTimeout(4000)
+    const block = await page.evaluate(() => {
+      const el = document.getElementById('sro-test-block')!
+      return { self: el.getAttribute('data-sro-card'), inner: el.querySelectorAll('[data-sro-card]').length, labels: el.querySelectorAll('.sro-badge').length }
+    })
+    expect(block).toEqual({ self: '400', inner: 0, labels: 1 })
+    await page.close()
+  })
+
   test('a rotating carousel is labelled per slide, not as one card', async ({ context }) => {
     // Steam's content-hub carousel rotates a different game through one viewport every few seconds,
     // and only the current slide is in the DOM. The viewport therefore looked like a single game's

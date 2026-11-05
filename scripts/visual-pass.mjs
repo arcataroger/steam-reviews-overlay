@@ -25,6 +25,7 @@ if (isMain) {
 }
 // Chrome derives an unpacked extension's id from the SHA-256 of its path, so this follows the copy.
 const id = [...crypto.createHash('sha256').update(ext).digest('hex').slice(0, 32)].map((c) => String.fromCharCode(97 + parseInt(c, 16))).join('')
+const [vw, vh] = (process.env.SRO_VIEWPORT ?? '1400x1000').split('x').map(Number)
 const KEY = 'sro:settings:v4'
 const STATES = {
   labels: { mode: 'dim', threshold: 0, source: 'global', highlightThreshold: 10 },
@@ -56,6 +57,17 @@ export const CHECKS = () => {
       return '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('')
     }
     return null
+  }
+  // The part of a rect that clipping ancestors, up to the card, leave on screen
+  const visiblePart = (rect, el, card) => {
+    let { left, top, right, bottom } = rect
+    for (let a = el; a && a !== card.parentElement; a = a.parentElement) {
+      const cs = getComputedStyle(a)
+      const q = a.getBoundingClientRect()
+      if (cs.overflowX !== 'visible') { left = Math.max(left, q.left); right = Math.min(right, q.right) }
+      if (cs.overflowY !== 'visible') { top = Math.max(top, q.top); bottom = Math.min(bottom, q.bottom) }
+    }
+    return { left, top, right: Math.max(left, right), bottom: Math.max(top, bottom) }
   }
   const issues = []
   const cards = [...document.querySelectorAll('[data-sro-card]')]
@@ -89,7 +101,12 @@ export const CHECKS = () => {
           if (!n.textContent?.trim()) continue
           const range = document.createRange()
           range.selectNodeContents(n)
-          for (const g of range.getClientRects()) if (g.width && g.height && inter(br, g)) glyphHit = true
+          // Text past the edge of a clipping parent (a row's tag list) is not on screen to be covered
+          for (const g of range.getClientRects()) {
+            if (!g.width || !g.height) continue
+            const seen = visiblePart(g, el, card)
+            if (seen.right - seen.left > 1 && seen.bottom - seen.top > 1 && inter(br, seen)) glyphHit = true
+          }
         }
         if (glyphHit) { issues.push({ kind: 'badge-overlaps-text', name, badge: b.textContent.trim().slice(0, 30), with: t.slice(0, 30), cls: el.className?.toString().slice(0, 40) }); break }
       }
@@ -127,10 +144,12 @@ export const CHECKS = () => {
     const filtered = card.dataset.sroFiltered || null
     const highlight = card.dataset.sroHighlight || null
     const shape = card.dataset.sroShape || null
-    const axis = card.dataset.sroAxis || null
     const op = !!card.dataset.sroOp
     const color = highlight ? normalizeHexColor(getComputedStyle(card).getPropertyValue('--sro-hl')) : null
-    const rect = { x: Math.round(cr.left), y: Math.round(cr.top), w: Math.round(cr.width), h: Math.round(cr.height) }
+    // The frame can aim at a box other than the card; the pixels still judge whether it landed there
+    const off = (side) => parseFloat(card.style.getPropertyValue(`--sro-frame-${side}`)) || 0
+    const fr = { left: cr.left + off('left'), top: cr.top + off('top'), width: cr.width - off('left') - off('right'), height: cr.height - off('top') - off('bottom') }
+    const rect = { x: Math.round(fr.left), y: Math.round(fr.top), w: Math.round(fr.width), h: Math.round(fr.height) }
     const fullyVisible = rect.x >= 16 && rect.y >= 16 && rect.x + rect.w <= innerWidth - 16 && rect.y + rect.h <= innerHeight - 16
     // Steam's sticky category bar and its hover panels cover parts of cards that are still "visible"
     // by geometry. Probe just inside each edge: if the topmost element there isn't this card or one
@@ -154,7 +173,7 @@ export const CHECKS = () => {
           left: anyCovered(alongY(cr.left + 2)),
         }
       : { top: true, right: true, bottom: true, left: true }
-    sroCards.push({ appid, title, rect, score, tone, label, filtered, highlight, shape, axis, color, op, fullyVisible, occluded })
+    sroCards.push({ appid, title, rect, score, tone, label, filtered, highlight, shape, color, op, fullyVisible, occluded })
   }
   return { cards: cards.length, badges: document.querySelectorAll('.sro-badge').length, highlighted: document.querySelectorAll('[data-sro-highlight]').length, filtered: document.querySelectorAll('[data-sro-filtered]').length, issues, sroCards, sroDpr: devicePixelRatio, sroViewport: { width: innerWidth, height: innerHeight } }
 }
@@ -163,7 +182,7 @@ if (isMain) {
   const report = []
   for (const url of urls) {
     for (const [stateName, settings] of Object.entries(STATES)) {
-      const ctx = await chromium.launchPersistentContext('', { headless: false, args: [`--disable-extensions-except=${ext}`, `--load-extension=${ext}`, '--headless=new'], viewport: { width: 1400, height: 1000 }, locale: 'en-US' })
+      const ctx = await chromium.launchPersistentContext('', { headless: false, args: [`--disable-extensions-except=${ext}`, `--load-extension=${ext}`, '--headless=new'], viewport: { width: vw, height: vh }, locale: 'en-US' })
       const errors = []
       const pop = await ctx.newPage(); await pop.goto(`chrome-extension://${id}/src/popup/index.html`); await pop.evaluate((o) => chrome.storage.sync.set(o), { [KEY]: settings })
       const page = await ctx.newPage()

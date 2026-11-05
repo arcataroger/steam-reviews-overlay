@@ -207,5 +207,38 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Frame color",
+    "description": "Heading of the highlight frame color picker."
+  },
+  "frameAuto": {
+    "message": "Use each game's review color",
+    "description": "Tooltip of the swatch that drops the custom color."
+  },
+  "frameHue": {
+    "message": "Frame hue",
+    "description": "Screen-reader name of the hue slider."
+  },
+  "sparkle": {
+    "message": "Sparkle on $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    },
+    "description": "Checkbox for the orbiting lights. TIER is Steam's top review label."
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Title of the config screen and name of the gear button."
+  },
+  "back": {
+    "message": "Back",
+    "description": "Name of the button that leaves the config screen."
+  },
+  "sparkleHeading": {
+    "message": "Sparkle",
+    "description": "Section heading on the config screen."
   }
 }

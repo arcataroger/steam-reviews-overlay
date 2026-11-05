@@ -17,7 +17,8 @@ const root = path.resolve(import.meta.dirname, '..', '..')
 const { connectWithMaxRetries, findFreeTcpPort } = await import(path.join(root, 'node_modules', 'web-ext', 'lib', 'firefox', 'remote.js'))
 
 export const BROWSERS = ['chromium', 'firefox']
-export const profileDir = (browser) => path.join(root, `.${browser}-test-profile`)
+// SRO_PROFILE_DIR runs a second browser beside one already holding the kept profile
+export const profileDir = (browser) => process.env.SRO_PROFILE_DIR ?? path.join(root, `.${browser}-test-profile`)
 export const SETTINGS_KEY = 'sro:settings:v4'
 
 /** The browser named by `--browser <name>` (or `--browser=<name>`) in argv, default Chromium; argv minus the flag. */
@@ -52,18 +53,42 @@ function copyBuild(browser) {
 function bakeSettings(dir, settings) {
   const assets = path.join(dir, 'assets')
   const file = fs.readdirSync(assets).find((f) => /^settings-.*\.js$/.test(f))
-  const DEFAULTS = /mode:`dim`,threshold:0,source:`global`,highlightThreshold:10/
+  const DEFAULTS = /mode:`dim`,threshold:0,source:`global`,highlightThreshold:10(?:,frameColor:null,sparkle:!0)?/
   const src = file && fs.readFileSync(path.join(assets, file), 'utf8')
   if (!src || !DEFAULTS.test(src)) throw new Error('settings defaults not found in the Firefox build; update DEFAULTS in scripts/lib/browsers.mjs')
   const s = settings
-  fs.writeFileSync(path.join(assets, file), src.replace(DEFAULTS, `mode:\`${s.mode}\`,threshold:${s.threshold},source:\`${s.source}\`,highlightThreshold:${s.highlightThreshold}`))
+  fs.writeFileSync(path.join(assets, file), src.replace(DEFAULTS, `mode:\`${s.mode}\`,threshold:${s.threshold},source:\`${s.source}\`,highlightThreshold:${s.highlightThreshold},frameColor:${JSON.stringify(s.frameColor ?? null)},sparkle:${s.sparkle !== false}`))
+}
+
+/**
+ * Wait until the overlay has run on this page and its labels have stopped arriving. Returns the card
+ * count, or null when the content script never ran. Zero cards is a real answer; null is a failure.
+ * Poll rather than sleep: a fixed wait passes silently on a page the overlay never reached.
+ */
+export async function waitForOverlay(page, { timeout = 15000, quiet = 1500 } = {}) {
+  const ready = await page.waitForFunction(() => document.documentElement.dataset.sroReady, null, { timeout }).catch(() => null)
+  if (!ready) return null
+  const state = () => page.evaluate(() => `${document.querySelectorAll('[data-sro-card]').length}/${document.querySelectorAll('.sro-badge').length}`)
+  const deadline = Date.now() + timeout
+  let last = await state()
+  let since = Date.now()
+  while (Date.now() < deadline && Date.now() - since < quiet) {
+    await page.waitForTimeout(250)
+    const now = await state()
+    if (now !== last) {
+      last = now
+      since = Date.now()
+    }
+  }
+  return Number(last.split('/')[0])
 }
 
 /**
  * Launch `browser` on its kept profile. With `extension: true`, load a private copy of the current build;
- * with `settings`, start the overlay from those settings ({ mode, threshold, source, highlightThreshold }).
+ * with `prefs`, set Firefox preferences (font.minimum-size.x-western, say);
+ * with `settings`, start the overlay from those settings ({ mode, threshold, source, highlightThreshold, frameColor, sparkle }).
  */
-export async function launch(browser, { headless = true, extension = false, settings, viewport = { width: 1400, height: 1000 } } = {}) {
+export async function launch(browser, { headless = true, extension = false, settings, viewport = { width: 1400, height: 1000 }, prefs = {} } = {}) {
   const dir = extension ? copyBuild(browser) : null
   if (browser === 'chromium') {
     const args = ['--window-size=1400,1000']
@@ -90,6 +115,7 @@ export async function launch(browser, { headless = true, extension = false, sett
       'devtools.debugger.remote-port': port,
       'devtools.chrome.enabled': true,
       'devtools.debugger.prompt-connection': false,
+      ...prefs,
     },
   })
   if (dir) {

@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Χρώμα πλαισίου"
+  },
+  "frameAuto": {
+    "message": "Χρώμα κριτικών κάθε παιχνιδιού"
+  },
+  "frameHue": {
+    "message": "Απόχρωση πλαισίου"
+  },
+  "sparkle": {
+    "message": "Λάμψη στο $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Ρυθμίσεις"
+  },
+  "back": {
+    "message": "Πίσω"
+  },
+  "sparkleHeading": {
+    "message": "Λάμψη"
   }
 }

@@ -35,11 +35,12 @@ cards across the Steam store, so you don't have to hover every capsule.
   Negative, Mostly Negative, Mixed, Mostly Positive, Positive, Very Positive,
   Overwhelmingly Positive), each notch labeled with Steam's rule for it. Levers
   always rest on a tier. The shared notch labels sit between the levers and
-  the tick on each side is clickable for that lever; the flag/globe toggle in
-  the band below picks whether the levers judge by your language's score or
+  the tick on each side is clickable for that lever; the config screen (the
+  gear at the top right) picks whether the levers judge by your language's score or
   the all-languages score. The rails carry a gradient through Steam's three review colors,
   and the readouts sample it at the lever's position. Highlights on the store
-  use each game's own review color. Settings sync via `storage.sync` and apply live to open tabs.
+  use each game's own review color, or a frame color you pick on the config screen (the gear at the
+  top right). A checkbox there turns the Overwhelmingly Positive sparkle on or off. Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
   1. Summaries already rendered on the page are reused for an instant first
      paint (search rows carry the label, percent and count in a tooltip; the
@@ -159,6 +160,7 @@ npm run test:e2e         # Playwright: loads dist/chrome into Chromium, visits l
                          # the popup (dim / hide / outline / park) end to end
 npm run lint             # web-ext lint on the Firefox build
 npm run audit:home       # every visible game card on the home page carries a label (below)
+npm run check:overlaps   # no label covers text or leaves its card, at four widths and both font settings
 ```
 
 `audit:home` checks the outcome, not Steam's markup, so it catches layouts we have never seen.

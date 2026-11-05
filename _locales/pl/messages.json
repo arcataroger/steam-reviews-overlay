@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Kolor ramki"
+  },
+  "frameAuto": {
+    "message": "Użyj koloru recenzji każdej gry"
+  },
+  "frameHue": {
+    "message": "Odcień ramki"
+  },
+  "sparkle": {
+    "message": "Blask przy: $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Ustawienia"
+  },
+  "back": {
+    "message": "Wstecz"
+  },
+  "sparkleHeading": {
+    "message": "Blask"
   }
 }

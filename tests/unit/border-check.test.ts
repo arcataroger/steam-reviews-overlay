@@ -136,14 +136,8 @@ describe('expectedEdges', () => {
   it('card -> all true', () => {
     expect(expectedEdges({ shape: 'card' })).toEqual({ top: true, right: true, bottom: true, left: true })
   })
-  it('panel + axis:y -> left/right true, top/bottom false', () => {
-    expect(expectedEdges({ shape: 'panel', axis: 'y' })).toEqual({ top: false, right: true, bottom: false, left: true })
-  })
-  it('panel + axis:x -> top/bottom true, left/right false', () => {
-    expect(expectedEdges({ shape: 'panel', axis: 'x' })).toEqual({ top: true, right: false, bottom: true, left: false })
-  })
-  it('panel with no axis behaves like axis:y', () => {
-    expect(expectedEdges({ shape: 'panel' })).toEqual(expectedEdges({ shape: 'panel', axis: 'y' }))
+  it('a shape it does not know expects nothing, so a stale capture cannot pass with open sides', () => {
+    expect(expectedEdges({ shape: 'panel' })).toEqual({ top: false, right: false, bottom: false, left: false })
   })
 })
 
@@ -222,34 +216,24 @@ describe('checkCard: row and card treatments on a full 4-edge ring', () => {
     expect(result.ok).toBe(true)
     expect(result.edges.top.fraction).toBeGreaterThanOrEqual(0.6)
   })
-  it('also passes as a card (band straddles the edge, still covers the inward ring)', () => {
+  it('also passes as a card (the same ring, plus a glow outside the band)', () => {
     const result = checkCard(image, { shape: 'card', color: POSITIVE }, { pad: PAD })
     expect(result.ok).toBe(true)
   })
-  it('fails as panel-y: top and bottom are unexpected (stray) highlight', () => {
-    const result = checkCard(image, { shape: 'panel', axis: 'y', color: POSITIVE }, { pad: PAD })
-    expect(result.ok).toBe(false)
-    expect(result.edges.top.expected).toBe(false)
-    expect(result.edges.top.fraction).toBeGreaterThanOrEqual(0.5)
-    expect(result.edges.left.expected).toBe(true)
-    expect(result.edges.left.fraction).toBeGreaterThanOrEqual(0.6)
-  })
 })
 
-describe('checkCard: panel wings on left/right only', () => {
+describe('checkCard: a frame open on two sides', () => {
   const image = makeImage(W, H, gray)
   paintInwardRing(image, PAD, 2, [102, 192, 244], ['left', 'right'])
 
-  it('passes as panel-y', () => {
-    const result = checkCard(image, { shape: 'panel', axis: 'y', color: POSITIVE }, { pad: PAD })
-    expect(result.ok).toBe(true)
-  })
-  it('fails as row: top and bottom never got the highlight colour', () => {
-    const result = checkCard(image, { shape: 'row', color: POSITIVE }, { pad: PAD })
-    expect(result.ok).toBe(false)
-    expect(result.edges.top.fraction).toBeLessThan(0.6)
-    expect(result.edges.bottom.fraction).toBeLessThan(0.6)
-  })
+  for (const shape of ['row', 'card'] as const) {
+    it(`fails as ${shape}: top and bottom never got the highlight colour`, () => {
+      const result = checkCard(image, { shape, color: POSITIVE }, { pad: PAD })
+      expect(result.ok).toBe(false)
+      expect(result.edges.top.fraction).toBeLessThan(0.6)
+      expect(result.edges.bottom.fraction).toBeLessThan(0.6)
+    })
+  }
 })
 
 describe('checkCard: no highlight at all', () => {
@@ -331,9 +315,8 @@ describe('checkCard: op (orbiting) cards use a lower minHit', () => {
 })
 
 describe('checkCard: maxStray gap between "passes clean" and "fails as bleed"', () => {
-  function panelWithTopBottomStray(coverage: number) {
+  function parkedWithTopBottomStray(coverage: number) {
     const image = makeImage(W, H, gray)
-    paintInwardRing(image, PAD, 2, [102, 192, 244], ['left', 'right']) // the real, expected wings
     const bands = edgeBands(W, H, PAD, { band: 4, corner: 10, offset: 0 })
     paintAlongLine(image, bands.top[0], coverage, [102, 192, 244])
     paintAlongLine(image, bands.top[1], coverage, [102, 192, 244])
@@ -343,11 +326,11 @@ describe('checkCard: maxStray gap between "passes clean" and "fails as bleed"', 
   }
 
   it('a little stray bleed (0.3, below 0.5) does not fail the card', () => {
-    const result = checkCard(panelWithTopBottomStray(0.3), { shape: 'panel', axis: 'y', color: POSITIVE }, { pad: PAD })
+    const result = checkCard(parkedWithTopBottomStray(0.3), { shape: null, color: null }, { pad: PAD })
     expect(result.ok).toBe(true)
   })
   it('heavier stray bleed (0.7, above 0.5) does fail the card', () => {
-    const result = checkCard(panelWithTopBottomStray(0.7), { shape: 'panel', axis: 'y', color: POSITIVE }, { pad: PAD })
+    const result = checkCard(parkedWithTopBottomStray(0.7), { shape: null, color: null }, { pad: PAD })
     expect(result.ok).toBe(false)
     expect(result.edges.top.expected).toBe(false)
   })
@@ -449,16 +432,11 @@ describe('alpha-composited rings (pixelMatches)', () => {
 })
 
 describe('unexpected edges are policed against every tone', () => {
-  // A panel card is the one shape with both a colour and edges that must stay bare. Checking those
-  // edges only against the card's own tone let a ring in a DIFFERENT tone pass unnoticed.
-  it('fails a panel-y card with a wrong-tone ring on its bare top and bottom', () => {
+  // Checking a clean edge only against one tone let a ring in a DIFFERENT tone pass unnoticed.
+  it('fails a parked card with a ring in any tone', () => {
     const img = makeImage(W, H, gray)
-    const blue: [number, number, number] = [0x66, 0xc0, 0xf4]
-    const orange: [number, number, number] = [0xc8, 0x5e, 0x2d]
-    paintInwardRing(img, PAD, 3, blue, ['left', 'right']) // correct wings
-    paintInwardRing(img, PAD, 3, orange, ['top', 'bottom']) // must not be there, and is not our tone
-    const card = { shape: 'panel' as const, axis: 'y' as const, color: POSITIVE }
-    const res = checkCard(img, card, { pad: PAD })
+    paintInwardRing(img, PAD, 3, [0xc8, 0x5e, 0x2d], ['top', 'bottom'])
+    const res = checkCard(img, { shape: null, color: null }, { pad: PAD })
     expect(res.edges.left.pass).toBe(true)
     expect(res.edges.right.pass).toBe(true)
     expect(res.edges.top.pass).toBe(false)
@@ -468,8 +446,8 @@ describe('unexpected edges are policed against every tone', () => {
 })
 
 describe('edges touching a highlighted neighbour', () => {
-  // A neighbour's ring lands in our band and is absent from the un-highlighted twin too, so it can
-  // fake a stray ring OR mask a missing one. Neither direction is knowable: leave the edge unjudged.
+  // A neighbour's ring can land in the outside sweep of a card that must stay clean, and is absent
+  // from the un-highlighted twin too, so that edge is unknowable. Our own inside band stays clear.
   const blue: [number, number, number] = [0x66, 0xc0, 0xf4]
 
   it('does not pass a card whose own expected ring is missing on an unaffected edge', () => {
@@ -479,14 +457,21 @@ describe('edges touching a highlighted neighbour', () => {
     expect(checkCard(img, card, { pad: PAD }).ok).toBe(false)
   })
 
-  it('leaves an expected edge unjudged when a highlighted neighbour touches it', () => {
+  it('still judges an expected edge a neighbour touches: rings sit inside the box, out of its reach', () => {
     const img = makeImage(W, H, gray)
     paintInwardRing(img, PAD, 2, blue, ['right', 'bottom', 'left'])
     const card = { shape: 'row' as const, color: POSITIVE, neighbourHighlight: { top: true } }
     const res = checkCard(img, card, { pad: PAD })
+    expect(res.edges.top.pass).toBe(false)
+    expect(res.ok).toBe(false)
+  })
+
+  it('leaves a clean edge unjudged when a highlighted neighbour touches it', () => {
+    const img = makeImage(W, H, gray)
+    paintInwardRing(img, PAD, 3, blue, ['top'])
+    const res = checkCard(img, { shape: null, color: null, neighbourHighlight: { top: true } }, { pad: PAD })
     expect(res.edges.top.unverified).toBe(true)
-    expect(res.ok).toBe(true) // not judged rather than failed...
-    expect(res.edges.right.pass).toBe(true) // ...while the edges we can judge still are
+    expect(res.ok).toBe(true)
   })
 })
 
@@ -497,10 +482,8 @@ describe('an edge with nothing to sample is not judged', () => {
   it('reports an unsampleable expected edge as unverified, not a failure', () => {
     const pad = 4
     const img = makeImage(12 + pad * 2, 60 + pad * 2, [20, 20, 20]) // 12px wide: bottom edge has no room
-    const card = { color: '#66c0f4', highlight: 'positive', shape: 'panel' as const, axis: 'y' as const }
-    const res = checkCard(img, { ...card, neighbourHighlight: null }, { pad })
-    expect(res.edges.bottom.expected).toBe(false)
-    const wide = checkCard(img, { ...card, shape: 'panel' as const, axis: 'x' as const }, { pad })
+    const card = { color: '#66c0f4', highlight: 'positive', shape: 'row' as const }
+    const wide = checkCard(img, card, { pad })
     expect(wide.edges.top.expected).toBe(true)
     expect(wide.edges.top.unverified).toBe(true)
     expect(wide.edges.top.pass).toBe(true)

@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "สีกรอบ"
+  },
+  "frameAuto": {
+    "message": "ใช้สีบทวิจารณ์ของแต่ละเกม"
+  },
+  "frameHue": {
+    "message": "เฉดสีกรอบ"
+  },
+  "sparkle": {
+    "message": "ประกายสำหรับ $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "การตั้งค่า"
+  },
+  "back": {
+    "message": "กลับ"
+  },
+  "sparkleHeading": {
+    "message": "ประกาย"
   }
 }

@@ -17,29 +17,15 @@ export function inventHighlight(card) {
   return { ...card, shape: 'row', highlight: 'positive', color: '#66c0f4' }
 }
 
-/** Claim the wings run down the sides when they actually run across the top and bottom, or vice versa. */
-export function flipAxis(card) {
-  if (card.shape !== 'panel') return null
-  return { ...card, axis: card.axis === 'x' ? 'y' : 'x' }
-}
-
-/** Claim a ring on all four sides when only two are drawn. */
-export function panelToRow(card) {
-  if (card.shape !== 'panel') return null
-  return { ...card, shape: 'row', axis: null }
-}
-
 /** Claim the card is parked when a highlight is actually drawn on it. */
 export function dropHighlight(card) {
   if (!card.shape) return null
-  return { ...card, shape: null, axis: null, highlight: null, color: null }
+  return { ...card, shape: null, highlight: null, color: null }
 }
 
 export const FALSIFICATIONS = {
   'wrong-tone': wrongTone,
   'invent-highlight': inventHighlight,
-  'flip-axis': flipAxis,
-  'panel-to-row': panelToRow,
   'drop-highlight': dropHighlight,
 }
 

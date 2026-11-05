@@ -15,9 +15,10 @@ import {
   type FilterMode,
   type ScoreSource,
   mergeIncoming,
+  parseHexColor,
 } from '../settings'
 import { LANG_KEY, detectLang, langForLocale, type LangInfo } from '../lang'
-import { GRADIENT_CSS, toneColorAt } from '../tonecolor'
+import { GRADIENT_CSS, POSITIVE, toneColorAt, hueToHex, hexToHue } from '../tonecolor'
 import { t, tierName, tierRule, forceLocale } from '../i18n'
 import { STATUS_KEY, type Status } from '../steam'
 
@@ -90,6 +91,27 @@ const ui = {
 const notches = $<HTMLDivElement>('#notches')
 const modeGroup = $<HTMLDivElement>('#mode')
 const sourceGroup = $<HTMLDivElement>('#source')
+const frameSwatches = $<HTMLDivElement>('#frameSwatches')
+const frameHex = $<HTMLInputElement>('#frameHex')
+const frameHue = $<HTMLInputElement>('#frameHue')
+const sparkleBox = $<HTMLInputElement>('#sparkle')
+
+// The picker lives in the popup on purpose: a native <input type="color"> opens a separate window,
+// and Firefox can close the popup under it, losing the pick. The first swatch means "no custom color".
+const FRAME_PRESETS = ['', '#ffffff', '#ffd54a', '#5ddb6e', '#39e0e0', '#b388ff', '#ff6fb5', '#ff5252']
+for (const color of FRAME_PRESETS) {
+  const b = document.createElement('button')
+  b.type = 'button'
+  b.setAttribute('role', 'radio')
+  b.dataset.color = color
+  if (color) b.style.background = color
+  else b.classList.add('auto')
+  b.title = color || t('frameAuto')
+  b.setAttribute('aria-label', b.title)
+  frameSwatches.append(b)
+}
+frameHex.placeholder = POSITIVE
+$('#sparkleLabel').textContent = t('sparkle', tierName(9))
 
 let settings: Settings = { ...DEFAULT_SETTINGS }
 let loaded = false
@@ -101,7 +123,14 @@ const GATE_R = 112
 
 // Flag/language: what the content script detected on the last store page (Steam_Language cookie),
 // falling back to the browser locale until a store page has been visited.
+let lang: LangInfo
+function showSourceHint() {
+  const hint = settings.source === 'local' ? t('sourceLocalHint', lang.name) : t('sourceGlobalHint')
+  $('#sourceHint').textContent = `${hint} ${t('sourceLabelsNote')}`
+}
 function showLang(l: LangInfo) {
+  lang = l
+  showSourceHint()
   $('#srcFlag').textContent = l.flag
   const local = document.querySelector<HTMLButtonElement>('#source [data-source="local"]')!
   const global = document.querySelector<HTMLButtonElement>('#source [data-source="global"]')!
@@ -251,6 +280,17 @@ function render() {
     b.setAttribute('aria-checked', String(on))
     b.tabIndex = on ? 0 : -1
   }
+  showSourceHint()
+  const swatches = [...frameSwatches.querySelectorAll<HTMLButtonElement>('button')]
+  const picked = swatches.find((b) => b.dataset.color === (settings.frameColor ?? ''))
+  for (const b of swatches) {
+    b.setAttribute('aria-checked', String(b === picked))
+    b.tabIndex = b === (picked ?? swatches[0]) ? 0 : -1 // a slider color matches no swatch
+  }
+  // Never rewrite a control under the reader's hands
+  if (document.activeElement !== frameHex) frameHex.value = settings.frameColor ?? ''
+  if (document.activeElement !== frameHue) frameHue.value = String(hexToHue(settings.frameColor ?? POSITIVE))
+  sparkleBox.checked = settings.sparkle
 }
 
 /** Arrow keys move the selection within a radio group, as the radiogroup role promises. */
@@ -271,6 +311,42 @@ function radioKeys(group: HTMLElement, pick: (b: HTMLButtonElement) => void) {
 }
 radioKeys(modeGroup, (b) => update({ mode: b.dataset.mode as FilterMode }))
 radioKeys(sourceGroup, (b) => update({ source: b.dataset.source as ScoreSource }))
+// The gear swaps the ladder for the config screen. The ladder measures itself, which it can only do
+// while shown, so it re-fits on the way back.
+const configToggle = $<HTMLButtonElement>('#configToggle')
+const mainView = $<HTMLDivElement>('#mainView')
+const configView = $<HTMLDivElement>('#configView')
+function showConfig(open: boolean) {
+  mainView.hidden = open
+  configView.hidden = !open
+  configToggle.setAttribute('aria-expanded', String(open))
+  configToggle.title = t(open ? 'back' : 'settings')
+  configToggle.setAttribute('aria-label', configToggle.title)
+  $('#hdrTitle').textContent = t(open ? 'settings' : 'extName')
+  if (!open) fitLadder()
+}
+showConfig(false)
+configToggle.addEventListener('click', () => showConfig(!!configView.hidden))
+const pickSwatch = (b: HTMLButtonElement) => update({ frameColor: b.dataset.color || null })
+radioKeys(frameSwatches, pickSwatch)
+frameSwatches.addEventListener('click', (e) => {
+  const b = (e.target as HTMLElement).closest('button')
+  if (b) pickSwatch(b)
+})
+frameHex.addEventListener('input', () => {
+  const color = parseHexColor(frameHex.value)
+  frameHex.classList.toggle('invalid', !color && frameHex.value !== '')
+  if (color) update({ frameColor: color })
+  else if (!frameHex.value) update({ frameColor: null })
+})
+// Leaving the field drops a half-typed value and shows the color actually in force
+frameHex.addEventListener('blur', () => {
+  frameHex.classList.remove('invalid')
+  frameHex.value = settings.frameColor ?? ''
+})
+frameHue.addEventListener('input', () => update({ frameColor: hueToHex(Number(frameHue.value)) }, { defer: true }))
+frameHue.addEventListener('change', () => flush())
+sparkleBox.addEventListener('change', () => update({ sparkle: sparkleBox.checked }))
 
 let saveTimer: number | undefined
 let pendingSave: Settings | null = null

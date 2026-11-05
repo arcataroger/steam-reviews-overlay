@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Rahmenfarbe"
+  },
+  "frameAuto": {
+    "message": "Bewertungsfarbe jedes Spiels verwenden"
+  },
+  "frameHue": {
+    "message": "Farbton des Rahmens"
+  },
+  "sparkle": {
+    "message": "Funkeln bei „$TIER$“",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Einstellungen"
+  },
+  "back": {
+    "message": "Zurück"
+  },
+  "sparkleHeading": {
+    "message": "Funkeln"
   }
 }

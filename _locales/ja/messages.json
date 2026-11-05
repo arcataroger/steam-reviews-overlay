@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "枠の色"
+  },
+  "frameAuto": {
+    "message": "各ゲームのレビュー色を使用"
+  },
+  "frameHue": {
+    "message": "枠の色相"
+  },
+  "sparkle": {
+    "message": "$TIER$ をきらめかせる",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "back": {
+    "message": "戻る"
+  },
+  "sparkleHeading": {
+    "message": "きらめき"
   }
 }

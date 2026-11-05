@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Warna bingkai"
+  },
+  "frameAuto": {
+    "message": "Gunakan warna ulasan tiap game"
+  },
+  "frameHue": {
+    "message": "Rona bingkai"
+  },
+  "sparkle": {
+    "message": "Kilau pada $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Pengaturan"
+  },
+  "back": {
+    "message": "Kembali"
+  },
+  "sparkleHeading": {
+    "message": "Kilau"
   }
 }

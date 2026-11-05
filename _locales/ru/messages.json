@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Цвет рамки"
+  },
+  "frameAuto": {
+    "message": "Цвет обзоров каждой игры"
+  },
+  "frameHue": {
+    "message": "Оттенок рамки"
+  },
+  "sparkle": {
+    "message": "Блеск для «$TIER$»",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Настройки"
+  },
+  "back": {
+    "message": "Назад"
+  },
+  "sparkleHeading": {
+    "message": "Блеск"
   }
 }

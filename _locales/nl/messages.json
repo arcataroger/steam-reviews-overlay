@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Kaderkleur"
+  },
+  "frameAuto": {
+    "message": "Beoordelingskleur van elke game gebruiken"
+  },
+  "frameHue": {
+    "message": "Tint van kader"
+  },
+  "sparkle": {
+    "message": "Glinstering bij $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Instellingen"
+  },
+  "back": {
+    "message": "Terug"
+  },
+  "sparkleHeading": {
+    "message": "Glinstering"
   }
 }

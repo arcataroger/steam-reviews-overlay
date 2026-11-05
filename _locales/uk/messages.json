@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Колір рамки"
+  },
+  "frameAuto": {
+    "message": "Колір оглядів кожної гри"
+  },
+  "frameHue": {
+    "message": "Відтінок рамки"
+  },
+  "sparkle": {
+    "message": "Блиск для «$TIER$»",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Налаштування"
+  },
+  "back": {
+    "message": "Назад"
+  },
+  "sparkleHeading": {
+    "message": "Блиск"
   }
 }

@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "邊框顏色"
+  },
+  "frameAuto": {
+    "message": "使用每款遊戲的評論顏色"
+  },
+  "frameHue": {
+    "message": "邊框色相"
+  },
+  "sparkle": {
+    "message": "為「$TIER$」加上閃光",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "back": {
+    "message": "返回"
+  },
+  "sparkleHeading": {
+    "message": "閃光"
   }
 }

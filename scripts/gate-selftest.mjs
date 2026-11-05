@@ -44,11 +44,15 @@ for (const mode of Object.keys(FALSIFICATIONS)) {
   }
   const results = JSON.parse(fs.readFileSync(jsonPath, 'utf8'))
   const caught = new Set(results.filter((r) => !r.ok).map((r) => r.file))
-  const hit = falsified.filter((f) => caught.has(f)).length
-  const rate = hit / falsified.length
+  // Only a card the gate actually judged can catch a lie. A card with no baseline twin, or with
+  // every edge unjudged, says nothing about the gate either way, so it stays out of the rate.
+  const judged = new Set(results.filter((r) => Object.values(r.edges ?? {}).some((e) => !e.unverified)).map((r) => r.file))
+  const tested = falsified.filter((f) => judged.has(f))
+  const hit = tested.filter((f) => caught.has(f)).length
+  const rate = tested.length ? hit / tested.length : 0
   const ok = rate >= min
   if (!ok) bad++
-  console.log(`${mode}: ${hit}/${falsified.length} falsified cards caught (${(rate * 100).toFixed(0)}%) ${ok ? 'OK' : `TOO LOW, want ${(min * 100).toFixed(0)}%`}`)
+  console.log(`${mode}: ${hit}/${tested.length} judged falsified cards caught (${(rate * 100).toFixed(0)}%), ${falsified.length - tested.length} unjudged ${ok ? 'OK' : `TOO LOW, want ${(min * 100).toFixed(0)}%`}`)
   fs.rmSync(dir, { recursive: true, force: true })
 }
 

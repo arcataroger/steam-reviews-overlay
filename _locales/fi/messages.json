@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Kehyksen väri"
+  },
+  "frameAuto": {
+    "message": "Käytä kunkin pelin arvosteluväriä"
+  },
+  "frameHue": {
+    "message": "Kehyksen sävy"
+  },
+  "sparkle": {
+    "message": "Kimallus: $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Asetukset"
+  },
+  "back": {
+    "message": "Takaisin"
+  },
+  "sparkleHeading": {
+    "message": "Kimallus"
   }
 }

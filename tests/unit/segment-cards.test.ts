@@ -39,13 +39,9 @@ describe('treatmentString', () => {
   it('is "none" when not highlighted', () => {
     expect(treatmentString(baseCard())).toBe('none')
   })
-  it('is the shape alone for row and card (no axis)', () => {
+  it('is the shape alone for row and card', () => {
     expect(treatmentString(baseCard({ highlight: 'positive', shape: 'row' }))).toBe('row')
     expect(treatmentString(baseCard({ highlight: 'positive', shape: 'card' }))).toBe('card')
-  })
-  it('is shape-axis for panel', () => {
-    expect(treatmentString(baseCard({ highlight: 'positive', shape: 'panel', axis: 'y' }))).toBe('panel-y')
-    expect(treatmentString(baseCard({ highlight: 'positive', shape: 'panel', axis: 'x' }))).toBe('panel-x')
   })
   it('appends -dim when filtered is dim', () => {
     expect(treatmentString(baseCard({ filtered: 'dim' }))).toBe('none-dim')
@@ -56,7 +52,7 @@ describe('treatmentString', () => {
     expect(treatmentString(baseCard({ filtered: 'hiding' }))).toBe('none-hide')
   })
   it('appends -op when op is true, after the filtered suffix', () => {
-    expect(treatmentString(baseCard({ highlight: 'positive', shape: 'panel', axis: 'y', op: true }))).toBe('panel-y-op')
+    expect(treatmentString(baseCard({ highlight: 'positive', shape: 'card', op: true }))).toBe('card-op')
     expect(treatmentString(baseCard({ highlight: 'positive', shape: 'row', filtered: 'dim', op: true }))).toBe('row-dim-op')
   })
 })
@@ -108,9 +104,9 @@ describe('colourSegment', () => {
 describe('buildFileName', () => {
   it('assembles every segment in order', () => {
     const used = new Set<string>()
-    const card = baseCard({ highlight: 'positive', shape: 'panel', axis: 'y' })
+    const card = baseCard({ highlight: 'positive', shape: 'card' })
     const name = buildFileName({ slug: 'home', state: 'active', stop: 3, card }, used)
-    expect(name).toBe('home__active__3__app620__portal-2__t9-overwhelmingly-positive__panel-y__66c0f4.png')
+    expect(name).toBe('home__active__3__app620__portal-2__t9-overwhelmingly-positive__card__66c0f4.png')
   })
   it('slugifies the slug/state segments too', () => {
     const used = new Set<string>()
@@ -214,19 +210,12 @@ describe('neighbourHighlights', () => {
   })
 })
 
-describe('neighbourHighlights only counts a neighbour that paints the facing edge', () => {
-  // Two stacked panel/axis:y cards draw wings on their left and right only, so neither paints the
-  // horizontal edge they share. Treating that edge as contaminated would suppress the very check
-  // that catches a wing drawn on the wrong axis.
-  const me = { appid: 1, rect: { x: 100, y: 100, w: 200, h: 50 }, shape: 'panel', axis: 'y' }
-  const above = (shape: string, axis?: string) => ({ appid: 2, rect: { x: 100, y: 50, w: 200, h: 50 }, shape, axis })
+describe('neighbourHighlights counts any highlighted neighbour', () => {
+  const me = { appid: 1, rect: { x: 100, y: 100, w: 200, h: 50 }, shape: 'row' }
+  const above = (shape: string | null) => ({ appid: 2, rect: { x: 100, y: 50, w: 200, h: 50 }, shape })
 
-  it('ignores a panel-y neighbour above, which paints no bottom wing', () => {
-    expect(neighbourHighlights(me, [me, above('panel', 'y')], 12).top).toBe(false)
-  })
-
-  it('counts a panel-x neighbour above, which does paint its bottom wing', () => {
-    expect(neighbourHighlights(me, [me, above('panel', 'x')], 12).top).toBe(true)
+  it('ignores a parked neighbour above', () => {
+    expect(neighbourHighlights(me, [me, above(null)], 12).top).toBe(false)
   })
 
   it('counts a row or card neighbour above, which paint every edge', () => {

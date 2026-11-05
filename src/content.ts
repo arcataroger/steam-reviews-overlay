@@ -3,6 +3,7 @@ import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, ingestSteam
 import { seedFromSearchRows, seedFromInlineJson } from './seed'
 import { detectLang, LANG_KEY, type LangInfo } from './lang'
 import { toneColorAt } from './tonecolor'
+import { thumbIcons } from './thumb'
 import { t } from './i18n'
 
 const ext: typeof chrome = (globalThis as any).browser ?? chrome
@@ -51,6 +52,9 @@ const EXCLUDE_SELECTOR = [
 
 /** Capsules narrower than this have no room for a text label; they still get filtered/highlighted. */
 const MIN_LABEL_WIDTH = 120
+/** Below these, words have no chance whatever the language. Thumbs are the last resort. */
+const MIN_WORDS_WIDTH = 130
+const MIN_WORDS_HEIGHT = 30
 
 /** Price-ish elements, roughly ordered from most to least specific. */
 const PRICE_SELECTORS = [
@@ -208,11 +212,24 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
     // package capsule looked like one game and the whole column became the card: on the homepage
     // the Death Stranding capsule's ring wrapped an unrelated package's capsule below it.
     if (card && hasOtherProductTile(el, card, appid)) break
+    // A calendar day holding one game is that game plus a date and empty space: the tile is the card
+    if (card && isMostlyEmptyWrapper(el, card, rect)) break
     card = el
     el = el.parentElement
     hops++
   }
   return card
+}
+
+/** Does `outer` only add a short heading above `inner`, at about the same width? */
+function isMostlyEmptyWrapper(outer: HTMLElement, inner: HTMLElement, r: DOMRect): boolean {
+  const q = inner.getBoundingClientRect()
+  if (r.height < q.height * 1.15 || r.width >= q.width * 1.3) return false
+  if (textOutsideBadges(outer).length - textOutsideBadges(inner).length >= 25) return false
+  // A price or title beside or below the tile belongs to the card; a date above it does not
+  return ![...outer.children].some(
+    (k) => !k.contains(inner) && !k.classList.contains(BADGE_CLASS) && k.textContent?.trim() && k.getBoundingClientRect().bottom > q.top,
+  )
 }
 
 /** Text content of `el` ignoring anything inside our badges. */
@@ -283,7 +300,8 @@ function line(sc: Score, icon: string, scope: string, cls: string): HTMLSpanElem
     i.textContent = icon
     l.appendChild(i)
   }
-  l.appendChild(document.createTextNode(sc.label || t('notEnoughReviews')))
+  // Steam's own English label doesn't drop the plural for a single review
+  l.appendChild(document.createTextNode(sc.label?.replace(/^1 user reviews$/, '1 user review') || t('notEnoughReviews')))
   return l
 }
 
@@ -314,11 +332,9 @@ function makeBadge(summary: ReviewSummary): HTMLSpanElement {
 }
 
 /**
- * How to draw a highlight:
- *  card  – capsule that is mostly artwork, or a hero-sized card: faint glow behind it
- *  row   – compact listing row (search results, tab rows): crisp inset rectangle
- *  panel – tall card either stacked vertically with others (wings on the sides) or packed
- *          edge-to-edge in a carousel (wings top and bottom): adjacent rectangles would fuse
+ * Every highlight draws the same closed ring. The shape survives for custom styles and the harness:
+ *  card – capsule that is mostly artwork, or a hero-sized card
+ *  row  – everything else
  */
 /**
  * Would an underglow drawn OUTSIDE this card's box be cut off? Steam's carousels are clipping
@@ -340,43 +356,153 @@ function glowWouldClip(card: HTMLElement, r: DOMRect): boolean {
   return false
 }
 
-function highlightShape(card: HTMLElement): { shape: 'card' | 'row' | 'panel'; axis?: 'x' | 'y' } {
+/** The home page's stacked recommendation panels, each an empty band above its content box. */
+const STACKED_PANEL = '.home_content_single_ctn'
+
+/**
+ * The box a card's frame and dim overlay should cover, when that is not the card itself.
+ *  - Stacked panels butt against each other, so a frame round the whole card touches the next one.
+ *    Framing the content box leaves the empty band above it as a gap.
+ *  - A rotating hero's card is only the capsule link: the slide is the video and details beside it
+ *    too. Steam recycles those nodes, so the claim stays on the link and the frame reaches out.
+ */
+function frameBox(card: HTMLElement): Element | null {
+  if (isTableRow(card)) return null
+  // An app page's "Similar to games you've played": one small capsule in a wide row
+  if (card.matches('.similar_recent_apps_container')) return card.querySelector(':scope > .similarapp')
+  // A curator's review card: the game is the capsule, and the review below runs to the card's edge
+  if (card.querySelector(':scope > .review_direction')) return card.querySelector(':scope > a.store_capsule')
+  if (card.matches(STACKED_PANEL)) return card.querySelector(':scope > .home_content')
+  if (card.closest(ROTATING_CAROUSEL)) {
+    for (let el = card.parentElement; el; el = el.parentElement) {
+      if (el.querySelector(':scope > .AppVideoCtn')) return el
+      if (el.matches(ROTATING_CAROUSEL)) break
+    }
+  }
+  return innerTile(card)
+}
+
+/**
+ * Many cards are padded slots, or a heading over the tile a reader sees. A frame on the slot floats
+ * in the gutter, and a carousel can clip its bottom edge. Walk down to the box that still holds the
+ * artwork and nearly all the words. A box of artwork alone is not the tile: its price strip is left out.
+ */
+function innerTile(card: HTMLElement): Element | null {
+  const art = largestArt(card)
+  if (!art) return null
+  const cr = card.getBoundingClientRect()
+  const words = (el: Element) => (el.textContent ?? '').length
+  const area = (q: DOMRect) => q.width * q.height
+  const ours = (el: Element) => el.classList.contains(BADGE_CLASS) || el.classList.contains(ORBIT_CLASS)
+  const midX = art.left + art.width / 2
+  const midY = art.top + art.height / 2
+  let tile: Element = card
+  for (let depth = 0; depth < 4; depth++) {
+    const next = [...tile.children].find((k) => {
+      if (ours(k)) return false
+      const q = k.getBoundingClientRect()
+      return midX > q.left && midX < q.right && midY > q.top && midY < q.bottom && area(q) >= 0.55 * area(cr) && words(k) >= 0.6 * words(card)
+    })
+    if (!next) break
+    tile = next
+  }
+  if (tile === card) return null
+  const q = tile.getBoundingClientRect()
+  return q.left - cr.left >= 3 || cr.right - q.right >= 3 || q.top - cr.top >= 3 || cr.bottom - q.bottom >= 3 ? tile : null
+}
+
+const FRAME_SIDES = ['top', 'right', 'bottom', 'left'] as const
+
+/** Point the frame and dim at frameBox, as offsets from the card's own edges (negative reaches outside it). */
+function setFrame(card: HTMLElement) {
+  const box = frameBox(card)?.getBoundingClientRect()
   const r = card.getBoundingClientRect()
-  if (!r.width || !r.height) return { shape: 'row' }
+  const offsets = box && { top: box.top - r.top, right: r.right - box.right, bottom: r.bottom - box.bottom, left: box.left - r.left }
+  for (const side of FRAME_SIDES) {
+    if (offsets) card.style.setProperty(`--sro-frame-${side}`, `${Math.round(offsets[side])}px`)
+    else card.style.removeProperty(`--sro-frame-${side}`)
+  }
+}
+
+function clearFrame(card: HTMLElement) {
+  for (const side of FRAME_SIDES) card.style.removeProperty(`--sro-frame-${side}`)
+}
+
+/**
+ * Steam floats small controls over a card's edge from outside it: the calendar's "+3 More" sits on a
+ * day's last tile with no z-index, so our frame, label and dim overlay all paint over it. Lift any
+ * such control above them. It is Steam's own control, so it keeps working and only its order changes.
+ */
+function raiseOverhangs(card: HTMLElement) {
+  const r = card.getBoundingClientRect()
+  let inside: Element = card
+  for (let el = card.parentElement, i = 0; el && i < 4; inside = el, el = el.parentElement, i++) {
+    for (const other of el.children) {
+      if (other === inside || !(other instanceof HTMLElement) || other.dataset.sroRaised) continue
+      if (getComputedStyle(other).position !== 'absolute') continue
+      const q = other.getBoundingClientRect()
+      const small = q.width * q.height < 0.25 * r.width * r.height
+      if (small && q.left < r.right && q.right > r.left && q.top < r.bottom && q.bottom > r.top) {
+        other.dataset.sroRaised = '1'
+        other.style.zIndex = '32' // above the dim overlay (30) and a dimmed label (31)
+      }
+    }
+  }
+}
+
+/**
+ * "DLC For <game>": a short strip under a DLC tile, naming the base game. The reader already owns
+ * that game and the tile above is the product, so the strip is context and gets no treatment. Matched
+ * by shape, because its classes are hashed and its words are translated.
+ */
+function isBaseGameStrip(card: HTMLElement, r: DOMRect, appid: number): boolean {
+  const tile = card.previousElementSibling
+  if (!(tile instanceof HTMLElement) || r.height >= 70) return false
+  const q = tile.getBoundingClientRect()
+  const directlyBelow = r.top >= q.bottom - 4 && r.top - q.bottom < 24
+  const ids = appIdsWithin(tile, 2)
+  return directlyBelow && q.height >= r.height * 2 && ids.size > 0 && !ids.has(appid)
+}
+
+const isTableRow = (card: HTMLElement) => card.tagName === 'TR'
+
+/**
+ * Where a card's absolutely positioned decorations go. Never straight into a <tr>: Firefox gives
+ * such a child an anonymous cell, which pushes that row's cells along a column, so the charts' rows
+ * stopped lining up. Inside a static cell they still position against the row.
+ */
+function decorationHost(card: HTMLElement): HTMLElement {
+  return (isTableRow(card) && card.querySelector<HTMLElement>(':scope > td')) || card
+}
+
+function highlightShape(card: HTMLElement): 'card' | 'row' {
+  const r = card.getBoundingClientRect()
+  if (!r.width || !r.height || isTableRow(card)) return 'row'
+  // Its glow would hang off the card's top, a band away from a frame that starts lower down
+  if (card.matches(STACKED_PANEL)) return 'row'
   // A slide inside the rotating content-hub carousel sits flush against the widget's own furniture:
-  // the video on one side, the info panel on the other, the clipping viewport around all of it. The
-  // outside glow lost two or three of its edges there, so draw the ring inside the slide instead.
-  if (card.closest(ROTATING_CAROUSEL)) return { shape: 'row' }
-  const tall = r.height >= 160
-  // Neighbours beside this card: edge-to-edge tiles (events carousels) get wings top/bottom whatever
-  // the art; overlapping slides (hero carousels, peeking neighbours) are hero cards → underglow.
-  if (tall) {
+  // the video on one side, the info panel on the other, the clipping viewport around all of it.
+  if (card.closest(ROTATING_CAROUSEL)) return 'row'
+  // Neighbours beside a tall card: overlapping slides (hero carousels, peeking neighbours) are hero
+  // cards; tiles packed side by side leave no room for a glow. Steam's 12px grid gap measures
+  // anywhere around 12 at fractional zoom, so the bound sits clear of it: one row must not mix looks.
+  if (r.height >= 160) {
     for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
       if (!(sib instanceof HTMLElement)) continue
       const q = sib.getBoundingClientRect()
       if (!q.width || !q.height) continue
       const beside = Math.abs(q.left - r.left) > Math.abs(q.top - r.top)
       const gap = q.left > r.left ? q.left - r.right : r.left - q.right
-      if (beside && gap < -20) return { shape: 'card' }
-      if (beside && gap >= 0 && gap < 12) return { shape: 'panel', axis: 'x' }
+      if (beside && gap < -20) return 'card'
+      if (beside && gap >= 0 && gap < 12.5) return 'row'
       break
     }
   }
-  if (r.width >= 1100) return { shape: 'card' } // hero carousels: underglow
-  // An underglow that a clipping ancestor would shave off is worse than no underglow: use the ring.
-  if (glowWouldClip(card, r)) return { shape: 'row' }
+  if (r.width >= 1100) return 'card' // hero carousels
+  // A glow that a clipping ancestor would shave off reads as stray slivers: the ring alone is cleaner.
+  if (glowWouldClip(card, r)) return 'row'
   const art = largestArt(card)
-  if (art && (art.width * art.height) / (r.width * r.height) > 0.5) return { shape: 'card' }
-  if (!tall) return { shape: 'row' }
-  // Tall text-heavy card: wings on the sides when stacked vertically; rectangle when spaced out beside others
-  for (const sib of [card.nextElementSibling, card.previousElementSibling]) {
-    if (!(sib instanceof HTMLElement)) continue
-    const q = sib.getBoundingClientRect()
-    if (!q.width || !q.height) continue
-    const beside = Math.abs(q.left - r.left) > Math.abs(q.top - r.top)
-    return beside ? { shape: 'row' } : { shape: 'panel', axis: 'y' }
-  }
-  return { shape: 'panel', axis: 'y' }
+  return art && (art.width * art.height) / (r.width * r.height) > 0.5 ? 'card' : 'row'
 }
 
 /** Where Steam already reserves a spot for reviews (search rows: the thumbs icon column), sit there. */
@@ -387,8 +513,44 @@ function findReviewSlot(card: HTMLElement): HTMLElement | null {
 }
 
 function placeBadge(card: HTMLElement, summary: ReviewSummary) {
+  placeBadgeOnCard(card, summary)
+  const inline = card.querySelector<HTMLElement>(`.${BADGE_CLASS}.sro-inline`)
+  if (inline && card.dataset.sroFiltered === 'dim') liftAboveDim(card, inline)
+}
+
+/**
+ * Steam's price strips are often stacking contexts of their own, which trap an inline label under
+ * the dim overlay however high its z-index goes. The label is why the card is dimmed, so move it up
+ * to the card, on the spot it already holds.
+ */
+function liftAboveDim(card: HTMLElement, badge: HTMLElement) {
+  const b = badge.getBoundingClientRect()
+  const r = card.getBoundingClientRect()
+  // Hold its place, or the price beside it slides under the lifted label
+  const spacer = document.createElement('span')
+  spacer.className = 'sro-spacer'
+  spacer.style.width = `${b.width}px`
+  spacer.style.height = `${b.height}px`
+  badge.replaceWith(spacer)
+  badge.classList.remove('sro-inline', 'sro-beside-native', 'sro-beside-title')
+  badge.classList.add('sro-lifted')
+  badge.style.left = `${Math.round(b.left - r.left)}px`
+  badge.style.top = `${Math.round(b.top - r.top)}px`
+  ensureContainingBlock(card)
+  decorationHost(card).appendChild(badge)
+}
+
+/** Does a rotating hero's slide already print this rating, as "Very Positive (126 User Reviews)"? */
+function heroPrintsSummary(card: HTMLElement, summary: ReviewSummary): boolean {
+  const slide = card.closest(ROTATING_CAROUSEL) ? frameBox(card) : null
+  const labels = new Set([summary.local?.label, summary.global?.label].filter(Boolean))
+  if (!(slide instanceof HTMLElement) || labels.size !== 1) return false
+  return textOutsideBadges(slide).includes(`${[...labels][0]} (`)
+}
+
+function placeBadgeOnCard(card: HTMLElement, summary: ReviewSummary) {
   if (!card.isConnected) return
-  card.querySelectorAll(`.${BADGE_CLASS}`).forEach((n) => n.remove())
+  card.querySelectorAll(`.${BADGE_CLASS}, .sro-spacer`).forEach((n) => n.remove())
   lowerPrices(card)
   const pick = chosen(summary)
   card.dataset.sroTone = toneFor(pick?.score ?? 0)
@@ -401,10 +563,16 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
   // from measurements: against an all-zero rect the bounds and collision checks pass trivially and
   // a badge is left wherever it lands. Revalidate/reapply places it once the card is visible again.
   if (!card.getClientRects().length) return
+  if (card.dataset.sroFiltered !== 'dim' && heroPrintsSummary(card, summary)) return
+  if (isTableRow(card)) {
+    placeInRow(card, makeBadge(summary))
+    return
+  }
   const native = nativeSummaryEl(card)
   if (native) {
     const mismatch = summary.local && summary.global && summary.local.label !== summary.global.label
-    if (!mismatch) return
+    // Steam's printed summary dims with the card, which would hide the reason it is dimmed
+    if (!mismatch && card.dataset.sroFiltered !== 'dim') return
     const badge = makeBadge(summary)
     badge.classList.add('sro-inline', 'sro-beside-native')
     const before = card.getBoundingClientRect()
@@ -419,19 +587,24 @@ function placeBadge(card: HTMLElement, summary: ReviewSummary) {
     }
     return
   }
+  // The Discovery Queue names one game in a multi-game widget, and has nowhere to put a label
+  if (card.matches('.discovery_queue_static')) return
   const badge = makeBadge(summary)
 
   const slot = findReviewSlot(card)
   if (slot) {
     badge.classList.add('sro-slot')
     slot.appendChild(badge)
+    // A two-line pair sits on the bottom line of a row that clips its overflow: lift it inside
+    const spill = badge.getBoundingClientRect().bottom - card.getBoundingClientRect().bottom + 4
+    if (spill > 0) badge.style.translate = `0 ${-Math.ceil(spill)}px`
     return
   }
 
   // Tiny capsules (bundle-contents strips) have no room for text
   if (card.getBoundingClientRect().width < MIN_LABEL_WIDTH) return
 
-  const price = findPriceEl(card)
+  const price = usesThumbs(card) ? null : findPriceEl(card)
   if (price) {
     // Measure the whole price block, not just the final-price line, so a lifted chip clears the
     // strikethrough/discount lines too.
@@ -505,7 +678,10 @@ function clipToAncestors(r: DOMRect, from: HTMLElement | null, card: HTMLElement
 function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   const br = badge.getBoundingClientRect()
   const cr = card.getBoundingClientRect()
-  const cardArea = Math.max(1, cr.width * cr.height)
+  // Artwork is judged against the smaller of card and tile: a capsule is a small share of a wide row
+  // that holds it, and of a hero slide framed around it, yet it is still what a label sits on
+  const seen = frameBox(card)?.getBoundingClientRect() ?? cr
+  const cardArea = Math.max(1, Math.min(seen.width * seen.height, cr.width * cr.height))
   const out: DOMRect[] = []
   // Touching counts as a collision too: keep a few pixels of air around text and icons
   const GAP = 4
@@ -513,6 +689,7 @@ function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   // Icons, buttons and small artwork: whole-tile art and wrappers are what a chip sits on, not obstacles
   for (const el of card.querySelectorAll<HTMLElement>('img, svg, video, button, [role="button"]')) {
     if (badge.contains(el) || el.classList.contains(ORBIT_CLASS)) continue
+    if (el.matches(`${STACKED_PANEL} .screenshots img`)) continue // the art a stacked panel's chip sits on
     const er = el.getBoundingClientRect()
     if (!er.width || !er.height) continue
     if ((er.width * er.height) / cardArea > 0.33) continue
@@ -551,7 +728,7 @@ function largestArt(card: HTMLElement): DOMRect | null {
 const within = (br: DOMRect, cr: DOMRect) => br.left >= cr.left - 2 && br.right <= cr.right + 2 && br.top >= cr.top - 2 && br.bottom <= cr.bottom + 2
 
 /**
- * Our ring, wings and dim overlay are absolutely positioned pseudo-elements, and a corner chip is an
+ * Our ring and dim overlay are absolutely positioned pseudo-elements, and a corner chip is an
  * absolutely positioned child, so the card has to be a containing block. Only a statically
  * positioned card needs help: forcing `relative` on a card Steam made sticky/absolute/fixed would
  * move it. The flag is remembered so stripCard can undo exactly what we did.
@@ -572,11 +749,158 @@ function lowerPrices(card: HTMLElement) {
   }
 }
 
+/** A card this small, or a label this long for it, has no room for words in any language. */
+function tooTightForWords(badge: HTMLElement, cr: DOMRect): boolean {
+  if (cr.width < MIN_WORDS_WIDTH || cr.height < MIN_WORDS_HEIGHT) return true
+  return [...badge.querySelectorAll<HTMLElement>('.sro-line')].some((l) => l.scrollWidth > l.clientWidth)
+}
+
+/**
+ * The list a card belongs to: the nearest ancestor holding another card of the same kind. Words and
+ * thumbs never mix inside one, so a reader can compare a row at a glance.
+ */
+function sectionOf(card: HTMLElement): HTMLElement | null {
+  const kind = (el: Element) => `${el.tagName}.${el.classList[0] ?? ''}`
+  for (let el = card.parentElement, i = 0; el && i < 5; el = el.parentElement, i++) {
+    for (const other of el.querySelectorAll<HTMLElement>(`[${CARD_ATTR}]`)) {
+      if (other !== card && kind(other) === kind(card)) return el
+    }
+  }
+  return card.parentElement
+}
+
+/** Sections that have fallen back to thumbs. Once one card cannot take words, none of them do. */
+const thumbSections = new WeakSet<HTMLElement>()
+const usesThumbs = (card: HTMLElement) => {
+  const section = sectionOf(card)
+  return !!section && thumbSections.has(section)
+}
+
+/** Swap the words for thumbs. The words stay in the DOM, and in the hover label. */
+function abbreviate(badge: HTMLElement) {
+  const score = Number(badge.dataset.sroScore)
+  if (!score) return // no Steam score, nothing to draw
+  const lines = [...badge.querySelectorAll<HTMLElement>('.sro-line')]
+  const words = lines.map((l) => l.textContent).join(' · ')
+  const thumbs = document.createElement('span')
+  thumbs.className = `sro-thumbs sro-${toneFor(score)}`
+  // One paragraph per score, each led by the mark its label line uses
+  const scores = lines.flatMap((l) => l.title.split('\n'))
+  thumbs.dataset.sroTip = scores.map((text) => `${text.startsWith(t('allLanguages')) ? '🌐' : lang.flag} ${text}`).join('\n')
+  thumbs.setAttribute('role', 'img')
+  thumbs.setAttribute('aria-label', words)
+  thumbs.append(...thumbIcons(score))
+  badge.classList.add('sro-compact')
+  badge.prepend(thumbs)
+}
+
+/**
+ * The hover label for thumbs. One element on the page root, placed from the thumbs' position on
+ * screen: inside a card it would be cut off by whatever clips that card, and Steam clips a lot.
+ */
+let thumbTip: HTMLElement | null = null
+
+function showThumbTip(thumbs: HTMLElement) {
+  if (!thumbTip) {
+    thumbTip = document.createElement('div')
+    thumbTip.className = 'sro-tip'
+    thumbTip.setAttribute('role', 'tooltip')
+    document.documentElement.appendChild(thumbTip)
+  }
+  thumbTip.replaceChildren(
+    ...(thumbs.dataset.sroTip ?? '').split('\n').map((text) => {
+      const score = document.createElement('p')
+      score.textContent = text
+      return score
+    }),
+  )
+  thumbTip.style.color = getComputedStyle(thumbs).getPropertyValue('--sro-thumb')
+  thumbTip.hidden = false
+  const at = thumbs.getBoundingClientRect()
+  const tip = thumbTip.getBoundingClientRect()
+  const EDGE = 8
+  const above = at.top - tip.height - 6
+  thumbTip.style.left = `${Math.max(EDGE, Math.min(at.right - tip.width, innerWidth - tip.width - EDGE))}px`
+  thumbTip.style.top = `${above >= EDGE ? above : at.bottom + 6}px`
+}
+
+function hideThumbTip() {
+  if (thumbTip) thumbTip.hidden = true
+}
+
+const thumbsAt = (target: EventTarget | null) => (target instanceof Element ? target.closest<HTMLElement>('.sro-thumbs') : null)
+
+function onThumbOver(e: MouseEvent) {
+  const thumbs = thumbsAt(e.target)
+  if (thumbs) showThumbTip(thumbs)
+}
+
+function onThumbOut(e: MouseEvent) {
+  if (thumbsAt(e.target) && thumbsAt(e.target) !== thumbsAt(e.relatedTarget)) hideThumbTip()
+}
+
+/** Move a section to thumbs, taking along any card already placed with words. */
+function switchSectionToThumbs(card: HTMLElement) {
+  const section = sectionOf(card)
+  if (!section || thumbSections.has(section)) return
+  thumbSections.add(section)
+  for (const other of section.querySelectorAll<HTMLElement>(`[${CARD_ATTR}]`)) {
+    if (other === card || sectionOf(other) !== section) continue
+    const appid = ownedAppId(other)
+    const summary = appid ? peekCached(appid) : undefined
+    if (summary && other.querySelector(`.${BADGE_CLASS}`)) placeBadge(other, summary)
+  }
+}
+
+/**
+ * Chart rows. Top Sellers has no room for words: thumbs follow the price, centred by CSS and out of
+ * the flow, because anything added to a table's columns changes their widths. Most Played has room,
+ * so the label ends the title's own flex row, which centres it and gives way to the title. Only a
+ * row too narrow for that falls back to thumbs.
+ */
+function placeInRow(card: HTMLElement, badge: HTMLSpanElement) {
+  const pick = (b: HTMLElement) => Number(b.dataset.sroScore)
+  const cell = card.querySelector<HTMLElement>(':scope > td')
+  ensureContainingBlock(card)
+  // An empty first cell marks the Top Sellers layout, at every window width
+  if (cell && !cell.textContent?.trim()) {
+    // Thumbs: at a minimum font size, two language lines of long words overflow the row. They open
+    // the cell after the price, one left edge down the table. CSS pads that cell so its column
+    // widens to fit them, at any window width, and its own right-aligned text stays clear.
+    if (!pick(badge)) {
+      badge.remove()
+      return
+    }
+    const cells = [...card.children]
+    const artCell = cells.findIndex((c) => c.querySelector('img'))
+    const afterPrice = cells[artCell + 2] as HTMLElement | undefined
+    badge.classList.add('sro-corner', 'sro-gutter')
+    ;(afterPrice ?? decorationHost(card)).appendChild(badge)
+    abbreviate(badge)
+    return
+  }
+  const titleRow = [...card.querySelectorAll<HTMLElement>('td a')].find((a) => a.querySelector('img') && getComputedStyle(a).display === 'flex')
+  badge.classList.add('sro-inline', 'sro-row-end')
+  ;(titleRow ?? decorationHost(card)).appendChild(badge)
+  const tooNarrow = titleRow ? titleRow.scrollWidth > titleRow.clientWidth : true
+  if (tooNarrow) switchSectionToThumbs(card)
+  if (usesThumbs(card)) abbreviate(badge)
+}
+
 function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOMRect, priceRect?: DOMRect, priceEl?: HTMLElement) {
   badge.classList.add('sro-corner')
   ensureContainingBlock(card)
-  card.appendChild(badge)
+  decorationHost(card).appendChild(badge)
   const cr = cardRect ?? card.getBoundingClientRect()
+  if (!usesThumbs(card) && tooTightForWords(badge, cr)) switchSectionToThumbs(card)
+  if (usesThumbs(card)) {
+    abbreviate(badge)
+    // A section of thumbs has no way to say "no reviews" that is not words
+    if (!Number(badge.dataset.sroScore)) {
+      badge.remove()
+      return
+    }
+  }
   const bh = badge.offsetHeight
   const bw = badge.offsetWidth
   const apply = (pos: { bottom?: number; top?: number; right?: number; left?: number }) => {
@@ -590,30 +914,49 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
     const br = badge.getBoundingClientRect()
     return within(br, cr) && obstaclesFor(card, badge).length === 0
   }
-  // Candidate positions, best first: the artwork's lower-right on art-on-top cards, the card's own
+  // Candidate positions, best first: a stacked panel's last screenshot, the artwork's lower-right on
+  // art-on-top cards, the card's own
   // bottom-right, lifted above the price block, lifted above whatever it hits, shifted left of it,
   // then the top-right. The plain corner comes before the price lift so a row list reads as one
   // column of labels: rows with a centred price and rows with a discount stack all keep the corner.
   const candidates: Array<() => void> = []
+  // Stacked panels: on the last screenshot, above the price, so the label stays out of the gap
+  // under the panel. Dark chip over artwork, the same as on the small capsules.
+  const shot = card.matches(STACKED_PANEL) ? [...card.querySelectorAll('.screenshots img')].pop()?.getBoundingClientRect() : undefined
+  if (shot?.width) {
+    candidates.push(() => apply({ bottom: Math.round(cr.bottom - shot.bottom) + 4, right: Math.round(cr.right - shot.right) + 4 }))
+  }
+  // A hero's capsule: the art's corner, wherever the frame goes
+  const heroArt = card.closest(ROTATING_CAROUSEL) ? largestArt(card) : null
+  if (heroArt) candidates.push(() => apply({ bottom: Math.max(4, Math.round(cr.bottom - heroArt.bottom) + 4), right: Math.max(4, Math.round(cr.right - heroArt.right) + 4) }))
   // Art across the top with text below (carousel tiles with a blurb or tag pills, then a price bar):
   // the art's lower-right is a fixed spot, where the card's lower half shifts from tile to tile with
   // the blurb's length and would scatter the chips along one row.
   const art = largestArt(card)
-  if (art && art.top - cr.top <= 6 && art.width >= cr.width * 0.8 && cr.bottom - art.bottom > bh + 8) {
+  const tile = frameBox(card)?.getBoundingClientRect()
+  const compact = badge.classList.contains('sro-compact')
+  // Measured against the visible tile; thumbs are small enough to need no strip below the art
+  if (art && art.top - (tile ?? cr).top <= 6 && art.width >= (tile ?? cr).width * 0.8 && (compact || (tile ?? cr).bottom - art.bottom > bh + 8)) {
     candidates.push(() => apply({ bottom: Math.round(cr.bottom - art.bottom) + 4, right: Math.max(4, Math.round(cr.right - art.right) + 4) }))
   }
-  candidates.push(() => apply({ bottom: 4, right: 4 }))
+  // The corner of the tile a reader sees, not of the slot around it
+  candidates.push(() => apply({ bottom: Math.max(4, Math.round(cr.bottom - (tile?.bottom ?? cr.bottom)) + 4), right: Math.max(4, Math.round(cr.right - (tile?.right ?? cr.right)) + 4) }))
   // Rows whose price sits in that corner: raise the price by the label's height (a translate, so
   // nothing else reflows) and put the label under it. Only when the raised price covers nothing.
   // The whole discount block moves (percentage, struck price and final price), not just the prices.
   const raiseEl = priceEl?.closest<HTMLElement>('.discount_block') ?? priceEl
   let raised = false
-  if (raiseEl && highlightShape(card).shape === 'row') {
+  let priceTouching = 0
+  if (raiseEl && cr.width >= cr.height * 2.5) {
     const rr = raiseEl.getBoundingClientRect()
-    const lift = Math.ceil(rr.bottom - (cr.bottom - 4 - bh)) + 2
+    // Measure the text: at a minimum font size it runs past the fixed-height box around it
+    const text = document.createRange()
+    text.selectNodeContents(raiseEl)
+    const lift = Math.ceil(Math.max(rr.bottom, text.getBoundingClientRect().bottom) - (cr.bottom - 4 - bh)) + 2
     if (lift > 0 && rr.top - lift >= cr.top + 2) {
       candidates.push(() => {
         apply({ bottom: 4, right: 4 })
+        priceTouching = obstaclesFor(card, raiseEl).length // what it sits against already is no new fault
         raiseEl.style.translate = `0 ${-lift}px`
         raiseEl.dataset.sroLift = '1'
         raised = true
@@ -641,10 +984,18 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
     if (shift + bw < cr.width - 4) apply({ bottom: 4, right: shift })
   })
   candidates.push(() => apply({ top: 4, right: 4 }))
-  for (const place of candidates) {
-    raised = false
-    place()
-    if (clear() && (!raised || (within(raiseEl!.getBoundingClientRect(), cr) && !obstaclesFor(card, raiseEl!).length))) return
+  // Words first. When no spot takes them (an event tile's date, a price tag), thumbs usually fit.
+  for (;;) {
+    for (const place of candidates) {
+      raised = false
+      place()
+      if (clear() && (!raised || (within(raiseEl!.getBoundingClientRect(), cr) && obstaclesFor(card, raiseEl!).length <= priceTouching))) return
+    }
+    if (badge.classList.contains('sro-compact') || !Number(badge.dataset.sroScore)) break
+    switchSectionToThumbs(card)
+    abbreviate(badge)
+    // Thumbs need no strip below the art, so its corner is open to them now
+    if (art) candidates.unshift(() => apply({ bottom: Math.round(cr.bottom - art.bottom) + 4, right: Math.max(4, Math.round(cr.right - art.right) + 4) }))
   }
   lowerPrices(card)
   badge.remove()
@@ -732,7 +1083,7 @@ const orbitVisibility = new IntersectionObserver((entries) => {
   for (const e of entries) (e.target as HTMLElement).classList.toggle('sro-orbit-paused', !e.isIntersecting)
 })
 function setOrbit(card: HTMLElement, on: boolean) {
-  const existing = card.querySelector<HTMLElement>(`:scope > .${ORBIT_CLASS}`)
+  const existing = card.querySelector<HTMLElement>(`.${ORBIT_CLASS}`)
   if (!on) {
     if (existing) {
       orbitVisibility.unobserve(existing)
@@ -745,7 +1096,7 @@ function setOrbit(card: HTMLElement, on: boolean) {
   ring.className = ORBIT_CLASS
   ring.setAttribute('aria-hidden', 'true')
   ring.append(document.createElement('i'), document.createElement('i')) // two lights, half a lap apart
-  card.appendChild(ring)
+  decorationHost(card).appendChild(ring)
   orbitVisibility.observe(ring)
 }
 
@@ -784,7 +1135,7 @@ const shapeWatcher = new ResizeObserver((entries) => {
     applyFilter(card, s)
     // A corner chip was placed against the old layout: re-run the full placement (with its
     // candidates and guards) rather than adjusting it blindly.
-    if (!first && card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(card, s)
+    if (!first && card.querySelector(`.${BADGE_CLASS}.sro-corner`)) placeBadge(card, s)
     else if (appid) reconcileBadge(card, appid)
   }
 })
@@ -793,32 +1144,32 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
   const pick = chosen(summary)
   const filtered = isFiltered(pick, settings)
   // The highlight and dim decorations are absolutely positioned against the card.
-  if (filtered || (pick && isHighlighted(pick, settings))) ensureContainingBlock(card)
-  // Highlight in the game's OWN review color (Steam's tone for its tier), not the lever's.
-  // Overwhelmingly Positive gets an extra, slow orbiting light.
+  if (filtered || (pick && isHighlighted(pick, settings))) {
+    ensureContainingBlock(card)
+    raiseOverhangs(card)
+  }
+  setFrame(card)
+  // Highlight in the reader's chosen color, else the game's OWN review color (Steam's tone for its
+  // tier), not the lever's. Overwhelmingly Positive can add a slow orbiting light.
   if (!filtered && pick && isHighlighted(pick, settings)) {
     card.dataset.sroHighlight = toneFor(pick.score)
     const r = card.getBoundingClientRect()
+    // Not laid out yet (hidden carousel slide): draw nothing until it has a size
     if (r.width && r.height) {
-      const hs = highlightShape(card)
-      card.dataset.sroShape = hs.shape
-      if (hs.axis) card.dataset.sroAxis = hs.axis
-      else delete card.dataset.sroAxis
+      card.dataset.sroShape = highlightShape(card)
     } else {
-      // Not laid out yet (hidden carousel slide): draw nothing until it has a size
       delete card.dataset.sroShape
-      delete card.dataset.sroAxis
     }
     shapeWatcher.observe(card)
-    card.style.setProperty('--sro-hl', toneColorAt(pick.score))
-    if (pick.score === 9) card.dataset.sroOp = '1'
+    card.style.setProperty('--sro-hl', settings.frameColor ?? toneColorAt(pick.score))
+    const sparkle = pick.score === 9 && settings.sparkle
+    if (sparkle) card.dataset.sroOp = '1'
     else delete card.dataset.sroOp
-    setOrbit(card, pick.score === 9)
+    setOrbit(card, sparkle)
   } else {
     delete card.dataset.sroHighlight
     delete card.dataset.sroOp
     delete card.dataset.sroShape
-    delete card.dataset.sroAxis
     card.style.removeProperty('--sro-hl')
     setOrbit(card, false)
   }
@@ -891,7 +1242,13 @@ function reapplyFilters(rerender = false) {
       placeBadge(card, s)
       continue
     }
+    const wasDim = card.dataset.sroFiltered === 'dim'
     applyFilter(card, s)
+    // Dimming moves an inline label above the overlay, and adds one to a card with Steam's own summary
+    if (wasDim !== (card.dataset.sroFiltered === 'dim')) {
+      placeBadge(card, s)
+      continue
+    }
     // A card that was hidden when its data arrived has no badge yet; place it now that it can be measured
     if (card.dataset.sroFiltered !== 'hide' && !card.querySelector(`.${BADGE_CLASS}`) && !hasNativeSummary(card) && card.getClientRects().length) {
       placeBadge(card, s)
@@ -941,15 +1298,16 @@ function stripCard(card: HTMLElement) {
   // resolved the orphaned listener repainted the element with the previous game's badge.
   release(card)
   card.removeAttribute(CARD_ATTR)
-  for (const k of ['sroTone', 'sroScore', 'sroFiltered', 'sroHighlight', 'sroOp', 'sroShape', 'sroAxis', 'sroSize']) delete card.dataset[k]
+  for (const k of ['sroTone', 'sroScore', 'sroFiltered', 'sroHighlight', 'sroOp', 'sroShape', 'sroSize']) delete card.dataset[k]
   card.style.removeProperty('--sro-hl')
+  clearFrame(card)
   if (card.dataset.sroPos) {
     card.style.removeProperty('position')
     delete card.dataset.sroPos
   }
   lowerPrices(card)
-  card.querySelectorAll(`:scope > .${ORBIT_CLASS}`).forEach((n) => orbitVisibility.unobserve(n))
-  card.querySelectorAll(`:scope > .${BADGE_CLASS}, .${BADGE_CLASS}, :scope > .${ORBIT_CLASS}`).forEach((n) => n.remove())
+  card.querySelectorAll(`.${ORBIT_CLASS}`).forEach((n) => orbitVisibility.unobserve(n))
+  card.querySelectorAll(`.${BADGE_CLASS}, .sro-spacer, .${ORBIT_CLASS}`).forEach((n) => n.remove())
 }
 
 /** Make the card's badge match its current state: missing badge, or a plain label beside Steam's own text. */
@@ -966,7 +1324,7 @@ function reconcileBadge(card: HTMLElement, appid: number) {
   if (stale) placeBadge(card, cached)
   // The orbit ring is a real child, not a pseudo-element, so Steam's re-render can drop it while
   // the badge still looks right (or is deliberately absent beside Steam's own text). Put it back.
-  if (card.dataset.sroOp && !card.querySelector(`:scope > .${ORBIT_CLASS}`)) setOrbit(card, true)
+  if (card.dataset.sroOp && !card.querySelector(`.${ORBIT_CLASS}`)) setOrbit(card, true)
 }
 
 function revalidateCards() {
@@ -994,7 +1352,7 @@ let replaceTimer: number | undefined
 function onAssetLoad(e: Event) {
   if (!alive() || !(e.target instanceof HTMLImageElement)) return
   const card = e.target.closest<HTMLElement>(`[${CARD_ATTR}]`)
-  if (!card || !(card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`) || card.dataset.sroHighlight)) return
+  if (!card || !(card.querySelector(`.${BADGE_CLASS}.sro-corner`) || card.dataset.sroHighlight)) return
   replaceQueue.add(card)
   if (replaceTimer) return
   replaceTimer = window.setTimeout(() => {
@@ -1003,7 +1361,7 @@ function onAssetLoad(e: Event) {
       const appid = c.isConnected ? ownedAppId(c) : undefined
       const s = appid ? peekCached(appid) : undefined
       if (!s) continue
-      if (c.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
+      if (c.querySelector(`.${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
       // The highlight shape weighs the artwork's share of the card; an image that was still empty
       // when the shape was chosen (lazy carousel slide) can flip a capsule from ring to underglow.
       if (c.dataset.sroHighlight) applyFilter(c, s)
@@ -1016,7 +1374,7 @@ function onAssetLoad(e: Event) {
 function replaceCornerChips() {
   if (!alive()) return
   for (const [card] of cardsByAppId) {
-    if (!card.isConnected || !card.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) continue
+    if (!card.isConnected || !card.querySelector(`.${BADGE_CLASS}.sro-corner`)) continue
     const appid = ownedAppId(card)
     if (!appid) continue
     const s = peekCached(appid)
@@ -1043,7 +1401,7 @@ function scan(root: ParentNode = document) {
       stripCard(owner)
     } else {
       const s = appid ? peekCached(appid) : undefined
-      if (s && owner.querySelector(`:scope > .${BADGE_CLASS}.sro-corner`)) placeBadge(owner, s)
+      if (s && owner.querySelector(`.${BADGE_CLASS}.sro-corner`)) placeBadge(owner, s)
     }
   }
   seedFromSearchRows(root)
@@ -1077,6 +1435,7 @@ function scan(root: ParentNode = document) {
     // (charts: "3  Halloween: The Game  1,251,033") is a card even so.
     if (r.height < 60 && !hasArt(card) && !isTextRow(card, r)) continue // art may be a background image
     if (linksToNonGame(card)) continue
+    if (isBaseGameStrip(card, r, appid)) continue
     card.setAttribute(CARD_ATTR, String(appid))
     cardsByAppId.set(card, appid)
     shapeWatcher.observe(card) // catches a container that grows past card size after being claimed
@@ -1159,6 +1518,11 @@ function shutdown() {
   document.removeEventListener('load', onAssetLoad, true)
   if (replaceTimer) clearTimeout(replaceTimer)
   shapeWatcher.disconnect()
+  delete document.documentElement.dataset.sroReady
+  document.removeEventListener('mouseover', onThumbOver)
+  document.removeEventListener('mouseout', onThumbOut)
+  document.removeEventListener('scroll', hideThumbTip, true)
+  thumbTip?.remove()
   layoutWatcher.disconnect()
   orbitVisibility.disconnect()
   if (scanTimer) clearTimeout(scanTimer)
@@ -1177,6 +1541,9 @@ async function main() {
   injectStyles()
   settings = await loadSettings()
   if (!alive()) return // a newer instance took over while settings were loading
+  document.addEventListener('mouseover', onThumbOver)
+  document.addEventListener('mouseout', onThumbOut)
+  document.addEventListener('scroll', hideThumbTip, { capture: true, passive: true })
   onSettingsChange((s) => {
     if (!alive()) return
     const sourceChanged = s.source !== settings.source
@@ -1187,6 +1554,8 @@ async function main() {
   void ext.storage.local.set({ [LANG_KEY]: lang }).catch(() => {})
   seedFromInlineJson()
   scan()
+  // Tools poll for this instead of sleeping: it separates "the overlay ran" from "no cards here"
+  document.documentElement.dataset.sroReady = '1'
   mo = new MutationObserver((muts) => {
     if (!alive()) return
     for (const m of muts) {

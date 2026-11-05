@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Rammefarge"
+  },
+  "frameAuto": {
+    "message": "Bruk hvert spills anmeldelsesfarge"
+  },
+  "frameHue": {
+    "message": "Rammens fargetone"
+  },
+  "sparkle": {
+    "message": "Glitter på $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Innstillinger"
+  },
+  "back": {
+    "message": "Tilbake"
+  },
+  "sparkleHeading": {
+    "message": "Glitter"
   }
 }

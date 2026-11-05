@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Çerçeve rengi"
+  },
+  "frameAuto": {
+    "message": "Her oyunun inceleme rengini kullan"
+  },
+  "frameHue": {
+    "message": "Çerçeve tonu"
+  },
+  "sparkle": {
+    "message": "$TIER$ için ışıltı",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Ayarlar"
+  },
+  "back": {
+    "message": "Geri"
+  },
+  "sparkleHeading": {
+    "message": "Işıltı"
   }
 }

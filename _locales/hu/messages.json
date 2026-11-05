@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Keret színe"
+  },
+  "frameAuto": {
+    "message": "Minden játék saját értékelési színe"
+  },
+  "frameHue": {
+    "message": "Keret árnyalata"
+  },
+  "sparkle": {
+    "message": "Csillogás: $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Beállítások"
+  },
+  "back": {
+    "message": "Vissza"
+  },
+  "sparkleHeading": {
+    "message": "Csillogás"
   }
 }

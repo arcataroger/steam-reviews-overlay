@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Màu khung"
+  },
+  "frameAuto": {
+    "message": "Dùng màu đánh giá của từng trò chơi"
+  },
+  "frameHue": {
+    "message": "Sắc độ khung"
+  },
+  "sparkle": {
+    "message": "Lấp lánh cho $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Cài đặt"
+  },
+  "back": {
+    "message": "Quay lại"
+  },
+  "sparkleHeading": {
+    "message": "Lấp lánh"
   }
 }

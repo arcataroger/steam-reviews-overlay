@@ -23,10 +23,10 @@ Steam hides its review summary behind a hover tooltip. Steam Reviews Overlay put
 Drag the left lever to a tier. Games at that tier or below get dimmed or hidden, and lists close the gaps.
 
 **Spot the gems**
-Drag the right lever to a tier. Games at that tier or above get an outline in their review color.
+Drag the right lever to a tier. Games at that tier or above get a frame in their review color, or in a color you pick.
 
 **Your language or everyone's**
-Steam scores each game twice: once from reviews in your language, once from reviews in every language. Labels show both when they differ. Pick the score the levers judge by with the flag or globe button.
+Steam scores each game twice: once from reviews in your language, once from reviews in every language. Labels show both when they differ. Pick the score the levers judge by on the Settings screen, behind the gear.
 
 **Fair to small games**
 Games with fewer than 10 reviews have no Steam score. The overlay labels them but never filters them out.
@@ -53,21 +53,33 @@ To regenerate them, run `node scripts/make-icons.mjs`.
 
 ## Screenshots
 
-1280×800 PNGs in `docs/store/screenshots/`, plain RGB with no alpha (Chrome's requirement; AMO accepts them too). Chrome takes at most 5:
+1280×800 PNGs in `docs/store/screenshots/`, plain RGB with no alpha (Chrome's requirement; AMO accepts them too). We use two, in this order:
 
-1. `1-search-labels.png`: review labels on search results.
-2. `2-front-labels.png`: labels on the front page.
-3. `3-search-outline.png`: Very Positive and better outlined.
-4. `4-popup.png`: the popup over a dimmed and outlined page.
-5. `5-popup-ui.png`: the popup up close, with a caption for each control.
+1. `5-popup-ui.png`: the popup up close, with a caption for each control.
+2. `4-popup.png`: the popup over a dimmed and outlined search page.
 
-`extra-search-dim.png` (dimming alone) is a sixth shot for AMO, which has no limit.
-
-Chrome asks for screenshots twice: "Global screenshots" show in every language; "Localized screenshots" replace them for one language. Upload the five as global, and as localized for English if the form requires it.
+Chrome asks for screenshots twice: "Global screenshots" show in every language; "Localized screenshots" replace them for one language. Upload both as global, and as localized for English if the form requires it.
 
 To retake them from live Steam pages, run `npm run shots:store`.
 
-## License
+## Release notes
+
+Paste the current version's notes into AMO's "Release notes" field when you submit it. Firefox shows them on the add-on's Release Notes tab. AMO takes plain text.
+
+### 0.3.0
+
+- Every highlight is now a complete frame around the card you see. Frames no longer lose a side, and no longer float outside the card.
+- Top Sellers and Most Played line up again in Firefox, with every rating in one neat column.
+- Lists too small for words now show thumbs: three, two or one up or down, and a split mark for Mixed. Hover over them for the full label.
+- Labels on dimmed cards stay readable.
+- Labels no longer cover dates or prices.
+- Stacked recommendations on the front page now sit apart, and their labels sit on the screenshots.
+- New Settings screen: click the gear at the top right of the popup.
+- Pick your own frame color, or keep each game's review color.
+- Turn the Overwhelmingly Positive sparkle on or off.
+- The language choice moved to Settings, with labels that say what it does.
+- A cleaner popup, with the screws gone.
+
 
 - AMO: The Unlicense (public domain; matches `LICENSE`).
 

@@ -9,7 +9,8 @@ Three stages. Geometry comes from the DOM (exact rectangles, no shape guessing);
 only from pixels, so it is independent evidence that the page renders what we intended rather than a
 restatement of our own CSS.
 
-1. **Capture** — `npm run visual:capture -- <outDir> <url...>` (env `SRO_STOPS=12`, `SRO_EXT_DIR`)
+1. **Capture** — `npm run visual:capture -- <outDir> <url...>` (env `SRO_STOPS=12`, `SRO_EXT_DIR`,
+   `SRO_VIEWPORT=2200x1130`: Steam's capsules grow with the window, so check wide layouts too)
    screenshots each page in two settings states (`labels`: everything parked, no highlights;
    `active`: dim at Mixed and below, highlight at Positive and above) and writes
    `<slug>__<state>__<stop>.cards.json` beside each PNG: every card's rect, appid, title, tier,
@@ -26,11 +27,15 @@ restatement of our own CSS.
 
 ## What the checker knows
 
-- **Treatments** (`src/content.css`): `row` = 2px inset ring on all four edges; `panel` +
-  `axis: y` = wings on left and right only, `axis: x` = top and bottom only; `card` = a 2px ring
-  plus soft glow just *outside* the box, so its band straddles the edge.
-- **Alpha**: rings are drawn at 85% opacity, so the same ring measures differently over dark artwork
-  than over the page. Matching is by chromaticity plus a brightness floor, not raw RGB distance.
+- **Treatments** (`src/content.css`): every highlight is one closed 2px border inside the box, on all
+  four edges, above Steam's artwork (z 20). `row` and `card` now draw the same. Never move the ring outside the box: Steam's neighbours (`carousel_thumbs`,
+  `title_grid`, the next `home_content_single_ctn`) paint over anything there.
+- **Stacked panels**: a `.home_content_single_ctn` frames its inner `.home_content` box, not the
+  whole card, so neighbours keep a 30px gap. A rotating hero's frame fills its whole slide, though the
+  card is only the capsule link. The capture records those boxes as the card's rect.
+- **Table rows**: nothing goes straight into a `<tr>`. Firefox gives such a child its own cell, which
+  shifts the row's columns. Decorations hang off the first cell and position against the row.
+- **Alpha**: the same tone measures differently over dark artwork than over the page. Matching is by chromaticity plus a brightness floor, not raw RGB distance.
 - **Steam's own blue is our positive colour.** So "this card must NOT be highlighted" is judged by
   differencing the active crop against its labels-state twin (same page, stop, appid and rect).
   Cards with no twin report those edges as *unjudged* rather than guessing; the summary line counts
@@ -43,8 +48,7 @@ restatement of our own CSS.
   other compared two different rows, and a ring drawn two rows out scored zero against Steam's own
   panel fill three rows in.
 - **Neighbours**: a highlighted card butted against an edge bleeds its ring into our crop, so that
-  edge is unjudged — but only when the neighbour's treatment actually paints the side facing us. Two
-  stacked `panel`/`axis: y` cards paint nothing along the edge they share.
+  edge is unjudged.
 
 ## Reading the result
 
@@ -58,9 +62,8 @@ content); raise `SRO_STOPS` or capture calmer pages if it matters.
 
 `tests/unit/border-check.test.ts`, `tests/unit/segment-cards.test.ts` and `tests/unit/falsify.test.ts`
 cover the pure logic on synthetic images. To re-prove the gate end to end on real pixels, run
-`npm run visual:selftest -- <cropDir>`: it rewrites the manifest into five deliberate lies (wrong
-tone, a ring invented on a parked card, a panel's wings flipped to the other axis, a panel claimed
-as an all-four-edges ring, and a real highlight claimed absent), re-runs the gate over the *same*
+`npm run visual:selftest -- <cropDir>`: it rewrites the manifest into three deliberate lies (wrong
+tone, a ring invented on a parked card, and a real highlight claimed absent), re-runs the gate over the *same*
 pixels, and requires each lie to be caught on at least 90% of the cards it was told about. Exit 1
 otherwise. A truthful manifest reporting zero failures only means something when this passes.
 
@@ -80,6 +83,20 @@ got <fraction>`. Open that crop: the file name says what it should have been. An
 when it has no baseline twin, when the page paints over it, when a highlighted neighbour is butted
 against it, or when it is shorter than the corner skip at both ends. Rising `U` means captures are
 drifting (more rotating content); raise `SRO_STOPS` or capture calmer pages if it matters.
+
+## Checking layout at every size
+
+`npm run check:overlaps` loads live pages at four widths and both font settings. It fails on a label
+over text, a label off its card, or a table split into different column layouts. Run it after every
+change, as `CLAUDE.md` says. The border gate above runs at one size only, so it cannot replace this.
+
+## Trust pixels, not counts
+
+The first ring check passed on 1px slivers, and the first label fix measured right while the artwork
+hid every label. Look at the screenshots. Firefox also remembers each site's zoom in the test profile,
+so a zoom set by hand in a preview window scales later captures: pass
+`prefs: { 'browser.zoom.siteSpecific': false }` to `launch`. Set `SRO_PROFILE_DIR` to run a second
+browser beside one already holding the kept profile.
 
 ## Checking that a label never changes a card's size
 
@@ -124,6 +141,10 @@ The fix was to measure the right thing, not to trust the extension.
 Each of these was investigated from the pixels and the DOM and found correct. They recur every
 round, so check them against this list before writing them up.
 
+- **A `-op` card failing a short edge at about 0.33, or an edge at 1.00 with no gain.** The sparkle
+  now runs on the ring, so its near-white streak can fill most of an 87px edge in one frame and
+  the tone match misses it; read the crop's pixels before calling the ring broken. A 1.00 fraction
+  with no gain is our blue ring over Steam's own blue panel, which the twin shows too.
 - **A badge over lettering baked into a tile's artwork.** The "Recent & Upcoming Events" tiles often
   use key art whose own logo text fills the frame. The badge has to sit on the art somewhere and
   nothing in the DOM says where the painted lettering is. Only DOM text counts as an obstacle.

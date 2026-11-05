@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Colore della cornice"
+  },
+  "frameAuto": {
+    "message": "Usa il colore delle recensioni di ogni gioco"
+  },
+  "frameHue": {
+    "message": "Tonalità della cornice"
+  },
+  "sparkle": {
+    "message": "Scintillio su $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Impostazioni"
+  },
+  "back": {
+    "message": "Indietro"
+  },
+  "sparkleHeading": {
+    "message": "Scintillio"
   }
 }

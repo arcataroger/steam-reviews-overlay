@@ -59,13 +59,49 @@ body.has-notice .throttle { --track: 230px; }
 .seg button + button { border-inline-start: 1px solid #2a475e; }
 .seg button[aria-checked="true"] { background: #2a475e; color: #fff; }
 .seg button:hover { color: #fff; }
-/* Icon-only language toggle, parked in the band under the bottom notch between the gates */
-.source-toggle {
-  position: absolute; left: 50%; bottom: 2px; transform: translateX(-50%);
-  margin: 0; width: 84px; background: rgba(0,0,0,0.35);
+/* Gear in the header: swaps the ladder for the config screen */
+.icon-btn {
+  margin-inline-start: auto; display: grid; place-items: center; width: 28px; height: 28px; padding: 0;
+  color: var(--muted); background: none; border: 0; border-radius: 5px; cursor: pointer;
 }
-.source-toggle button { padding: 4px 0; font-size: 14px; line-height: 1; }
-.source-toggle button[aria-checked="true"] { background: #2a475e; }
+.icon-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.icon-btn .ico-close, .icon-btn[aria-expanded="true"] .ico-gear { display: none; }
+.icon-btn[aria-expanded="true"] .ico-close { display: block; }
+
+/* Config screen: one plain card per option */
+.config:not([hidden]) { display: grid; gap: 10px; padding: 12px 16px 14px; font-size: 13px; }
+.cfg-sec { display: grid; gap: 10px; padding: 12px; border: 1px solid #2a475e; border-radius: 6px; background: rgba(0,0,0,0.18); }
+.cfg-sec h2 { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: #fff; }
+.hue-row { display: flex; align-items: center; gap: 8px; }
+.hex {
+  flex: none; width: 86px; padding: 1px 5px; font: 11px/1.3 ui-monospace, Menlo, Consolas, monospace;
+  color: var(--fg); background: rgba(0,0,0,0.25); border: 1px solid #2a475e; border-radius: 4px;
+  user-select: text; -webkit-user-select: text;
+}
+.hex:focus-visible { outline: 2px solid var(--accent); outline-offset: -1px; }
+.hex.invalid { border-color: var(--negative); }
+.swatches { display: flex; justify-content: space-between; }
+.swatches button {
+  width: 24px; height: 24px; padding: 0; cursor: pointer;
+  border: 2px solid rgba(0,0,0,0.45); border-radius: 50%;
+}
+.swatches button.auto { background: var(--positive); }
+.swatches button[aria-checked="true"] { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px #fff; }
+.swatches button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.hue {
+  appearance: none; -webkit-appearance: none; flex: 1; min-width: 0; height: 10px; margin: 0; border-radius: 5px; cursor: pointer;
+  background: linear-gradient(to right, #f55, #fd5, #5f5, #5ff, #55f, #f5f, #f55);
+}
+.hue::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 16px; border-radius: 3px; background: #fff; border: 1px solid #000; }
+.hue::-moz-range-thumb { width: 12px; height: 16px; border-radius: 3px; background: #fff; border: 1px solid #000; }
+.hue:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.opt-check { display: flex; align-items: center; gap: 7px; cursor: pointer; line-height: 1.25; }
+.opt-check input { flex: none; margin: 0; accent-color: var(--accent); }
+
+.source-toggle { margin: 0; }
+.source-toggle button { padding: 6px 4px; font-size: 12px; line-height: 1.2; }
+.hint { margin: 0; font-size: 11px; line-height: 1.35; color: var(--muted); }
 
 
 /* ---------- control panel ---------- */
@@ -83,17 +119,6 @@ body.has-notice .throttle { --track: 230px; }
     inset 0 -1px 0 rgba(0,0,0,0.5),
     0 2px 6px rgba(0,0,0,0.5);
 }
-.screw {
-  position: absolute; width: 8px; height: 8px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #7d8ba0, #2a323d 70%);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.6);
-}
-.screw::after {
-  content: ""; position: absolute; left: 1px; right: 1px; top: 3.5px; height: 1px;
-  background: rgba(0,0,0,0.7); transform: rotate(35deg);
-}
-.screw.tl { top: 6px; left: 6px; } .screw.tr { top: 6px; right: 6px; }
-.screw.bl { bottom: 6px; left: 6px; } .screw.br { bottom: 6px; right: 6px; }
 
 .plate-title {
   font-size: 9px; letter-spacing: 1.6px; color: #aeb9c6; font-weight: 700;

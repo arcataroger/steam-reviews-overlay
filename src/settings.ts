@@ -14,6 +14,10 @@ export interface Settings {
   source: ScoreSource
   /** 1-9, or OFF_HIGHLIGHT (10) = parked. Games at this tier or higher are outlined. */
   highlightThreshold: number
+  /** #rrggbb for every highlight frame, or null to use each game's own review color. */
+  frameColor: string | null
+  /** Run the orbiting lights around Overwhelmingly Positive frames. */
+  sparkle: boolean
 }
 
 export const OFF_FILTER = 0
@@ -24,6 +28,14 @@ export const DEFAULT_SETTINGS: Settings = {
   threshold: OFF_FILTER,
   source: 'global',
   highlightThreshold: OFF_HIGHLIGHT,
+  frameColor: null,
+  sparkle: true,
+}
+
+/** The #rrggbb form of a typed or stored color, or null when it is not one. */
+export function parseHexColor(raw: unknown): string | null {
+  const m = typeof raw === 'string' ? /^#?([0-9a-f]{6})$/i.exec(raw.trim()) : null
+  return m ? `#${m[1].toLowerCase()}` : null
 }
 
 export interface Tier {
@@ -76,6 +88,8 @@ function normalize(raw: Partial<Settings> | undefined): Settings {
   s.highlightThreshold = s.highlightThreshold >= 10 ? OFF_HIGHLIGHT : snapPosition(s.highlightThreshold)
   if (s.mode !== 'hide') s.mode = 'dim'
   if (s.source !== 'local') s.source = 'global'
+  s.frameColor = parseHexColor(s.frameColor)
+  s.sparkle = s.sparkle !== false
   // Whatever storage or a migration handed us, the levers must not collide (highlight strictly above filter)
   return reconcile(s, 'filter')
 }

@@ -1,5 +1,5 @@
 // Store listing screenshots: 1280×800 PNGs (Chrome Web Store's size; AMO takes the same ratio).
-// Live Steam pages with the Chrome build loaded, plus one with the popup laid over the page.
+// Two shots: a live search page with the popup laid over it, and the popup alone with captions.
 // Usage: npm run build:chrome && node scripts/store-shots.mjs [outDir]
 import { chromium } from 'playwright'
 import path from 'node:path'
@@ -31,15 +31,6 @@ const open = async (url, scrollTo) => {
 }
 const search = await open('https://store.steampowered.com/search/?term=racing', '#search_resultsRows')
 await search.evaluate(() => window.scrollBy(0, -60))
-const front = await open('https://store.steampowered.com/', '.home_page_content .tab_container, #tab_newreleases_content, .home_tabs_row')
-
-await apply(OFF)
-await shot(search, '1-search-labels')
-await shot(front, '2-front-labels')
-await apply({ ...OFF, highlightThreshold: 8 })
-await shot(search, '3-search-outline')
-await apply({ ...OFF, mode: 'dim', threshold: 6 })
-await shot(search, 'extra-search-dim')
 
 // The popup over the page, where the toolbar would drop it.
 const both = { ...OFF, mode: 'dim', threshold: 6, highlightThreshold: 9 }
@@ -84,7 +75,7 @@ await hp.setContent(`<style>html,body{margin:0;width:${W}px;height:${H}px;overfl
   img{width:${Math.round(340 * scale)}px;border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.08)}</style>
   <div class="wrap"><div class="caps"><h1>Two levers, nine tiers</h1>
     ${cap('Filter', 'Dim or hide every game at or below a tier.')}
-    ${cap('Highlight', 'Outline every game at or above a tier, in its review color.')}
+    ${cap('Highlight', 'Outline every game at or above a tier, in its review color or yours.')}
     ${cap('Your language or all', 'Judge by reviews in your Steam language, or in every language.')}
     ${cap("Steam's own rules", 'Each notch shows the percent and review count Steam requires.')}
   </div><img src="data:image/png;base64,${ui}"></div>`)

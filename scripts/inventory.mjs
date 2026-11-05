@@ -194,7 +194,6 @@ const INVENTORY = () => {
         sameElement: ourCard === card,
         ourCardSig: ourCard && ourCard !== card ? sig(ourCard) : null,
         shape: ourCard?.dataset.sroShape || null,
-        axis: ourCard?.dataset.sroAxis || null,
         filtered: ourCard?.dataset.sroFiltered || null,
         highlighted: !!ourCard?.dataset.sroHighlight,
         badge: badge ? [...badge.classList].filter((c) => c.startsWith('sro-') && !/^sro-(positive|mixed|negative|none)$/.test(c)).join(' ') : ourCard ? 'none' : null,

@@ -3,6 +3,47 @@ import path from 'node:path'
 import { test, expect, settle } from './fixtures'
 
 test.describe('popup levers drive the overlay live', () => {
+  test('frame color and sparkle apply live, and the review color comes back', async ({ context, popup }) => {
+    const store = await context.newPage()
+    await store.goto('https://store.steampowered.com/search/?term=portal', { waitUntil: 'domcontentloaded' })
+    await settle(store)
+    await popup.bringToFront()
+    await popup.click('.notch[data-pos="6"] .tick.r', { force: true })
+    const frames = () => store.evaluate(() => [...new Set([...document.querySelectorAll<HTMLElement>('[data-sro-highlight]')].map((e) => e.style.getPropertyValue('--sro-hl')))].sort().join())
+    await expect.poll(frames).toContain('#66c0f4')
+    await expect.poll(() => store.locator('.sro-orbit').count()).toBeGreaterThan(0)
+
+    await expect(popup.locator('#configView')).toBeHidden()
+    await popup.click('#configToggle')
+    await expect(popup.locator('#configView')).toBeVisible()
+    await expect(popup.locator('#throttle')).toBeHidden()
+    await expect(popup.locator('#frameSwatches button.auto')).toHaveCSS('background-color', 'rgb(102, 192, 244)')
+    await expect(popup.locator('#frameHue')).toHaveValue('202') // the default frame's hue
+    await popup.click('#frameSwatches [data-color="#ffd54a"]')
+    await expect.poll(frames).toBe('#ffd54a')
+    await expect(popup.locator('#frameHex')).toHaveValue('#ffd54a')
+
+    await popup.fill('#frameHex', 'FF8800')
+    await expect.poll(frames).toBe('#ff8800')
+
+    await popup.locator('#frameHue').fill('200')
+    await expect.poll(frames).not.toBe('#ff8800')
+    expect(await popup.locator('#frameSwatches [aria-checked="true"]').count()).toBe(0) // no preset is that color
+
+    await popup.uncheck('#sparkle')
+    await expect.poll(() => store.locator('.sro-orbit').count()).toBe(0)
+    expect(await store.locator('[data-sro-op]').count()).toBe(0)
+    await popup.check('#sparkle')
+    await expect.poll(() => store.locator('.sro-orbit').count()).toBeGreaterThan(0)
+
+    await popup.click('#frameSwatches button.auto')
+    await expect.poll(frames).toContain('#66c0f4')
+    await expect(popup.locator('#frameHex')).toHaveValue('')
+    await popup.click('#configToggle')
+    await expect(popup.locator('#throttle')).toBeVisible()
+    await store.close()
+  })
+
   test('dim, hide, outline and park', async ({ context, popup }) => {
     const store = await context.newPage()
     await store.goto('https://store.steampowered.com/search/?term=survival', { waitUntil: 'domcontentloaded' })

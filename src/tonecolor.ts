@@ -40,3 +40,25 @@ export function toneColorAt(pos: number): string {
   }
   return POSITIVE
 }
+
+/** A vivid color at a hue (0..359), as #rrggbb: light enough to read on Steam's dark pages. */
+export function hueToHex(hue: number): string {
+  const s = 0.9
+  const l = 0.65
+  const f = (n: number) => {
+    const k = (n + hue / 30) % 12
+    const v = l - s * Math.min(l, 1 - l) * Math.max(-1, Math.min(k - 3, 9 - k, 1))
+    return Math.round(v * 255).toString(16).padStart(2, '0')
+  }
+  return `#${f(0)}${f(8)}${f(4)}`
+}
+
+/** The hue (0..359) of a #rrggbb color; 0 for greys, which have none. */
+export function hexToHue(color: string): number {
+  const [r, g, b] = hex(color)
+  const max = Math.max(r, g, b)
+  const d = max - Math.min(r, g, b)
+  if (!d) return 0
+  const h = max === r ? ((g - b) / d + 6) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4
+  return Math.round(h * 60) % 360
+}

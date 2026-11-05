@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Culoarea chenarului"
+  },
+  "frameAuto": {
+    "message": "Folosește culoarea recenziilor fiecărui joc"
+  },
+  "frameHue": {
+    "message": "Nuanța chenarului"
+  },
+  "sparkle": {
+    "message": "Sclipire la $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Setări"
+  },
+  "back": {
+    "message": "Înapoi"
+  },
+  "sparkleHeading": {
+    "message": "Sclipire"
   }
 }

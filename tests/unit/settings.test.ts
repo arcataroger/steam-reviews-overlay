@@ -171,12 +171,12 @@ describe('an external settings change arriving mid-drag', () => {
   // dragged. Dropping it outright meant the drag's own save then wrote back the pre-change value
   // and silently undid the other edit; taking it outright would have yanked the lever from under
   // the user's cursor. Keep only the keys this window says it is changing.
-  const base: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
+  const base: Settings = { ...DEFAULT_SETTINGS, mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
 
   it('keeps the dragged key and takes every other key from the incoming change', () => {
     const local = { ...base, threshold: 5 } // user has dragged the filter lever to 5, not yet saved
     const incoming = { ...base, threshold: 1, mode: 'hide' as const, source: 'local' as const }
-    expect(mergeIncoming(incoming, local, ['threshold'], 'filter')).toEqual({ mode: 'hide', threshold: 5, source: 'local', highlightThreshold: 8 })
+    expect(mergeIncoming(incoming, local, ['threshold'], 'filter')).toEqual({ ...DEFAULT_SETTINGS, mode: 'hide', threshold: 5, source: 'local', highlightThreshold: 8 })
   })
 
   it('takes the incoming change whole when nothing local is unsaved', () => {
@@ -187,7 +187,7 @@ describe('an external settings change arriving mid-drag', () => {
   it('keeps both keys when a lever push has moved two of them', () => {
     const local = { ...base, threshold: 8, highlightThreshold: 9 }
     const incoming = { ...base, mode: 'hide' as const }
-    expect(mergeIncoming(incoming, local, ['threshold', 'highlightThreshold'], 'filter')).toEqual({ mode: 'hide', threshold: 8, source: 'global', highlightThreshold: 9 })
+    expect(mergeIncoming(incoming, local, ['threshold', 'highlightThreshold'], 'filter')).toEqual({ ...DEFAULT_SETTINGS, mode: 'hide', threshold: 8, source: 'global', highlightThreshold: 9 })
   })
 })
 
@@ -195,7 +195,7 @@ describe('a second external change during the same drag', () => {
   // The dirty keys are stated by the caller, so folding one change in does not make every key it
   // touched look edited. Inferring them by diffing against a drag-start snapshot did exactly that,
   // and the next external change to such a key was dropped, then overwritten by the drag's flush.
-  const start: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
+  const start: Settings = { ...DEFAULT_SETTINGS, mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 8 }
 
   it('lands, while the dragged key still holds', () => {
     const dragging = { ...start, threshold: 5 }
@@ -225,7 +225,7 @@ describe('merging a drag with an external change to the other lever', () => {
   // is dragging the filter lever up in this window while another window drags the highlight lever
   // down; taking one from each left the highlight sitting below the filter, a state reconcile()
   // rules out everywhere else and the popup then renders as crossed levers.
-  const base: Settings = { mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 6 }
+  const base: Settings = { ...DEFAULT_SETTINGS, mode: 'dim', threshold: 3, source: 'global', highlightThreshold: 6 }
 
   it('pushes the untouched lever out of the way instead of crossing them', () => {
     const dragging = { ...base, threshold: 5 } // still valid here: 6 > 5
@@ -241,5 +241,23 @@ describe('merging a drag with an external change to the other lever', () => {
     const merged = mergeIncoming(incoming, dragging, ['highlightThreshold'], 'highlight')
     expect(merged.highlightThreshold).toBe(4)
     expect(merged.threshold).toBeLessThan(merged.highlightThreshold)
+  })
+})
+
+describe('frame options', () => {
+  it('reads a typed color with or without the hash, in any case', async () => {
+    const { parseHexColor } = await import('../../src/settings')
+    expect(parseHexColor('#FF8800')).toBe('#ff8800')
+    expect(parseHexColor(' ff8800 ')).toBe('#ff8800')
+  })
+
+  it('rejects anything else, so nothing but a color reaches a style attribute', async () => {
+    const { parseHexColor } = await import('../../src/settings')
+    for (const bad of ['#ff88', 'red', 'url(x)', '#ff8800;color:red', '', null, 42]) expect(parseHexColor(bad)).toBeNull()
+  })
+
+  it('defaults to the review color with the sparkle on, for settings saved before these options', () => {
+    expect(DEFAULT_SETTINGS.frameColor).toBeNull()
+    expect(DEFAULT_SETTINGS.sparkle).toBe(true)
   })
 })

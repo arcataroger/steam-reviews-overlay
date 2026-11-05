@@ -103,12 +103,19 @@ test.describe('popup: this session’s controls', () => {
     await expect(popup.locator('#notches')).toHaveClass(/off-r/)
   })
 
-  test('language toggle is icon-only with names in tooltips, and the popup fits Chrome’s cap', async ({ popup }) => {
+  test('language toggle lives on the config screen, and the popup fits Chrome’s cap', async ({ popup }) => {
+    await expect(popup.locator('#source')).toBeHidden()
+    await expect(popup.locator('.screw')).toHaveCount(0)
+    await popup.click('#configToggle')
     const local = popup.locator('#source [data-source="local"]')
+    await expect(local).toContainText('My language')
     await expect(local).toHaveAttribute('title', /My language \(.+\)/)
-    await expect(popup.locator('#source [data-source="global"]')).toHaveAttribute('title', 'All languages')
+    await expect(popup.locator('#source [data-source="global"]')).toHaveAttribute('title', /^All languages/)
+    await popup.click('#source [data-source="global"]')
+    await expect(popup.locator('#sourceHint')).toContainText('reviews in every language')
     await popup.setViewportSize({ width: 340, height: 400 })
-    const h = await popup.evaluate(() => document.documentElement.scrollHeight)
-    expect(h).toBeLessThanOrEqual(600)
+    expect(await popup.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(600)
+    await popup.click('#configToggle')
+    expect(await popup.evaluate(() => document.documentElement.scrollHeight)).toBeLessThanOrEqual(600)
   })
 })

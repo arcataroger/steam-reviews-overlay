@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Couleur du cadre"
+  },
+  "frameAuto": {
+    "message": "Utiliser la couleur d'évaluation de chaque jeu"
+  },
+  "frameHue": {
+    "message": "Teinte du cadre"
+  },
+  "sparkle": {
+    "message": "Scintillement sur « $TIER$ »",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Paramètres"
+  },
+  "back": {
+    "message": "Retour"
+  },
+  "sparkleHeading": {
+    "message": "Scintillement"
   }
 }

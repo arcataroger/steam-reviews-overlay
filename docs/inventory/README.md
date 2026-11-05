@@ -16,9 +16,8 @@ Regenerate both with the `steam-inventory` skill (`.claude/skills/steam-inventor
 | **beside title** | Label after the title text (dense table rows) | every corner candidate collides |
 | **corner** chip | Absolute chip: the art's lower-right on art-on-top cards, else the card's lower-right lifted above the price, shifted, or moved to the top-right on collision | no price spot fits |
 | **fallback** chip | Corner chip (`sro-fallback`) on the art's lower-right, or the card's, even when it covers some text | every other spot collides: every game card carries a label |
-| **row** highlight | Crisp inset ring | listing rows, tab rows, anything art < 50% and not a hero |
-| **card** highlight | Tight underglow | art ≥ 50%, heroes ≥ 1100px, overlapping carousel slides |
-| **panel** highlight | Side wings (`y`) or top/bottom wings (`x`) | tall stacked cards, edge-to-edge carousel tiles |
+| **thumbs** label | Thumb icons in place of words: 3, 2 or 1 up or down, or the mixed mark | a last resort, chosen per section: when one card in a list cannot take words, the whole list uses thumbs. Words and thumbs never mix in a section or when the words overflow |
+| **frame** highlight | Closed 2px border above the art, on the visible tile (frameBox) | every highlighted card; `row`/`card` shapes now only steer the price lift |
 | **dim / hide** | Dark overlay, or fade then `display:none` | filter lever; a card holding keyboard focus is dimmed instead of hidden |
 
 ## Coverage by kind (from `master.md`)

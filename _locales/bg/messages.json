@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Цвят на рамката"
+  },
+  "frameAuto": {
+    "message": "Цветът на оценката на всяка игра"
+  },
+  "frameHue": {
+    "message": "Оттенък на рамката"
+  },
+  "sparkle": {
+    "message": "Блясък при $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Настройки"
+  },
+  "back": {
+    "message": "Назад"
+  },
+  "sparkleHeading": {
+    "message": "Блясък"
   }
 }

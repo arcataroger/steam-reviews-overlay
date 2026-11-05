@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Color del marco"
+  },
+  "frameAuto": {
+    "message": "Usar el color de reseñas de cada juego"
+  },
+  "frameHue": {
+    "message": "Tono del marco"
+  },
+  "sparkle": {
+    "message": "Destellos en $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Configuración"
+  },
+  "back": {
+    "message": "Atrás"
+  },
+  "sparkleHeading": {
+    "message": "Destellos"
   }
 }

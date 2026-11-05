@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "لون الإطار"
+  },
+  "frameAuto": {
+    "message": "استخدام لون تقييم كل لعبة"
+  },
+  "frameHue": {
+    "message": "درجة لون الإطار"
+  },
+  "sparkle": {
+    "message": "تأثير لامع على $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "الإعدادات"
+  },
+  "back": {
+    "message": "رجوع"
+  },
+  "sparkleHeading": {
+    "message": "اللمعان"
   }
 }

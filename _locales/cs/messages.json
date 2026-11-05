@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Barva rámečku"
+  },
+  "frameAuto": {
+    "message": "Použít barvu hodnocení každé hry"
+  },
+  "frameHue": {
+    "message": "Odstín rámečku"
+  },
+  "sparkle": {
+    "message": "Třpyt u hodnocení $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Nastavení"
+  },
+  "back": {
+    "message": "Zpět"
+  },
+  "sparkleHeading": {
+    "message": "Třpyt"
   }
 }

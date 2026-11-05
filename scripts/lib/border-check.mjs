@@ -1,16 +1,13 @@
 // Pure, file-free border verification: given a decoded RGBA crop of one game card and the
 // manifest record that says what SHOULD be drawn on it, decide from pixels alone whether the
-// highlight ring/wings/glow are where content.css puts them. No DOM, no CSS, no file I/O here —
+// highlight ring is where content.css puts it. No DOM, no CSS, no file I/O here —
 // see scripts/check-borders.mjs for the CLI that feeds this from real PNGs.
 //
 // Geometry cheat sheet (see src/content.css):
-//   row   — `box-shadow: inset 0 0 0 2px var(--sro-hl)` on a ::before with inset:0. A crisp 2px
-//           ring flush with the card's own edge, entirely INSIDE the box.
-//   panel — 5px solid wing fading out to 26px, on two opposite edges only, inset 6px from the
-//           OTHER two edges so neighbouring panels' wings never join into one bar. Also inside
-//           the box, flush with its edge.
-//   card  — `box-shadow: 0 0 0 2px ..., 0 0 4px 2px ...` (no `inset`): a 2px ring plus a soft
-//           ~4px blurred glow, both drawn OUTSIDE the box, hugging its edge from without.
+//   every highlight — `box-shadow: inset 0 0 0 2px var(--sro-hl)` on a ::before with inset:0. A
+//           crisp 2px ring flush with the card's own edge, entirely INSIDE the box.
+//   card  — the same ring, plus a soft ~4px glow OUTSIDE the box. The glow is decoration: it is
+//           not judged on highlighted cards, only swept for on cards that must stay clean.
 //
 // A crop has `pad` px of surrounding page on every side, so the card's own box is exactly at
 // (pad, pad) sized (width - 2*pad) x (height - 2*pad).
@@ -57,22 +54,21 @@ export function colourDistance(a, b) {
  * every edge, how far from the card's own box edge the sampling band starts (`offset`, positive
  * = inward into the card, negative = outward into the surrounding pad) and how thick the band is
  * (`band`). `corner` (shared default) is how many px to skip at each end of the band, along the
- * edge, to dodge rounded corners and (for panels) the 6px wing inset.
+ * edge, to dodge rounded corners.
  *
- * - row / panel: the highlight is flush with the box edge and entirely inside it, so sample
- *   straight inward from offset 0.
- * - card: the ring + glow are entirely OUTSIDE the box (a non-inset box-shadow), so the band is
- *   pulled back to straddle the edge — a few px outside meet a few px inside — per the contract's
- *   instruction to straddle rather than sample strictly inward.
+ * - row / card: the ring is flush with the box edge and entirely inside it, so sample straight
+ *   inward from offset 0. A card's soft outside glow is decoration and is not judged.
  * @type {Record<string, {offset:number, band:number, corner:number}>}
  */
 export const TREATMENT_GEOMETRY = {
   row: { offset: 0, band: 4, corner: 10 },
-  panel: { offset: 0, band: 4, corner: 10 },
-  card: { offset: -3, band: 6, corner: 10 },
+  card: { offset: 0, band: 4, corner: 10 },
 }
 
 const DEFAULT_GEOMETRY = { offset: 0, band: 4, corner: 10 }
+
+/** Where a `card`'s soft glow lands: straddling the box edge. Only used to police clean edges. */
+const GLOW_GEOMETRY = { offset: -3, band: 6, corner: 10 }
 
 /**
  * Every colour the overlay can draw a highlight in (src/content.css): positive, mixed, negative.
@@ -271,9 +267,9 @@ export function edgeHit(image, band, colour, opts = {}) {
 }
 
 /**
- * Which of the four edges SHOULD carry the highlight colour, from the manifest's `shape`/`axis`
+ * Which of the four edges SHOULD carry the highlight colour, from the manifest's `shape`
  * alone (mirrors the selectors in src/content.css).
- * @param {{shape?: 'row'|'panel'|'card'|null, axis?: 'x'|'y'|null}} card
+ * @param {{shape?: 'row'|'card'|null}} card
  * @returns {{top:boolean, right:boolean, bottom:boolean, left:boolean}}
  */
 export function expectedEdges(card = {}) {
@@ -282,12 +278,6 @@ export function expectedEdges(card = {}) {
   if (!shape || shape === 'none') return none
   if (shape === 'row' || shape === 'card') {
     return { top: true, right: true, bottom: true, left: true }
-  }
-  if (shape === 'panel') {
-    const axis = card.axis || 'y' // panel with no axis behaves like axis:y (left/right wings)
-    return axis === 'x'
-      ? { top: true, right: false, bottom: true, left: false }
-      : { top: false, right: true, bottom: false, left: true }
   }
   return none // unrecognised shape: nothing to expect, checkCard will just see it fail silently
 }
@@ -310,7 +300,7 @@ function meanLuminance(image) {
 /**
  * Full pixel verdict for one card crop.
  * @param {{width:number, height:number, data: {[i:number]: number, length:number}}} image
- * @param {{shape?:string|null, axis?:string|null, color?:string|null, op?:boolean, filtered?:string|null}} card
+ * @param {{shape?:string|null, color?:string|null, op?:boolean, filtered?:string|null}} card
  * @param {{pad?:number, band?:number, corner?:number, offset?:number, tolerance?:number, minHit?:number, maxStray?:number, opMinHit?:number}} [opts]
  * @returns {{ok:boolean, edges: Record<'top'|'right'|'bottom'|'left', {expected:boolean, fraction:number, matched:number, pass:boolean}>, notes:string[]}}
  */
@@ -341,14 +331,11 @@ export function checkCard(image, card = {}, opts = {}) {
     offset: opts.offset ?? geometry.offset,
   }
   const bands = edgeBands(image.width, image.height, pad, bandOpts)
-  // An edge that should carry NOTHING has to be swept in every geometry the overlay can draw in,
-  // not just this card's own. The `card` treatment's glow sits OUTSIDE the box, so a parked card
-  // that wrongly gained one was invisible to the inside-the-box bands a parked card is measured
-  // with: the gate's own self-test caught only 38% of dropped `card` highlights until this swept
-  // both. The extra geometry costs nothing on expected edges, which are never checked against it.
-  const strayGeometries = Object.values(TREATMENT_GEOMETRY).filter(
-    (g, i, all) => all.findIndex((o) => o.offset === g.offset && o.band === g.band && o.corner === g.corner) === i,
-  )
+  // An edge that should carry NOTHING has to be swept outside the box as well as inside it. The
+  // `card` glow sits outside, so a parked card that wrongly gained one was invisible to the
+  // inside-the-box bands: the gate's own self-test caught only 38% of dropped `card` highlights
+  // until this swept both. Expected edges are never checked against the glow geometry.
+  const strayGeometries = [DEFAULT_GEOMETRY, GLOW_GEOMETRY]
   const strayBands = strayGeometries.map((g) =>
     edgeBands(image.width, image.height, pad, {
       band: opts.band ?? g.band,
@@ -387,7 +374,7 @@ export function checkCard(image, card = {}, opts = {}) {
     const sampled = bands[name].reduce((n, line) => (line.length > n ? line.length : n), 0)
     // An expected edge is checked against the colour this card should be drawn in; an edge that
     // should carry NOTHING is checked against every tone we can draw, or a wrong-toned ring there
-    // (a panel's unexpected edges are the only place this can happen) would slip through.
+    // would slip through.
     const probeColours = isExpected ? (colour ? [colour] : TONE_PALETTE) : TONE_PALETTE
     // Pick the tone by what the overlay ADDED over the un-highlighted twin, not by raw presence:
     // Steam's own blue chrome sits at a high fraction in both states, so scoring on presence alone
@@ -418,7 +405,7 @@ export function checkCard(image, card = {}, opts = {}) {
       pass = true
       unverified = true
       notes.push(`edge ${name}: no pixels sampled (edge shorter than corner=${bandOpts.corner} at both ends), not judged`)
-    } else if (card.neighbourHighlight && card.neighbourHighlight[name]) {
+    } else if (!isExpected && card.neighbourHighlight && card.neighbourHighlight[name]) {
       // A highlighted card is butted against this edge. Its ring lands in our band, and it is absent
       // from the un-highlighted twin too, so the difference is not ours either. That cuts both ways:
       // it could mask this card's MISSING ring just as easily as it could fake a stray one. Neither

@@ -181,5 +181,31 @@
         "content": "$1"
       }
     }
+  },
+  "frameColor": {
+    "message": "Cor da moldura"
+  },
+  "frameAuto": {
+    "message": "Usar a cor das análises de cada jogo"
+  },
+  "frameHue": {
+    "message": "Matiz da moldura"
+  },
+  "sparkle": {
+    "message": "Brilho em $TIER$",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "settings": {
+    "message": "Configurações"
+  },
+  "back": {
+    "message": "Voltar"
+  },
+  "sparkleHeading": {
+    "message": "Brilho"
   }
 }

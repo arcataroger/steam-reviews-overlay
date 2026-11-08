@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Rona bingkai"
   },
+  "dimOffHidden": {
+    "message": "Game dengan $TIER$ ke bawah diatur ke Sembunyikan, jadi Redupkan tidak berpengaruh.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Sembunyikan aktif, jadi Redupkan tidak berpengaruh."
+  },
   "sparkle": {
     "message": "Kilau pada $TIER$",
     "placeholders": {

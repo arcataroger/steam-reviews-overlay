@@ -21,7 +21,20 @@ import {
   DIM_STEP,
 } from '../settings'
 import { LANG_KEY, detectLang, langForLocale, type LangInfo } from '../lang'
-import { GRADIENT_CSS, POSITIVE, toneColorAt, hueToHex, hexToHue } from '../tonecolor'
+import {
+  GRADIENT_CSS,
+  POSITIVE,
+  toneColorAt,
+  FRAME_NOTCHES,
+  NOTCH_SPAN,
+  SLIDER_MAX,
+  notchAt,
+  sliderToColor,
+  colorToSlider,
+  sliderGradientCss,
+  onSlider,
+} from '../tonecolor'
+import { orbitPieces } from '../sparkle'
 import { t, tierName, tierRule, forceLocale } from '../i18n'
 import { STATUS_KEY, type Status } from '../steam'
 
@@ -97,29 +110,56 @@ const sourceGroup = $<HTMLDivElement>('#source')
 const frameSwatches = $<HTMLDivElement>('#frameSwatches')
 const frameHex = $<HTMLInputElement>('#frameHex')
 const frameHue = $<HTMLInputElement>('#frameHue')
+const framePreview = $<HTMLDivElement>('#framePreview')
+const previewOrbit = $<HTMLDivElement>('#previewOrbit')
 const sparkleBox = $<HTMLInputElement>('#sparkle')
 const dimSlider = $<HTMLInputElement>('#dimOpacity')
 const dimValue = $<HTMLOutputElement>('#dimValue')
+const dimRow = $<HTMLDivElement>('#dimRow')
+const dimHint = $<HTMLParagraphElement>('#dimHint')
+dimSlider.setAttribute('aria-describedby', 'dimHint')
 dimSlider.min = String(DIM_MIN)
 dimSlider.max = String(DIM_MAX)
 dimSlider.step = String(DIM_STEP)
 const percent = new Intl.NumberFormat(undefined, { style: 'percent' })
 
-// The picker lives in the popup on purpose: a native <input type="color"> opens a separate window,
-// and Firefox can close the popup under it, losing the pick. The first swatch means "no custom color".
-const FRAME_PRESETS = ['', '#ffffff', '#ffd54a', '#5ddb6e', '#39e0e0', '#b388ff', '#ff6fb5', '#ff5252']
-for (const color of FRAME_PRESETS) {
+// Each swatch sits over its notch on the slider, so a swatch and the slider always show the same
+// choice. There is no native color picker: it opens a separate window, and Firefox closes the
+// popup under it, losing the pick. A typed hex covers any other color.
+frameHue.min = '0'
+frameHue.max = String(SLIDER_MAX)
+frameHue.style.background = sliderGradientCss()
+for (const [i, n] of FRAME_NOTCHES.entries()) {
   const b = document.createElement('button')
   b.type = 'button'
   b.setAttribute('role', 'radio')
-  b.dataset.color = color
-  if (color) b.style.background = color
-  else b.classList.add('auto')
-  b.title = color || t('frameAuto')
+  b.dataset.color = n.color
+  b.style.setProperty('--c', n.color)
+  b.style.setProperty('--at', String((i * NOTCH_SPAN) / SLIDER_MAX))
+  b.title = n.color
   b.setAttribute('aria-label', b.title)
   frameSwatches.append(b)
 }
 frameHex.placeholder = POSITIVE
+/** The preview's sparkle, laid out once its box has a size (the settings view starts hidden). */
+function fitPreviewOrbit() {
+  const { offsetWidth: w, offsetHeight: h } = previewOrbit
+  if (!w || !h || previewOrbit.dataset.size === `${w}x${h}`) return
+  previewOrbit.dataset.size = `${w}x${h}`
+  previewOrbit.replaceChildren(
+    ...orbitPieces(w, h).map((p) => {
+      const i = document.createElement('i')
+      i.style.width = p.width
+      i.style.animationDelay = p.delay
+      i.style.background = p.background
+      return i
+    }),
+  )
+}
+new ResizeObserver(() => {
+  if (settings.sparkle) fitPreviewOrbit()
+}).observe(previewOrbit)
+$('#hdrVersion').textContent = `v${ext.runtime.getManifest().version}`
 $('#sparkleLabel').textContent = t('sparkle', tierName(9))
 
 let settings: Settings = { ...DEFAULT_SETTINGS }
@@ -291,17 +331,29 @@ function render() {
   }
   showSourceHint()
   const swatches = [...frameSwatches.querySelectorAll<HTMLButtonElement>('button')]
-  const picked = swatches.find((b) => b.dataset.color === (settings.frameColor ?? ''))
+  const shown = settings.frameColor
+  const picked = swatches.find((b) => b.dataset.color === shown)
   for (const b of swatches) {
     b.setAttribute('aria-checked', String(b === picked))
     b.tabIndex = b === (picked ?? swatches[0]) ? 0 : -1 // a slider color matches no swatch
   }
   // Never rewrite a control under the reader's hands
-  if (document.activeElement !== frameHex) frameHex.value = settings.frameColor ?? ''
-  if (document.activeElement !== frameHue) frameHue.value = String(hexToHue(settings.frameColor ?? POSITIVE))
+  if (document.activeElement !== frameHue) frameHue.value = String(colorToSlider(shown))
+  if (document.activeElement !== frameHex) frameHex.value = shown
+  framePreview.style.setProperty('--sro-hl', shown)
+  previewOrbit.hidden = !settings.sparkle
+  framePreview.classList.toggle('sparkle', settings.sparkle)
+  if (settings.sparkle) fitPreviewOrbit()
+  frameHue.closest('.hue-pick')!.classList.toggle('custom', !onSlider(shown))
   sparkleBox.checked = settings.sparkle
   if (document.activeElement !== dimSlider) dimSlider.value = String(settings.dimOpacity)
   dimValue.textContent = percent.format(settings.dimOpacity / 100)
+  // Hide removes the cards Dim would darken. Say why, under the slider, rather than leave it dead.
+  const hidden = settings.mode === 'hide'
+  dimSlider.disabled = hidden
+  dimRow.classList.toggle('off', hidden)
+  dimHint.hidden = !hidden
+  dimHint.textContent = !hidden ? '' : settings.threshold === OFF_FILTER ? t('dimOffHide') : t('dimOffHidden', tierName(settings.threshold))
 }
 
 /** Arrow keys move the selection within a radio group, as the radiogroup role promises. */
@@ -338,7 +390,7 @@ function showConfig(open: boolean) {
 }
 showConfig(false)
 configToggle.addEventListener('click', () => showConfig(!!configView.hidden))
-const pickSwatch = (b: HTMLButtonElement) => update({ frameColor: b.dataset.color || null })
+const pickSwatch = (b: HTMLButtonElement) => update({ frameColor: b.dataset.color || POSITIVE })
 radioKeys(frameSwatches, pickSwatch)
 frameSwatches.addEventListener('click', (e) => {
   const b = (e.target as HTMLElement).closest('button')
@@ -348,15 +400,23 @@ frameHex.addEventListener('input', () => {
   const color = parseHexColor(frameHex.value)
   frameHex.classList.toggle('invalid', !color && frameHex.value !== '')
   if (color) update({ frameColor: color })
-  else if (!frameHex.value) update({ frameColor: null })
 })
 // Leaving the field drops a half-typed value and shows the color actually in force
 frameHex.addEventListener('blur', () => {
   frameHex.classList.remove('invalid')
-  frameHex.value = settings.frameColor ?? ''
+  frameHex.value = settings.frameColor
 })
-frameHue.addEventListener('input', () => update({ frameColor: hueToHex(Number(frameHue.value)) }, { defer: true }))
-frameHue.addEventListener('change', () => flush())
+frameHue.addEventListener('input', () => update({ frameColor: sliderToColor(Number(frameHue.value)) }, { defer: true }))
+// Let go of a drag near a notch and the thumb settles on it, on the swatch's exact color. Only a
+// drag: arrow keys fire `change` on every press, and snapping those back would trap the thumb.
+let dragging = false
+frameHue.addEventListener('pointerdown', () => (dragging = true))
+frameHue.addEventListener('change', () => {
+  const v = Number(frameHue.value)
+  if (dragging && notchAt(v) !== undefined) frameHue.value = String(Math.round(v / NOTCH_SPAN) * NOTCH_SPAN)
+  dragging = false
+  flush()
+})
 sparkleBox.addEventListener('change', () => update({ sparkle: sparkleBox.checked }))
 dimSlider.addEventListener('input', () => update({ dimOpacity: Number(dimSlider.value) }, { defer: true }))
 dimSlider.addEventListener('change', () => flush())

@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "เฉดสีกรอบ"
   },
+  "dimOffHidden": {
+    "message": "เกมที่ $TIER$ ลงไปถูกตั้งเป็น ซ่อน จึงไม่มีผลกับ หรี่",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "เปิด ซ่อน อยู่ จึงไม่มีผลกับ หรี่"
+  },
   "sparkle": {
     "message": "ประกายสำหรับ $TIER$",
     "placeholders": {

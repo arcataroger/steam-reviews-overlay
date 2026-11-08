@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Sắc độ khung"
   },
+  "dimOffHidden": {
+    "message": "Trò chơi từ $TIER$ trở xuống đang đặt là Ẩn, nên Làm mờ không có tác dụng.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Ẩn đang bật, nên Làm mờ không có tác dụng."
+  },
   "sparkle": {
     "message": "Lấp lánh cho $TIER$",
     "placeholders": {

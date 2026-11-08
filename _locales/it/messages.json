@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Tonalità della cornice"
   },
+  "dimOffHidden": {
+    "message": "I giochi con $TIER$ o meno sono impostati su Nascondi, quindi Oscura non ha effetto.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Nascondi è attivo, quindi Oscura non ha effetto."
+  },
   "sparkle": {
     "message": "Scintillio su $TIER$",
     "placeholders": {

@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Tono del marco"
   },
+  "dimOffHidden": {
+    "message": "Los juegos con $TIER$ o menos están en Ocultar, así que Atenuar no tiene efecto.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Ocultar está activado, así que Atenuar no tiene efecto."
+  },
   "sparkle": {
     "message": "Destellos en $TIER$",
     "placeholders": {

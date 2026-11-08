@@ -86,14 +86,14 @@ const captioned = async (name, heading, caps, image, height) => {
 }
 await captioned('5-popup-ui', 'Two levers, nine tiers', [
   cap('Filter', 'Dim or hide every game at or below a tier.'),
-  cap('Highlight', 'Outline every game at or above a tier, in its review color or yours.'),
+  cap('Highlight', 'Frame every game at or above a tier, in a color you pick.'),
   cap("Steam's own rules", 'Each notch shows the percent and review count Steam requires.'),
 ], ui, uiH)
 await captioned('6-popup-config', 'Make it yours', [
   cap('Your language or all', 'Judge by reviews in your Steam language, or in every language.'),
-  cap('Frame color', "Keep each game's review color, or pick your own."),
   cap('Dim', 'Choose how dark filtered games get.'),
-  cap('Sparkle', 'Turn the Overwhelmingly Positive sparkle on or off.'),
+  cap('Frame color', 'Pick one of eight colors, or type your own.'),
+  cap('Live preview', 'See the frame, with or without the sparkle.'),
 ], cfg, cfgH)
 await hi.close()
 console.log('wrote', out)

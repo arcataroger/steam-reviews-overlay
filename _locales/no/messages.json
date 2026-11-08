@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Rammens fargetone"
   },
+  "dimOffHidden": {
+    "message": "Spill på $TIER$ og lavere er satt til Skjul, så Demp har ingen virkning.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Skjul er på, så Demp har ingen virkning."
+  },
   "sparkle": {
     "message": "Glitter på $TIER$",
     "placeholders": {

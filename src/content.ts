@@ -2,7 +2,7 @@ import css from './content.css?inline'
 import { subscribe, formatTooltip, peekCached, setLanguage, toneFor, ingestSteamRequest, type ReviewSummary, type Score, stopSteam } from './steam'
 import { seedFromSearchRows, seedFromInlineJson } from './seed'
 import { detectLang, LANG_KEY, type LangInfo } from './lang'
-import { toneColorAt } from './tonecolor'
+import { POSITIVE } from './tonecolor'
 import { thumbIcons } from './thumb'
 import { t } from './i18n'
 
@@ -1236,7 +1236,7 @@ function applyFilter(card: HTMLElement, summary: ReviewSummary) {
       delete card.dataset.sroShape
     }
     shapeWatcher.observe(card)
-    card.style.setProperty('--sro-hl', settings.frameColor ?? toneColorAt(pick.score))
+    card.style.setProperty('--sro-hl', settings.frameColor || POSITIVE) // one color, whatever the score
     const sparkle = pick.score === 9 && settings.sparkle
     if (sparkle) card.dataset.sroOp = '1'
     else delete card.dataset.sroOp

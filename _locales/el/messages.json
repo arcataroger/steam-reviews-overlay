@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Απόχρωση πλαισίου"
   },
+  "dimOffHidden": {
+    "message": "Τα παιχνίδια στο $TIER$ και κάτω έχουν οριστεί σε Απόκρυψη, άρα η Σκούρυνση δεν έχει αποτέλεσμα.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Η Απόκρυψη είναι ενεργή, άρα η Σκούρυνση δεν έχει αποτέλεσμα."
+  },
   "sparkle": {
     "message": "Λάμψη στο $TIER$",
     "placeholders": {

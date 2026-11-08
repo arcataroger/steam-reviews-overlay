@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Відтінок рамки"
   },
+  "dimOffHidden": {
+    "message": "Ігри з оцінкою «$TIER$» і нижче приховуються, тому затемнення не діє.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Увімкнено приховування, тому затемнення не діє."
+  },
   "sparkle": {
     "message": "Блиск для «$TIER$»",
     "placeholders": {

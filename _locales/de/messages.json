@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Farbton des Rahmens"
   },
+  "dimOffHidden": {
+    "message": "Spiele ab „$TIER$“ abwärts sind auf Ausblenden gestellt, daher wirkt Abdunkeln nicht.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Ausblenden ist aktiv, daher wirkt Abdunkeln nicht."
+  },
   "sparkle": {
     "message": "Funkeln bei „$TIER$“",
     "placeholders": {

@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Tint van kader"
   },
+  "dimOffHidden": {
+    "message": "Games met $TIER$ en lager staan op Verbergen, dus Dimmen heeft geen effect.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Verbergen staat aan, dus Dimmen heeft geen effect."
+  },
   "sparkle": {
     "message": "Glinstering bij $TIER$",
     "placeholders": {

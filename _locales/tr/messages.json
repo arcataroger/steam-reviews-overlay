@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Çerçeve tonu"
   },
+  "dimOffHidden": {
+    "message": "$TIER$ ve altındaki oyunlar Gizle olarak ayarlı, bu yüzden Karart etkisiz.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Gizle açık, bu yüzden Karart etkisiz."
+  },
   "sparkle": {
     "message": "$TIER$ için ışıltı",
     "placeholders": {

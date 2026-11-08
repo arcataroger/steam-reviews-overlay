@@ -24,7 +24,7 @@ test.describe('highlight shapes and layout invariants', () => {
     await page.close()
   })
 
-  test('highlights use the game’s own color, rows get a ring, OP cards get the orbit', async ({ context, popup }) => {
+  test('highlights keep one color whatever the score, rows get a ring, OP cards get the orbit', async ({ context, popup }) => {
     await popup.evaluate((o) => chrome.storage.sync.set(o), { [KEY]: { ...base, highlightThreshold: 5 } })
     const page = await context.newPage()
     await page.goto('https://store.steampowered.com/search/?term=roguelike', { waitUntil: 'domcontentloaded' })
@@ -41,7 +41,7 @@ test.describe('highlight shapes and layout invariants', () => {
     expect(info.n).toBeGreaterThan(5)
     expect(info.shapes).toEqual(['row'])
     expect(info.tones.length).toBeGreaterThan(1) // mixed + positive present at a Mixed bar
-    expect(info.colors.length).toBe(info.tones.length) // one color per tone, the game's own
+    expect(info.colors).toEqual(['#66c0f4']) // Steam's blue on Mixed and positive games alike
     expect(info.op).toBeGreaterThan(0)
     expect(info.opScores).toBe(true)
     await page.close()

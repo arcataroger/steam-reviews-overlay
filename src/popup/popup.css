@@ -10,6 +10,10 @@
   --steel: #2b3542;
   --steel-dark: #1a212b;
   --steel-light: #3d4a5a;
+  /* One spacing for the whole popup: every block's side inset, and the gap between blocks */
+  --gutter: 10px;
+  /* One corner for every box: notices, panels, readouts, switches, cards, the preview, the gear */
+  --radius: 6px;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -28,18 +32,19 @@ body {
 }
 .hdr {
   display: flex; align-items: center; gap: 9px;
-  padding: 11px 16px;
+  padding: 11px var(--gutter);
   background: var(--bg2);
   font-size: 14px; font-weight: 600;
   letter-spacing: 0.2px;
   box-shadow: 0 1px 0 rgba(0,0,0,0.35);
 }
 .hdr img { border-radius: 4px; }
+.hdr-version { font-size: 10px; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
 .status:empty { display: none; }
 .status {
-  margin: 4px 16px 0;
+  margin: var(--gutter) var(--gutter) 0;
   padding: 4px 9px;
-  border-radius: 4px;
+  border-radius: var(--radius);
   font-size: 11px; line-height: 1.3;
   background: #3a2f1a; color: #f2d39b;
   border: 1px solid #5b4a26;
@@ -47,10 +52,10 @@ body {
 .status.info { background: #1f2f3f; color: #a9c8e0; border-color: #2a475e; }
 /* While a notice is showing, shorten the ladder slightly so the popup still fits Chrome's 600px cap */
 body.has-notice .throttle { --track: 230px; }
-.sec { padding: 14px 16px 2px; }
-.sec:last-of-type { padding-bottom: 14px; }
+.sec { padding: var(--gutter) var(--gutter) 2px; }
+.sec:last-of-type { padding-bottom: var(--gutter); }
 
-.seg { display: flex; margin-top: 8px; border: 1px solid #2a475e; border-radius: 5px; overflow: hidden; background: rgba(0,0,0,0.15); }
+.seg { display: flex; margin-top: 8px; border: 1px solid #2a475e; border-radius: var(--radius); overflow: hidden; background: rgba(0,0,0,0.15); }
 .seg button {
   flex: 1; min-width: 0; padding: 8px 4px; border: 0; background: transparent; color: var(--muted);
   font: inherit; cursor: pointer;
@@ -61,8 +66,9 @@ body.has-notice .throttle { --track: 230px; }
 .seg button:hover { color: #fff; }
 /* Gear in the header: swaps the ladder for the config screen */
 .icon-btn {
-  margin-inline-start: auto; display: grid; place-items: center; width: 28px; height: 28px; padding: 0;
-  color: var(--muted); background: none; border: 0; border-radius: 5px; cursor: pointer;
+  /* The 18px glyph sits 5px inside its 28px box: pull the box out so the glyph meets the gutter */
+  margin-inline: auto -5px; display: grid; place-items: center; width: 28px; height: 28px; padding: 0;
+  color: var(--muted); background: none; border: 0; border-radius: var(--radius); cursor: pointer;
 }
 .icon-btn:hover { color: #fff; background: rgba(255,255,255,0.08); }
 .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -70,25 +76,81 @@ body.has-notice .throttle { --track: 230px; }
 .icon-btn[aria-expanded="true"] .ico-close { display: block; }
 
 /* Config screen: one plain card per option */
-.config:not([hidden]) { display: grid; gap: 10px; padding: 12px 16px 14px; font-size: 13px; }
-.cfg-sec { display: grid; gap: 10px; padding: 12px; border: 1px solid #2a475e; border-radius: 6px; background: rgba(0,0,0,0.18); }
+.config:not([hidden]) { display: grid; gap: var(--gutter); padding: var(--gutter); font-size: 13px; }
+.cfg-sec { display: grid; gap: 10px; padding: 12px; border: 1px solid #2a475e; border-radius: var(--radius); background: rgba(0,0,0,0.18); }
 .cfg-sec h2 { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; color: #fff; }
 .hue-row { display: flex; align-items: center; gap: 8px; }
 .hex {
   flex: none; width: 86px; padding: 1px 5px; font: 11px/1.3 ui-monospace, Menlo, Consolas, monospace;
-  color: var(--fg); background: rgba(0,0,0,0.25); border: 1px solid #2a475e; border-radius: 4px;
+  color: var(--fg); background: rgba(0,0,0,0.25); border: 1px solid #2a475e; border-radius: var(--radius);
   user-select: text; -webkit-user-select: text;
 }
 .hex:focus-visible { outline: 2px solid var(--accent); outline-offset: -1px; }
 .hex.invalid { border-color: var(--negative); }
-.swatches { display: flex; justify-content: space-between; }
-.swatches button {
-  width: 24px; height: 24px; padding: 0; cursor: pointer;
-  border: 2px solid rgba(0,0,0,0.45); border-radius: 50%;
+/* Swatches sit over their notches on the hue slider: column 1 holds both, so they share a width.
+   The thumb's centre runs from 6px to the width less 6px, and each swatch centres on its stop. */
+.hue-pick { direction: ltr; /* the hue runs red to pink in every language, as the swatches do */ display: grid; grid-template-columns: 1fr auto; column-gap: 8px; row-gap: 1px; align-items: center; padding-inline: 4px; }
+.hue-pick .swatches { grid-column: 1; position: relative; height: 27px; }
+.hue-pick .hue { grid-column: 1; grid-row: 2; }
+/* An end tag centres 6px in from the track's end and reaches 2px past it */
+.hue-pick .swatches, .hue-pick .hue { margin-inline: 4px; }
+/* The hex field doubles as a preview: framed like a highlighted card, sparkle and all */
+.frame-preview {
+  grid-column: 2; grid-row: 1 / span 2; align-self: stretch; position: relative; width: 86px;
+  border-radius: var(--radius); background: rgba(0,0,0,0.25);
 }
-.swatches button.auto { background: var(--positive); }
-.swatches button[aria-checked="true"] { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px #fff; }
-.swatches button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.frame-preview::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; border-radius: inherit;
+  box-sizing: border-box; border: 2px solid var(--sro-hl);
+}
+/* The glow comes with the sparkle, as on the page (data-sro-op in content.ts) */
+.frame-preview.sparkle::before { box-shadow: inset 0 0 15px var(--sro-hl); }
+.frame-preview .hex {
+  box-sizing: border-box; width: 100%; height: 100%; padding: 0; text-align: center;
+  background: transparent; border: 0; border-radius: inherit; text-shadow: 0 0 3px #000, 0 0 6px #000;
+}
+.frame-preview .hex:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.frame-preview .hex.invalid { outline: 2px solid var(--negative); outline-offset: 2px; }
+.frame-preview .sro-orbit { z-index: 2; }
+.frame-preview .sro-orbit[hidden] { display: none; }
+/* The page's orbit (src/content.css), for the preview */
+.sro-orbit {
+  position: absolute; inset: 0; pointer-events: none; border-radius: inherit; padding: 3px; overflow: hidden;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+.sro-orbit > i {
+  position: absolute; top: 0; left: 0; height: 3px;
+  offset-path: inset(1.5px); offset-rotate: auto;
+  animation: sro-orbit 5s linear infinite; /* LAP_SECONDS in sparkle.ts */
+}
+@keyframes sro-orbit { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+@media (prefers-reduced-motion: reduce) {
+  .sro-orbit > i { animation: none; opacity: 0.6; }
+  .sro-orbit > i + i { display: none; }
+}
+/* A custom color: the presets fade back but still work, to return to them */
+.hue-pick.custom .swatches, .hue-pick.custom .hue { opacity: 0.4; transition: opacity 0.15s; }
+.hue-pick.custom .swatches:hover, .hue-pick.custom .hue:hover,
+.hue-pick.custom .swatches:focus-within, .hue-pick.custom .hue:focus-visible { opacity: 0.75; }
+/* Each swatch is a tag whose point rests on its notch. The button is the rim (dark, or white when
+   chosen) and ::before is the color, the same shape 2px inside. */
+/* Each swatch is a tag whose point rests on its notch. The button stays a plain box, so a focus
+   outline shows; ::after is the rim (dark, or white when chosen) and ::before the color, both cut
+   to the tag shape. */
+.swatches button {
+  --tag: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+  position: absolute; bottom: 0; left: calc(6px + (100% - 12px) * var(--at)); transform: translateX(-50%);
+  width: 16px; height: 24px; padding: 0; cursor: pointer; border: 0; background: none; transition: transform 0.1s;
+}
+.swatches button::after { content: ''; position: absolute; inset: 0; clip-path: var(--tag); background: rgba(0,0,0,0.55); }
+.swatches button::before { content: ''; position: absolute; inset: 2px 2px 3px; z-index: 1; clip-path: var(--tag); background: var(--c); }
+.swatches button:hover { transform: translateX(-50%) translateY(-2px); }
+.swatches button[aria-checked="true"] { transform: translateX(-50%) translateY(-3px); }
+.swatches button[aria-checked="true"]::after { background: #fff; }
+.swatches button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
 .hue {
   appearance: none; -webkit-appearance: none; flex: 1; min-width: 0; height: 10px; margin: 0; border-radius: 5px; cursor: pointer;
   background: linear-gradient(to right, #f55, #fd5, #5f5, #5ff, #55f, #f5f, #f55);
@@ -97,6 +159,10 @@ body.has-notice .throttle { --track: 230px; }
 .hue::-moz-range-thumb { width: 12px; height: 16px; border-radius: 3px; background: #fff; border: 1px solid #000; }
 .hue:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .dim-level { background: linear-gradient(to right, #8ea3b5, #0b0e13); }
+.hue-row.off { opacity: 0.4; cursor: not-allowed; }
+.hue:disabled { cursor: not-allowed; }
+.hue:disabled::-webkit-slider-thumb { cursor: not-allowed; }
+.hue:disabled::-moz-range-thumb { cursor: not-allowed; }
 .dim-value { flex: none; min-width: 4ch; text-align: end; font-variant-numeric: tabular-nums; }
 .opt-check { display: flex; align-items: center; gap: 7px; cursor: pointer; line-height: 1.25; }
 .opt-check input { flex: none; margin: 0; accent-color: var(--accent); }
@@ -107,12 +173,12 @@ body.has-notice .throttle { --track: 230px; }
 
 
 /* ---------- control panel ---------- */
-.panel-wrap { padding-top: 10px; }
-.sec.panel-wrap:last-of-type { padding-bottom: 12px; }
+.panel-wrap { padding-top: var(--gutter); }
+.sec.panel-wrap:last-of-type { padding-bottom: var(--gutter); }
 .panel {
   position: relative;
-  padding: 14px 20px 20px;
-  border-radius: 10px;
+  padding: 8px 20px 9px; /* 8px round the controls (the OFF plate hangs 1px low); the sides narrow to 8px in the popup */
+  border-radius: var(--radius);
   background:
     repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px),
     linear-gradient(180deg, var(--steel-light), var(--steel) 30%, var(--steel-dark));
@@ -126,12 +192,12 @@ body.has-notice .throttle { --track: 230px; }
   font-size: 9px; letter-spacing: 1.6px; color: #aeb9c6; font-weight: 700;
   text-shadow: 0 1px 0 rgba(0,0,0,0.9);
 }
-.readouts { display: flex; gap: 8px; margin: 2px 0 14px; }
+.readouts { display: flex; gap: 8px; margin: 0 0 14px; }
 .readout {
   flex: 1; min-width: 0;
   display: flex; flex-direction: column; gap: 1px;
   padding: 5px 9px 6px;
-  border-radius: 6px;
+  border-radius: var(--radius);
   background: linear-gradient(180deg, #05070a, #0c1016);
   box-shadow: inset 0 2px 6px rgba(0,0,0,0.95), inset 0 0 0 1px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.08);
   transition: opacity 0.2s;
@@ -140,7 +206,7 @@ body.has-notice .throttle { --track: 230px; }
 .readout .plate-row { display: flex; align-items: center; justify-content: space-between; min-height: 14px; }
 /* digits sit on the same baseline in both readouts, whatever sits above them */
 .readout .digits { margin-top: auto; padding-top: 4px; }
-.switch { display: flex; margin-top: 4px; border: 1px solid #2a475e; border-radius: 3px; overflow: hidden; }
+.switch { display: flex; margin-top: 4px; border: 1px solid #2a475e; border-radius: var(--radius); overflow: hidden; }
 .switch button {
   flex: 1; min-width: 0; border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 10px;
   padding: 3px 2px; cursor: pointer; letter-spacing: 0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -293,7 +359,7 @@ body.has-notice .throttle { --track: 230px; }
    Gray crosshatch marks it as the OFF position. */
 .detent {
   position: absolute; width: 40px; height: 26px;
-  border-radius: 8px;
+  border-radius: var(--radius);
   background:
     repeating-linear-gradient(45deg, rgba(150,160,175,0.14) 0 1px, transparent 1px 5px),
     repeating-linear-gradient(-45deg, rgba(150,160,175,0.14) 0 1px, transparent 1px 5px),
@@ -327,7 +393,7 @@ body.has-notice .throttle { --track: 230px; }
 
 /* Compact ladder (set by fitLadder when labels outgrow the notch pitch): one line per notch, the
    rule moves to a tooltip, and the panel gives the names its side padding */
-body.compact .sec { padding-left: 10px; padding-right: 10px; }
+body.compact .sec { padding-left: var(--gutter); padding-right: var(--gutter); }
 body.compact .panel { padding-left: 8px; padding-right: 8px; }
 body.compact .notch .tick { min-width: 4px; }
 body.compact .notch span { display: block; padding: 0 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -349,7 +415,7 @@ body.compact .notch span b { display: none; }
 }
 /* Narrow screens: let the panel breathe */
 @media (max-width: 359px) {
-  .sec { padding-left: 10px; padding-right: 10px; }
+  .sec { padding-left: var(--gutter); padding-right: var(--gutter); }
   .panel { padding-left: 8px; padding-right: 8px; }
   .notch span { font-size: 10px; }
 }

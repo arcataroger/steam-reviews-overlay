@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "邊框色相"
   },
+  "dimOffHidden": {
+    "message": "「$TIER$」及以下的遊戲已設為隱藏，因此變暗沒有作用。",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "已開啟隱藏，因此變暗沒有作用。"
+  },
   "sparkle": {
     "message": "為「$TIER$」加上閃光",
     "placeholders": {

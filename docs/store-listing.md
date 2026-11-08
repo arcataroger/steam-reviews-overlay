@@ -23,7 +23,7 @@ Steam hides its review summary behind a hover tooltip. Steam Reviews Overlay put
 Drag the left lever to a tier. Games at that tier or below get dimmed or hidden, and lists close the gaps.
 
 **Spot the gems**
-Drag the right lever to a tier. Games at that tier or above get a frame in their review color, or in a color you pick.
+Drag the right lever to a tier. Games at that tier or above get a frame in Steam's blue, or in a color you pick.
 
 **Your language or everyone's**
 Steam scores each game twice: once from reviews in your language, once from reviews in every language. Labels show both when they differ. Pick the score the levers judge by on the Settings screen, behind the gear.
@@ -66,6 +66,10 @@ To retake them from live Steam pages, run `npm run shots:store`.
 ## Release notes
 
 Paste the current version's notes into AMO's "Release notes" field when you submit it. Firefox shows them on the add-on's Release Notes tab. AMO takes plain text.
+
+### 0.3.1
+
+- Cosmetic consistency fixes for the extension settings screens.
 
 ### 0.3.0
 

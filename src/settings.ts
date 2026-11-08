@@ -1,5 +1,7 @@
 /** User settings shared between the popup and the content script. */
 
+import { POSITIVE } from './tonecolor'
+
 export type FilterMode = 'dim' | 'hide'
 export type ScoreSource = 'global' | 'local'
 
@@ -14,8 +16,8 @@ export interface Settings {
   source: ScoreSource
   /** 1-9, or OFF_HIGHLIGHT (10) = parked. Games at this tier or higher are outlined. */
   highlightThreshold: number
-  /** #rrggbb for every highlight frame, or null to use each game's own review color. */
-  frameColor: string | null
+  /** #rrggbb for every highlight frame, whatever the game's score. */
+  frameColor: string
   /** Run the orbiting lights around Overwhelmingly Positive frames. */
   sparkle: boolean
   /** How dark the overlay on a dimmed card is, in percent. */
@@ -35,7 +37,7 @@ export const DEFAULT_SETTINGS: Settings = {
   threshold: 5, // Mixed and below
   source: 'global',
   highlightThreshold: 8, // Very Positive and above
-  frameColor: null,
+  frameColor: POSITIVE, // Steam's blue
   sparkle: true,
   dimOpacity: 50,
 }
@@ -106,7 +108,8 @@ function normalize(raw: Partial<Settings> | undefined): Settings {
   s.highlightThreshold = s.highlightThreshold >= 10 ? OFF_HIGHLIGHT : snapPosition(s.highlightThreshold)
   if (s.mode !== 'hide') s.mode = 'dim'
   if (s.source !== 'local') s.source = 'global'
-  s.frameColor = parseHexColor(s.frameColor)
+  // Saves before 0.3.1 could hold null (each game's review color). Frames keep one color now: blue.
+  s.frameColor = parseHexColor(s.frameColor) ?? POSITIVE
   s.sparkle = s.sparkle !== false
   s.dimOpacity = raw && raw.dimOpacity === undefined ? PRE_SLIDER_DIM : parseDimOpacity(s.dimOpacity)
   // Whatever storage or a migration handed us, the levers must not collide (highlight strictly above filter)

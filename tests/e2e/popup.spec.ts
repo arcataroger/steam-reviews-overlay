@@ -3,42 +3,73 @@ import path from 'node:path'
 import { test, expect, settle } from './fixtures'
 
 test.describe('popup levers drive the overlay live', () => {
-  test('frame color and sparkle apply live, and the review color comes back', async ({ context, popup }) => {
+  test('frame color and sparkle apply live', async ({ context, popup }) => {
     const store = await context.newPage()
     await store.goto('https://store.steampowered.com/search/?term=portal', { waitUntil: 'domcontentloaded' })
     await settle(store)
     await popup.bringToFront()
     await popup.click('.notch[data-pos="6"] .tick.r', { force: true })
     const frames = () => store.evaluate(() => [...new Set([...document.querySelectorAll<HTMLElement>('[data-sro-highlight]')].map((e) => e.style.getPropertyValue('--sro-hl')))].sort().join())
-    await expect.poll(frames).toContain('#66c0f4')
+    await expect.poll(frames).toBe('#66c0f4') // a new install: Steam's blue
     await expect.poll(() => store.locator('.sro-orbit').count()).toBeGreaterThan(0)
 
     await expect(popup.locator('#configView')).toBeHidden()
     await popup.click('#configToggle')
     await expect(popup.locator('#configView')).toBeVisible()
     await expect(popup.locator('#throttle')).toBeHidden()
-    await expect(popup.locator('#frameSwatches button.auto')).toHaveCSS('background-color', 'rgb(102, 192, 244)')
-    await expect(popup.locator('#frameHue')).toHaveValue('202') // the default frame's hue
-    await popup.click('#frameSwatches [data-color="#ffd54a"]')
-    await expect.poll(frames).toBe('#ffd54a')
-    await expect(popup.locator('#frameHex')).toHaveValue('#ffd54a')
+    const checked = popup.locator('#frameSwatches [aria-checked="true"]')
+    await expect(checked).toHaveAttribute('data-color', '#66c0f4')
+    await expect(popup.locator('#frameHue')).toHaveValue('400') // the blue notch
+
+    // A swatch moves the slider onto its notch
+    await popup.click('#frameSwatches [data-color="#f6e155"]')
+    await expect.poll(frames).toBe('#f6e155')
+    await expect(popup.locator('#frameHue')).toHaveValue('200')
+    await expect(popup.locator('#frameHex')).toHaveValue('#f6e155')
+
+    // Arrow keys walk off a notch: only a drag snaps back onto it
+    await popup.locator('#frameHue').focus()
+    for (let i = 0; i < 8; i++) await popup.keyboard.press('ArrowRight')
+    await expect(popup.locator('#frameHue')).toHaveValue('208')
+
+    // The slider on a notch lights that swatch, with the swatch's exact color
+    await popup.locator('#frameHue').fill('400')
+    await expect.poll(frames).toBe('#66c0f4')
+    await expect(checked).toHaveAttribute('data-color', '#66c0f4')
 
     await popup.fill('#frameHex', 'FF8800')
     await expect.poll(frames).toBe('#ff8800')
+    await expect(checked).toHaveCount(0) // no swatch is that color
+    const pick = popup.locator('.hue-pick')
+    await expect(pick).toHaveClass(/custom/) // the presets fade: this color is the user's own
+    await expect(popup.locator('#framePreview')).toHaveCSS('--sro-hl', '#ff8800') // the hex field wears the frame
 
-    await popup.locator('#frameHue').fill('200')
+    // A swatch still brings the presets back
+    await popup.click('#frameSwatches [data-color="#f655a6"]')
+    await expect.poll(frames).toBe('#f655a6')
+    await expect(pick).not.toHaveClass(/custom/)
+    await expect(popup.locator('#frameHue')).toHaveValue('700') // pink closes the slider
+
+    await popup.locator('#frameHue').fill('150')
     await expect.poll(frames).not.toBe('#ff8800')
-    expect(await popup.locator('#frameSwatches [aria-checked="true"]').count()).toBe(0) // no preset is that color
+    await expect(checked).toHaveCount(0) // between notches
+    await expect(popup.locator('.hue-pick')).not.toHaveClass(/custom/) // still a slider color
 
+    await expect(popup.locator('#previewOrbit > i').first()).toBeAttached() // the preview sparkles too
     await popup.uncheck('#sparkle')
+    await expect(popup.locator('#previewOrbit')).toBeHidden()
+    expect(await popup.locator('#framePreview').evaluate((e) => getComputedStyle(e, '::before').boxShadow)).toBe('none') // no glow without the sparkle
     await expect.poll(() => store.locator('.sro-orbit').count()).toBe(0)
     expect(await store.locator('[data-sro-op]').count()).toBe(0)
     await popup.check('#sparkle')
     await expect.poll(() => store.locator('.sro-orbit').count()).toBeGreaterThan(0)
 
-    await popup.click('#frameSwatches button.auto')
-    await expect.poll(frames).toContain('#66c0f4')
-    await expect(popup.locator('#frameHex')).toHaveValue('')
+    // Clearing the field changes nothing, and leaving it shows the color in force again
+    const before = await frames()
+    await popup.fill('#frameHex', '')
+    await popup.locator('#frameHex').blur()
+    await expect(popup.locator('#frameHex')).toHaveValue(before)
+    expect(await frames()).toBe(before)
     await popup.click('#configToggle')
     await expect(popup.locator('#throttle')).toBeVisible()
     await store.close()
@@ -61,6 +92,19 @@ test.describe('popup levers drive the overlay live', () => {
     await popup.locator('#dimOpacity').fill('40')
     await expect(popup.locator('#dimValue')).toHaveText(/40/)
     await expect.poll(overlay).toBe('rgba(0, 0, 0, 0.4)')
+
+    // Hide makes Dim moot: the slider greys out and a hint says why
+    await popup.click('#configToggle')
+    await popup.click('[data-mode="hide"]')
+    await popup.click('#configToggle')
+    await expect(popup.locator('#dimOpacity')).toBeDisabled()
+    await expect(popup.locator('#dimOpacity')).toHaveCSS('cursor', 'not-allowed')
+    await expect(popup.locator('#dimHint')).toHaveText('Games at Mixed and below are set to Hide, so Dim has no effect.')
+    await popup.click('#configToggle')
+    await popup.click('[data-mode="dim"]')
+    await popup.click('#configToggle')
+    await expect(popup.locator('#dimOpacity')).toBeEnabled()
+    await expect(popup.locator('#dimHint')).toBeHidden()
     await store.close()
   })
 

@@ -154,7 +154,7 @@ describe('settings change events', () => {
   it('never lets the new defaults touch a save', async () => {
     const { loadSettings, OFF_FILTER, OFF_HIGHLIGHT } = await import('../../src/settings')
     const store = (globalThis as any).chrome.storage
-    const before = { mode: 'hide', threshold: OFF_FILTER, source: 'local', highlightThreshold: OFF_HIGHLIGHT, frameColor: null, sparkle: false }
+    const before = { mode: 'hide', threshold: OFF_FILTER, source: 'local', highlightThreshold: OFF_HIGHLIGHT, frameColor: '#5555f6', sparkle: false }
     await store.local.set({ 'sro:settings:v4': before, 'sro:settings:v4:t': Date.now() + 2000 })
     // Parked levers stay parked, and a save from before the slider keeps the old darkness
     expect(await loadSettings()).toEqual({ ...before, dimOpacity: 75 })
@@ -267,9 +267,21 @@ describe('frame options', () => {
     for (const bad of ['#ff88', 'red', 'url(x)', '#ff8800;color:red', '', null, 42]) expect(parseHexColor(bad)).toBeNull()
   })
 
-  it('defaults to the review color with the sparkle on, for settings saved before these options', () => {
-    expect(DEFAULT_SETTINGS.frameColor).toBeNull()
+  it("starts a new install on Steam's blue frame with the sparkle on", () => {
+    expect(DEFAULT_SETTINGS.frameColor).toBe('#66c0f4')
     expect(DEFAULT_SETTINGS.sparkle).toBe(true)
+  })
+
+  it('gives Steam blue to saves with no frame color, or the old per-score null, and keeps a picked one', async () => {
+    const { loadSettings } = await import('../../src/settings')
+    const store = (globalThis as any).chrome.storage
+    const old = { mode: 'dim', threshold: 5, source: 'global', highlightThreshold: 8, sparkle: true, dimOpacity: 50 }
+    await store.local.set({ 'sro:settings:v4': old, 'sro:settings:v4:t': Date.now() + 5000 })
+    expect((await loadSettings()).frameColor).toBe('#66c0f4')
+    await store.local.set({ 'sro:settings:v4': { ...old, frameColor: null }, 'sro:settings:v4:t': Date.now() + 5500 })
+    expect((await loadSettings()).frameColor).toBe('#66c0f4')
+    await store.local.set({ 'sro:settings:v4': { ...old, frameColor: '#5555f6' }, 'sro:settings:v4:t': Date.now() + 6000 })
+    expect((await loadSettings()).frameColor).toBe('#5555f6')
   })
 
   it('starts a new install at Mixed, Very Positive and half dim', () => {

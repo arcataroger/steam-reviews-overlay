@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "枠の色相"
   },
+  "dimOffHidden": {
+    "message": "$TIER$ 以下のゲームは「非表示」に設定されているため、「暗くする」は効果がありません。",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "「非表示」がオンのため、「暗くする」は効果がありません。"
+  },
   "sparkle": {
     "message": "$TIER$ をきらめかせる",
     "placeholders": {

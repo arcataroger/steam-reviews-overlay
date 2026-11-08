@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Nuanța chenarului"
   },
+  "dimOffHidden": {
+    "message": "Jocurile cu $TIER$ și mai jos sunt setate pe Ascunde, deci Estompează nu are efect.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Ascunde este activat, deci Estompează nu are efect."
+  },
   "sparkle": {
     "message": "Sclipire la $TIER$",
     "placeholders": {

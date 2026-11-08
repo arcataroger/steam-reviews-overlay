@@ -53,11 +53,11 @@ function copyBuild(browser) {
 function bakeSettings(dir, settings) {
   const assets = path.join(dir, 'assets')
   const file = fs.readdirSync(assets).find((f) => /^settings-.*\.js$/.test(f))
-  const DEFAULTS = /mode:`dim`,threshold:5,source:`global`,highlightThreshold:8,frameColor:null,sparkle:!0,dimOpacity:50/
+  const DEFAULTS = /mode:`dim`,threshold:5,source:`global`,highlightThreshold:8,frameColor:[^,]+,sparkle:!0,dimOpacity:50/
   const src = file && fs.readFileSync(path.join(assets, file), 'utf8')
   if (!src || !DEFAULTS.test(src)) throw new Error('settings defaults not found in the Firefox build; update DEFAULTS in scripts/lib/browsers.mjs')
   const s = settings
-  fs.writeFileSync(path.join(assets, file), src.replace(DEFAULTS, `mode:\`${s.mode}\`,threshold:${s.threshold},source:\`${s.source}\`,highlightThreshold:${s.highlightThreshold},frameColor:${JSON.stringify(s.frameColor ?? null)},sparkle:${s.sparkle !== false},dimOpacity:${s.dimOpacity ?? 50}`))
+  fs.writeFileSync(path.join(assets, file), src.replace(DEFAULTS, `mode:\`${s.mode}\`,threshold:${s.threshold},source:\`${s.source}\`,highlightThreshold:${s.highlightThreshold},frameColor:${JSON.stringify(s.frameColor ?? '#66c0f4')},sparkle:${s.sparkle !== false},dimOpacity:${s.dimOpacity ?? 50}`))
 }
 
 /**

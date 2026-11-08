@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "درجة لون الإطار"
   },
+  "dimOffHidden": {
+    "message": "الألعاب عند $TIER$ وما دونه مضبوطة على «إخفاء»، لذا لا أثر لـ«تعتيم».",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "«إخفاء» مفعّل، لذا لا أثر لـ«تعتيم»."
+  },
   "sparkle": {
     "message": "تأثير لامع على $TIER$",
     "placeholders": {

@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Kehyksen sävy"
   },
+  "dimOffHidden": {
+    "message": "Pelit tasolla $TIER$ ja sen alle on asetettu piiloon, joten himmennys ei vaikuta.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Piilotus on käytössä, joten himmennys ei vaikuta."
+  },
   "sparkle": {
     "message": "Kimallus: $TIER$",
     "placeholders": {

@@ -220,6 +220,19 @@
     "message": "Frame hue",
     "description": "Screen-reader name of the hue slider."
   },
+  "dimOffHidden": {
+    "message": "Games at $TIER$ and below are set to Hide, so Dim has no effect.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    },
+    "description": "Hint under the disabled Dim slider. TIER is a Steam review label, such as Mixed."
+  },
+  "dimOffHide": {
+    "message": "Hide is on, so Dim has no effect.",
+    "description": "Hint under the disabled Dim slider when Hide is on but no tier is filtered."
+  },
   "sparkle": {
     "message": "Sparkle on $TIER$",
     "placeholders": {

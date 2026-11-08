@@ -45,9 +45,12 @@ cards across the Steam store, so you don't have to hover every capsule.
   the tick on each side is clickable for that lever; the config screen (the
   gear at the top right) picks whether the levers judge by your language's score or
   the all-languages score. The rails carry a gradient through Steam's three review colors,
-  and the readouts sample it at the lever's position. Highlights on the store
-  use each game's own review color, or a frame color you pick on the config screen (the gear at the
-  top right). A checkbox there turns the Overwhelmingly Positive sparkle on or off, and a slider sets how dark dimmed cards get. Settings sync via `storage.sync` and apply live to open tabs.
+  and the readouts sample it at the lever's position. On the config screen (the gear at the top
+  right), you pick the frame color from eight swatches, the notches of a hue slider, or type any
+  hex code. The hex field previews the frame and its sparkle. Frames start in Steam's blue,
+  and keep one color whatever the game's score. A checkbox there turns the Overwhelmingly
+  Positive sparkle on or off, and a slider sets how dark dimmed cards get (Hide disables it).
+  Settings sync via `storage.sync` and apply live to open tabs.
 - Data is Steam's own, never recomputed:
   1. Summaries already rendered on the page are reused for an instant first
      paint (search rows carry the label, percent and count in a tooltip; the
@@ -138,6 +141,17 @@ each version once across both channels, so an unlisted build uses up that versio
    Developer Hub → Manage API Keys in `.env` (git-ignored). Exported variables work too.
 3. Run `npm run publish:firefox`. It builds, lints, signs, and saves the `.xpi` to
    `web-ext-artifacts/`.
+
+## Publish (Chrome)
+
+The Chrome Web Store API uploads a package and submits it. It cannot change the listing, so a
+release with new screenshots finishes in the dashboard. Auth impersonates the service account
+`cws-publisher@steam-reviews-overlay-cws.iam.gserviceaccount.com`, so there is no key file.
+
+1. Install the Google Cloud CLI and run `gcloud auth login` once.
+2. Put the release's Chrome zip in `release/`.
+3. Run `npm run publish:chrome`. With new screenshots, run `npm run publish:chrome -- --upload-only`.
+4. Run `npm run publish:chrome -- --status` to see where the item stands.
 
 ## Load
 

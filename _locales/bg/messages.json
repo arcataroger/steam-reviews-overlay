@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Оттенък на рамката"
   },
+  "dimOffHidden": {
+    "message": "Игрите с $TIER$ и по-ниско са настроени на „Скрий“, затова „Затъмни“ няма ефект.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Включено е „Скрий“, затова „Затъмни“ няма ефект."
+  },
   "sparkle": {
     "message": "Блясък при $TIER$",
     "placeholders": {

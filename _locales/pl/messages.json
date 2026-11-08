@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Odcień ramki"
   },
+  "dimOffHidden": {
+    "message": "Gry z oceną $TIER$ i niższą są ustawione na Ukryj, więc Przyciemnij nie działa.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Włączono Ukryj, więc Przyciemnij nie działa."
+  },
   "sparkle": {
     "message": "Blask przy: $TIER$",
     "placeholders": {

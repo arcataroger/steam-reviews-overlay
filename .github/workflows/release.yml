@@ -2,7 +2,8 @@
 #   steam-reviews-overlay-chrome-<v>.zip   upload to the Chrome Web Store, or load unpacked
 #   steam-reviews-overlay-firefox-<v>.xpi  unsigned; drag onto about:addons in Developer Edition, or upload to AMO
 #   steam-reviews-overlay-source-<v>.zip   the source AMO's reviewers ask for (see BUILD.md)
-# The notes come from .github/release-notes.md plus the commits since the previous tag.
+# The notes come from this version's section of docs/store-listing.md, .github/release-notes.md and
+# the commits since the previous tag.
 # To release: bump "version" in package.json, commit, then `git tag v<version> && git push origin v<version>`.
 name: Release
 
@@ -56,7 +57,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           prev=$(git describe --tags --abbrev=0 "$GITHUB_REF_NAME^" 2>/dev/null || true)
+          # This version's notes, from its "### <version>" section in docs/store-listing.md
+          whatsnew=$(awk -v v="### $VERSION" '$0 == v { on = 1; next } on && /^#/ { exit } on' docs/store-listing.md | sed '/./,$!d')
+          if [ -z "$whatsnew" ]; then
+            echo "::error::docs/store-listing.md has no release notes under ### $VERSION"
+            exit 1
+          fi
           {
+            echo "## What's new"
+            echo
+            echo "$whatsnew"
+            echo
             sed -e "s|{{VERSION}}|$VERSION|g" -e "s|{{REPO}}|$GITHUB_REPOSITORY|g" -e "s|{{TAG}}|$GITHUB_REF_NAME|g" .github/release-notes.md
             echo
             echo "## Changes"

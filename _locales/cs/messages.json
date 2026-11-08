@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Odstín rámečku"
   },
+  "dimOffHidden": {
+    "message": "Hry s hodnocením $TIER$ a nižším jsou nastaveny na Skrýt, takže Ztmavit nemá žádný účinek.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Je zapnuto Skrýt, takže Ztmavit nemá žádný účinek."
+  },
   "sparkle": {
     "message": "Třpyt u hodnocení $TIER$",
     "placeholders": {

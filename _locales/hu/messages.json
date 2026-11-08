@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Keret árnyalata"
   },
+  "dimOffHidden": {
+    "message": "A(z) $TIER$ és az alatti játékok Elrejtésre vannak állítva, így a Halványítás nem hat.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Az Elrejtés be van kapcsolva, így a Halványítás nem hat."
+  },
   "sparkle": {
     "message": "Csillogás: $TIER$",
     "placeholders": {

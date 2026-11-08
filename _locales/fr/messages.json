@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Teinte du cadre"
   },
+  "dimOffHidden": {
+    "message": "Les jeux à « $TIER$ » et en dessous sont réglés sur Masquer : Assombrir n’a donc aucun effet.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Masquer est activé : Assombrir n’a donc aucun effet."
+  },
   "sparkle": {
     "message": "Scintillement sur « $TIER$ »",
     "placeholders": {

@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Matiz da moldura"
   },
+  "dimOffHidden": {
+    "message": "Os jogos com $TIER$ ou menos estão em Ocultar, por isso Escurecer não tem efeito.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Ocultar está ativado, por isso Escurecer não tem efeito."
+  },
   "sparkle": {
     "message": "Brilho em $TIER$",
     "placeholders": {

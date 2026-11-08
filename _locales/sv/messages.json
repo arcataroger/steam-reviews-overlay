@@ -191,6 +191,17 @@
   "frameHue": {
     "message": "Ramens färgton"
   },
+  "dimOffHidden": {
+    "message": "Spel på $TIER$ och lägre är inställda på Dölj, så Tona ned har ingen effekt.",
+    "placeholders": {
+      "TIER": {
+        "content": "$1"
+      }
+    }
+  },
+  "dimOffHide": {
+    "message": "Dölj är på, så Tona ned har ingen effekt."
+  },
   "sparkle": {
     "message": "Glitter på $TIER$",
     "placeholders": {

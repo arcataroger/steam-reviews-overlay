@@ -67,6 +67,12 @@ To retake them from live Steam pages, run `npm run shots:store`.
 
 Paste the current version's notes into AMO's "Release notes" field when you submit it. Firefox shows them on the add-on's Release Notes tab. AMO takes plain text.
 
+### 0.3.2
+
+- Sale pages: frames now surround the right box, and every tile gets its label.
+- Labels no longer touch prices or run off narrow tiles.
+- Search results: long labels fit with a large minimum font, and all labels line up.
+
 ### 0.3.1
 
 - Cosmetic consistency fixes for the extension settings screens.

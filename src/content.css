@@ -38,8 +38,15 @@
    column at 4% (30px, icon only); let it grow to fit the label so it never runs into the price. */
 .search_result_row[data-sro-card] .responsive_search_name_combined {
   /* Same widths on every row, so labels share one left edge. The review column fits the longest label
-     at a 16px minimum font, and gives way in a narrow window: the price must never leave the row. */
-  grid-template-columns: minmax(130px, 1fr) 100px minmax(110px, 206px) 150px;
+     at a 16px minimum font, and gives way in a narrow window: the price must never leave the row.
+     That label is Steam's icon (16px), a 6px gap and 208px of words, its flag space included. */
+  grid-template-columns: minmax(130px, 1fr) 100px minmax(110px, 232px) 150px;
+}
+/* A minimum font size (content.ts sets the flag) makes that label too wide for a narrow window's grid.
+   Take the room from the date, which wraps onto two lines at that font size anyway. Taking it from
+   the platform icons ran "VR Supported" over the date; at the default font it costs nothing. */
+html[data-sro-min-font] .search_result_row[data-sro-card] .responsive_search_name_combined {
+  grid-template-columns: minmax(130px, 1fr) 78px minmax(110px, 232px) 150px;
 }
 .search_result_row[data-sro-card] .search_reviewscore {
   width: auto; white-space: nowrap;
@@ -54,6 +61,11 @@
 .search_reviewscore .sro-badge.sro-slot .sro-line {
   display: block; max-width: 100%;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* A game with few reviews gets no icon from Steam: hold its place (16px icon, 6px gap) so the words
+   keep the column's left edge. */
+@media (min-width: 751px) {
+  .search_reviewscore:not(:has(.search_review_summary)) .sro-badge.sro-slot { margin-inline-start: 22px; }
 }
 /* A lone line has no flag or globe. An unseen one keeps its words on the same left edge as those that do. */
 .search_reviewscore .sro-badge.sro-slot .sro-ico { margin-inline-end: 4px; }

@@ -107,6 +107,24 @@ function injectStyles() {
   document.documentElement.appendChild(style)
 }
 
+/**
+ * Does the browser enforce a minimum font size (Firefox's "minimum font size", Chrome's
+ * minimumFontSize)? Our 11px labels then render larger, and the search grid makes room for them.
+ * CSS cannot ask, and computed styles still say 11px, so measure: unclamped, 11px text is half
+ * as wide as 22px text.
+ */
+function minFontClamps(): boolean {
+  const probe = document.createElement('span')
+  probe.textContent = 'Overwhelmingly Positive'
+  probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:11px Arial,sans-serif'
+  document.documentElement.appendChild(probe)
+  const small = probe.getBoundingClientRect().width
+  probe.style.fontSize = '22px'
+  const large = probe.getBoundingClientRect().width
+  probe.remove()
+  return large > 0 && small / large > 0.6
+}
+
 /** Cards whose own link goes to a sale/publisher/franchise page aren't a game, even if they carry an appid. */
 const NON_GAME_LINK = /\/(sale|publisher|developer|franchise|curator|bundle|sub|dlc|news|category|genre|tags?)\//
 
@@ -1648,6 +1666,7 @@ function shutdown() {
   if (replaceTimer) clearTimeout(replaceTimer)
   shapeWatcher.disconnect()
   delete document.documentElement.dataset.sroReady
+  delete document.documentElement.dataset.sroMinFont
   document.removeEventListener('mouseover', onThumbOver)
   document.removeEventListener('mouseout', onThumbOut)
   document.removeEventListener('scroll', hideThumbTip, true)
@@ -1686,6 +1705,7 @@ async function main() {
   setLanguage(lang.steam)
   void ext.storage.local.set({ [LANG_KEY]: lang }).catch(() => {})
   seedFromInlineJson()
+  if (minFontClamps()) document.documentElement.dataset.sroMinFont = '1'
   scan()
   // Tools poll for this instead of sleeping: it separates "the overlay ran" from "no cards here"
   document.documentElement.dataset.sroReady = '1'

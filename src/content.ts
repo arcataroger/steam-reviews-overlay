@@ -84,7 +84,10 @@ const MAX_CARD_H = 700
 const NEVER_CARD_SELECTOR =
   '.page_content, .page_content_ctn, #responsive_page_template_content, .responsive_page_content, main, [role="main"], ' +
   '.app_reviews_area, .game_page_autocollapse_ctn, .leftcol, .rightcol, .block, #game_area_reviews, ' + // app-page sections
-  '.game_area_dlc_section, .game_area_dlc_list' // a DLC list with one row is still a list
+  '.game_area_dlc_section, .game_area_dlc_list, ' + // a DLC list with one row is still a list
+  // Sale pages: a row centres its last tile between empty placeholder slots, so a row of one game
+  // looked like that game's card and took a frame the width of the page. A section adds a heading.
+  '.SaleSectionContainer, .SaleSectionForCustomCSS, .SaleSectionCtn'
 
 /**
  * Steam's main content-hub carousel rotates a different game through one viewport every few
@@ -403,7 +406,9 @@ function innerTile(card: HTMLElement): Element | null {
   const art = largestArt(card)
   if (!art) return null
   const cr = card.getBoundingClientRect()
-  const words = (el: Element) => (el.textContent ?? '').length
+  // Our badge's words must not count: a tile measured before and after its label arrived chose
+  // different boxes, and the first answer is cached for good.
+  const words = (el: Element) => textOutsideBadges(el as HTMLElement).length
   const area = (q: DOMRect) => q.width * q.height
   const ours = (el: Element) => el.classList.contains(BADGE_CLASS) || el.classList.contains(ORBIT_CLASS)
   const midX = art.left + art.width / 2
@@ -414,7 +419,7 @@ function innerTile(card: HTMLElement): Element | null {
     const next = [...tile.children].find((k) => {
       if (ours(k)) return false
       const q = k.getBoundingClientRect()
-      return midX > q.left && midX < q.right && midY > q.top && midY < q.bottom && area(q) >= 0.55 * area(cr) && words(k) >= 0.6 * words(card)
+      return midX > q.left && midX < q.right && midY > q.top && midY < q.bottom && area(q) >= 0.55 * area(cr) && words(k) >= 0.6 * words(card) && !stripBelow(k, q)
     })
     if (!next) break
     tile = next
@@ -422,6 +427,21 @@ function innerTile(card: HTMLElement): Element | null {
   if (tile === card) return null
   const q = tile.getBoundingClientRect()
   return q.left - cr.left >= 3 || cr.right - q.right >= 3 || q.top - cr.top >= 3 || cr.bottom - q.bottom >= 3 ? tile : null
+}
+
+/**
+ * Does a sibling strip sit flush under `box`? Then `box` is the artwork and the strip
+ * its price bar. Word counts alone miss this: a sale tile's art carries an "In Library" ribbon, and
+ * before Steam fills the price bar that ribbon is every word the tile has.
+ */
+function stripBelow(box: Element, q: DOMRect): boolean {
+  for (const sib of box.parentElement?.children ?? []) {
+    if (sib === box || sib.classList.contains(BADGE_CLASS) || sib.classList.contains(ORBIT_CLASS)) continue
+    const s = sib.getBoundingClientRect()
+    // No width test: a capsule's price block can be a 10px box its price overflows to the left
+    if (s.height > 0 && s.height < q.height && s.top >= q.bottom - 2 && s.top - q.bottom <= 4 && s.right > q.left && s.left < q.right) return true
+  }
+  return false
 }
 
 const FRAME_SIDES = ['top', 'right', 'bottom', 'left'] as const
@@ -567,6 +587,9 @@ function liftAboveDim(card: HTMLElement, badge: HTMLElement) {
   spacer.className = 'sro-spacer'
   spacer.style.width = `${b.width}px`
   spacer.style.height = `${b.height}px`
+  // Its margins too: without them a right-aligned price slid 16px over, flush against the label
+  const m = getComputedStyle(badge)
+  spacer.style.margin = `${m.marginTop} ${m.marginRight} ${m.marginBottom} ${m.marginLeft}`
   badge.replaceWith(spacer)
   badge.classList.remove('sro-inline', 'sro-beside-native', 'sro-beside-title')
   badge.classList.add('sro-lifted')
@@ -657,7 +680,11 @@ function placeBadgeOnCard(card: HTMLElement, summary: ReviewSummary) {
     }
     const r = badge.getBoundingClientRect()
     const cr = card.getBoundingClientRect()
-    const clipped = !r.width || !r.height || !within(r, cr) // any edge, incl. the left in a row-reverse price row
+    // Any edge, incl. the left in a row-reverse price row. The frame's 2px border sits on the card's
+    // edge, so stay off it: on the right keep the label's 4px margin (less half a pixel of rounding),
+    // since a narrow sale tile with a discount box ran its label up against it; at the bottom keep
+    // 2px, since a two-line label in a 38px price bar sat its second line on the border.
+    const clipped = !r.width || !r.height || !within(r, cr) || r.right > cr.right - 3.5 || r.bottom > cr.bottom - 2
     // A badge must never change the card's size (capsules in carousels size themselves from the
     // price block, and an inline label there reflows the whole row). If it did, or got clipped,
     // take it out of the flow: an absolute chip just above the price bar instead.
@@ -1210,7 +1237,7 @@ const shapeWatcher = new ResizeObserver((entries) => {
     applyFilter(card, s)
     // A corner chip was placed against the old layout: re-run the full placement (with its
     // candidates and guards) rather than adjusting it blindly.
-    if (!first && card.querySelector(`.${BADGE_CLASS}.sro-corner`)) placeBadge(card, s)
+    if (!first && (card.querySelector(`.${BADGE_CLASS}.sro-corner`) || inlineSpills(card))) placeBadge(card, s)
     else if (appid) reconcileBadge(card, appid)
   }
 })
@@ -1398,7 +1425,7 @@ function reconcileBadge(card: HTMLElement, appid: number) {
   // Beside Steam's own text a label is only due when local and global disagree: a re-render that
   // dropped that pair must bring it back too.
   const pairDue = !!(cached.local && cached.global && cached.local.label !== cached.global.label)
-  const stale = (!badge && (!native || pairDue)) || (badge && native && !badge.classList.contains('sro-beside-native'))
+  const stale = (!badge && (!native || pairDue)) || (badge && native && !badge.classList.contains('sro-beside-native')) || inlineSpills(card)
   if (stale) placeBadge(card, cached)
   // The orbit ring is a real child, not a pseudo-element, so Steam's re-render can drop it while
   // the badge still looks right (or is deliberately absent beside Steam's own text). Put it back.
@@ -1420,8 +1447,11 @@ function revalidateCards() {
       reconcileBadge(card, appid)
       continue
     }
-    // The slot now shows a different game (recycled carousel node): drop everything we put on it
+    // The slot now shows a different game (recycled carousel node), or a row that held one tile now
+    // holds two: drop everything we put on it, then look inside. Steam builds a sale row a tile at a
+    // time, and the scan for the second tile never revisits the first, which went unlabelled.
     stripCard(card)
+    scheduleScan(card)
   }
 }
 
@@ -1452,12 +1482,27 @@ function onAssetLoad(e: Event) {
 function replaceCornerChips() {
   if (!alive()) return
   for (const [card] of cardsByAppId) {
-    if (!card.isConnected || !card.querySelector(`.${BADGE_CLASS}.sro-corner`)) continue
+    // A web font arriving late widens a price, and the label after it can then spill off the card
+    if (!card.isConnected || !(card.querySelector(`.${BADGE_CLASS}.sro-corner`) || inlineSpills(card))) continue
     const appid = ownedAppId(card)
     if (!appid) continue
     const s = peekCached(appid)
     if (s) placeBadge(card, s)
   }
+}
+
+/**
+ * Did late content push a label beside the price off its card? It fitted when placed, but Steam
+ * can add a "NEW" tag and a discount afterwards: an upcoming tile's "6 user reviews" then ran past
+ * its right edge. A lifted label stays put while its spacer moves, so it counts too.
+ */
+function inlineSpills(card: HTMLElement): boolean {
+  const badge = card.querySelector<HTMLElement>(`.${BADGE_CLASS}.sro-inline, .${BADGE_CLASS}.sro-lifted`)
+  if (!badge) return false
+  const anchor = badge.classList.contains('sro-lifted') ? card.querySelector<HTMLElement>('.sro-spacer') ?? badge : badge
+  // No layout (a hidden slide) measures as a zero box at 0,0, outside every card: not a spill
+  if (!anchor.getClientRects().length || !card.getClientRects().length) return false
+  return !within(anchor.getBoundingClientRect(), card.getBoundingClientRect())
 }
 
 let lastRevalidate = 0
@@ -1477,9 +1522,10 @@ function scan(root: ParentNode = document) {
     const ids = appid ? appIdsWithin(owner, 2) : new Set<number>()
     if (appid && (ids.size !== 1 || !ids.has(appid))) {
       stripCard(owner)
+      scheduleScan(owner) // this scan covers only the mutated part; the rest of it needs a look too
     } else {
       const s = appid ? peekCached(appid) : undefined
-      if (s && owner.querySelector(`.${BADGE_CLASS}.sro-corner`)) placeBadge(owner, s)
+      if (s && (owner.querySelector(`.${BADGE_CLASS}.sro-corner`) || inlineSpills(owner))) placeBadge(owner, s)
     }
   }
   seedFromSearchRows(root)

@@ -69,7 +69,7 @@ Paste the current version's notes into AMO's "Release notes" field when you subm
 
 ### 0.3.3
 
-- Labels switch back from thumbs to words when you widen the window. Before, a list that once needed thumbs kept them, scattered across its cards.
+- Lists switch back from thumbs to words once their cards have room, after slow art or a narrow window. Before, they kept thumbs, scattered across the cards.
 - Sale tiles: a label no longer ends up pressed against the card's edge when a price loads late.
 
 ### 0.3.2

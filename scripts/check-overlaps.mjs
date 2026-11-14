@@ -3,7 +3,8 @@
 // each, and fail if a label covers text, leaves its card, a price is pushed out of its card, a
 // table loses its shared columns, or search labels lose their shared left edge. On tiles it also
 // fails a frame that leaves out the price bar, a card holding a section heading, a game tile
-// without a card, and a label flush against the price beside it.
+// without a card, and a label flush against the price beside it. On the home page it also fails a
+// label that takes thumbs after a resize or late art where a plain load gives words.
 // Steam's layouts change with the window and the font, so a fix checked once proves little: one
 // chart overlap only appeared at the default font, another only at 1400px with a 16px minimum.
 //
@@ -134,6 +135,70 @@ const lostPrices = () => {
   return lost
 }
 
+/** Each visible label's form, keyed by its list and game: thumbs or words. */
+const labelForms = () => {
+  const out = {}
+  for (const card of document.querySelectorAll('[data-sro-card]')) {
+    const badge = card.querySelector('.sro-badge')
+    if (!badge || !card.getBoundingClientRect().width) continue
+    out[`${card.parentElement?.closest('[id]')?.id ?? '?'} ${card.dataset.sroCard}`] = badge.classList.contains('sro-compact') ? 'thumbs' : 'words'
+  }
+  return out
+}
+
+/** Scroll the whole page once, so lazy rows load and get labels. */
+async function scrollThrough(page) {
+  const height = await page.evaluate(() => document.documentElement.scrollHeight)
+  for (let y = 0; y < height; y += 900) {
+    await page.evaluate((top) => scrollTo(0, top), y)
+    await page.waitForTimeout(500)
+  }
+  await waitForOverlay(page)
+}
+
+/**
+ * A list that fell back to thumbs in a narrow window must take words again once it widens. The
+ * home wishlist kept thumbs for good, and each resize then scattered them (2026-11-14).
+ * Compare a home page loaded narrow and then widened with one loaded wide.
+ */
+async function resizeFaults(page, where) {
+  const [narrow, wide] = [900, 1400]
+  await page.setViewportSize({ width: wide, height: 1000 })
+  await page.goto(STORE, { waitUntil: 'domcontentloaded', timeout: 40000 }).catch(() => {})
+  if ((await waitForOverlay(page)) === null) return [`${where} /: the overlay never ran for the resize check`]
+  await scrollThrough(page)
+  const fresh = await page.evaluate(labelForms)
+  await page.setViewportSize({ width: narrow, height: 1000 })
+  await page.goto(STORE, { waitUntil: 'domcontentloaded', timeout: 40000 }).catch(() => {})
+  if ((await waitForOverlay(page)) === null) return [`${where} /: the overlay never ran for the resize check`]
+  await scrollThrough(page)
+  await page.setViewportSize({ width: wide, height: 1000 })
+  await page.waitForTimeout(1000)
+  await scrollThrough(page)
+  const resized = await page.evaluate(labelForms)
+  // Art that loads late: cards measured without it look too small for words. This is how the
+  // user's wishlist got thumbs at a width that fits words, scattered over the tiles.
+  const ART = /store_item_assets\/steam\/apps\/.*\.(jpg|png|webp)/
+  await page.route(ART, async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 3000))
+    await route.continue().catch(() => {})
+  })
+  await page.goto(STORE, { waitUntil: 'domcontentloaded', timeout: 40000 }).catch(() => {})
+  const ran = (await waitForOverlay(page)) !== null
+  if (ran) {
+    await scrollThrough(page)
+    await page.waitForTimeout(4000)
+  }
+  const slow = ran ? await page.evaluate(labelForms) : {}
+  await page.unroute(ART)
+  if (!ran) return [`${where} /: the overlay never ran for the slow-art check`]
+  const differ = (forms, how) =>
+    Object.entries(forms)
+      .filter(([key, form]) => fresh[key] && fresh[key] !== form)
+      .map(([key, form]) => `${where} /: ${key} shows ${form} ${how}, ${fresh[key]} on a plain load at ${wide}px`)
+  return [...differ(resized, `after widening from ${narrow}px`), ...differ(slow, 'when its art loads late')]
+}
+
 const settings = { mode: 'dim', threshold: 5, source: 'local', highlightThreshold: 6 }
 const faults = new Map()
 let checked = 0
@@ -157,7 +222,16 @@ for (const font of fonts) {
         await page.evaluate((top) => scrollTo(0, top), y)
         await page.waitForTimeout(700)
         for (const name of await page.evaluate(wideFrames)) faults.set(`${route}|wide|${name}`, `${where} /${route}: frame wider than its tile: ${name}`)
-        for (const tile of await page.evaluate(tileFaults)) faults.set(`${route}|tile|${tile}`, `${where} /${route}: ${tile}`)
+        let tiles = await page.evaluate(tileFaults)
+        // A tile Steam has just re-rendered waits for the overlay's next scan (250 ms). Give the
+        // overlay time to settle, then count only the tiles still without a card.
+        if (tiles.some((t) => t.startsWith('game tile without a card'))) {
+          await waitForOverlay(page)
+          const still = new Set(await page.evaluate(tileFaults))
+          for (const t of tiles.filter((t) => !still.has(t))) console.log(`note ${where} /${route}: claimed after settling: ${t}`)
+          tiles = tiles.filter((t) => still.has(t))
+        }
+        for (const tile of tiles) faults.set(`${route}|tile|${tile}`, `${where} /${route}: ${tile}`)
         for (const price of await page.evaluate(lostPrices)) faults.set(`${route}|price|${price}`, `${where} /${route}: price-lost: ${price}`)
         const { issues } = await page.evaluate(CHECKS)
         for (const issue of issues.filter((x) => FAULTS.test(x.kind))) {
@@ -173,6 +247,12 @@ for (const font of fonts) {
       checked++
       console.log(`${where} /${route}: ${cards} cards, ${faults.size} faults so far`)
     }
+  }
+  if (pages.includes('')) {
+    const where = `resize and slow art, 1400px, min font ${font}`
+    for (const fault of await resizeFaults(page, where)) faults.set(`resize|${font}|${fault}`, fault)
+    checked++
+    console.log(`${where} /: ${faults.size} faults so far`)
   }
   await ctx.close()
 }

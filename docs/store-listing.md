@@ -67,6 +67,11 @@ To retake them from live Steam pages, run `npm run shots:store`.
 
 Paste the current version's notes into AMO's "Release notes" field when you submit it. Firefox shows them on the add-on's Release Notes tab. AMO takes plain text.
 
+### 0.3.3
+
+- Labels switch back from thumbs to words when you widen the window. Before, a list that once needed thumbs kept them, scattered across its cards.
+- Sale tiles: a label no longer ends up pressed against the card's edge when a price loads late.
+
 ### 0.3.2
 
 - Sale pages: frames now surround the right box, and every tile gets its label.

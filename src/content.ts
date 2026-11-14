@@ -934,6 +934,23 @@ function switchSectionToThumbs(card: HTMLElement) {
 }
 
 /**
+ * Give a thumbs section words again after its cards change size. A window that was narrow once
+ * would otherwise keep thumbs for the page's life, and each later resize re-placed them on a new
+ * layout, so they scattered. If any card still cannot take words, it switches the section back.
+ */
+function retryWords(section: HTMLElement) {
+  if (!thumbSections.delete(section)) return
+  for (const card of section.querySelectorAll<HTMLElement>(`[${CARD_ATTR}]`)) {
+    if (sectionOf(card) !== section || !card.querySelector(`.${BADGE_CLASS}`)) continue
+    const appid = ownedAppId(card)
+    const summary = appid ? peekCached(appid) : undefined
+    if (summary) placeBadge(card, summary)
+    // A card that switched back has already re-placed the rest as thumbs
+    if (thumbSections.has(section)) return
+  }
+}
+
+/**
  * Chart rows. Top Sellers has no room for words: thumbs follow the price, centred by CSS and out of
  * the flow, because anything added to a table's columns changes their widths. Most Played has room,
  * so the label ends the title's own flex row, which centres it and gives way to the title. Only a
@@ -1223,6 +1240,8 @@ function setOrbit(card: HTMLElement, on: boolean) {
 /** Cards change size when a carousel reveals them; re-derive the highlight shape when that happens. */
 const shapeWatcher = new ResizeObserver((entries) => {
   if (!alive()) return
+  // Thumbs sections whose cards changed size: retried once each, after the loop
+  const retry = new Set<HTMLElement>()
   for (const e of entries) {
     const card = e.target as HTMLElement
     if (!card.isConnected) continue
@@ -1243,21 +1262,30 @@ const shapeWatcher = new ResizeObserver((entries) => {
       scheduleScan(card)
       continue
     }
-    const s = peekCached(appid)
-    if (!s) continue
     // A lifted corner chip was measured against the old layout: re-place it. Otherwise re-derive the
     // shape and make sure the badge still matches (a slide that just became visible may need one).
-    // Only act on a real size change (the observer also fires on observe())
+    // Only act on a real size change (the observer also fires on observe()). Record the size even
+    // before the review arrives: otherwise the first resize after it reads as the first sighting,
+    // and chips placed for a narrow window stay where that layout put them.
     const size = `${Math.round(r.width)}x${Math.round(r.height)}`
     if (card.dataset.sroSize === size) continue
     const first = !card.dataset.sroSize
     card.dataset.sroSize = size
+    const s = peekCached(appid)
+    if (!s) continue
     applyFilter(card, s)
+    // A thumbs section gets another try at words whenever its cards change size
+    const section = !first && usesThumbs(card) ? sectionOf(card) : null
+    if (section) {
+      retry.add(section)
+      continue
+    }
     // A corner chip was placed against the old layout: re-run the full placement (with its
     // candidates and guards) rather than adjusting it blindly.
     if (!first && (card.querySelector(`.${BADGE_CLASS}.sro-corner`) || inlineSpills(card))) placeBadge(card, s)
     else if (appid) reconcileBadge(card, appid)
   }
+  for (const section of retry) retryWords(section)
 })
 
 function applyFilter(card: HTMLElement, summary: ReviewSummary) {
@@ -1483,16 +1511,21 @@ function onAssetLoad(e: Event) {
   if (replaceTimer) return
   replaceTimer = window.setTimeout(() => {
     replaceTimer = undefined
+    // Cards measured before their art arrived can look too small for words: their lists try again
+    const retry = new Set<HTMLElement>()
     for (const c of replaceQueue) {
       const appid = c.isConnected ? ownedAppId(c) : undefined
       const s = appid ? peekCached(appid) : undefined
       if (!s) continue
-      if (c.querySelector(`.${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
+      const section = usesThumbs(c) ? sectionOf(c) : null
+      if (section) retry.add(section)
+      else if (c.querySelector(`.${BADGE_CLASS}.sro-corner`)) placeBadge(c, s)
       // The highlight shape weighs the artwork's share of the card; an image that was still empty
       // when the shape was chosen (lazy carousel slide) can flip a capsule from ring to underglow.
       if (c.dataset.sroHighlight) applyFilter(c, s)
     }
     replaceQueue.clear()
+    for (const section of retry) retryWords(section)
   }, 150)
 }
 
@@ -1520,7 +1553,14 @@ function inlineSpills(card: HTMLElement): boolean {
   const anchor = badge.classList.contains('sro-lifted') ? card.querySelector<HTMLElement>('.sro-spacer') ?? badge : badge
   // No layout (a hidden slide) measures as a zero box at 0,0, outside every card: not a spill
   if (!anchor.getClientRects().length || !card.getClientRects().length) return false
-  return !within(anchor.getBoundingClientRect(), card.getBoundingClientRect())
+  const a = anchor.getBoundingClientRect()
+  const cr = card.getBoundingClientRect()
+  if (!within(a, cr)) return true
+  // A label beside the price keeps the margins its placement demanded: a price that grew later
+  // pushed a sale tile's label against the frame's border, 2px from the edge. Only that kind:
+  // placement accepts the others without margins, so the test would re-place them forever.
+  const besidePrice = badge.matches('.sro-inline:not(.sro-beside-native, .sro-beside-title, .sro-row-end)')
+  return besidePrice && (a.right > cr.right - 3.5 || a.bottom > cr.bottom - 2)
 }
 
 let lastRevalidate = 0

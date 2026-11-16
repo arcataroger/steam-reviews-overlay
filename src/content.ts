@@ -97,6 +97,9 @@ const NEVER_CARD_SELECTOR =
  * stops on the way into one of these rather than at the top of it.
  */
 const ROTATING_CAROUSEL = '.contenthubmaincarousel'
+/** The home page's stacked recommendation panels, each an empty band above its content box. */
+const STACKED_PANEL = '.home_content_single_ctn'
+const STACKED_PANEL_PARTS = `${STACKED_PANEL}, ${STACKED_PANEL} > .home_content.single`
 const maxCardWidth = () => Math.min(MAX_CARD_W, window.innerWidth - 80)
 
 function injectStyles() {
@@ -225,7 +228,10 @@ function findCard(start: HTMLElement, appid: number): HTMLElement | null {
     // Height is capped for every candidate (a 4000px reviews container is never a card); the width
     // cap only applies when climbing, since a search row can be wider than a phone viewport.
     if (rect.height > MAX_CARD_H || el.matches(NEVER_CARD_SELECTOR)) break
-    if (card && rect.width > maxCardWidth()) break
+    // A stacked recommendation panel holds one game whatever its width. On a phone it runs wider than
+    // the cap, and stopping short of it left the capsule and screenshots as the card: no title or
+    // price, and a frame that could land on the screenshot strip.
+    if (card && rect.width > maxCardWidth() && !el.matches(STACKED_PANEL_PARTS)) break
     // A row of tiles that all belong to the same game (three news posts about one title) is a group,
     // not a card: stop at the tile when the parent holds another artwork-bearing link to it.
     if (card && hasSiblingTile(el, card, appid)) break
@@ -379,9 +385,6 @@ function glowWouldClip(card: HTMLElement, r: DOMRect): boolean {
   return false
 }
 
-/** The home page's stacked recommendation panels, each an empty band above its content box. */
-const STACKED_PANEL = '.home_content_single_ctn'
-
 /**
  * The box a card's frame and dim overlay should cover, when that is not the card itself.
  *  - Stacked panels butt against each other, so a frame round the whole card touches the next one.
@@ -395,7 +398,10 @@ function frameBox(card: HTMLElement): Element | null {
   const box = findFrameBox(card)
   // Find a tile once, at rest. Steam's hover popup lands inside the card and stays there, and it
   // holds more words and larger art than the tile, so a later search would frame the popup instead.
-  if (box && card.contains(box) && !card.matches(':hover')) frameTargets.set(card, box)
+  // Nor while art is loading: a capsule with no size yet loses the largest-art test to a screenshot
+  // below it, and the frame stuck to that screenshot. onArtLoaded measures again.
+  const loading = [...card.querySelectorAll('img')].some((img) => !img.complete)
+  if (box && card.contains(box) && !card.matches(':hover') && !loading) frameTargets.set(card, box)
   return box
 }
 
@@ -770,7 +776,8 @@ function obstaclesFor(card: HTMLElement, badge: HTMLElement): DOMRect[] {
   // Icons, buttons and small artwork: whole-tile art and wrappers are what a chip sits on, not obstacles
   for (const el of card.querySelectorAll<HTMLElement>('img, svg, video, button, [role="button"]')) {
     if (badge.contains(el) || el.classList.contains(ORBIT_CLASS)) continue
-    if (el.matches(`${STACKED_PANEL} .screenshots img`)) continue // the art a stacked panel's chip sits on
+    // The art a stacked panel's chip sits on: a screenshot, or on a phone the capsule (or its trailer)
+    if (el.matches(`${STACKED_PANEL} :is(.screenshots img, .microtrailer_wrapper img, .microtrailer_wrapper video)`)) continue
     const er = el.getBoundingClientRect()
     if (!er.width || !er.height) continue
     if ((er.width * er.height) / cardArea > 0.33) continue
@@ -1020,9 +1027,15 @@ function placeInCorner(card: HTMLElement, badge: HTMLSpanElement, cardRect?: DOM
   const candidates: Array<() => void> = []
   // Stacked panels: on the last screenshot, above the price, so the label stays out of the gap
   // under the panel. Dark chip over artwork, the same as on the small capsules.
-  const shot = card.matches(STACKED_PANEL) ? [...card.querySelectorAll('.screenshots img')].pop()?.getBoundingClientRect() : undefined
-  if (shot?.width) {
-    candidates.push(() => apply({ bottom: Math.round(cr.bottom - shot.bottom) + 4, right: Math.round(cr.right - shot.right) + 4 }))
+  // On a phone the screenshots are a sideways scroller whose last one is out of view: every panel
+  // takes the capsule's corner instead, so the list keeps one spot.
+  if (card.matches(STACKED_PANEL)) {
+    const shotEl = [...card.querySelectorAll('.screenshots img')].pop()
+    const shot = shotEl?.getBoundingClientRect()
+    const strip = shotEl?.parentElement?.getBoundingClientRect()
+    const shown = shot?.width && strip && shot.left >= strip.left - 1 && shot.right <= strip.right + 1
+    const corner = shown ? shot : card.querySelector('.capsule_image_ctn img')?.getBoundingClientRect()
+    if (corner?.width && corner.height) candidates.push(() => apply({ bottom: Math.round(cr.bottom - corner.bottom) + 4, right: Math.round(cr.right - corner.right) + 4 }))
   }
   // A hero's capsule: the art's corner, wherever the frame goes
   const heroArt = card.closest(ROTATING_CAROUSEL) ? largestArt(card) : null

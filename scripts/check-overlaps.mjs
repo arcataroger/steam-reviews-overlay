@@ -113,6 +113,24 @@ const tileFaults = () => {
       if (floor < 2 && floor > -2) out.push(`label on the card's bottom edge (${floor}px): ${name(card)}`)
     }
   }
+  // A stacked home panel ("Since you recently played") is one game: its frame holds the title and the
+  // price. On a phone the card once stopped at the capsule, and slow capsule art left the frame on a
+  // screenshot below it.
+  for (const panel of document.querySelectorAll('.home_content_single_ctn')) {
+    const p = panel.getBoundingClientRect()
+    const card = panel.closest('[data-sro-highlight]') ?? panel.querySelector('[data-sro-highlight]')
+    if (!card || !onScreen(p)) continue
+    const st = getComputedStyle(card)
+    const o = (side) => parseFloat(st.getPropertyValue(`--sro-frame-${side}`)) || 0
+    const r = card.getBoundingClientRect()
+    const f = { top: r.top + o('top'), right: r.right - o('right'), bottom: r.bottom - o('bottom'), left: r.left + o('left') }
+    for (const sel of ['.single_title', '.discount_block_ctn .discount_final_price']) {
+      const q = panel.querySelector(sel)?.getBoundingClientRect()
+      if (q?.width && (q.top < f.top - 2 || q.bottom > f.bottom + 2 || q.left < f.left - 2 || q.right > f.right + 2)) {
+        out.push(`stacked panel's ${sel.split(' ').pop().slice(1)} outside its frame: ${name(panel)}`)
+      }
+    }
+  }
   for (const a of document.querySelectorAll('a[href*="/app/"]')) {
     const q = a.getBoundingClientRect()
     if (q.width < 100 || q.height < 80 || !onScreen(q) || !a.querySelector('img') || a.closest('[data-sro-card], #global_hover, .hover_body')) continue
